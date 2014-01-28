@@ -25,6 +25,7 @@
 		1F60B17518974B9A00232A84 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F60B14D18974B9A00232A84 /* UIKit.framework */; };
 		1F60B17D18974B9A00232A84 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1F60B17B18974B9A00232A84 /* InfoPlist.strings */; };
 		1F60B17F18974B9A00232A84 /* BubbleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F60B17E18974B9A00232A84 /* BubbleTests.m */; };
+		1F60B18A1897500300232A84 /* bubble.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F60B1891897500300232A84 /* bubble.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,8 @@
 		1F60B17A18974B9A00232A84 /* BubbleTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BubbleTests-Info.plist"; sourceTree = "<group>"; };
 		1F60B17C18974B9A00232A84 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1F60B17E18974B9A00232A84 /* BubbleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BubbleTests.m; sourceTree = "<group>"; };
+		1F60B1881897500300232A84 /* bubble.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bubble.h; sourceTree = "<group>"; };
+		1F60B1891897500300232A84 /* bubble.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bubble.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +137,8 @@
 				1F60B16918974B9A00232A84 /* Spaceship.png */,
 				1F60B16B18974B9A00232A84 /* Images.xcassets */,
 				1F60B15218974B9A00232A84 /* Supporting Files */,
+				1F60B1881897500300232A84 /* bubble.h */,
+				1F60B1891897500300232A84 /* bubble.m */,
 			);
 			path = Bubble;
 			sourceTree = "<group>";
@@ -267,6 +272,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1F60B16818974B9A00232A84 /* MyScene.m in Sources */,
+				1F60B18A1897500300232A84 /* bubble.m in Sources */,
 				1F60B16518974B9A00232A84 /* ViewController.m in Sources */,
 				1F60B15C18974B9A00232A84 /* AppDelegate.m in Sources */,
 				1F60B15818974B9A00232A84 /* main.m in Sources */,

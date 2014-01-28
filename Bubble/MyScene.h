@@ -7,7 +7,11 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+#import "bubble.h"
 
 @interface MyScene : SKScene
+{
+    NSMutableArray *bubbles;
+}
 
 @end

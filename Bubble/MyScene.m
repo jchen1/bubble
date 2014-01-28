@@ -24,6 +24,7 @@
                                        CGRectGetMidY(self.frame));
         
         [self addChild:myLabel];
+        bubbles = [NSMutableArray array];
     }
     return self;
 }
@@ -34,20 +35,19 @@
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInNode:self];
         
-        SKSpriteNode *sprite = [SKSpriteNode spriteNodeWithImageNamed:@"Spaceship"];
+        bubble *b = [[bubble alloc] init];
+        b.position = location;
         
-        sprite.position = location;
-        
-        SKAction *action = [SKAction rotateByAngle:M_PI duration:1];
-        
-        [sprite runAction:[SKAction repeatActionForever:action]];
-        
-        [self addChild:sprite];
+        [bubbles addObject:b];
+        [self addChild:b];
     }
 }
 
 -(void)update:(CFTimeInterval)currentTime {
     /* Called before each frame is rendered */
+    for (bubble *b in bubbles) {
+        [b grow];
+    }
 }
 
 @end
