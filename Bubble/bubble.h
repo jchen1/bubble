@@ -8,14 +8,18 @@
 
 #import <SpriteKit/SpriteKit.h>
 
-@interface bubble : SKShapeNode
+@interface Bubble : SKShapeNode
 {
-    int _radius;
+    double _radius;
 }
+-(id) initWithColor : (SKColor*) color;
 -(void) updateArc;
--(void) setRadius: (int) radius;
--(int)radius;
--(void) grow;
+-(void) setRadius: (double) radius;
+-(double) radius;
+-(void) updatePosition;
+-(bool) inside: (CGPoint) touch;
+-(bool) collidesWith: (Bubble*) other;
+-(void) eat: (Bubble*) other;
 
 
 @end
