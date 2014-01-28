@@ -29,6 +29,7 @@
 		1F60B17F18974B9A00232A84 /* BubbleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F60B17E18974B9A00232A84 /* BubbleTests.m */; };
 		1F60B18A1897500300232A84 /* Bubble.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F60B1891897500300232A84 /* Bubble.m */; };
 		1F7C329618975A34006995F8 /* AIBubble.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7C329518975A34006995F8 /* AIBubble.m */; };
+		A956913B18984320004FBD99 /* MultipeerConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A956913A18984320004FBD99 /* MultipeerConnectivity.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +75,7 @@
 		1F60B1891897500300232A84 /* Bubble.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bubble.m; sourceTree = "<group>"; };
 		1F7C329418975A34006995F8 /* AIBubble.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AIBubble.h; sourceTree = "<group>"; };
 		1F7C329518975A34006995F8 /* AIBubble.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AIBubble.m; sourceTree = "<group>"; };
+		A956913A18984320004FBD99 /* MultipeerConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MultipeerConnectivity.framework; path = System/Library/Frameworks/MultipeerConnectivity.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A956913B18984320004FBD99 /* MultipeerConnectivity.framework in Frameworks */,
 				1F60B14C18974B9A00232A84 /* CoreGraphics.framework in Frameworks */,
 				1F60B14E18974B9A00232A84 /* UIKit.framework in Frameworks */,
 				1F60B15018974B9A00232A84 /* SpriteKit.framework in Frameworks */,
@@ -123,6 +126,7 @@
 		1F60B14818974B9A00232A84 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A956913A18984320004FBD99 /* MultipeerConnectivity.framework */,
 				1F60B14918974B9A00232A84 /* Foundation.framework */,
 				1F60B14B18974B9A00232A84 /* CoreGraphics.framework */,
 				1F60B14D18974B9A00232A84 /* UIKit.framework */,
