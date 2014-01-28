@@ -38,16 +38,16 @@
     CGPoint pos = super.position;
     switch (direction) {
         case 0: //up
-            pos.y++;
+            pos.y+= [super getSpeed];
             break;
         case 1: //down
-            pos.y--;
+            pos.y-= [super getSpeed];
             break;
         case 2: //left
-            pos.x--;
+            pos.x-= [super getSpeed];
             break;
         case 3: //right
-            pos.x++;
+            pos.x+= [super getSpeed];
             break;
         default:
             break;  //wut

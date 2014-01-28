@@ -22,6 +22,7 @@
 -(bool) collidesWith: (Bubble*) other;
 -(void) eat: (Bubble*) other;
 -(NSString*) toString;
+-(double) getSpeed;
 
 
 @end

@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Jeff Chen. All rights reserved.
 //
 
-#import "bubble.h"
+#import "Bubble.h"
 
 @implementation Bubble
 
@@ -85,6 +85,11 @@
 -(NSString*) toString
 {
     return [NSString stringWithFormat:@"%c %f %f %f  ", _type, _radius, super.position.x, super.position.y];
+}
+
+-(double) getSpeed
+{
+    return MIN(5 * (1 / sqrt(_radius)), 20);
 }
 
 /*

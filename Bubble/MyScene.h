@@ -24,4 +24,6 @@
 
 }
 
+-(void) generateBubbles: (unsigned int)seed;
+
 @end

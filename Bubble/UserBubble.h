@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Jeff Chen. All rights reserved.
 //
 
-#import "bubble.h"
+#import "Bubble.h"
 
 @interface UserBubble : Bubble
 {

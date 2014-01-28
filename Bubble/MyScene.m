@@ -47,6 +47,8 @@
         [self addChild:downBubble];
         [self addChild:leftBubble];
         [self addChild:upBubble];
+        
+        [self generateBubbles:rand()];
 
     }
     return self;
@@ -123,23 +125,6 @@
             [rightBubble setDown:true];
             done = true;
         }
-        
-        
-        /*
-        for (Bubble *b in bubbles) {
-            if ([b inside:location]) {
-                [b setRadius:(b.radius + 1)];
-                inside = true;
-            }
-        }*/
-        
-        if (!inside && !done) {
-            AIBubble *b = [[AIBubble alloc] init];
-            b.position = location;
-            
-            [bubbles addObject:b];
-            [self addChild:b];
-        }
     }
 }
 
@@ -193,6 +178,28 @@
     
     [bubbles removeObjectsAtIndexes:removeIndices];
     
+    if (MAX(0, (30 - [bubbles count])) > rand() % 100)
+    {
+        AIBubble *bubble = [[AIBubble alloc] init];
+        bubble.position = CGPointMake(rand() % (int)CGRectGetMaxX(self.frame), rand() % (int)CGRectGetMaxY(self.frame));
+        [bubbles addObject:bubble];
+        [self addChild:bubble];
+    }
+    
+}
+
+-(void) generateBubbles:(unsigned int)seed
+{
+    srand(seed);
+    int numBubbles = 10 + rand() % 20; //10 - 30 bubbles generated
+    
+    for (int i = 0; i < numBubbles; i++)
+    {
+        AIBubble *bubble = [[AIBubble alloc] init];
+        bubble.position = CGPointMake(rand() % (int)CGRectGetMaxX(self.frame), rand() % (int)CGRectGetMaxY(self.frame));
+        [bubbles addObject:bubble];
+        [self addChild:bubble];
+    }
 }
 
 @end
