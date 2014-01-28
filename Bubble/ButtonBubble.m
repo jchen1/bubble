@@ -16,6 +16,7 @@
     {
         super.alpha = 0.3;
         _down = false;
+        _type = 'U';
     }
     
     return self;

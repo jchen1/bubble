@@ -13,8 +13,12 @@
 -(id) init
 {
     self = [super initWithColor:[SKColor redColor]];
-    super.radius = 16;
-    super.zPosition = 10;
+    if (self)
+    {
+        super.radius = 16;
+        super.zPosition = 10;
+        _type = 'U';
+    }
     return self;
 }
 

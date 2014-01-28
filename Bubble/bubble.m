@@ -20,6 +20,7 @@
     self = [super init];
     if (self) {
         _radius = 15;
+        _type = 'B';
         super.lineWidth = 1.0;
         super.fillColor = color;
         super.strokeColor = [SKColor whiteColor];

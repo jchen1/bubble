@@ -13,8 +13,12 @@
 -(id) init
 {
     self = [super initWithColor:[SKColor blueColor]];
-    super.zPosition = 9;
-    super.radius += ((double)arc4random_uniform(69133742) / 69133742);
+    if (self)
+    {
+        _type = 'A';
+        super.zPosition = 9;
+        super.radius += ((double)arc4random_uniform(69133742) / 69133742);
+    }
     
     return self;
 }

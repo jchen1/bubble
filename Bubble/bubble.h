@@ -11,6 +11,7 @@
 @interface Bubble : SKShapeNode
 {
     double _radius;
+    char _type;
 }
 -(id) initWithColor : (SKColor*) color;
 -(void) updateArc;
