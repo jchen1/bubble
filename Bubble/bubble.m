@@ -82,6 +82,11 @@
     return (sqrt(pow(super.position.x - other.position.x, 2) + pow(super.position.y - other.position.y, 2)) < _radius + other.radius);
 }
 
+-(NSString*) toString
+{
+    return [NSString stringWithFormat:@"%c %f %f %f  ", _type, _radius, super.position.x, super.position.y];
+}
+
 /*
  * Don't do anything, because fuck that shit.
  */

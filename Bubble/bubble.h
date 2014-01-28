@@ -21,6 +21,7 @@
 -(bool) inside: (CGPoint) touch;
 -(bool) collidesWith: (Bubble*) other;
 -(void) eat: (Bubble*) other;
+-(NSString*) toString;
 
 
 @end
