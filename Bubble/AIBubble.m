@@ -18,7 +18,7 @@
         _type = 'A';
         super.zPosition = 9;
         super.radius = 5 + ((double)arc4random_uniform(69133742) / 6913374);
-    }
+    }    
     
     return self;
 }

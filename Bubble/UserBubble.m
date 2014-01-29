@@ -27,10 +27,11 @@
 
 }
 
--(void) respawn
+-(void) respawn:(CGPoint)pos
 {
     _lives++;
     _radius = 16;
+    super.position = pos;
 }
 
 -(void)updatePosition:(int)direction
