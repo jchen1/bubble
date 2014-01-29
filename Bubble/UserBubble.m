@@ -15,11 +15,16 @@
     self = [super initWithColor:[SKColor redColor]];
     if (self)
     {
-        super.radius = 16;
+        super.radius = 10;
         super.zPosition = 10;
         _type = 'U';
     }
     return self;
+}
+
+-(double) getSpeed
+{
+    return MIN(10 * (1 / sqrt(_radius)), 100);
 }
 
 -(void) updatePosition
@@ -27,10 +32,11 @@
 
 }
 
--(void) respawn
+-(void) respawn:(CGPoint)pos
 {
     _lives++;
     _radius = 16;
+    super.position = pos;
 }
 
 -(void)updatePosition:(int)direction
@@ -38,16 +44,16 @@
     CGPoint pos = super.position;
     switch (direction) {
         case 0: //up
-            pos.y+= [super getSpeed];
+            pos.y+= [self getSpeed];
             break;
         case 1: //down
-            pos.y-= [super getSpeed];
+            pos.y-= [self getSpeed];
             break;
         case 2: //left
-            pos.x-= [super getSpeed];
+            pos.x-= [self getSpeed];
             break;
         case 3: //right
-            pos.x+= [super getSpeed];
+            pos.x+= [self getSpeed];
             break;
         default:
             break;  //wut

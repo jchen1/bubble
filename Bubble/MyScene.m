@@ -29,11 +29,6 @@
         leftBubble = [[ButtonBubble alloc] init],
         rightBubble = [[ButtonBubble alloc] init];
         
-        upBubble.zPosition = 11;
-        downBubble.zPosition = 11;
-        leftBubble.zPosition = 11;
-        rightBubble.zPosition = 11;
-        
         upBubble.position = CGPointMake(CGRectGetMaxX(self.frame) - 55,
                                  CGRectGetMinY(self.frame) + 85);
         downBubble.position = CGPointMake(CGRectGetMaxX(self.frame) - 55,
@@ -103,27 +98,21 @@
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInNode:self];
         
-        bool done = false, inside = false;
-        
         if ([upBubble inside:location])
         {
             [upBubble setDown:true];
-            done = true;
         }
         else if ([downBubble inside:location])
         {
             [downBubble setDown:true];
-            done = true;
         }
         else if ([leftBubble inside:location])
         {
             [leftBubble setDown:true];
-            done = true;
         }
         else if ([rightBubble inside:location])
         {
             [rightBubble setDown:true];
-            done = true;
         }
     }
 }
@@ -149,9 +138,8 @@
     
     if (myBubble.radius < 0.1)
     {
-        [myBubble respawn];
-        myBubble.position = CGPointMake(CGRectGetMidX(self.frame),
-                                        CGRectGetMidY(self.frame));
+        [myBubble respawn:CGPointMake(CGRectGetMidX(self.frame),
+                                      CGRectGetMidY(self.frame))];
     }
     
     [myBubble updateArc];
