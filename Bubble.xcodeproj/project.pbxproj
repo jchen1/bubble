@@ -30,6 +30,9 @@
 		1F60B18A1897500300232A84 /* Bubble.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F60B1891897500300232A84 /* Bubble.m */; };
 		1F7C329618975A34006995F8 /* AIBubble.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7C329518975A34006995F8 /* AIBubble.m */; };
 		A956913B18984320004FBD99 /* MultipeerConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A956913A18984320004FBD99 /* MultipeerConnectivity.framework */; };
+		A95F2E771898763C0046E4AF /* splashscreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A95F2E761898763C0046E4AF /* splashscreen.xib */; };
+		A97A9ED418988D3F0017183F /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A97A9ED318988D3F0017183F /* SecondViewController.m */; };
+		A97A9ED718989C750017183F /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A97A9ED618989C750017183F /* SettingsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +79,11 @@
 		1F7C329418975A34006995F8 /* AIBubble.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AIBubble.h; sourceTree = "<group>"; };
 		1F7C329518975A34006995F8 /* AIBubble.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AIBubble.m; sourceTree = "<group>"; };
 		A956913A18984320004FBD99 /* MultipeerConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MultipeerConnectivity.framework; path = System/Library/Frameworks/MultipeerConnectivity.framework; sourceTree = SDKROOT; };
+		A95F2E761898763C0046E4AF /* splashscreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = splashscreen.xib; sourceTree = "<group>"; };
+		A97A9ED218988D3F0017183F /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
+		A97A9ED318988D3F0017183F /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+		A97A9ED518989C750017183F /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		A97A9ED618989C750017183F /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,9 +150,14 @@
 				1F60B15A18974B9A00232A84 /* AppDelegate.h */,
 				1F60B15B18974B9A00232A84 /* AppDelegate.m */,
 				1F60B15D18974B9A00232A84 /* Main_iPhone.storyboard */,
+				A97A9ED518989C750017183F /* SettingsViewController.h */,
+				A97A9ED618989C750017183F /* SettingsViewController.m */,
 				1F60B16018974B9A00232A84 /* Main_iPad.storyboard */,
+				A97A9ED218988D3F0017183F /* SecondViewController.h */,
+				A97A9ED318988D3F0017183F /* SecondViewController.m */,
 				1F60B16318974B9A00232A84 /* ViewController.h */,
 				1F60B16418974B9A00232A84 /* ViewController.m */,
+				A95F2E761898763C0046E4AF /* splashscreen.xib */,
 				1F60B16618974B9A00232A84 /* MyScene.h */,
 				1F60B16718974B9A00232A84 /* MyScene.m */,
 				1F60B16918974B9A00232A84 /* Spaceship.png */,
@@ -271,6 +284,7 @@
 				1F60B16C18974B9A00232A84 /* Images.xcassets in Resources */,
 				1F60B16218974B9A00232A84 /* Main_iPad.storyboard in Resources */,
 				1F60B15F18974B9A00232A84 /* Main_iPhone.storyboard in Resources */,
+				A95F2E771898763C0046E4AF /* splashscreen.xib in Resources */,
 				1F60B15618974B9A00232A84 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -290,12 +304,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A97A9ED418988D3F0017183F /* SecondViewController.m in Sources */,
 				1F60B16818974B9A00232A84 /* MyScene.m in Sources */,
 				1F1281F718977A80005F8A7C /* ButtonBubble.m in Sources */,
 				1F60B18A1897500300232A84 /* Bubble.m in Sources */,
 				1F60B16518974B9A00232A84 /* ViewController.m in Sources */,
 				1F1281F4189761C8005F8A7C /* UserBubble.m in Sources */,
 				1F7C329618975A34006995F8 /* AIBubble.m in Sources */,
+				A97A9ED718989C750017183F /* SettingsViewController.m in Sources */,
 				1F60B15C18974B9A00232A84 /* AppDelegate.m in Sources */,
 				1F60B15818974B9A00232A84 /* main.m in Sources */,
 			);

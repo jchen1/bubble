@@ -1,17 +1,17 @@
 //
-//  ViewController.m
+//  SecondViewController.m
 //  Bubble
 //
 //  Created by Jeff Chen on 1/27/14.
 //  Copyright (c) 2014 Jeff Chen. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "SecondViewController.h"
 #import "MyScene.h"
 #import <MultipeerConnectivity/MultipeerConnectivity.h>
 
 
-@interface ViewController ()<MCBrowserViewControllerDelegate, MCSessionDelegate, UITextFieldDelegate>
+@interface SecondViewController ()<MCBrowserViewControllerDelegate, MCSessionDelegate, UITextFieldDelegate>
 
 @property (nonatomic, strong) MCBrowserViewController *browserVC;
 @property (nonatomic, strong) MCAdvertiserAssistant *advertiser;
@@ -24,23 +24,15 @@
 
 @end
 
-@implementation ViewController
+@implementation SecondViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     // Configure the view.
-    SKView * skView = (SKView *)self.view;
-    skView.showsFPS = YES;
-    skView.showsNodeCount = YES;
-    
-    // Create and configure the scene.
-    SKScene * scene = [MyScene sceneWithSize:skView.bounds.size];
-    scene.scaleMode = SKSceneScaleModeAspectFill;
-    
-    // Present the scene.
-    [skView presentScene:scene];
+    [self setUpMultipeer];
+    [self setUpUI];
     
 }
 
@@ -180,4 +172,5 @@
     
 }
 @end
+
 
