@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <SpriteKit/SpriteKit.h>
 
+#define GLOBALDATA
+
 @interface ViewController : UIViewController
 
 @end

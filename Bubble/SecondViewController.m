@@ -22,6 +22,8 @@
 
 @end
 
+extern NSString *globalString;
+
 @implementation SecondViewController
 
 - (void)viewDidLoad
@@ -44,8 +46,9 @@
     [self.browserButton setTitle:@"Browse" forState:UIControlStateNormal];
     self.browserButton.frame = CGRectMake(130, 20, 60, 30);
     [self.view addSubview:self.browserButton];
-    [self.browserButton addTarget:self action:@selector(showBrowserVC) forControlEvents:UIControlEventTouchUpInside];
     
+    self.view.backgroundColor = [UIColor colorWithRed:200/256.0 green:0/256.0 blue:67/256.0 alpha:1.0];
+    [self.browserButton addTarget:self action:@selector(showBrowserVC) forControlEvents:UIControlEventTouchUpInside];
     //  Setup TextBox
     self.textBox = [[UITextView alloc] initWithFrame: CGRectMake(40, 150, 240, 270)];
     self.textBox.editable = NO;
@@ -58,6 +61,18 @@
     self.chatBox.returnKeyType = UIReturnKeySend;
     self.chatBox.delegate = self;
     [self.view addSubview:self.chatBox];
+    
+    //rounded buttons!
+    CALayer *settingsbtnLayer = [_settingsbutton layer];
+    [settingsbtnLayer setMasksToBounds:YES];
+    [settingsbtnLayer setCornerRadius:5.0f];
+    [settingsbtnLayer setBorderWidth:1.0];
+    [settingsbtnLayer setBorderColor:[[UIColor grayColor] CGColor]];
+    
+    CALayer *gamebtnLayer = [_gamebutton layer];
+    [gamebtnLayer setMasksToBounds:YES];
+    [gamebtnLayer setCornerRadius:5.0f];
+
 }
 
 - (void) setUpMultipeer{
@@ -87,7 +102,8 @@
 
 - (void) sendText{
     //  Retrieve text from chat box and clear chat box
-    NSString *message = self.chatBox.text;
+    NSString *message = globalString;
+    //self.chatBox.text;
     self.chatBox.text = @"";
     
     //  Convert text to NSData

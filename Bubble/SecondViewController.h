@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+
+#define GLOBALDATA
+
+
 @interface SecondViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UIButton *settingsbutton;
+@property (weak, nonatomic) IBOutlet UIButton *gamebutton;
 
 @end
