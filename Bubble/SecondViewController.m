@@ -1,105 +1,80 @@
 //
 //  ViewController.m
-//  Bubble
+//  SimpleChat
 //
-//  Created by Jeff Chen on 1/27/14.
-//  Copyright (c) 2014 Jeff Chen. All rights reserved.
+//  Created by Tung Nguyen on 9/27/13.
+//  Copyright (c) 2013 Tung Nguyen. All rights reserved.
 //
 
-#import "ViewController.h"
-#import "MyScene.h"
+#import "SecondViewController.h"
 #import <MultipeerConnectivity/MultipeerConnectivity.h>
 
-
-@interface ViewController ()<MCBrowserViewControllerDelegate, MCSessionDelegate, UITextFieldDelegate>
+@interface SecondViewController ()<MCBrowserViewControllerDelegate, MCSessionDelegate, UITextFieldDelegate>
 
 @property (nonatomic, strong) MCBrowserViewController *browserVC;
 @property (nonatomic, strong) MCAdvertiserAssistant *advertiser;
 @property (nonatomic, strong) MCSession *mySession;
 @property (nonatomic, strong) MCPeerID *myPeerID;
 
-@property (nonatomic, strong) UIButton *browseButton;
-@property (nonatomic, strong) UITextView *textBox;
+@property (nonatomic, strong) UIButton *browserButton;
 @property (nonatomic, strong) UITextField *chatBox;
+@property (nonatomic, strong) UITextView *textBox;
 
 @end
 
-@implementation ViewController
+@implementation SecondViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    // Configure the view.
-    SKView * skView = (SKView *)self.view;
-    skView.showsFPS = YES;
-    skView.showsNodeCount = YES;
-    
-    // Create and configure the scene.
-    SKScene * scene = [MyScene sceneWithSize:skView.bounds.size];
-    scene.scaleMode = SKSceneScaleModeAspectFill;
-    
-    // Present the scene.
-    [skView presentScene:scene];
-    
-}
-
-- (BOOL)shouldAutorotate
-{
-    return YES;
-}
-
-- (NSUInteger)supportedInterfaceOrientations
-{
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        return UIInterfaceOrientationMaskAllButUpsideDown;
-    } else {
-        return UIInterfaceOrientationMaskAll;
-    }
+	// Do any additional setup after loading the view, typically from a nib.
+    [self setUpUI];
+    [self setUpMultipeer];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Release any cached data, images, etc that aren't in use.
+    // Dispose of any resources that can be recreated.
 }
 
 - (void) setUpUI{
     //  Setup the browse button
-    self.browseButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    [self.browseButton setTitle:@"Bluetooth" forState:UIControlStateNormal];
-    self.browseButton.frame = CGRectMake(130, 20, 60, 30);
-    [self.view addSubview:self.browseButton];
+    self.browserButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    [self.browserButton setTitle:@"Browse" forState:UIControlStateNormal];
+    self.browserButton.frame = CGRectMake(130, 20, 60, 30);
+    [self.view addSubview:self.browserButton];
+    [self.browserButton addTarget:self action:@selector(showBrowserVC) forControlEvents:UIControlEventTouchUpInside];
     
     //  Setup TextBox
-    self.textBox = [[UITextView alloc] initWithFrame: CGRectMake(40, 150, 140, 270)];
+    self.textBox = [[UITextView alloc] initWithFrame: CGRectMake(40, 150, 240, 270)];
     self.textBox.editable = NO;
     self.textBox.backgroundColor = [UIColor lightGrayColor];
     [self.view addSubview: self.textBox];
     
     //  Setup ChatBox
-    self.chatBox = [[UITextField alloc] initWithFrame: CGRectMake(40, 60, 140, 70)];
+    self.chatBox = [[UITextField alloc] initWithFrame: CGRectMake(40, 60, 240, 70)];
     self.chatBox.backgroundColor = [UIColor lightGrayColor];
     self.chatBox.returnKeyType = UIReturnKeySend;
-    [self.view addSubview:self.chatBox];
-    [self.browseButton addTarget:self action:@selector(showBrowserVC) forControlEvents:UIControlEventTouchUpInside];
     self.chatBox.delegate = self;
+    [self.view addSubview:self.chatBox];
 }
+
 - (void) setUpMultipeer{
     //  Setup peer ID
     self.myPeerID = [[MCPeerID alloc] initWithDisplayName:[UIDevice currentDevice].name];
     
     //  Setup session
     self.mySession = [[MCSession alloc] initWithPeer:self.myPeerID];
+    self.mySession.delegate = self;
     
     //  Setup BrowserViewController
     self.browserVC = [[MCBrowserViewController alloc] initWithServiceType:@"chat" session:self.mySession];
+    self.browserVC.delegate = self;
     
     //  Setup Advertiser
     self.advertiser = [[MCAdvertiserAssistant alloc] initWithServiceType:@"chat" discoveryInfo:nil session:self.mySession];
-    self.browserVC.delegate = self;
     [self.advertiser start];
-    self.mySession.delegate = self;
 }
 
 - (void) showBrowserVC{
@@ -108,6 +83,36 @@
 
 - (void) dismissBrowserVC{
     [self.browserVC dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void) sendText{
+    //  Retrieve text from chat box and clear chat box
+    NSString *message = self.chatBox.text;
+    self.chatBox.text = @"";
+    
+    //  Convert text to NSData
+    NSData *data = [message dataUsingEncoding:NSUTF8StringEncoding];
+    
+    //  Send data to connected peers
+    NSError *error;
+    [self.mySession sendData:data toPeers:[self.mySession connectedPeers] withMode:MCSessionSendDataUnreliable error:&error];
+    
+    //  Append your own message to text box
+    [self receiveMessage: message fromPeer: self.myPeerID];
+}
+
+- (void) receiveMessage: (NSString *) message fromPeer: (MCPeerID *) peer{
+    //  Create the final text to append
+    NSString *finalText;
+    if (peer == self.myPeerID) {
+        finalText = [NSString stringWithFormat:@"\nme: %@ \n", message];
+    }
+    else{
+        finalText = [NSString stringWithFormat:@"\n%@: %@ \n", peer.displayName, message];
+    }
+    
+    //  Append text to text box
+    self.textBox.text = [self.textBox.text stringByAppendingString:finalText];
 }
 
 #pragma marks MCBrowserViewControllerDelegate
@@ -122,34 +127,16 @@
     [self dismissBrowserVC];
 }
 
-- (void) receiveMessage: (NSString *) message fromPeer: (MCPeerID *) peer{
-    //  Create the final text to append
-    NSString *finalText;
-    if (peer == self.myPeerID) {
-        finalText = [NSString stringWithFormat:@"\nme: %@\n", message];
-    }
-    else{
-        finalText = [NSString stringWithFormat:@"\n%@: %@\n", peer.displayName, message];
-    }
-    
-    //  Append text to text box
-    self.textBox.text = [self.textBox.text stringByAppendingString:finalText];
+#pragma marks UITextFieldDelegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    [self sendText];
+    return YES;
 }
-- (void) sendText{
-    //  Retrieve text from chat box and clear chat box
-    NSString *message = self.chatBox.text;
-    self.chatBox.text = @"";
-    
-    //  Convert text to NSData
-    NSData *data = [message dataUsingEncoding:NSUTF8StringEncoding];
-    
-    //  Send data to connected peers
-    NSError *error;
-    [self.mySession sendData:data toPeers:[self.mySession connectedPeers] withMode:MCSessionSendDataUnreliable error:&error];
-    
-    //  Append your own text to text box
-    [self receiveMessage: message fromPeer: self.myPeerID];
-}
+
+#pragma marks MCSessionDelegate
+// Remote peer changed state
 - (void)session:(MCSession *)session peer:(MCPeerID *)peerID didChangeState:(MCSessionState)state{
     
 }
@@ -159,9 +146,9 @@
     //  Decode data back to NSString
     NSString *message = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     
-    //  append message to text box on main thread
-    dispatch_async(dispatch_get_main_queue(),^{
-        [self receiveMessage: message fromPeer: peerID];
+    //  append message to text box:
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self receiveMessage:message fromPeer:peerID];
     });
 }
 
@@ -180,4 +167,3 @@
     
 }
 @end
-
