@@ -15,8 +15,11 @@
     if (self)
     {
         super.alpha = 0.3;
+        super.radius = 15;
+        super.zPosition = 11;
         _down = false;
-        _type = 'U';
+        _type = 'T';
+        [super updateArc];
     }
     
     return self;

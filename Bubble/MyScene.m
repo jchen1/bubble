@@ -29,11 +29,6 @@
         leftBubble = [[ButtonBubble alloc] init],
         rightBubble = [[ButtonBubble alloc] init];
         
-        upBubble.zPosition = 11;
-        downBubble.zPosition = 11;
-        leftBubble.zPosition = 11;
-        rightBubble.zPosition = 11;
-        
         upBubble.position = CGPointMake(CGRectGetMaxX(self.frame) - 55,
                                  CGRectGetMinY(self.frame) + 85);
         downBubble.position = CGPointMake(CGRectGetMaxX(self.frame) - 55,

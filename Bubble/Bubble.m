@@ -19,7 +19,7 @@
 {
     self = [super init];
     if (self) {
-        _radius = 15;
+        _radius = 5;
         _type = 'B';
         super.lineWidth = 1.0;
         super.fillColor = color;

@@ -15,5 +15,6 @@
 
 -(void) updatePosition: (int)direction;
 -(void) respawn: (CGPoint) pos;
+-(double) getSpeed;
 
 @end
