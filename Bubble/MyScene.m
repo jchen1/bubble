@@ -10,10 +10,16 @@
 
 @implementation MyScene
 
+@synthesize delegate;
+
+-(void)done:(NSString*)dataText{
+    NSLog(@"Sent string: =%@", dataText);
+}
+
 -(id)initWithSize:(CGSize)size {    
     if (self = [super initWithSize:size]) {
         /* Setup your scene here */
-        
+        //[self.delegate done:@"asdf"];
         self.backgroundColor = [SKColor blackColor];
 
         bubbles = [NSMutableArray array];
@@ -119,7 +125,7 @@
 
 -(void)update:(CFTimeInterval)currentTime {
     /* Called before each frame is rendered */
-
+    [self.delegate done:myBubble.toString];
     
     for (Bubble *b1 in bubbles) {
         for (Bubble *b2 in bubbles) {

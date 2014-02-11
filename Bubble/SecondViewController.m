@@ -8,9 +8,12 @@
 
 #import "SecondViewController.h"
 #import <MultipeerConnectivity/MultipeerConnectivity.h>
+#import "ViewController.h"
 
 @interface SecondViewController ()<MCBrowserViewControllerDelegate, MCSessionDelegate, UITextFieldDelegate>
-
+{
+    UIButton *button;
+}
 @property (nonatomic, strong) MCBrowserViewController *browserVC;
 @property (nonatomic, strong) MCAdvertiserAssistant *advertiser;
 @property (nonatomic, strong) MCSession *mySession;
@@ -26,6 +29,7 @@ extern NSString *globalString;
 
 @implementation SecondViewController
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -34,10 +38,21 @@ extern NSString *globalString;
     [self setUpMultipeer];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    [super viewWillAppear:animated];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (IBAction)gameView:(id)sender {
+    NSLog((@"asdf"));
+//    ViewController *gameView = [ViewController alloc];
+    
 }
 
 - (void) setUpUI{
@@ -72,6 +87,8 @@ extern NSString *globalString;
     CALayer *gamebtnLayer = [_gamebutton layer];
     [gamebtnLayer setMasksToBounds:YES];
     [gamebtnLayer setCornerRadius:5.0f];
+    [gamebtnLayer setBorderWidth:1.0];
+    [gamebtnLayer setBorderColor:[[UIColor grayColor] CGColor]];
 
 }
 
@@ -102,8 +119,7 @@ extern NSString *globalString;
 
 - (void) sendText{
     //  Retrieve text from chat box and clear chat box
-    NSString *message = globalString;
-    //self.chatBox.text;
+    NSString *message = self.chatBox.text;
     self.chatBox.text = @"";
     
     //  Convert text to NSData

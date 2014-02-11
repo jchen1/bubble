@@ -7,11 +7,20 @@
 //
 
 #import "AppDelegate.h"
+#import "SecondViewController.h"
+#import "ViewController.h"
 
 @implementation AppDelegate
 
+@synthesize window;
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    UINavigationController *navController = [[UINavigationController alloc] init];
+    SecondViewController *firstView = [[SecondViewController alloc] init];
+    [navController pushViewController:firstView animated:NO];
+    [self.window addSubview:navController.view];
+    [self.window makeKeyAndVisible];
     // Override point for customization after application launch.
     return YES;
 }

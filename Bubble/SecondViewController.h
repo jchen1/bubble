@@ -16,4 +16,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *settingsbutton;
 @property (weak, nonatomic) IBOutlet UIButton *gamebutton;
 
+- (IBAction)gameView:(UIButton *)sender;
+
 @end

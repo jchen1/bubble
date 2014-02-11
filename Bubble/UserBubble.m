@@ -24,7 +24,7 @@
 
 -(double) getSpeed
 {
-    return MIN(10 * (1 / sqrt(_radius)), 100);
+    return MIN(30 * (1 / sqrt(_radius)), 100);
 }
 
 -(void) updatePosition

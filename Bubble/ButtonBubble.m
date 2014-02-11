@@ -15,7 +15,7 @@
     if (self)
     {
         super.alpha = 0.3;
-        super.radius = 15;
+        super.radius = 20;
         super.zPosition = 11;
         _down = false;
         _type = 'T';

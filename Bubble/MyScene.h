@@ -11,8 +11,16 @@
 #import "UserBubble.h"
 #import "ButtonBubble.h"
 
-@interface MyScene : SKScene
+@protocol ViewControllerDelegate <NSObject>
+
+-(void)done:(NSString*)dataText;
+
+@end
+
+@interface MyScene : SKScene <ViewControllerDelegate>
 {
+//    id delegate;
+
     NSMutableArray *bubbles;
     NSMutableArray *directions;
     
@@ -21,8 +29,11 @@
     ButtonBubble *downBubble;
     ButtonBubble *leftBubble;
     ButtonBubble *rightBubble;
+    
 
 }
+
+@property (nonatomic,assign) id <ViewControllerDelegate> delegate;
 
 -(void) generateBubbles: (unsigned int)seed;
 

@@ -7,11 +7,11 @@
 //
 
 #import "ViewController.h"
-#import "MyScene.h"
 #import <MultipeerConnectivity/MultipeerConnectivity.h>
+#import "MyScene.h"
 
 
-@interface ViewController ()<MCBrowserViewControllerDelegate, MCSessionDelegate, UITextFieldDelegate>
+@interface ViewController ()<MCBrowserViewControllerDelegate, MCSessionDelegate, UITextFieldDelegate, ViewControllerDelegate>
 
 @property (nonatomic, strong) MCBrowserViewController *browserVC;
 @property (nonatomic, strong) MCAdvertiserAssistant *advertiser;
@@ -26,19 +26,29 @@
 
 @implementation ViewController
 
+@synthesize textBox;
+@synthesize chatBox;
+
+-(void)done:(NSString*)dataText{
+    NSLog(@"Sent data string: =%@", dataText);
+    chatBox.text = dataText;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    [self setUpUI];
+    [self setUpMultipeer];
     // Configure the view.
     SKView * skView = (SKView *)self.view;
     skView.showsFPS = YES;
     skView.showsNodeCount = YES;
     
     // Create and configure the scene.
-    SKScene * scene = [MyScene sceneWithSize:skView.bounds.size];
+    MyScene * scene = [MyScene sceneWithSize:skView.bounds.size];
     scene.scaleMode = SKSceneScaleModeAspectFill;
-    
+    scene.delegate = self;
+
     // Present the scene.
     [skView presentScene:scene];
     
@@ -47,6 +57,10 @@
 - (BOOL)shouldAutorotate
 {
     return YES;
+}
+- (IBAction)popCurrentView {
+    NSLog(@"asdfggggg");
+[self.navigationController popViewControllerAnimated:YES];
 }
 
 - (NSUInteger)supportedInterfaceOrientations
@@ -68,17 +82,17 @@
     //  Setup the browse button
     self.browseButton = [UIButton buttonWithType:UIButtonTypeSystem];
     [self.browseButton setTitle:@"Bluetooth" forState:UIControlStateNormal];
-    self.browseButton.frame = CGRectMake(130, 20, 60, 30);
+    self.browseButton.frame = CGRectMake(20, 20, 60, 30);
     [self.view addSubview:self.browseButton];
     
     //  Setup TextBox
-    self.textBox = [[UITextView alloc] initWithFrame: CGRectMake(40, 150, 140, 270)];
+    //self.textBox = [[UITextView alloc] initWithFrame: CGRectMake(40, 150, 140, 270)];
     self.textBox.editable = NO;
     self.textBox.backgroundColor = [UIColor lightGrayColor];
     [self.view addSubview: self.textBox];
     
     //  Setup ChatBox
-    self.chatBox = [[UITextField alloc] initWithFrame: CGRectMake(40, 60, 140, 70)];
+    //self.chatBox = [[UITextField alloc] initWithFrame: CGRectMake(40, 60, 80, 70)];
     self.chatBox.backgroundColor = [UIColor lightGrayColor];
     self.chatBox.returnKeyType = UIReturnKeySend;
     [self.view addSubview:self.chatBox];
@@ -91,15 +105,15 @@
     
     //  Setup session
     self.mySession = [[MCSession alloc] initWithPeer:self.myPeerID];
+    self.mySession.delegate = self;
     
     //  Setup BrowserViewController
     self.browserVC = [[MCBrowserViewController alloc] initWithServiceType:@"chat" session:self.mySession];
+    self.browserVC.delegate = self;
     
     //  Setup Advertiser
     self.advertiser = [[MCAdvertiserAssistant alloc] initWithServiceType:@"chat" discoveryInfo:nil session:self.mySession];
-    self.browserVC.delegate = self;
     [self.advertiser start];
-    self.mySession.delegate = self;
 }
 
 - (void) showBrowserVC{
@@ -108,6 +122,36 @@
 
 - (void) dismissBrowserVC{
     [self.browserVC dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void) sendText{
+    //  Retrieve text from chat box and clear chat box
+    NSString *message = self.chatBox.text;
+    self.chatBox.text = @"";
+    
+    //  Convert text to NSData
+    NSData *data = [message dataUsingEncoding:NSUTF8StringEncoding];
+    
+    //  Send data to connected peers
+    NSError *error;
+    [self.mySession sendData:data toPeers:[self.mySession connectedPeers] withMode:MCSessionSendDataUnreliable error:&error];
+    
+    //  Append your own message to text box
+    [self receiveMessage: message fromPeer: self.myPeerID];
+}
+
+- (void) receiveMessage: (NSString *) message fromPeer: (MCPeerID *) peer{
+    //  Create the final text to append
+    NSString *finalText;
+    if (peer == self.myPeerID) {
+        finalText = [NSString stringWithFormat:@"\nme: %@ \n", message];
+    }
+    else{
+        finalText = [NSString stringWithFormat:@"\n%@: %@ \n", peer.displayName, message];
+    }
+    
+    //  Append text to text box
+    self.textBox.text = [self.textBox.text stringByAppendingString:finalText];
 }
 
 #pragma marks MCBrowserViewControllerDelegate
@@ -122,34 +166,16 @@
     [self dismissBrowserVC];
 }
 
-- (void) receiveMessage: (NSString *) message fromPeer: (MCPeerID *) peer{
-    //  Create the final text to append
-    NSString *finalText;
-    if (peer == self.myPeerID) {
-        finalText = [NSString stringWithFormat:@"\nme: %@\n", message];
-    }
-    else{
-        finalText = [NSString stringWithFormat:@"\n%@: %@\n", peer.displayName, message];
-    }
-    
-    //  Append text to text box
-    self.textBox.text = [self.textBox.text stringByAppendingString:finalText];
+#pragma marks UITextFieldDelegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    [self sendText];
+    return YES;
 }
-- (void) sendText{
-    //  Retrieve text from chat box and clear chat box
-    NSString *message = self.chatBox.text;
-    self.chatBox.text = @"";
-    
-    //  Convert text to NSData
-    NSData *data = [message dataUsingEncoding:NSUTF8StringEncoding];
-    
-    //  Send data to connected peers
-    NSError *error;
-    [self.mySession sendData:data toPeers:[self.mySession connectedPeers] withMode:MCSessionSendDataUnreliable error:&error];
-    
-    //  Append your own text to text box
-    [self receiveMessage: message fromPeer: self.myPeerID];
-}
+
+#pragma marks MCSessionDelegate
+// Remote peer changed state
 - (void)session:(MCSession *)session peer:(MCPeerID *)peerID didChangeState:(MCSessionState)state{
     
 }
@@ -159,9 +185,9 @@
     //  Decode data back to NSString
     NSString *message = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     
-    //  append message to text box on main thread
-    dispatch_async(dispatch_get_main_queue(),^{
-        [self receiveMessage: message fromPeer: peerID];
+    //  append message to text box:
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self receiveMessage:message fromPeer:peerID];
     });
 }
 
