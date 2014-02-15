@@ -133,12 +133,12 @@ NSString *globalData1 = @"";
 }
 
 -(void)update:(CFTimeInterval)currentTime {
- //   double tmpid; //these variables yo
- //   char tmpchar; //see comments for hypothesized use
- //   float tmp1; //dont think i will actually need them
-//    float tmp2;
-//    float tmp3;
-//    bool isInDataString=false;
+    double tmpid; //these variables yo
+    char tmpchar; //see comments for hypothesized use
+    float tmp1; //dont think i will actually need them
+    float tmp2;
+    float tmp3;
+    bool isInDataString=false;
     /* Called before each frame is rendered */
     
     
@@ -162,7 +162,7 @@ NSString *globalData1 = @"";
     bubbleString = myBubble.toString;
     
     //load data string into array
-    /*
+    
     
     
     const char *cString = [globalData1 cStringUsingEncoding:NSASCIIStringEncoding];
@@ -171,7 +171,7 @@ NSString *globalData1 = @"";
     {
         if(tmpid==myBubble.idnum)
             isInDataString = true;
-        strstr(cString, myBubble.idnum);
+        //strstr(cString, myBubble.idnum);
         
         //tmpid = id of scanned bubble
         //tmpchar = type of scanned bubble
@@ -186,7 +186,7 @@ NSString *globalData1 = @"";
         //tmpBubble.position.x =tmp2;
         
         
-        //tmpBubble->radius = tmp1;
+        tmpBubble->_radius = tmp1;
         //tmpBubble.position.x = tmp2;
         
         //tmpBubble->_type=tmpchar;
@@ -198,7 +198,7 @@ NSString *globalData1 = @"";
 //        [multiplayerbubbles addObject:tmpBubble];
         i++;
     }
-     */
+    
     //UNCOMMENT ONCE GLOBAL STRING VERIFIES TO WORK
   //if(!isInDataString)
     //  globalData1 = [globalData1 stringByAppendingString:myBubble.toString];
