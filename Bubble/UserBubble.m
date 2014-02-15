@@ -15,6 +15,7 @@
     self = [super initWithColor:[SKColor redColor]];
     if (self)
     {
+        idnum = rand();
         super.radius = 10;
         super.zPosition = 10;
         _type = 'U';
@@ -56,7 +57,7 @@
             pos.x+= [self getSpeed];
             break;
         default:
-            break;  //wut
+            break;  //wut wut in the but
     }
     
     [super setPosition:pos];

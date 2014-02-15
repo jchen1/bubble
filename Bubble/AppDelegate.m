@@ -6,6 +6,13 @@
 //  Copyright (c) 2014 Jeff Chen. All rights reserved.
 //
 
+
+
+///SEE THE COMMENTS IN SECONDVIEWCONTROLLER.M TO GET STARTED
+///
+
+///
+
 #import "AppDelegate.h"
 #import "SecondViewController.h"
 #import "ViewController.h"

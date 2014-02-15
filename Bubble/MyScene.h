@@ -10,6 +10,7 @@
 #import "AIBubble.h"
 #import "UserBubble.h"
 #import "ButtonBubble.h"
+#import "SecondViewController.h"
 
 @protocol ViewControllerDelegate <NSObject>
 
@@ -22,8 +23,10 @@
 //    id delegate;
 
     NSMutableArray *bubbles;
+    NSMutableArray *multiplayerbubbles;
     NSMutableArray *directions;
     
+    UserBubble *tmpBubble;
     UserBubble *myBubble;
     ButtonBubble *upBubble;
     ButtonBubble *downBubble;

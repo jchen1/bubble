@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <SpriteKit/SpriteKit.h>
 #import "MyScene.h"
+#import "SecondViewController.h"
+
 
 #define GLOBALDATA
 

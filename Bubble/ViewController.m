@@ -6,9 +6,12 @@
 //  Copyright (c) 2014 Jeff Chen. All rights reserved.
 //
 
+///
+///SSEE SECONDVIEWCONTROLLER.M TO GET STARTED
+///
+
 #import "ViewController.h"
 #import <MultipeerConnectivity/MultipeerConnectivity.h>
-#import "MyScene.h"
 
 
 @interface ViewController ()<MCBrowserViewControllerDelegate, MCSessionDelegate, UITextFieldDelegate, ViewControllerDelegate>
@@ -18,20 +21,27 @@
 @property (nonatomic, strong) MCSession *mySession;
 @property (nonatomic, strong) MCPeerID *myPeerID;
 
-@property (nonatomic, strong) UIButton *browseButton;
-@property (nonatomic, strong) UITextView *textBox;
-@property (nonatomic, strong) UITextField *chatBox;
+@property (nonatomic, strong) UIButton *browseButton; //no ui things except this one are being displayed
+@property (nonatomic, strong) UITextView *textBox; //the rest of these variables can be considered strings for regular purposes
+@property (nonatomic, strong) UITextField *chatBox; //this is like a char* basically but u can draw it to the screen in a shitty way for debug
+@property (nonatomic, strong) UITextField *textFieldglobalData1; //create a global variable1
 
 @end
 
 @implementation ViewController
+NSString *globalString = @"";
+NSString *globalData1;
 
 @synthesize textBox;
 @synthesize chatBox;
+@synthesize textFieldglobalData1;
 
 -(void)done:(NSString*)dataText{
-    NSLog(@"Sent data string: =%@", dataText);
-    chatBox.text = dataText;
+    //NSLog(@"1Sent data string: =%@", dataText);
+    //chatBox.text = dataText;
+    //textFieldglobalData1.text = dataText;
+    [self sendText:dataText];
+    //   globalData1 = dataText;
 }
 
 - (void)viewDidLoad
@@ -84,20 +94,14 @@
     [self.browseButton setTitle:@"Bluetooth" forState:UIControlStateNormal];
     self.browseButton.frame = CGRectMake(20, 20, 60, 30);
     [self.view addSubview:self.browseButton];
-    
+    [self.browseButton addTarget:self action:@selector(showBrowserVC) forControlEvents:UIControlEventTouchUpInside];
     //  Setup TextBox
-    //self.textBox = [[UITextView alloc] initWithFrame: CGRectMake(40, 150, 140, 270)];
+    self.textBox = [[UITextView alloc] initWithFrame: CGRectMake(40, 150, 140, 170)];
     self.textBox.editable = NO;
     self.textBox.backgroundColor = [UIColor lightGrayColor];
     [self.view addSubview: self.textBox];
     
     //  Setup ChatBox
-    //self.chatBox = [[UITextField alloc] initWithFrame: CGRectMake(40, 60, 80, 70)];
-    self.chatBox.backgroundColor = [UIColor lightGrayColor];
-    self.chatBox.returnKeyType = UIReturnKeySend;
-    [self.view addSubview:self.chatBox];
-    [self.browseButton addTarget:self action:@selector(showBrowserVC) forControlEvents:UIControlEventTouchUpInside];
-    self.chatBox.delegate = self;
 }
 - (void) setUpMultipeer{
     //  Setup peer ID
@@ -124,10 +128,11 @@
     [self.browserVC dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void) sendText{
+- (void) sendText: (NSString *)inputText{
+    NSLog(@"Sent data string: =%@", inputText);
     //  Retrieve text from chat box and clear chat box
-    NSString *message = self.chatBox.text;
-    self.chatBox.text = @"";
+    NSString *message = inputText; //= self.chatBox.text;
+    //self.chatBox.text = inputText;
     
     //  Convert text to NSData
     NSData *data = [message dataUsingEncoding:NSUTF8StringEncoding];
@@ -142,16 +147,19 @@
 
 - (void) receiveMessage: (NSString *) message fromPeer: (MCPeerID *) peer{
     //  Create the final text to append
-    NSString *finalText;
-    if (peer == self.myPeerID) {
+    //NSString *finalText;
+    /*if (peer == self.myPeerID) {
         finalText = [NSString stringWithFormat:@"\nme: %@ \n", message];
-    }
-    else{
-        finalText = [NSString stringWithFormat:@"\n%@: %@ \n", peer.displayName, message];
-    }
+    }*/
+    //else{
+    //finalText = [NSString stringWithFormat:@"\n%@: %@ \n", peer.displayName, message];
+    //}
     
     //  Append text to text box
-    self.textBox.text = [self.textBox.text stringByAppendingString:finalText];
+    self.textBox.text = message;
+    //self.textFieldglobalData1.text = finalText;
+    NSLog(@"globalData1.text: =%@", message);
+    globalData1 = message;
 }
 
 #pragma marks MCBrowserViewControllerDelegate
@@ -170,7 +178,7 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     [textField resignFirstResponder];
-    [self sendText];
+ //   [self se];
     return YES;
 }
 

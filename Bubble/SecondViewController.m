@@ -2,13 +2,19 @@
 //  ViewController.m
 //  SimpleChat
 //
-//  Created by Tung Nguyen on 9/27/13.
-//  Copyright (c) 2013 Tung Nguyen. All rights reserved.
+//  Created by Jeff Chen on 9/27/13.
+//  Copyright (c) 2013 Jeff Chen. All rights reserved.
 //
+
+
+/*
+    THIS IS THE FIRST THING THAT GETS LOADED. IT CAN LOAD SETTINGSVIEWCONTROLLER.C AND ViewController.C FROM THE SCREEN. IT MAKES 2 BUTTONS THAT PUSH THESE VIEWS IN THE SETUPUI METHOD. RIGHT NOW ONLY THE VIEWCONTROLLER HAS A POP BUTTON TO TAKE IT HOME, SO SETTINGS RE-ALLOCATES AND INSTANCIATES A NEW VIEW CONTROLLER OF THIS FIRST IMLEAVING IT FOR TESTING PURPOSES PLS DONT CHANGE EVEN THO IT SEEMS LIKE A BUG. VIEWDIEDLOAD IS THE FIRST THING THAT GETS CALLED. LOOK AROUND MOST FUNCTIONS ARE NAMED APPROPRIATELY (;
+*/
 
 #import "SecondViewController.h"
 #import <MultipeerConnectivity/MultipeerConnectivity.h>
 #import "ViewController.h"
+
 
 @interface SecondViewController ()<MCBrowserViewControllerDelegate, MCSessionDelegate, UITextFieldDelegate>
 {
@@ -25,7 +31,11 @@
 
 @end
 
-extern NSString *globalString;
+
+//extern NSString *globalData1;
+//extern NSString *globalString;
+//idk man seems prety shady
+
 
 @implementation SecondViewController
 
@@ -50,6 +60,7 @@ extern NSString *globalString;
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)gameView:(id)sender {
+//    self.chatBox.text = globalData1;
     NSLog((@"asdf"));
 //    ViewController *gameView = [ViewController alloc];
     
@@ -57,6 +68,7 @@ extern NSString *globalString;
 
 - (void) setUpUI{
     //  Setup the browse button
+    
     self.browserButton = [UIButton buttonWithType:UIButtonTypeSystem];
     [self.browserButton setTitle:@"Browse" forState:UIControlStateNormal];
     self.browserButton.frame = CGRectMake(130, 20, 60, 30);
@@ -83,6 +95,10 @@ extern NSString *globalString;
     [settingsbtnLayer setCornerRadius:5.0f];
     [settingsbtnLayer setBorderWidth:1.0];
     [settingsbtnLayer setBorderColor:[[UIColor grayColor] CGColor]];
+    //YO WE GOTTA FIND SOMEONE WHO CAN MAKE SOME GRAPHIX FOR THE BUTTONS
+    //EVERYTHING DRAWABLE IS UGLY
+    //IMAGE FILE/VECTOR GRAPHICS R THE WAY TO GO
+    //CAN BE DONE FROM STORYBOARD EDITOR TOO 
     
     CALayer *gamebtnLayer = [_gamebutton layer];
     [gamebtnLayer setMasksToBounds:YES];
@@ -136,6 +152,7 @@ extern NSString *globalString;
 - (void) receiveMessage: (NSString *) message fromPeer: (MCPeerID *) peer{
     //  Create the final text to append
     NSString *finalText;
+    finalText = message;
     if (peer == self.myPeerID) {
         finalText = [NSString stringWithFormat:@"\nme: %@ \n", message];
     }
@@ -144,7 +161,7 @@ extern NSString *globalString;
     }
     
     //  Append text to text box
-    self.textBox.text = [self.textBox.text stringByAppendingString:finalText];
+    self.textBox.text = [self.textBox.text stringByAppendingString:message];
 }
 
 #pragma marks MCBrowserViewControllerDelegate

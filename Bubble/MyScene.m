@@ -5,27 +5,36 @@
 //  Created by Jeff Chen on 1/27/14.
 //  Copyright (c) 2014 Jeff Chen. All rights reserved.
 //
+///SEE SECONDVIEWCONTROLLER.M TO GET STARTED
+///
 
 #import "MyScene.h"
 
 @implementation MyScene
+NSString *globalData1 = @"";
 
 @synthesize delegate;
 
 -(void)done:(NSString*)dataText{
-    NSLog(@"Sent string: =%@", dataText);
+    dataText = globalData1;
+    NSLog(@"1Sent string: =%@", dataText);
 }
 
 -(id)initWithSize:(CGSize)size {    
     if (self = [super initWithSize:size]) {
+        globalData1 = @"";
         /* Setup your scene here */
         //[self.delegate done:@"asdf"];
         self.backgroundColor = [SKColor blackColor];
 
         bubbles = [NSMutableArray array];
+        multiplayerbubbles = [NSMutableArray array];
+
         myBubble = [[UserBubble alloc] init];
         myBubble.position = CGPointMake(CGRectGetMidX(self.frame),
                                  CGRectGetMidY(self.frame));
+        
+        //[multiplayerbubbles addObject:myBubble];
         
         [bubbles addObject:myBubble];
         [self addChild:myBubble];
@@ -124,8 +133,87 @@
 }
 
 -(void)update:(CFTimeInterval)currentTime {
+ //   double tmpid; //these variables yo
+ //   char tmpchar; //see comments for hypothesized use
+ //   float tmp1; //dont think i will actually need them
+//    float tmp2;
+//    float tmp3;
+//    bool isInDataString=false;
     /* Called before each frame is rendered */
-    [self.delegate done:myBubble.toString];
+    
+    
+    //NEED A TOSTRING FOR ID OR SOMETHING. THIS CURRENTLY WORKS TO ADD THE BUBBLE TO THE GLOBAL DATA STRING AND SENDS IT BUT EVERY TIME THE BUBBLE MOVES, IT ACQUIRES A NEW TOSTRING SO THIS RECOGNIZES IT AS A DIFF BUBBLE AND APPENDS IT TO DATASTRING. GOTTA ONLY LOOK AT BUTTON IDS INSTEAD OF TOSTRINGS.
+    
+    if ([globalData1 rangeOfString:myBubble.toString].location == NSNotFound) {
+        NSLog(@"string does not contain myBubble");
+        NSLog(@"globaldata: =%@", globalData1);
+        globalData1 = [globalData1 stringByAppendingString:myBubble.toString];
+    } else {
+//        globalData1 = [globalData1 stringByAppendingString:myBubble.toString];
+        //NSLog(@"add my bubble");
+    }
+    
+    //[self.delegate done:myBubble.toString];
+    //add own bubble data to global variable channel1
+    //AIGHT I THINK THIS IS HOW WE'RE GONNA DO IT  WE GOTTA MAKE A WORKABLE COPY OF THE BUBBLE DATA STRING ON CHANEL 1
+    //THEN WERE GONNA LOAD THE STRING BY PARSING WITH SSCANF
+    //THEN WE RE GONNA ADD OUR BUBBLE TO THE STRING IF WE DO A SEARCH OF THE LOADED DATA STRUCTURE AND DONT FIND OUR OWN NAME
+    NSString *bubbleString;
+    bubbleString = myBubble.toString;
+    
+    //load data string into array
+    /*
+    
+    
+    const char *cString = [globalData1 cStringUsingEncoding:NSASCIIStringEncoding];
+    int i = 0;
+    while(5==sscanf(cString, "%lf %c %f %f %f ", &tmpid, &tmpchar, &tmp1, &tmp2, &tmp3))
+    {
+        if(tmpid==myBubble.idnum)
+            isInDataString = true;
+        strstr(cString, myBubble.idnum);
+        
+        //tmpid = id of scanned bubble
+        //tmpchar = type of scanned bubble
+        //tmp1 = radius of scanned bubble
+        //tmp2 = x position of scanned bubble
+        //tmp3 = y position of scanned bubble
+        
+        
+        //instance varsiables are all protected what do i do jeff pls
+        
+        //tmpBubble = [[UserBubble alloc] init];
+        //tmpBubble.position.x =tmp2;
+        
+        
+        //tmpBubble->radius = tmp1;
+        //tmpBubble.position.x = tmp2;
+        
+        //tmpBubble->_type=tmpchar;
+        //tmpBubble->_radius =
+        
+        //bubble.toString
+        //return [NSString stringWithFormat:@"%f %c %f %f %f  ", idnum, _type, _radius, super.position.x, super.position.y];
+        
+//        [multiplayerbubbles addObject:tmpBubble];
+        i++;
+    }
+     */
+    //UNCOMMENT ONCE GLOBAL STRING VERIFIES TO WORK
+  //if(!isInDataString)
+    //  globalData1 = [globalData1 stringByAppendingString:myBubble.toString];
+
+    //search for presence of bubble
+    
+    //add self if not already present
+    
+    //globalData1 = [globalData1 stringByAppendingString:myBubble.toString];
+    //globaldata1 = [globaldata1 stringByAppendingString:@"sadsadf"];
+    
+
+
+    //globaldata1 = myBubble.toString;
+    [self.delegate done:globalData1];
     
     for (Bubble *b1 in bubbles) {
         for (Bubble *b2 in bubbles) {

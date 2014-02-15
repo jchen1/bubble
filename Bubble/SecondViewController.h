@@ -7,9 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
+#import "ViewController.h"
+
 
 
 #define GLOBALDATA
+
+extern NSString *globalData1;
 
 
 @interface SecondViewController : UIViewController
@@ -19,3 +24,4 @@
 - (IBAction)gameView:(UIButton *)sender;
 
 @end
+

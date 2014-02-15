@@ -56,6 +56,11 @@
     return _radius;
 }
 
+-(double)idnum
+{
+    return idnum;
+}
+
 -(void) eat:(Bubble *)other
 {
     if (other.radius > _radius)
@@ -84,7 +89,7 @@
 
 -(NSString*) toString
 {
-    return [NSString stringWithFormat:@"%c %f %f %f  ", _type, _radius, super.position.x, super.position.y];
+    return [NSString stringWithFormat:@"%f %c %f %f %f  ", idnum, _type, _radius, super.position.x, super.position.y];
 }
 
 -(double) getSpeed
