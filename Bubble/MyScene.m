@@ -144,13 +144,11 @@ NSString *globalData1 = @"";
     
     //NEED A TOSTRING FOR ID OR SOMETHING. THIS CURRENTLY WORKS TO ADD THE BUBBLE TO THE GLOBAL DATA STRING AND SENDS IT BUT EVERY TIME THE BUBBLE MOVES, IT ACQUIRES A NEW TOSTRING SO THIS RECOGNIZES IT AS A DIFF BUBBLE AND APPENDS IT TO DATASTRING. GOTTA ONLY LOOK AT BUTTON IDS INSTEAD OF TOSTRINGS.
     
-    if ([globalData1 rangeOfString:myBubble.toString].location == NSNotFound) {
-        NSLog(@"string does not contain myBubble");
-        NSLog(@"globaldata: =%@", globalData1);
+    if ([globalData1 rangeOfString:[myBubble idnum]].location == NSNotFound) {
         globalData1 = [globalData1 stringByAppendingString:myBubble.toString];
     } else {
 //        globalData1 = [globalData1 stringByAppendingString:myBubble.toString];
-        //NSLog(@"add my bubble");
+        NSLog(@"add my bubble");
     }
     
     //[self.delegate done:myBubble.toString];
@@ -164,7 +162,7 @@ NSString *globalData1 = @"";
     //load data string into array
     
     
-    
+        /*
     const char *cString = [globalData1 cStringUsingEncoding:NSASCIIStringEncoding];
     int i = 0;
     while(5==sscanf(cString, "%lf %c %f %f %f ", &tmpid, &tmpchar, &tmp1, &tmp2, &tmp3))
@@ -186,7 +184,7 @@ NSString *globalData1 = @"";
         //tmpBubble.position.x =tmp2;
         
         
-        tmpBubble->_radius = tmp1;
+        [tmpBubble setRadius:tmp1];
         //tmpBubble.position.x = tmp2;
         
         //tmpBubble->_type=tmpchar;
@@ -197,7 +195,7 @@ NSString *globalData1 = @"";
         
 //        [multiplayerbubbles addObject:tmpBubble];
         i++;
-    }
+    }*/
     
     //UNCOMMENT ONCE GLOBAL STRING VERIFIES TO WORK
   //if(!isInDataString)

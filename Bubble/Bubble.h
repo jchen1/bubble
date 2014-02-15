@@ -12,14 +12,14 @@
 {
     double _radius;
     char _type;
-    double idnum;
+    NSString* idnum;
 }
 -(id) initWithColor : (SKColor*) color;
 -(void) updateArc;
 -(void) setRadius: (double) radius;
 -(double) radius;
 -(void) updatePosition;
--(double) idnum;
+-(NSString*) idnum;
 -(bool) inside: (CGPoint) touch;
 -(bool) collidesWith: (Bubble*) other;
 -(void) eat: (Bubble*) other;

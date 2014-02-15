@@ -56,7 +56,7 @@
     return _radius;
 }
 
--(double)idnum
+-(NSString*)idnum
 {
     return idnum;
 }
@@ -89,7 +89,7 @@
 
 -(NSString*) toString
 {
-    return [NSString stringWithFormat:@"%f %c %f %f %f  ", idnum, _type, _radius, super.position.x, super.position.y];
+    return [NSString stringWithFormat:@"%@ %c %f %f %f  ", idnum, _type, _radius, super.position.x, super.position.y];
 }
 
 -(double) getSpeed
