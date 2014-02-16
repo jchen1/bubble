@@ -133,12 +133,12 @@ NSString *globalData1 = @"";
 }
 
 -(void)update:(CFTimeInterval)currentTime {
-    double tmpid; //these variables yo
-    char tmpchar; //see comments for hypothesized use
-    float tmp1; //dont think i will actually need them
-    float tmp2;
-    float tmp3;
-    bool isInDataString=false;
+    //double tmpid; //these variables yo
+    //char tmpchar; //see comments for hypothesized use
+    //float tmp1; //dont think i will actually need them
+    //float tmp2;
+    //float tmp3;
+    //bool isInDataString=false;
     /* Called before each frame is rendered */
     
     
@@ -148,7 +148,7 @@ NSString *globalData1 = @"";
         globalData1 = [globalData1 stringByAppendingString:myBubble.toString];
     } else {
 //        globalData1 = [globalData1 stringByAppendingString:myBubble.toString];
-        NSLog(@"add my bubble");
+        //NSLog(@"add my bubble");
     }
     
     //[self.delegate done:myBubble.toString];

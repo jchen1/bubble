@@ -61,7 +61,7 @@
 }
 - (IBAction)gameView:(id)sender {
 //    self.chatBox.text = globalData1;
-    NSLog((@"asdf"));
+    //NSLog((@"asdf"));
 //    ViewController *gameView = [ViewController alloc];
     
 }

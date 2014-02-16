@@ -69,7 +69,7 @@ NSString *globalData1;
     return YES;
 }
 - (IBAction)popCurrentView {
-    NSLog(@"asdfggggg");
+    //NSLog(@"asdfggggg");
 [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -129,7 +129,7 @@ NSString *globalData1;
 }
 
 - (void) sendText: (NSString *)inputText{
-    NSLog(@"Sent data string: =%@", inputText);
+    //NSLog(@"Sent data string: =%@", inputText);
     //  Retrieve text from chat box and clear chat box
     NSString *message = inputText; //= self.chatBox.text;
     //self.chatBox.text = inputText;
@@ -158,7 +158,7 @@ NSString *globalData1;
     //  Append text to text box
     self.textBox.text = message;
     //self.textFieldglobalData1.text = finalText;
-    NSLog(@"globalData1.text: =%@", message);
+    //NSLog(@"globalData1.text: =%@", message);
     globalData1 = message;
 }
 

@@ -40,21 +40,31 @@
     super.position = pos;
 }
 
+
 -(void)updatePosition:(int)direction
 {
     CGPoint pos = super.position;
+    CGRect bounds = [[UIScreen mainScreen] bounds];
     switch (direction) {
         case 0: //up
-            pos.y+= [self getSpeed];
+            if (pos.y > bounds.origin.y){
+                pos.y+= [self getSpeed];
+            }
             break;
         case 1: //down
-            pos.y-= [self getSpeed];
+            if (pos.y < bounds.size.height){
+                pos.y-= [self getSpeed];
+            }
             break;
         case 2: //left
-            pos.x-= [self getSpeed];
+            if (pos.x > bounds.origin.x){
+                pos.x-= [self getSpeed];
+            }
             break;
         case 3: //right
-            pos.x+= [self getSpeed];
+            if (pos.x < bounds.size.width){
+                pos.x+= [self getSpeed];
+            }
             break;
         default:
             break;  //wut wut in the but
