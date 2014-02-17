@@ -16,7 +16,6 @@
 
 -(void)done:(NSString*)dataText{
     dataText = globalData1;
-    NSLog(@"1Sent string: =%@", dataText);
 }
 
 -(id)initWithSize:(CGSize)size {    
@@ -132,12 +131,12 @@
 }
 
 -(void)update:(CFTimeInterval)currentTime {
-    //double tmpid; //these variables yo
-    //char tmpchar; //see comments for hypothesized use
-    //float tmp1; //dont think i will actually need them
-    //float tmp2;
-    //float tmp3;
-    //bool isInDataString=false;
+    int tmpid; //these variables yo
+    char tmpchar; //see comments for hypothesized use
+    float tmp1; //dont think i will actually need them
+    float tmp2;
+    float tmp3;
+//    bool isInDataString=false;
     /* Called before each frame is rendered */
     
     
@@ -146,6 +145,7 @@
     if ([globalData1 rangeOfString:[myBubble idnum]].location == NSNotFound) {
         globalData1 = [globalData1 stringByAppendingString:myBubble.toString];
         NSLog(@"myBubble isn't in the data string. Add it to the string");
+        NSLog(@"myBubble.toString: %@", myBubble.toString);
     } else {
         //globalData1 contains myBubble info so we just need to update the entry corresponding to myBubble ID
 //        NSLog(@"globaldataa")
@@ -163,16 +163,25 @@
     NSString *bubbleString;
     bubbleString = myBubble.toString;
     
+    tmpBubble = [[UserBubble alloc] initWithArgs:@"asd" radius:14.42 xcoord:1.1 ycoord:1.12];
+
+    
+    tmpBubble = [[UserBubble alloc] init];
+    [multiplayerbubbles addObject:tmpBubble];
+    [self addChild:tmpBubble];
+    NSLog(@"asdf %@", tmpBubble.toString);
+    
+    
     //load data string into array
     
-    
-        /*
     const char *cString = [globalData1 cStringUsingEncoding:NSASCIIStringEncoding];
     int i = 0;
-    while(5==sscanf(cString, "%lf %c %f %f %f ", &tmpid, &tmpchar, &tmp1, &tmp2, &tmp3))
+    /*
+    while(5==sscanf(cString, "%d %c %f %f %f ", &tmpid, &tmpchar, &tmp1, &tmp2, &tmp3))
     {
-        if(tmpid==myBubble.idnum)
-            isInDataString = true;
+        
+        //if(tmpid==myBubble.idnum)
+         //   isInDataString = true;
         //strstr(cString, myBubble.idnum);
         
         //tmpid = id of scanned bubble
@@ -188,7 +197,8 @@
         //tmpBubble.position.x =tmp2;
         
         
-        [tmpBubble setRadius:tmp1];
+        //NSLog(@"tmpBubble.toString: %@", tmpBubble.toString);
+        
         //tmpBubble.position.x = tmp2;
         
         //tmpBubble->_type=tmpchar;
@@ -199,8 +209,8 @@
         
 //        [multiplayerbubbles addObject:tmpBubble];
         i++;
-    }*/
-    
+    }
+    */
     //UNCOMMENT ONCE GLOBAL STRING VERIFIES TO WORK
   //if(!isInDataString)
     //  globalData1 = [globalData1 stringByAppendingString:myBubble.toString];

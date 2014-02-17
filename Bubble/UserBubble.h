@@ -17,4 +17,6 @@
 -(void) respawn: (CGPoint) pos;
 -(double) getSpeed;
 
+-(id) initWithArgs: (NSString*) initid radius:(float) radius xcoord:(float) xcoord ycoord:(float) ycoord;
+
 @end
