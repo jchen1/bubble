@@ -47,30 +47,23 @@
     CGRect bounds = [[UIScreen mainScreen] bounds];
     switch (direction) {
         case 0: //up
-            if (pos.y > bounds.origin.y){
-                pos.y+= [self getSpeed];
-            }
+            pos.y+= [self getSpeed];
             break;
         case 1: //down
-            if (pos.y < bounds.size.height){
-                pos.y-= [self getSpeed];
-            }
+            pos.y-= [self getSpeed];
             break;
         case 2: //left
-            if (pos.x > bounds.origin.x){
-                pos.x-= [self getSpeed];
-            }
+            pos.x-= [self getSpeed];
             break;
         case 3: //right
-            if (pos.x < bounds.size.width){
-                pos.x+= [self getSpeed];
-            }
+            pos.x+= [self getSpeed];
             break;
         default:
             break;  //wut wut in the but
     }
-    
-    [super setPosition:pos];
+    if (CGRectContainsPoint(bounds,pos)){
+        [super setPosition:pos];
+    }
 }
 
 @end
