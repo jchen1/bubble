@@ -10,6 +10,15 @@
 
 #import "MyScene.h"
 
+int contains(NSMutableArray *arr, NSString* id){
+    for (UserBubble *b in arr){
+        if ([[b idnum] isEqualToString:id]){
+            return [arr indexOfObject:b];
+        }
+    }
+    return -1;
+}
+
 @implementation MyScene
 
 @synthesize delegate;
@@ -133,9 +142,9 @@
 -(void)update:(CFTimeInterval)currentTime {
     int tmpid; //these variables yo
     char tmpchar; //see comments for hypothesized use
-    float tmp1; //dont think i will actually need them
-    float tmp2;
-    float tmp3;
+    float tmpRad; //dont think i will actually need them
+    float tmpX;
+    float tmpY;
 //    bool isInDataString=false;
     /* Called before each frame is rendered */
     
@@ -163,48 +172,28 @@
     NSString *bubbleString;
     bubbleString = myBubble.toString;
     
-
-    
     
     //load data string into array
     const char *cString = [globalData1 cStringUsingEncoding:NSASCIIStringEncoding];
-    int i = 0;
+    int i = 0, bytes = 0;
     
-    while(5==sscanf(cString, "%d %c %f %f %f ", &tmpid, &tmpchar, &tmp1, &tmp2, &tmp3))
+    while(5==sscanf(cString, "%d %c %f %f %f %n", &tmpid, &tmpchar, &tmpRad, &tmpX, &tmpY, &bytes))
     {
-        tmpBubble = [[UserBubble alloc] initWithArgs:@"asd" radius:14.42 xcoord:1.1 ycoord:1.12];     
-        [multiplayerbubbles addObject:tmpBubble];
-        [self addChild:tmpBubble];
-        NSLog(@"asdf %@", tmpBubble.toString);
-        //if(tmpid==myBubble.idnum)
-         //   isInDataString = true;
-        //strstr(cString, myBubble.idnum);
-        
-        //tmpid = id of scanned bubble
-        //tmpchar = type of scanned bubble
-        //tmp1 = radius of scanned bubble
-        //tmp2 = x position of scanned bubble
-        //tmp3 = y position of scanned bubble
-        
-        
-        //instance varsiables are all protected what do i do jeff pls
-        
-        //tmpBubble = [[UserBubble alloc] init];
-        //tmpBubble.position.x =tmp2;
-        
-        
-        //NSLog(@"tmpBubble.toString: %@", tmpBubble.toString);
-        
-        //tmpBubble.position.x = tmp2;
-        
-        //tmpBubble->_type=tmpchar;
-        //tmpBubble->_radius =
-        
-        //bubble.toString
-        //return [NSString stringWithFormat:@"%f %c %f %f %f  ", idnum, _type, _radius, super.position.x, super.position.y];
-        
-//        [multiplayerbubbles addObject:tmpBubble];
+        int temp = contains(multiplayerbubbles,[NSString stringWithFormat:@"%d",tmpid]);
+        if (temp < 0){
+            tmpBubble = [[UserBubble alloc] initWithId:[NSString stringWithFormat:@"%d",tmpid]
+                                             andRadius:tmpRad andXcoord:tmpX andYcoord:tmpY];
+            [multiplayerbubbles addObject:tmpBubble];
+            [self addChild:tmpBubble];
+        }
+        else{
+            tmpBubble = [multiplayerbubbles objectAtIndex:temp];
+            [tmpBubble setRadius:tmpRad];
+            CGPoint pnt = CGPointMake(tmpX,tmpX);
+            [tmpBubble setPosition:pnt];
+        }
         i++;
+        cString += bytes;
     }
     
     //UNCOMMENT ONCE GLOBAL STRING VERIFIES TO WORK

@@ -10,7 +10,7 @@
 
 @implementation UserBubble
 
--(id) initWithArgs: (NSString*) initid radius:(float) radius xcoord:(float) xcoord ycoord:(float) ycoord
+-(id) initWithId:(NSString*)initid andRadius:(float)radius andXcoord:(float)xcoord andYcoord:(float)ycoord
 {
     self = [super initWithColor:[SKColor blueColor]];
     if (self)
