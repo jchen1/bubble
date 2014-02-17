@@ -15,7 +15,8 @@
     self = [super initWithColor:[SKColor redColor]];
     if (self)
     {
-        idnum = [NSString stringWithFormat:@"%d",rand()];
+        //idnum = [NSString stringWithFormat:@"%d",rand()];
+        idnum = @"4";
         super.radius = 10;
         super.zPosition = 10;
         _type = 'U';

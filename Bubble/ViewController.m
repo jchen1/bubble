@@ -96,7 +96,7 @@ NSString *globalData1;
     [self.view addSubview:self.browseButton];
     [self.browseButton addTarget:self action:@selector(showBrowserVC) forControlEvents:UIControlEventTouchUpInside];
     //  Setup TextBox
-    self.textBox = [[UITextView alloc] initWithFrame: CGRectMake(40, 150, 140, 170)];
+    self.textBox = [[UITextView alloc] initWithFrame: CGRectMake(40, 50, 140, 70)];
     self.textBox.editable = NO;
     self.textBox.backgroundColor = [UIColor lightGrayColor];
     [self.view addSubview: self.textBox];
