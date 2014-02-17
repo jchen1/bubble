@@ -96,7 +96,7 @@ NSString *globalData1;
     [self.view addSubview:self.browseButton];
     [self.browseButton addTarget:self action:@selector(showBrowserVC) forControlEvents:UIControlEventTouchUpInside];
     //  Setup TextBox
-    self.textBox = [[UITextView alloc] initWithFrame: CGRectMake(40, 50, 140, 70)];
+    self.textBox = [[UITextView alloc] initWithFrame: CGRectMake(40, 150, 140, 170)];
     self.textBox.editable = NO;
     self.textBox.backgroundColor = [UIColor lightGrayColor];
     [self.view addSubview: self.textBox];
@@ -130,7 +130,7 @@ NSString *globalData1;
 
 - (void) sendText{
     //  Retrieve text from chat box and clear chat box
-    NSString *message = globalData1;
+    NSString *message =@"Asd";
     self.chatBox.text = @"";
     
     //  Convert text to NSData
@@ -156,7 +156,8 @@ NSString *globalData1;
     }
     
     //  Append text to text box
-    self.textBox.text = [self.textBox.text stringByAppendingString:message];
+    //self.textBox.text = [self.textBox.text stringByAppendingString:message];
+    self.textBox.text=globalData1;
 }
 
 #pragma marks MCBrowserViewControllerDelegate

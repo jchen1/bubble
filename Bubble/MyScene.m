@@ -146,9 +146,14 @@ NSString *globalData1 = @"";
     
     if ([globalData1 rangeOfString:[myBubble idnum]].location == NSNotFound) {
         globalData1 = [globalData1 stringByAppendingString:myBubble.toString];
+        NSLog(@"myBubble isn't in the data string. Add it to the string");
     } else {
+        //globalData1 contains myBubble info so we just need to update the entry corresponding to myBubble ID
+//        NSLog(@"globaldataa")
 //        globalData1 = [globalData1 stringByAppendingString:myBubble.toString];
-        //NSLog(@"add my bubble");
+        //NSLog(@"[myBubble idnum]: =%@", [myBubble idnum]);
+        NSLog(@"globaldata: =%@", globalData1);
+        //NSLog(@"add bubble! myBubble Not found");
     }
     
     //[self.delegate done:myBubble.toString];
