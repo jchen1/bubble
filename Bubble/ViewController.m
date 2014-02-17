@@ -40,7 +40,7 @@ NSString *globalData1;
     //NSLog(@"1Sent data string: =%@", dataText);
     //chatBox.text = dataText;
     //textFieldglobalData1.text = dataText;
-    [self sendText:dataText];
+    [self sendText];
     //   globalData1 = dataText;
 }
 
@@ -128,11 +128,10 @@ NSString *globalData1;
     [self.browserVC dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void) sendText: (NSString *)inputText{
-    //NSLog(@"Sent data string: =%@", inputText);
+- (void) sendText{
     //  Retrieve text from chat box and clear chat box
-    NSString *message = inputText; //= self.chatBox.text;
-    //self.chatBox.text = inputText;
+    NSString *message = globalData1;
+    self.chatBox.text = @"";
     
     //  Convert text to NSData
     NSData *data = [message dataUsingEncoding:NSUTF8StringEncoding];
@@ -147,19 +146,17 @@ NSString *globalData1;
 
 - (void) receiveMessage: (NSString *) message fromPeer: (MCPeerID *) peer{
     //  Create the final text to append
-    //NSString *finalText;
-    /*if (peer == self.myPeerID) {
+    NSString *finalText;
+    finalText = message;
+    if (peer == self.myPeerID) {
         finalText = [NSString stringWithFormat:@"\nme: %@ \n", message];
-    }*/
-    //else{
-    //finalText = [NSString stringWithFormat:@"\n%@: %@ \n", peer.displayName, message];
-    //}
+    }
+    else{
+        finalText = [NSString stringWithFormat:@"\n%@: %@ \n", peer.displayName, message];
+    }
     
     //  Append text to text box
-    self.textBox.text = message;
-    //self.textFieldglobalData1.text = finalText;
-    //NSLog(@"globalData1.text: =%@", message);
-    globalData1 = message;
+    self.textBox.text = [self.textBox.text stringByAppendingString:message];
 }
 
 #pragma marks MCBrowserViewControllerDelegate
@@ -178,7 +175,7 @@ NSString *globalData1;
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     [textField resignFirstResponder];
- //   [self se];
+    [self sendText];
     return YES;
 }
 
