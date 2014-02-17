@@ -45,7 +45,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     [self setUpUI];
-    [self setUpMultipeer];
+    //[self setUpMultipeer];
 }
 
 - (void)viewWillAppear:(BOOL)animated
