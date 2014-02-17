@@ -17,7 +17,7 @@
     {
         
         //idnum = [NSString stringWithFormat:@"%d",rand()];
-        idnum = @"4";
+        idnum = @"8";
         super.radius = 10;
         super.zPosition = 10;
         _type = 'U';
