@@ -14,6 +14,9 @@
 
 #define GLOBALDATA
 
+NSString *globalData1;
+
+
 @interface ViewController : UIViewController
 
 @end
