@@ -10,12 +10,25 @@
 
 @implementation UserBubble
 
+-(id) initWithArgs: (NSString*) initid radius:(float) radius xcoord:(float) xcoord ycoord:(float) ycoord
+{
+    self = [super initWithColor:[SKColor blueColor]];
+    if (self)
+    {
+        _type = 'U';
+        idnum = initid;
+        [self setRadius:radius];
+        CGPoint pos = CGPointMake(xcoord, ycoord);
+        [super setPosition:pos];
+    }
+    return self;
+}
+
 -(id) init
 {
     self = [super initWithColor:[SKColor redColor]];
     if (self)
     {
-        
         //idnum = [NSString stringWithFormat:@"%d",rand()];
         idnum = @"4";
         super.radius = 10;

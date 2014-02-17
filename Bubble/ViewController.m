@@ -129,7 +129,7 @@ NSString *globalString = @"";
 
 - (void) sendText{
     //  Retrieve text from chat box and clear chat box
-    NSString *message =globalData1;
+    NSString *message =@"";
     self.chatBox.text = @"";
     NSLog(@"globalData1: =%@", globalData1);
     //  Convert text to NSData
