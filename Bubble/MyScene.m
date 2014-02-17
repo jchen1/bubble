@@ -185,26 +185,27 @@ int contains(NSMutableArray *arr, NSString* id){
     
     while(5==sscanf(cString, "%d %c %f %f %f %n", &tmpid, &tmpchar, &tmpRad, &tmpX, &tmpY, &bytes))
     {
-        int temp = contains(multiplayerbubbles,[NSString stringWithFormat:@"%d",tmpid]);
-        if (temp < 0){
-            tmpBubble = [[UserBubble alloc] initWithId:[NSString stringWithFormat:@"%d",tmpid]
-                                             andRadius:tmpRad andXcoord:tmpX andYcoord:tmpY];
-            [multiplayerbubbles addObject:tmpBubble];
-            [self addChild:tmpBubble];
-            
-        }
-        else{
-            tmpBubble = [multiplayerbubbles objectAtIndex:temp];
-            [tmpBubble setRadius:tmpRad];
-            CGPoint pnt = CGPointMake(tmpX,tmpY);
-            [tmpBubble setPosition:pnt];
+        if (![[NSString stringWithFormat:@"%d",tmpid] isEqualToString:[myBubble idnum]]){
+            int temp = contains(multiplayerbubbles,[NSString stringWithFormat:@"%d",tmpid]);
+            if (temp < 0){
+                tmpBubble = [[UserBubble alloc] initWithId:[NSString stringWithFormat:@"%d",tmpid]
+                                                 andRadius:tmpRad andXcoord:tmpX andYcoord:tmpY];
+                [multiplayerbubbles addObject:tmpBubble];
+                [self addChild:tmpBubble];
+            }
+            else{
+                tmpBubble = [multiplayerbubbles objectAtIndex:temp];
+                [tmpBubble setRadius:tmpRad];
+                CGPoint pnt = CGPointMake(tmpX,tmpY);
+                [tmpBubble setPosition:pnt];
+            }
         }
         i++;
         cString += bytes;
-        for (int i=0; i<[multiplayerbubbles count]; i++) { //loops through multiplayerbubbles and identifies each string
-            UserBubble *obj = (UserBubble*)[multiplayerbubbles objectAtIndex:i];
-            NSLog(@"Selected: %@", obj.idnum);
-        }
+    }
+    for (int i=0; i<[multiplayerbubbles count]; i++) { //loops through multiplayerbubbles and identifies each string
+        UserBubble *obj = (UserBubble*)[multiplayerbubbles objectAtIndex:i];
+        NSLog(@"Selected: %@", obj.idnum);
     }
     
     
