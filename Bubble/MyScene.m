@@ -173,6 +173,12 @@ int contains(NSMutableArray *arr, NSString* id){
     bubbleString = myBubble.toString;
     
     
+
+    
+    
+    //NSLog(@"%@", multiplayerbubbles);
+    //NSLog(@"multiplayerbubble array: %@",[multiplayerbubbles componentsJoinedByString:@","]);
+    
     //load data string into array
     const char *cString = [globalData1 cStringUsingEncoding:NSASCIIStringEncoding];
     int i = 0, bytes = 0;
@@ -185,16 +191,22 @@ int contains(NSMutableArray *arr, NSString* id){
                                              andRadius:tmpRad andXcoord:tmpX andYcoord:tmpY];
             [multiplayerbubbles addObject:tmpBubble];
             [self addChild:tmpBubble];
+            
         }
         else{
             tmpBubble = [multiplayerbubbles objectAtIndex:temp];
             [tmpBubble setRadius:tmpRad];
-            CGPoint pnt = CGPointMake(tmpX,tmpX);
+            CGPoint pnt = CGPointMake(tmpX,tmpY);
             [tmpBubble setPosition:pnt];
         }
         i++;
         cString += bytes;
+        for (int i=0; i<[multiplayerbubbles count]; i++) { //loops through multiplayerbubbles and identifies each string
+            UserBubble *obj = (UserBubble*)[multiplayerbubbles objectAtIndex:i];
+            NSLog(@"Selected: %@", obj.idnum);
+        }
     }
+    
     
     //UNCOMMENT ONCE GLOBAL STRING VERIFIES TO WORK
   //if(!isInDataString)
