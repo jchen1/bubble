@@ -156,6 +156,7 @@ NSString *globalString = @"";
     
     //  Append text to text box
     //self.textBox.text = [self.textBox.text stringByAppendingString:message];
+    globalData1 = message;
     self.textBox.text=globalData1;
 }
 
