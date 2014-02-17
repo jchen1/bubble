@@ -11,7 +11,6 @@
 #import "MyScene.h"
 
 @implementation MyScene
-NSString *globalData1 = @"";
 
 @synthesize delegate;
 
@@ -152,7 +151,7 @@ NSString *globalData1 = @"";
 //        NSLog(@"globaldataa")
 //        globalData1 = [globalData1 stringByAppendingString:myBubble.toString];
         //NSLog(@"[myBubble idnum]: =%@", [myBubble idnum]);
-        NSLog(@"globaldata: =%@", globalData1);
+        //NSLog(@"globaldata: =%@", globalData1);
         //NSLog(@"add bubble! myBubble Not found");
     }
     

@@ -30,7 +30,6 @@
 
 @implementation ViewController
 NSString *globalString = @"";
-NSString *globalData1;
 
 @synthesize textBox;
 @synthesize chatBox;
@@ -130,9 +129,9 @@ NSString *globalData1;
 
 - (void) sendText{
     //  Retrieve text from chat box and clear chat box
-    NSString *message =@"Asd";
+    NSString *message =globalData1;
     self.chatBox.text = @"";
-    
+    NSLog(@"globalData1: =%@", globalData1);
     //  Convert text to NSData
     NSData *data = [message dataUsingEncoding:NSUTF8StringEncoding];
     

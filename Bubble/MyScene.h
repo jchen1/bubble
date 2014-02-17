@@ -41,3 +41,6 @@
 -(void) generateBubbles: (unsigned int)seed;
 
 @end
+NSString *globalData1;
+
+
