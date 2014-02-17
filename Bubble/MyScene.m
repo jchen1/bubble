@@ -163,23 +163,19 @@
     NSString *bubbleString;
     bubbleString = myBubble.toString;
     
-    tmpBubble = [[UserBubble alloc] initWithArgs:@"asd" radius:14.42 xcoord:1.1 ycoord:1.12];
 
-    
-    tmpBubble = [[UserBubble alloc] init];
-    [multiplayerbubbles addObject:tmpBubble];
-    [self addChild:tmpBubble];
-    NSLog(@"asdf %@", tmpBubble.toString);
     
     
     //load data string into array
-    
     const char *cString = [globalData1 cStringUsingEncoding:NSASCIIStringEncoding];
     int i = 0;
-    /*
+    
     while(5==sscanf(cString, "%d %c %f %f %f ", &tmpid, &tmpchar, &tmp1, &tmp2, &tmp3))
     {
-        
+        tmpBubble = [[UserBubble alloc] initWithArgs:@"asd" radius:14.42 xcoord:1.1 ycoord:1.12];     
+        [multiplayerbubbles addObject:tmpBubble];
+        [self addChild:tmpBubble];
+        NSLog(@"asdf %@", tmpBubble.toString);
         //if(tmpid==myBubble.idnum)
          //   isInDataString = true;
         //strstr(cString, myBubble.idnum);
@@ -210,7 +206,7 @@
 //        [multiplayerbubbles addObject:tmpBubble];
         i++;
     }
-    */
+    
     //UNCOMMENT ONCE GLOBAL STRING VERIFIES TO WORK
   //if(!isInDataString)
     //  globalData1 = [globalData1 stringByAppendingString:myBubble.toString];
