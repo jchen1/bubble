@@ -147,7 +147,7 @@ int contains(NSMutableArray *arr, NSString* id){
     float tmpY;
 //    bool isInDataString=false;
     /* Called before each frame is rendered */
-    
+//    [self removeChildrenInArray:multiplayerbubbles];
     
     //NEED A TOSTRING FOR ID OR SOMETHING. THIS CURRENTLY WORKS TO ADD THE BUBBLE TO THE GLOBAL DATA STRING AND SENDS IT BUT EVERY TIME THE BUBBLE MOVES, IT ACQUIRES A NEW TOSTRING SO THIS RECOGNIZES IT AS A DIFF BUBBLE AND APPENDS IT TO DATASTRING. GOTTA ONLY LOOK AT BUTTON IDS INSTEAD OF TOSTRINGS.
     
@@ -188,17 +188,18 @@ int contains(NSMutableArray *arr, NSString* id){
         if (![[NSString stringWithFormat:@"%d",tmpid] isEqualToString:[myBubble idnum]]){
             int temp = contains(multiplayerbubbles,[NSString stringWithFormat:@"%d",tmpid]);
             if (temp < 0){
-                tmpBubble = [[UserBubble alloc] initWithId:[NSString stringWithFormat:@"%d",tmpid]
-                                                 andRadius:tmpRad andXcoord:tmpX andYcoord:tmpY];
+                Bubble *tmpBubble = [[UserBubble alloc] initWithId:[NSString stringWithFormat:@"%d",tmpid]
+                                                 andRadius:15 andXcoord:tmpX andYcoord:tmpY];
                 [multiplayerbubbles addObject:tmpBubble];
                 [self addChild:tmpBubble];
             }
             else{
-                tmpBubble = [multiplayerbubbles objectAtIndex:temp];
-                tmpBubble.radius = tmpRad;
+                Bubble *tmpBubble = [multiplayerbubbles objectAtIndex:temp];
+                tmpBubble.radius = 30;
                 CGPoint pnt = CGPointMake(tmpX,tmpY);
                 [tmpBubble setPosition:pnt];
                 NSLog(@"tmpBubble: %@",[tmpBubble toString]);
+                printf("%s", cString);
             }
         }
         i++;
@@ -207,6 +208,7 @@ int contains(NSMutableArray *arr, NSString* id){
     for (int i=0; i<[multiplayerbubbles count]; i++) { //loops through multiplayerbubbles and identifies each string
         UserBubble *obj = (UserBubble*)[multiplayerbubbles objectAtIndex:i];
         NSLog(@"Selected: %@", obj.idnum);
+        NSLog(@"Radius: %f", obj.radius);
     }
     
     

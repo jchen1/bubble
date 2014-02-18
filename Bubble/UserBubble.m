@@ -15,9 +15,10 @@
     self = [super initWithColor:[SKColor greenColor]];
     if (self)
     {
-        _type = 'U';
+        _type = 'M';
         idnum = initid;
-        [self setRadius:radius];
+        _radius=radius;
+        //[self setRadius:radius];
         CGPoint pos = CGPointMake(xcoord, ycoord);
         [super setPosition:pos];
     }
@@ -45,6 +46,11 @@
 -(void) updatePosition
 {
 
+}
+
+-(void)updateRadius:(float)newradius
+{
+    _radius = newradius;
 }
 
 -(void) respawn:(CGPoint)pos

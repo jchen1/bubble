@@ -25,6 +25,7 @@
 -(void) eat: (Bubble*) other;
 -(NSString*) toString;
 -(double) getSpeed;
-
+-(id) initWithId:(NSString*)initid andRadius:(float)radius andXcoord:(float)xcoord andYcoord:(float)ycoord;
+-(void)updateRadius:(float)newradius;
 
 @end

@@ -26,7 +26,6 @@
     NSMutableArray *multiplayerbubbles;
     NSMutableArray *directions;
     
-    UserBubble *tmpBubble;
     UserBubble *myBubble;
     ButtonBubble *upBubble;
     ButtonBubble *downBubble;

@@ -16,7 +16,7 @@
 -(void) updatePosition: (int)direction;
 -(void) respawn: (CGPoint) pos;
 -(double) getSpeed;
-
+-(void)updateRadius:(float)newradius;
 -(id) initWithId:(NSString*)initid andRadius:(float)radius andXcoord:(float)xcoord andYcoord:(float)ycoord;
 
 @end
