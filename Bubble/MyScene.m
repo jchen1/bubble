@@ -223,7 +223,7 @@ int contains(NSMutableArray *arr, NSString* id){
 
 
     //globaldata1 = myBubble.toString;
-    [self.delegate done:globalData1];
+    [self.delegate done:myBubble.toString];
     
     for (Bubble *b1 in bubbles) {
         for (Bubble *b2 in bubbles) {

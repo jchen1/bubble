@@ -39,7 +39,7 @@ NSString *globalString = @"";
     //NSLog(@"1Sent data string: =%@", dataText);
     //chatBox.text = dataText;
     //textFieldglobalData1.text = dataText;
-    [self sendText];
+    [self sendText:dataText];
     //   globalData1 = dataText;
 }
 
@@ -127,9 +127,9 @@ NSString *globalString = @"";
     [self.browserVC dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void) sendText{
+- (void) sendText:(NSString*)dataToSend{
     //  Retrieve text from chat box and clear chat box
-    NSString *message =@"";
+    NSString *message =globalData1;
     self.chatBox.text = @"";
     NSLog(@"globalData1: =%@", globalData1);
     //  Convert text to NSData
@@ -176,7 +176,7 @@ NSString *globalString = @"";
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     [textField resignFirstResponder];
-    [self sendText];
+    [self sendText:@""];
     return YES;
 }
 
