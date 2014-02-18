@@ -129,9 +129,8 @@ NSString *globalString = @"";
 
 - (void) sendText:(NSString*)dataToSend{
     //  Retrieve text from chat box and clear chat box
-    NSString *message =globalData1;
+    NSString *message =dataToSend;
     self.chatBox.text = @"";
-    NSLog(@"globalData1: =%@", globalData1);
     //  Convert text to NSData
     NSData *data = [message dataUsingEncoding:NSUTF8StringEncoding];
     
@@ -156,6 +155,7 @@ NSString *globalString = @"";
     
     //  Append text to text box
     //self.textBox.text = [self.textBox.text stringByAppendingString:message];
+    NSLog(@"received: %@", message);
     globalData1 = message;
     self.textBox.text=globalData1;
 }

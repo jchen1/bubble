@@ -12,7 +12,7 @@
 
 -(id) initWithId:(NSString*)initid andRadius:(float)radius andXcoord:(float)xcoord andYcoord:(float)ycoord
 {
-    self = [super initWithColor:[SKColor blueColor]];
+    self = [super initWithColor:[SKColor greenColor]];
     if (self)
     {
         _type = 'U';

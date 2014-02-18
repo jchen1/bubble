@@ -195,9 +195,10 @@ int contains(NSMutableArray *arr, NSString* id){
             }
             else{
                 tmpBubble = [multiplayerbubbles objectAtIndex:temp];
-                [tmpBubble setRadius:tmpRad];
+                tmpBubble.radius = tmpRad;
                 CGPoint pnt = CGPointMake(tmpX,tmpY);
                 [tmpBubble setPosition:pnt];
+                NSLog(@"tmpBubble: %@",[tmpBubble toString]);
             }
         }
         i++;
