@@ -186,29 +186,29 @@ int contains(NSMutableArray *arr, NSString* id){
     while(5==sscanf(cString, "%d %c %f %f %f %n", &tmpid, &tmpchar, &tmpRad, &tmpX, &tmpY, &bytes))
     {
         if (![[NSString stringWithFormat:@"%d",tmpid] isEqualToString:[myBubble idnum]]){
-            int temp = contains(multiplayerbubbles,[NSString stringWithFormat:@"%d",tmpid]);
+            int temp = contains(bubbles,[NSString stringWithFormat:@"%d",tmpid]);
             if (temp < 0){
-                Bubble *tmpBubble = [[UserBubble alloc] initWithId:[NSString stringWithFormat:@"%d",tmpid]
+                UserBubble *tmpBubble = [[UserBubble alloc] initWithId:[NSString stringWithFormat:@"%d",tmpid]
                                                  andRadius:15 andXcoord:tmpX andYcoord:tmpY];
-                [multiplayerbubbles addObject:tmpBubble];
+                [bubbles addObject:tmpBubble];
                 [self addChild:tmpBubble];
             }
             else{
-                Bubble *tmpBubble = [multiplayerbubbles objectAtIndex:temp];
-                tmpBubble.radius = 30;
+                UserBubble *tmpBubble = [bubbles objectAtIndex:temp];
+                [tmpBubble updateRadius: tmpRad];
                 CGPoint pnt = CGPointMake(tmpX,tmpY);
                 [tmpBubble setPosition:pnt];
                 NSLog(@"tmpBubble: %@",[tmpBubble toString]);
-                printf("%s", cString);
+                //printf("%s", cString);
             }
         }
         i++;
         cString += bytes;
     }
-    for (int i=0; i<[multiplayerbubbles count]; i++) { //loops through multiplayerbubbles and identifies each string
-        UserBubble *obj = (UserBubble*)[multiplayerbubbles objectAtIndex:i];
-        NSLog(@"Selected: %@", obj.idnum);
-        NSLog(@"Radius: %f", obj.radius);
+    for (int i=0; i<[bubbles count]; i++) { //loops through multiplayerbubbles and identifies each string
+        UserBubble *obj = (UserBubble*)[bubbles objectAtIndex:i];
+        //NSLog(@"Selected: %@", obj.idnum);
+        //NSLog(@"Radius: %f", obj.radius);
     }
     
     

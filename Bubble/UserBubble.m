@@ -13,15 +13,15 @@
 -(id) initWithId:(NSString*)initid andRadius:(float)radius andXcoord:(float)xcoord andYcoord:(float)ycoord
 {
     self = [super initWithColor:[SKColor greenColor]];
-    if (self)
-    {
+
+        NSLog(@"aasddddffff");
         _type = 'M';
         idnum = initid;
         _radius=radius;
+    super.radius = radius;
         //[self setRadius:radius];
         CGPoint pos = CGPointMake(xcoord, ycoord);
         [super setPosition:pos];
-    }
     return self;
 }
 
