@@ -273,10 +273,11 @@ int contains(NSMutableArray *arr, NSString* id){
     
     [bubbles removeObjectsAtIndexes:removeIndices];
     
-    if (MAX(0, (30 - [bubbles count])) > rand() % 100)
+    if (MAX(0, (int)(30 - (int)[bubbles count])) > arc4random() % 100)
     {
         AIBubble *bubble = [[AIBubble alloc] init];
-        bubble.position = CGPointMake(rand() % (int)CGRectGetMaxX(self.frame), rand() % (int)CGRectGetMaxY(self.frame));
+        bubble.position = CGPointMake(arc4random() % (int)CGRectGetMaxX(self.frame),
+                                      arc4random() % (int)CGRectGetMaxY(self.frame));
         [bubbles addObject:bubble];
         [self addChild:bubble];
     }
@@ -286,12 +287,13 @@ int contains(NSMutableArray *arr, NSString* id){
 -(void) generateBubbles:(unsigned int)seed
 {
     srand(seed);
-    int numBubbles = 10 + rand() % 20; //10 - 30 bubbles generated
+    int numBubbles = 10 + arc4random() % 20; //10 - 30 bubbles generated
     
     for (int i = 0; i < numBubbles; i++)
     {
         AIBubble *bubble = [[AIBubble alloc] init];
-        bubble.position = CGPointMake(rand() % (int)CGRectGetMaxX(self.frame), rand() % (int)CGRectGetMaxY(self.frame));
+        bubble.position = CGPointMake(arc4random() % (int)CGRectGetMaxX(self.frame),
+                                      arc4random() % (int)CGRectGetMaxY(self.frame));
         [bubbles addObject:bubble];
         [self addChild:bubble];
     }
