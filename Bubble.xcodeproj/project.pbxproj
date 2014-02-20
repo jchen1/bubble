@@ -29,6 +29,7 @@
 		1F60B17F18974B9A00232A84 /* BubbleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F60B17E18974B9A00232A84 /* BubbleTests.m */; };
 		1F60B18A1897500300232A84 /* Bubble.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F60B1891897500300232A84 /* Bubble.m */; };
 		1F7C329618975A34006995F8 /* AIBubble.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7C329518975A34006995F8 /* AIBubble.m */; };
+		A901663218B670A60061927A /* JCJoystick.m in Sources */ = {isa = PBXBuildFile; fileRef = A901663118B670A60061927A /* JCJoystick.m */; };
 		A956913B18984320004FBD99 /* MultipeerConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A956913A18984320004FBD99 /* MultipeerConnectivity.framework */; };
 		A97A9ED418988D3F0017183F /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A97A9ED318988D3F0017183F /* SecondViewController.m */; };
 		A97A9ED718989C750017183F /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A97A9ED618989C750017183F /* SettingsViewController.m */; };
@@ -77,6 +78,8 @@
 		1F60B1891897500300232A84 /* Bubble.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bubble.m; sourceTree = "<group>"; };
 		1F7C329418975A34006995F8 /* AIBubble.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AIBubble.h; sourceTree = "<group>"; };
 		1F7C329518975A34006995F8 /* AIBubble.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AIBubble.m; sourceTree = "<group>"; };
+		A901663018B670A60061927A /* JCJoystick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCJoystick.h; sourceTree = "<group>"; };
+		A901663118B670A60061927A /* JCJoystick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCJoystick.m; sourceTree = "<group>"; };
 		A956913A18984320004FBD99 /* MultipeerConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MultipeerConnectivity.framework; path = System/Library/Frameworks/MultipeerConnectivity.framework; sourceTree = SDKROOT; };
 		A97A9ED218988D3F0017183F /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
 		A97A9ED318988D3F0017183F /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
@@ -157,6 +160,8 @@
 				1F60B16418974B9A00232A84 /* ViewController.m */,
 				1F60B16618974B9A00232A84 /* MyScene.h */,
 				1F60B16718974B9A00232A84 /* MyScene.m */,
+				A901663018B670A60061927A /* JCJoystick.h */,
+				A901663118B670A60061927A /* JCJoystick.m */,
 				1F60B16918974B9A00232A84 /* Spaceship.png */,
 				1F60B16B18974B9A00232A84 /* Images.xcassets */,
 				1F60B15218974B9A00232A84 /* Supporting Files */,
@@ -310,6 +315,7 @@
 				1F60B16518974B9A00232A84 /* ViewController.m in Sources */,
 				1F1281F4189761C8005F8A7C /* UserBubble.m in Sources */,
 				1F7C329618975A34006995F8 /* AIBubble.m in Sources */,
+				A901663218B670A60061927A /* JCJoystick.m in Sources */,
 				A97A9ED718989C750017183F /* SettingsViewController.m in Sources */,
 				1F60B15C18974B9A00232A84 /* AppDelegate.m in Sources */,
 				1F60B15818974B9A00232A84 /* main.m in Sources */,
@@ -453,7 +459,7 @@
 				GCC_PREFIX_HEADER = "Bubble/Bubble-Prefix.pch";
 				INFOPLIST_FILE = "Bubble/Bubble-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "5C4F2528-BD68-4A99-8C8F-D01DC7F70C5B";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				WRAPPER_EXTENSION = app;
 			};
@@ -470,7 +476,7 @@
 				GCC_PREFIX_HEADER = "Bubble/Bubble-Prefix.pch";
 				INFOPLIST_FILE = "Bubble/Bubble-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "5C4F2528-BD68-4A99-8C8F-D01DC7F70C5B";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				WRAPPER_EXTENSION = app;
 			};

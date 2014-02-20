@@ -21,6 +21,8 @@ int contains(NSMutableArray *arr, NSString* id){
 
 @implementation MyScene
 
+
+
 @synthesize delegate;
 
 -(void)done:(NSString*)dataText{
@@ -31,6 +33,9 @@ int contains(NSMutableArray *arr, NSString* id){
     if (self = [super initWithSize:size]) {
         globalData1 = @"";
         /* Setup your scene here */
+        self.joystick = [[JCJoystick alloc] initWithControlRadius:40 baseRadius:45 baseColor:[SKColor blueColor] joystickRadius:25 joystickColor:[SKColor redColor]];
+        [self.joystick setPosition:CGPointMake(70,70)];
+        [self addChild:self.joystick];
         //[self.delegate done:@"asdf"];
         self.backgroundColor = [SKColor blackColor];
 
@@ -266,11 +271,19 @@ int contains(NSMutableArray *arr, NSString* id){
         }
     }
     
+    
+    CGPoint pos = CGPointMake(myBubble.position.x+(10)*self.joystick.x,
+                              myBubble.position.y+(10)*self.joystick.y);
+    CGRect bounds = [[UIScreen mainScreen] bounds];
+    if (CGRectContainsPoint(bounds,pos)){
+        myBubble.position = pos;
+    }
+    
     if (upBubble.down) [myBubble updatePosition:0];
     if (downBubble.down) [myBubble updatePosition:1];
     if (leftBubble.down) [myBubble updatePosition:2];
     if (rightBubble.down) [myBubble updatePosition:3];
-    
+
     [bubbles removeObjectsAtIndexes:removeIndices];
     
     if (MAX(0, (int)(30 - (int)[bubbles count])) > arc4random() % 100)

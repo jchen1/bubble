@@ -11,6 +11,7 @@
 #import "UserBubble.h"
 #import "ButtonBubble.h"
 #import "SecondViewController.h"
+#import "JCJoystick.h"
 
 @protocol ViewControllerDelegate <NSObject>
 
@@ -36,6 +37,7 @@
 }
 
 @property (nonatomic,assign) id <ViewControllerDelegate> delegate;
+@property (strong, nonatomic) JCJoystick *joystick;
 
 -(void) generateBubbles: (unsigned int)seed;
 
