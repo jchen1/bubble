@@ -271,10 +271,12 @@ int contains(NSMutableArray *arr, NSString* id){
         }
     }
     
-    
-    CGPoint pos = CGPointMake(myBubble.position.x+(10)*self.joystick.x,
-                              myBubble.position.y+(10)*self.joystick.y);
     CGRect bounds = [[UIScreen mainScreen] bounds];
+    CGPoint pos = CGPointMake(myBubble.position.x+(10)*self.joystick.x, myBubble.position.y);
+    if (CGRectContainsPoint(bounds,pos)){
+        myBubble.position = pos;
+    }
+    pos = CGPointMake(myBubble.position.x, myBubble.position.y+(10)*self.joystick.y);
     if (CGRectContainsPoint(bounds,pos)){
         myBubble.position = pos;
     }

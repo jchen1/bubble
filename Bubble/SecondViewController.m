@@ -136,7 +136,7 @@
 - (void) sendText{
     //  Retrieve text from chat box and clear chat box
     NSString *message = self.chatBox.text;
-    self.chatBox.text = @"";
+    //self.chatBox.text = @"";
     
     //  Convert text to NSData
     NSData *data = [message dataUsingEncoding:NSUTF8StringEncoding];
@@ -146,7 +146,7 @@
     [self.mySession sendData:data toPeers:[self.mySession connectedPeers] withMode:MCSessionSendDataUnreliable error:&error];
     
     //  Append your own message to text box
-    [self receiveMessage: message fromPeer: self.myPeerID];
+    //[self receiveMessage: message fromPeer: self.myPeerID];
 }
 
 - (void) receiveMessage: (NSString *) message fromPeer: (MCPeerID *) peer{
