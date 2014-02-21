@@ -33,9 +33,12 @@ int contains(NSMutableArray *arr, NSString* id){
     if (self = [super initWithSize:size]) {
         globalData1 = @"";
         /* Setup your scene here */
-        self.joystick = [[JCJoystick alloc] initWithControlRadius:40 baseRadius:45 baseColor:[SKColor blueColor] joystickRadius:25 joystickColor:[SKColor redColor]];
-        [self.joystick setPosition:CGPointMake(70,70)];
+        self.joystick = [[JCJoystick alloc] initWithControlRadius:40 baseRadius:45 baseColor:[SKColor grayColor] joystickRadius:25 joystickColor:[SKColor whiteColor]];
+        [self.joystick setPosition:CGPointMake(270,70)];
         [self addChild:self.joystick];
+        _joystick.alpha = .5;
+        _joystick.zPosition= 120;
+
         //[self.delegate done:@"asdf"];
         self.backgroundColor = [SKColor blackColor];
 
@@ -55,7 +58,7 @@ int contains(NSMutableArray *arr, NSString* id){
         downBubble = [[ButtonBubble alloc] init],
         leftBubble = [[ButtonBubble alloc] init],
         rightBubble = [[ButtonBubble alloc] init];
-        
+        /*
         upBubble.position = CGPointMake(CGRectGetMaxX(self.frame) - 55,
                                  CGRectGetMinY(self.frame) + 85);
         downBubble.position = CGPointMake(CGRectGetMaxX(self.frame) - 55,
@@ -64,7 +67,7 @@ int contains(NSMutableArray *arr, NSString* id){
                                   CGRectGetMinY(self.frame) + 55);
         rightBubble.position = CGPointMake(CGRectGetMaxX(self.frame) - 25,
                                   CGRectGetMinY(self.frame) + 55);
-        
+        */
         [self addChild:rightBubble];
         [self addChild:downBubble];
         [self addChild:leftBubble];
