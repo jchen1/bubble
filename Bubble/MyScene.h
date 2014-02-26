@@ -27,12 +27,7 @@
     NSMutableArray *multiplayerbubbles;
     NSMutableArray *directions;
     
-    UserBubble *myBubble;
-    ButtonBubble *upBubble;
-    ButtonBubble *downBubble;
-    ButtonBubble *leftBubble;
-    ButtonBubble *rightBubble;
-    
+    UserBubble *myBubble;    
 
 }
 

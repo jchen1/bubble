@@ -22,8 +22,7 @@
 @property (nonatomic, strong) MCPeerID *myPeerID;
 
 @property (nonatomic, strong) UIButton *browseButton; //no ui things except this one are being displayed
-@property (nonatomic, strong) UITextView *textBox; //the rest of these variables can be considered strings for regular purposes
-@property (nonatomic, strong) UITextField *chatBox; //this is like a char* basically but u can draw it to the screen in a shitty way for debug
+@property (nonatomic, strong) UIButton *pauseButton;
 @property (nonatomic, strong) UITextField *textFieldglobalData1; //create a global variable1
 
 @end
@@ -31,16 +30,10 @@
 @implementation ViewController
 NSString *globalString = @"";
 
-@synthesize textBox;
-@synthesize chatBox;
 @synthesize textFieldglobalData1;
 
 -(void)done:(NSString*)dataText{
-    //NSLog(@"1Sent data string: =%@", dataText);
-    //chatBox.text = dataText;
-    //textFieldglobalData1.text = dataText;
     [self sendText:dataText];
-    //   globalData1 = dataText;
 }
 
 - (void)viewDidLoad
@@ -61,15 +54,22 @@ NSString *globalString = @"";
     // Present the scene.
     [skView presentScene:scene];
     
+    [[UIApplication sharedApplication] setStatusBarHidden:YES
+                                            withAnimation:UIStatusBarAnimationFade];
+    
+}
+
+
+- (BOOL)prefersStatusBarHidden {
+    return YES;
 }
 
 - (BOOL)shouldAutorotate
 {
-    return YES;
+    return NO;
 }
 - (IBAction)popCurrentView {
-    //NSLog(@"asdfggggg");
-[self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (NSUInteger)supportedInterfaceOrientations
@@ -88,18 +88,22 @@ NSString *globalString = @"";
 }
 
 - (void) setUpUI{
-    //  Setup the browse button
+    //  Setup the bluetooth button
     self.browseButton = [UIButton buttonWithType:UIButtonTypeSystem];
     [self.browseButton setTitle:@"Bluetooth" forState:UIControlStateNormal];
-    self.browseButton.frame = CGRectMake(20, 20, 60, 30);
+    self.browseButton.frame = CGRectMake(10, 10, 80, 10);
     [self.view addSubview:self.browseButton];
     [self.browseButton addTarget:self action:@selector(showBrowserVC) forControlEvents:UIControlEventTouchUpInside];
-    //  Setup TextBox
-    //self.textBox = [[UITextView alloc] initWithFrame: CGRectMake(40, 350, 140, 370)];
-    self.textBox.editable = NO;
-    self.textBox.backgroundColor = [UIColor lightGrayColor];
-    [self.view addSubview: self.textBox];
+    self.pauseButton =  [UIButton buttonWithType:UIButtonTypeInfoDark ] ;
+    CGRect buttonRect = self.pauseButton.frame;
     
+    // CALCulate the bottom right corner
+    buttonRect.origin.x = self.view.frame.size.width - buttonRect.size.width - 8;
+    buttonRect.origin.y = buttonRect.size.height - 8;
+    [self.pauseButton setFrame:buttonRect];
+    
+    [self.pauseButton addTarget:self action:@selector(drawPause) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.pauseButton];
     //  Setup ChatBox
 }
 - (void) setUpMultipeer{
@@ -127,10 +131,13 @@ NSString *globalString = @"";
     [self.browserVC dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (void) drawPause{
+
+}
+
 - (void) sendText:(NSString*)dataToSend{
     //  Retrieve text from chat box and clear chat box
     NSString *message =dataToSend;
-    self.chatBox.text = @"";
     //  Convert text to NSData
     NSData *data = [message dataUsingEncoding:NSUTF8StringEncoding];
     
@@ -148,6 +155,7 @@ NSString *globalString = @"";
     finalText = message;
     if (peer == self.myPeerID) {
         finalText = [NSString stringWithFormat:@"\nme: %@ \n", message];
+        return;
     }
     else{
         finalText = [NSString stringWithFormat:@"\n%@: %@ \n", peer.displayName, message];
@@ -157,7 +165,6 @@ NSString *globalString = @"";
     //self.textBox.text = [self.textBox.text stringByAppendingString:message];
     NSLog(@"received: %@", message);
     globalData1 = message;
-    self.textBox.text=globalData1;
 }
 
 #pragma marks MCBrowserViewControllerDelegate
