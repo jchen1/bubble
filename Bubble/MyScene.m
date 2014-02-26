@@ -34,7 +34,7 @@ int contains(NSMutableArray *arr, NSString* id){
         globalData1 = @"";
         /* Setup your scene here */
         self.joystick = [[JCJoystick alloc] initWithControlRadius:40 baseRadius:45 baseColor:[SKColor grayColor] joystickRadius:25 joystickColor:[SKColor whiteColor]];
-        [self.joystick setPosition:CGPointMake(270,70)];
+        [self.joystick setPosition:CGPointMake(180,70)];
         [self addChild:self.joystick];
         _joystick.alpha = .5;
         _joystick.zPosition= 120;
@@ -148,6 +148,7 @@ int contains(NSMutableArray *arr, NSString* id){
 }
 
 -(void)update:(CFTimeInterval)currentTime {
+    globalData1=@"";
     int tmpid; //these variables yo
     char tmpchar; //see comments for hypothesized use
     float tmpRad; //dont think i will actually need them
