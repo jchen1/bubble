@@ -9,7 +9,6 @@
 #import <SpriteKit/SpriteKit.h>
 #import "AIBubble.h"
 #import "UserBubble.h"
-#import "ButtonBubble.h"
 #import "SecondViewController.h"
 #import "JCJoystick.h"
 
@@ -28,12 +27,6 @@
     NSMutableArray *directions;
     
     UserBubble *myBubble;
-    ButtonBubble *upBubble;
-    ButtonBubble *downBubble;
-    ButtonBubble *leftBubble;
-    ButtonBubble *rightBubble;
-    
-
 }
 
 @property (nonatomic,assign) id <ViewControllerDelegate> delegate;

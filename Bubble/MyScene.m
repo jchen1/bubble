@@ -54,97 +54,10 @@ int contains(NSMutableArray *arr, NSString* id){
         [bubbles addObject:myBubble];
         [self addChild:myBubble];
         
-        upBubble = [[ButtonBubble alloc] init],
-        downBubble = [[ButtonBubble alloc] init],
-        leftBubble = [[ButtonBubble alloc] init],
-        rightBubble = [[ButtonBubble alloc] init];
-        /*
-        upBubble.position = CGPointMake(CGRectGetMaxX(self.frame) - 55,
-                                 CGRectGetMinY(self.frame) + 85);
-        downBubble.position = CGPointMake(CGRectGetMaxX(self.frame) - 55,
-                                  CGRectGetMinY(self.frame) + 25);
-        leftBubble.position = CGPointMake(CGRectGetMaxX(self.frame) - 85,
-                                  CGRectGetMinY(self.frame) + 55);
-        rightBubble.position = CGPointMake(CGRectGetMaxX(self.frame) - 25,
-                                  CGRectGetMinY(self.frame) + 55);
-        */
-        [self addChild:rightBubble];
-        [self addChild:downBubble];
-        [self addChild:leftBubble];
-        [self addChild:upBubble];
-        
         [self generateBubbles:rand()];
 
     }
     return self;
-}
-
--(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-    [upBubble setDown:false];
-    [downBubble setDown:false];
-    [leftBubble setDown:false];
-    [rightBubble setDown:false];
-}
-
--(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-    
-    for (UITouch *touch in touches) {
-        CGPoint location = [touch locationInNode:self];
-        
-        if ([upBubble inside:location])
-        {
-            [upBubble setDown:true];
-            [downBubble setDown:false];
-            [leftBubble setDown:false];
-            [rightBubble setDown:false];
-        }
-        else if ([downBubble inside:location])
-        {
-            [upBubble setDown:false];
-            [downBubble setDown:true];
-            [leftBubble setDown:false];
-            [rightBubble setDown:false];
-        }
-        else if ([leftBubble inside:location])
-        {
-            [upBubble setDown:false];
-            [downBubble setDown:false];
-            [leftBubble setDown:true];
-            [rightBubble setDown:false];
-        }
-        else if ([rightBubble inside:location])
-        {
-            [upBubble setDown:false];
-            [downBubble setDown:false];
-            [leftBubble setDown:false];
-            [rightBubble setDown:true];
-        }
-    }
-}
-
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    /* Called when a touch begins */
-    
-    for (UITouch *touch in touches) {
-        CGPoint location = [touch locationInNode:self];
-        
-        if ([upBubble inside:location])
-        {
-            [upBubble setDown:true];
-        }
-        else if ([downBubble inside:location])
-        {
-            [downBubble setDown:true];
-        }
-        else if ([leftBubble inside:location])
-        {
-            [leftBubble setDown:true];
-        }
-        else if ([rightBubble inside:location])
-        {
-            [rightBubble setDown:true];
-        }
-    }
 }
 
 -(void)update:(CFTimeInterval)currentTime {
@@ -284,11 +197,6 @@ int contains(NSMutableArray *arr, NSString* id){
     if (CGRectContainsPoint(bounds,pos)){
         myBubble.position = pos;
     }
-    
-    if (upBubble.down) [myBubble updatePosition:0];
-    if (downBubble.down) [myBubble updatePosition:1];
-    if (leftBubble.down) [myBubble updatePosition:2];
-    if (rightBubble.down) [myBubble updatePosition:3];
 
     [bubbles removeObjectsAtIndexes:removeIndices];
     
