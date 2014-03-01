@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1F1281F4189761C8005F8A7C /* UserBubble.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1281F3189761C8005F8A7C /* UserBubble.m */; };
-		1F1281F718977A80005F8A7C /* ButtonBubble.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1281F618977A80005F8A7C /* ButtonBubble.m */; };
 		1F60B14A18974B9A00232A84 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F60B14918974B9A00232A84 /* Foundation.framework */; };
 		1F60B14C18974B9A00232A84 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F60B14B18974B9A00232A84 /* CoreGraphics.framework */; };
 		1F60B14E18974B9A00232A84 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F60B14D18974B9A00232A84 /* UIKit.framework */; };
@@ -48,8 +47,6 @@
 /* Begin PBXFileReference section */
 		1F1281F2189761C8005F8A7C /* UserBubble.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserBubble.h; sourceTree = "<group>"; };
 		1F1281F3189761C8005F8A7C /* UserBubble.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserBubble.m; sourceTree = "<group>"; };
-		1F1281F518977A80005F8A7C /* ButtonBubble.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonBubble.h; sourceTree = "<group>"; };
-		1F1281F618977A80005F8A7C /* ButtonBubble.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ButtonBubble.m; sourceTree = "<group>"; };
 		1F60B14618974B9A00232A84 /* Bubble.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bubble.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F60B14918974B9A00232A84 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1F60B14B18974B9A00232A84 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -167,8 +164,6 @@
 				1F60B15218974B9A00232A84 /* Supporting Files */,
 				1F60B1881897500300232A84 /* Bubble.h */,
 				1F60B1891897500300232A84 /* Bubble.m */,
-				1F1281F518977A80005F8A7C /* ButtonBubble.h */,
-				1F1281F618977A80005F8A7C /* ButtonBubble.m */,
 				1F7C329418975A34006995F8 /* AIBubble.h */,
 				1F1281F2189761C8005F8A7C /* UserBubble.h */,
 				1F1281F3189761C8005F8A7C /* UserBubble.m */,
@@ -310,7 +305,6 @@
 			files = (
 				A97A9ED418988D3F0017183F /* SecondViewController.m in Sources */,
 				1F60B16818974B9A00232A84 /* MyScene.m in Sources */,
-				1F1281F718977A80005F8A7C /* ButtonBubble.m in Sources */,
 				1F60B18A1897500300232A84 /* Bubble.m in Sources */,
 				1F60B16518974B9A00232A84 /* ViewController.m in Sources */,
 				1F1281F4189761C8005F8A7C /* UserBubble.m in Sources */,
