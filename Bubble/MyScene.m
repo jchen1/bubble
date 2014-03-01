@@ -244,4 +244,14 @@ int contains(NSMutableArray *arr, NSString* id){
     }
 }
 
+-(void) pause
+{
+    [self.scene.view setPaused:YES];
+}
+
+-(void) unpause
+{
+    [self.scene.view setPaused:NO];
+}
+
 @end

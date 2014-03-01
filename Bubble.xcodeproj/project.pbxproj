@@ -28,6 +28,7 @@
 		1F60B17F18974B9A00232A84 /* BubbleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F60B17E18974B9A00232A84 /* BubbleTests.m */; };
 		1F60B18A1897500300232A84 /* Bubble.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F60B1891897500300232A84 /* Bubble.m */; };
 		1F7C329618975A34006995F8 /* AIBubble.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7C329518975A34006995F8 /* AIBubble.m */; };
+		A822A3D718C16B2A00CAC8FA /* PauseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A822A3D618C16B2A00CAC8FA /* PauseViewController.m */; };
 		A901663218B670A60061927A /* JCJoystick.m in Sources */ = {isa = PBXBuildFile; fileRef = A901663118B670A60061927A /* JCJoystick.m */; };
 		A956913B18984320004FBD99 /* MultipeerConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A956913A18984320004FBD99 /* MultipeerConnectivity.framework */; };
 		A97A9ED418988D3F0017183F /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A97A9ED318988D3F0017183F /* SecondViewController.m */; };
@@ -75,6 +76,8 @@
 		1F60B1891897500300232A84 /* Bubble.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bubble.m; sourceTree = "<group>"; };
 		1F7C329418975A34006995F8 /* AIBubble.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AIBubble.h; sourceTree = "<group>"; };
 		1F7C329518975A34006995F8 /* AIBubble.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AIBubble.m; sourceTree = "<group>"; };
+		A822A3D518C16B2A00CAC8FA /* PauseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PauseViewController.h; sourceTree = "<group>"; };
+		A822A3D618C16B2A00CAC8FA /* PauseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PauseViewController.m; sourceTree = "<group>"; };
 		A901663018B670A60061927A /* JCJoystick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCJoystick.h; sourceTree = "<group>"; };
 		A901663118B670A60061927A /* JCJoystick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCJoystick.m; sourceTree = "<group>"; };
 		A956913A18984320004FBD99 /* MultipeerConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MultipeerConnectivity.framework; path = System/Library/Frameworks/MultipeerConnectivity.framework; sourceTree = SDKROOT; };
@@ -155,6 +158,8 @@
 				A97A9ED318988D3F0017183F /* SecondViewController.m */,
 				1F60B16318974B9A00232A84 /* ViewController.h */,
 				1F60B16418974B9A00232A84 /* ViewController.m */,
+				A822A3D518C16B2A00CAC8FA /* PauseViewController.h */,
+				A822A3D618C16B2A00CAC8FA /* PauseViewController.m */,
 				1F60B16618974B9A00232A84 /* MyScene.h */,
 				1F60B16718974B9A00232A84 /* MyScene.m */,
 				A901663018B670A60061927A /* JCJoystick.h */,
@@ -312,6 +317,7 @@
 				A901663218B670A60061927A /* JCJoystick.m in Sources */,
 				A97A9ED718989C750017183F /* SettingsViewController.m in Sources */,
 				1F60B15C18974B9A00232A84 /* AppDelegate.m in Sources */,
+				A822A3D718C16B2A00CAC8FA /* PauseViewController.m in Sources */,
 				1F60B15818974B9A00232A84 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

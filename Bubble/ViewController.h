@@ -10,6 +10,7 @@
 #import <SpriteKit/SpriteKit.h>
 #import "MyScene.h"
 #import "SecondViewController.h"
+#import "PauseViewController.h"
 
 
 #define GLOBALDATA

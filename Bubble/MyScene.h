@@ -26,14 +26,15 @@
     NSMutableArray *multiplayerbubbles;
     NSMutableArray *directions;
     
-    UserBubble *myBubble;    
-
+    UserBubble *myBubble;
 }
 
 @property (nonatomic,assign) id <ViewControllerDelegate> delegate;
 @property (strong, nonatomic) JCJoystick *joystick;
 
 -(void) generateBubbles: (unsigned int)seed;
+
+-(void) pause;
 
 @end
 NSString *globalData1;

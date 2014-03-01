@@ -20,6 +20,7 @@
 @property (nonatomic, strong) MCAdvertiserAssistant *advertiser;
 @property (nonatomic, strong) MCSession *mySession;
 @property (nonatomic, strong) MCPeerID *myPeerID;
+@property (nonatomic, strong) MyScene *scene;
 
 @property (nonatomic, strong) UIButton *browseButton; //no ui things except this one are being displayed
 @property (nonatomic, strong) UIButton *pauseButton;
@@ -50,6 +51,7 @@ NSString *globalString = @"";
     MyScene * scene = [MyScene sceneWithSize:skView.bounds.size];
     scene.scaleMode = SKSceneScaleModeAspectFill;
     scene.delegate = self;
+    self.scene = scene;
 
     // Present the scene.
     [skView presentScene:scene];
@@ -102,7 +104,7 @@ NSString *globalString = @"";
     buttonRect.origin.y = buttonRect.size.height - 8;
     [self.pauseButton setFrame:buttonRect];
     
-    [self.pauseButton addTarget:self action:@selector(drawPause) forControlEvents:UIControlEventTouchUpInside];
+    [self.pauseButton addTarget:self action:@selector(drawPause:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.pauseButton];
     //  Setup ChatBox
 }
@@ -131,8 +133,10 @@ NSString *globalString = @"";
     [self.browserVC dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void) drawPause{
-
+- (IBAction)drawPause:(id)sender{
+    PauseViewController *pauseMenu = [[PauseViewController alloc] initWithNibName:nil bundle:nil];
+    [self.navigationController pushViewController:pauseMenu animated:NO];
+    [self.scene pause];
 }
 
 - (void) sendText:(NSString*)dataToSend{
