@@ -51,14 +51,11 @@
 - (void) setUpUI{
     self.view.backgroundColor = [UIColor blackColor];
     
-    UIImage *blueButtonBackground = [[UIImage imageNamed:@"1p_button.png"]
-                                     resizableImageWithCapInsets:UIEdgeInsetsMake(200,600,200,600)];
+    UIImage *singlePlayerButtonBackground = [UIImage imageNamed:@"1p_button.png"];
     
     self.gamebutton =  [UIButton buttonWithType:UIButtonTypeSystem] ;
-    [self.gamebutton setFrame:CGRectMake(50.0, 400.0, 200.0, 50.0)];
-    [self.gamebutton setBackgroundImage:blueButtonBackground forState:UIControlStateNormal];
-    [self.gamebutton setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin];
-    [self.gamebutton setAutoresizingMask:UIViewAutoresizingFlexibleRightMargin];
+    [self.gamebutton setFrame:CGRectMake(60.0, 400.0, 200.0, 50.0)];
+    [self.gamebutton setBackgroundImage:singlePlayerButtonBackground forState:UIControlStateNormal];
     [self.gamebutton addTarget:self action:@selector(gameView) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.gamebutton];
 

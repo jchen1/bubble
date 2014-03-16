@@ -17,7 +17,8 @@
     {
         _type = 'A';
         super.zPosition = 9;
-        super.radius = 3 + ((double)arc4random_uniform(69133742) / 9876248);
+        //super.radius = 3 + ((double)arc4random_uniform(69133742) / 9876248);
+        super.radius = (double)(arc4random_uniform(1000) / 1000.0) * 15;
     }    
     
     return self;
@@ -26,7 +27,7 @@
 //AIs are on diets
 -(void) eat:(Bubble *)other
 {
-    
+    return [super eat:other];
 }
 
 -(void) updatePosition

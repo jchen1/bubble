@@ -10,7 +10,8 @@
 
 @interface PauseViewController ()
 
-@property (nonatomic, strong) UIButton *pauseButton;
+@property (nonatomic, strong) UIButton *unpauseButton;
+@property (nonatomic, strong) UIButton *quitButton;
 
 @end
 
@@ -31,16 +32,23 @@
 	// Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor clearColor];
     
-    self.pauseButton =  [UIButton buttonWithType:UIButtonTypeInfoDark ] ;
-    CGRect buttonRect = self.pauseButton.frame;
+    UIImage *resumeButtonBackground = [[UIImage imageNamed:@"resume_button.png"]
+                                             resizableImageWithCapInsets:UIEdgeInsetsMake(200,600,200,600)];
+    UIImage *quitButtonBackground = [[UIImage imageNamed:@"quit_button.png"]
+                                       resizableImageWithCapInsets:UIEdgeInsetsMake(200,600,200,600)];
     
-    // CALCulate the bottom right corner
-    buttonRect.origin.x = self.view.frame.size.width - buttonRect.size.width - 8;
-    buttonRect.origin.y = buttonRect.size.height - 8;
-    [self.pauseButton setFrame:buttonRect];
+    self.unpauseButton =  [UIButton buttonWithType:UIButtonTypeSystem] ;
+    [self.unpauseButton setFrame:CGRectMake(50.0, 200.0, 200.0, 50.0)];
+    [self.unpauseButton setBackgroundImage:resumeButtonBackground forState:UIControlStateNormal];
+    [self.unpauseButton addTarget:self action:@selector(unpause) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.unpauseButton];
     
-    [self.pauseButton addTarget:self action:@selector(unpause) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:self.pauseButton];
+    self.quitButton =  [UIButton buttonWithType:UIButtonTypeSystem] ;
+    [self.quitButton setFrame:CGRectMake(50.0, 300.0, 200.0, 50.0)];
+    [self.quitButton setBackgroundImage:quitButtonBackground forState:UIControlStateNormal];
+    [self.quitButton addTarget:self action:@selector(quitGame) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.quitButton];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -52,6 +60,11 @@
 - (IBAction)unpause {
     [[NSNotificationCenter defaultCenter]postNotificationName:@"single_unpause" object:nil];
     [self.navigationController popViewControllerAnimated:NO];
+}
+
+- (IBAction)quitGame {
+    [self.navigationController popViewControllerAnimated:NO];
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"single_quit" object:nil];
 }
 
 @end

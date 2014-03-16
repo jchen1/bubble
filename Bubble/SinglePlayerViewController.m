@@ -58,6 +58,8 @@ NSString *globalString = @"";
     [[UIApplication sharedApplication] setStatusBarHidden:YES
                                             withAnimation:UIStatusBarAnimationFade];
     
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(popCurrentView) name:@"single_quit" object:nil];
+    
 }
 
 - (BOOL)prefersStatusBarHidden {
@@ -69,7 +71,7 @@ NSString *globalString = @"";
     return NO;
 }
 - (IBAction)popCurrentView {
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:NO];
 }
 
 - (NSUInteger)supportedInterfaceOrientations
@@ -88,20 +90,19 @@ NSString *globalString = @"";
 }
 
 - (void) setUpUI{
-    //  Setup the bluetooth button
+    /*  Setup the bluetooth button
     self.browseButton = [UIButton buttonWithType:UIButtonTypeSystem];
     [self.browseButton setTitle:@"Bluetooth" forState:UIControlStateNormal];
     self.browseButton.frame = CGRectMake(10, 10, 80, 10);
     [self.view addSubview:self.browseButton];
-    [self.browseButton addTarget:self action:@selector(showBrowserVC) forControlEvents:UIControlEventTouchUpInside];
-    self.pauseButton =  [UIButton buttonWithType:UIButtonTypeInfoDark ] ;
-    CGRect buttonRect = self.pauseButton.frame;
+    [self.browseButton addTarget:self action:@selector(showBrowserVC) forControlEvents:UIControlEventTouchUpInside];*/
     
-    // CALCulate the bottom right corner
-    buttonRect.origin.x = self.view.frame.size.width - buttonRect.size.width - 8;
-    buttonRect.origin.y = buttonRect.size.height - 8;
-    [self.pauseButton setFrame:buttonRect];
+    UIImage *pauseButtonBackground = [UIImage imageNamed:@"pause_button.png"];
     
+    self.pauseButton =  [UIButton buttonWithType:UIButtonTypeSystem] ;
+    [self.pauseButton setFrame:CGRectMake(self.view.bounds.size.width - 30,
+                                          10, 20.0, 25.0)];
+    [self.pauseButton setBackgroundImage:pauseButtonBackground forState:UIControlStateNormal];
     [self.pauseButton addTarget:self action:@selector(drawPause) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.pauseButton];
 }

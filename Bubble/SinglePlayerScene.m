@@ -32,14 +32,15 @@ int contains(NSMutableArray *arr, NSString* id){
 -(id)initWithSize:(CGSize)size {    
     if (self = [super initWithSize:size]) {
         globalData1 = @"";
-        /* Setup your scene here */
-        self.joystick = [[JCJoystick alloc] initWithControlRadius:40 baseRadius:45 baseColor:[SKColor grayColor] joystickRadius:25 joystickColor:[SKColor whiteColor]];
-        [self.joystick setPosition:CGPointMake(180,70)];
+
+        self.joystick = [[JCJoystick alloc] initWithControlRadius:40
+                                                baseRadius:45 baseColor:[SKColor grayColor]
+                                                joystickRadius:25 joystickColor:[SKColor whiteColor]];
+        [self.joystick setPosition:CGPointMake(160,70)];
         [self addChild:self.joystick];
         _joystick.alpha = .5;
         _joystick.zPosition= 120;
 
-        //[self.delegate done:@"asdf"];
         self.backgroundColor = [SKColor blackColor];
 
         bubbles = [NSMutableArray array];
@@ -49,7 +50,6 @@ int contains(NSMutableArray *arr, NSString* id){
         myBubble.position = CGPointMake(CGRectGetMidX(self.frame),
                                  CGRectGetMidY(self.frame));
         
-        //[multiplayerbubbles addObject:myBubble];
         
         [bubbles addObject:myBubble];
         [self addChild:myBubble];
