@@ -1,8 +1,8 @@
 //
-//  SinglePlayerScene.h
+//  TwoPlayerScene.h
 //  Bubble
 //
-
+//  Created by Stephen Greco on 3/16/14.
 //  Copyright (c) 2014 Jeff Chen. All rights reserved.
 //
 
@@ -12,8 +12,13 @@
 #import "SplashViewController.h"
 #import "JCJoystick.h"
 
+@protocol ViewControllerDelegate <NSObject>
 
-@interface SinglePlayerScene : SKScene
+-(void)done:(NSString*)dataText;
+
+@end
+
+@interface TwoPlayerScene : SKScene <ViewControllerDelegate>
 {
     //    id delegate;
     
@@ -23,6 +28,7 @@
     UserBubble *myBubble;
 }
 
+@property (nonatomic,assign) id <ViewControllerDelegate> delegate;
 @property (strong, nonatomic) JCJoystick *joystick;
 
 -(void) generateBubbles: (unsigned int)seed;
@@ -30,5 +36,3 @@
 -(void) pause;
 
 @end
-
-

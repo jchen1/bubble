@@ -11,15 +11,10 @@
 #import "SinglePlayerViewController.h"
 
 
-
-#define GLOBALDATA
-
-extern NSString *globalData1;
-
-
 @interface SplashViewController : UIViewController
 @property (weak, nonatomic) UIButton *settingsbutton;
 @property (weak, nonatomic) UIButton *gamebutton;
+@property (weak, nonatomic) UIButton *multibutton;
 
 @end
 

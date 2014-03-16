@@ -14,6 +14,7 @@
 #import "SplashViewController.h"
 #import <MultipeerConnectivity/MultipeerConnectivity.h>
 #import "SinglePlayerViewController.h"
+#import "TwoPlayerViewController.h"
 
 
 @interface SplashViewController ()
@@ -50,16 +51,28 @@
     [self.navigationController pushViewController:gameView animated:YES];
 }
 
+- (IBAction)multiGameView {
+    TwoPlayerViewController *gameView = [[TwoPlayerViewController alloc] init];
+    [self.navigationController pushViewController:gameView animated:YES];
+}
+
 - (void) setUpUI{
     self.view.backgroundColor = [UIColor blackColor];
     
     UIImage *singlePlayerButtonBackground = [UIImage imageNamed:@"1p_button.png"];
+    UIImage *twoPlayerButtonBackground = [UIImage imageNamed:@"2p_button.png"];
     
     self.gamebutton =  [UIButton buttonWithType:UIButtonTypeSystem] ;
-    [self.gamebutton setFrame:CGRectMake(60.0, 400.0, 200.0, 50.0)];
+    [self.gamebutton setFrame:CGRectMake(60.0, 350.0, 200.0, 50.0)];
     [self.gamebutton setBackgroundImage:singlePlayerButtonBackground forState:UIControlStateNormal];
     [self.gamebutton addTarget:self action:@selector(gameView) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.gamebutton];
+    
+    self.multibutton =  [UIButton buttonWithType:UIButtonTypeSystem] ;
+    [self.multibutton setFrame:CGRectMake(60.0, 450.0, 200.0, 50.0)];
+    [self.multibutton setBackgroundImage:twoPlayerButtonBackground forState:UIControlStateNormal];
+    [self.multibutton addTarget:self action:@selector(multiGameView) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.multibutton];
 
 }
 
