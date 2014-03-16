@@ -17,7 +17,6 @@
 		1F60B15C18974B9A00232A84 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F60B15B18974B9A00232A84 /* AppDelegate.m */; };
 		1F60B16518974B9A00232A84 /* SinglePlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F60B16418974B9A00232A84 /* SinglePlayerViewController.m */; };
 		1F60B16818974B9A00232A84 /* SinglePlayerScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F60B16718974B9A00232A84 /* SinglePlayerScene.m */; };
-		1F60B16A18974B9A00232A84 /* Spaceship.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F60B16918974B9A00232A84 /* Spaceship.png */; };
 		1F60B16C18974B9A00232A84 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F60B16B18974B9A00232A84 /* Images.xcassets */; };
 		1F60B17318974B9A00232A84 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F60B17218974B9A00232A84 /* XCTest.framework */; };
 		1F60B17418974B9A00232A84 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F60B14918974B9A00232A84 /* Foundation.framework */; };
@@ -27,6 +26,8 @@
 		1F60B18A1897500300232A84 /* Bubble.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F60B1891897500300232A84 /* Bubble.m */; };
 		1F7C329618975A34006995F8 /* AIBubble.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7C329518975A34006995F8 /* AIBubble.m */; };
 		A822A3D718C16B2A00CAC8FA /* PauseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A822A3D618C16B2A00CAC8FA /* PauseViewController.m */; };
+		A8E855EF18D646C20038C1AE /* 1p_button.png in Resources */ = {isa = PBXBuildFile; fileRef = A8E855ED18D646C20038C1AE /* 1p_button.png */; };
+		A8E855F018D646C20038C1AE /* bubble_button.png in Resources */ = {isa = PBXBuildFile; fileRef = A8E855EE18D646C20038C1AE /* bubble_button.png */; };
 		A901663218B670A60061927A /* JCJoystick.m in Sources */ = {isa = PBXBuildFile; fileRef = A901663118B670A60061927A /* JCJoystick.m */; };
 		A956913B18984320004FBD99 /* MultipeerConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A956913A18984320004FBD99 /* MultipeerConnectivity.framework */; };
 		A97A9ED418988D3F0017183F /* SplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A97A9ED318988D3F0017183F /* SplashViewController.m */; };
@@ -61,7 +62,6 @@
 		1F60B16418974B9A00232A84 /* SinglePlayerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SinglePlayerViewController.m; sourceTree = "<group>"; };
 		1F60B16618974B9A00232A84 /* SinglePlayerScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SinglePlayerScene.h; sourceTree = "<group>"; };
 		1F60B16718974B9A00232A84 /* SinglePlayerScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SinglePlayerScene.m; sourceTree = "<group>"; };
-		1F60B16918974B9A00232A84 /* Spaceship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Spaceship.png; sourceTree = "<group>"; };
 		1F60B16B18974B9A00232A84 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		1F60B17118974B9A00232A84 /* BubbleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BubbleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F60B17218974B9A00232A84 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -74,6 +74,8 @@
 		1F7C329518975A34006995F8 /* AIBubble.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AIBubble.m; sourceTree = "<group>"; };
 		A822A3D518C16B2A00CAC8FA /* PauseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PauseViewController.h; sourceTree = "<group>"; };
 		A822A3D618C16B2A00CAC8FA /* PauseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PauseViewController.m; sourceTree = "<group>"; };
+		A8E855ED18D646C20038C1AE /* 1p_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 1p_button.png; path = ../../../Desktop/1p_button.png; sourceTree = "<group>"; };
+		A8E855EE18D646C20038C1AE /* bubble_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bubble_button.png; path = ../../../Desktop/bubble_button.png; sourceTree = "<group>"; };
 		A901663018B670A60061927A /* JCJoystick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCJoystick.h; sourceTree = "<group>"; };
 		A901663118B670A60061927A /* JCJoystick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCJoystick.m; sourceTree = "<group>"; };
 		A956913A18984320004FBD99 /* MultipeerConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MultipeerConnectivity.framework; path = System/Library/Frameworks/MultipeerConnectivity.framework; sourceTree = SDKROOT; };
@@ -144,6 +146,7 @@
 		1F60B15118974B9A00232A84 /* Bubble */ = {
 			isa = PBXGroup;
 			children = (
+				A8E855EC18D646AF0038C1AE /* Images */,
 				1F60B15A18974B9A00232A84 /* AppDelegate.h */,
 				1F60B15B18974B9A00232A84 /* AppDelegate.m */,
 				A97A9ED518989C750017183F /* SettingsViewController.h */,
@@ -158,7 +161,6 @@
 				1F60B16718974B9A00232A84 /* SinglePlayerScene.m */,
 				A901663018B670A60061927A /* JCJoystick.h */,
 				A901663118B670A60061927A /* JCJoystick.m */,
-				1F60B16918974B9A00232A84 /* Spaceship.png */,
 				1F60B16B18974B9A00232A84 /* Images.xcassets */,
 				1F60B15218974B9A00232A84 /* Supporting Files */,
 				1F60B1881897500300232A84 /* Bubble.h */,
@@ -198,6 +200,15 @@
 				1F60B17B18974B9A00232A84 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A8E855EC18D646AF0038C1AE /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				A8E855ED18D646C20038C1AE /* 1p_button.png */,
+				A8E855EE18D646C20038C1AE /* bubble_button.png */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -279,9 +290,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1F60B16A18974B9A00232A84 /* Spaceship.png in Resources */,
 				1F60B16C18974B9A00232A84 /* Images.xcassets in Resources */,
 				1F60B15618974B9A00232A84 /* InfoPlist.strings in Resources */,
+				A8E855EF18D646C20038C1AE /* 1p_button.png in Resources */,
+				A8E855F018D646C20038C1AE /* bubble_button.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

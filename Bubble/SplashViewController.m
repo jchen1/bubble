@@ -49,24 +49,16 @@
 }
 
 - (void) setUpUI{
-    self.view.backgroundColor = [UIColor colorWithRed:200/256.0 green:0/256.0 blue:67/256.0 alpha:1.0];
+    self.view.backgroundColor = [UIColor blackColor];
     
-    //rounded buttons!
-    CALayer *settingsbtnLayer = [_settingsbutton layer];
-    [settingsbtnLayer setMasksToBounds:YES];
-    [settingsbtnLayer setCornerRadius:5.0f];
-    [settingsbtnLayer setBorderWidth:1.0];
-    [settingsbtnLayer setBorderColor:[[UIColor grayColor] CGColor]];
-    
-    CALayer *gamebtnLayer = [_gamebutton layer];
-    [gamebtnLayer setMasksToBounds:YES];
-    [gamebtnLayer setCornerRadius:5.0f];
-    [gamebtnLayer setBorderWidth:1.0];
-    [gamebtnLayer setBorderColor:[[UIColor grayColor] CGColor]];
+    UIImage *blueButtonBackground = [[UIImage imageNamed:@"1p_button.png"]
+                                     resizableImageWithCapInsets:UIEdgeInsetsMake(200,600,200,600)];
     
     self.gamebutton =  [UIButton buttonWithType:UIButtonTypeSystem] ;
-    [self.gamebutton setFrame:CGRectMake(100.0, 100.0, 120.0, 50.0)];
-    [self.gamebutton setTitle:@"GAME" forState:UIControlStateNormal];
+    [self.gamebutton setFrame:CGRectMake(50.0, 400.0, 200.0, 50.0)];
+    [self.gamebutton setBackgroundImage:blueButtonBackground forState:UIControlStateNormal];
+    [self.gamebutton setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin];
+    [self.gamebutton setAutoresizingMask:UIViewAutoresizingFlexibleRightMargin];
     [self.gamebutton addTarget:self action:@selector(gameView) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.gamebutton];
 
