@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
-#import "ViewController.h"
+#import "SinglePlayerViewController.h"
 
 
 
@@ -17,7 +17,7 @@
 extern NSString *globalData1;
 
 
-@interface SecondViewController : UIViewController
+@interface SplashViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIButton *settingsbutton;
 @property (weak, nonatomic) IBOutlet UIButton *gamebutton;
 

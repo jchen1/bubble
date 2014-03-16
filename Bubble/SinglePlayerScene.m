@@ -8,9 +8,9 @@
 ///SEE SECONDVIEWCONTROLLER.M TO GET STARTED
 ///
 
-#import "MyScene.h"
+#import "SinglePlayerScene.h"
 
-int contains(NSMutableArray *arr, NSString* id){
+NSUInteger contains(NSMutableArray *arr, NSString* id){
     for (UserBubble *b in arr){
         if ([[b idnum] isEqualToString:id]){
             return [arr indexOfObject:b];
@@ -19,7 +19,7 @@ int contains(NSMutableArray *arr, NSString* id){
     return -1;
 }
 
-@implementation MyScene
+@implementation SinglePlayerScene
 
 
 
@@ -54,6 +54,9 @@ int contains(NSMutableArray *arr, NSString* id){
         [bubbles addObject:myBubble];
         [self addChild:myBubble];
         [self generateBubbles:rand()];
+        
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(pause) name:@"single_pause" object:nil];
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(unpause) name:@"single_unpause" object:nil];
 
     }
     return self;
@@ -64,18 +67,18 @@ int contains(NSMutableArray *arr, NSString* id){
 
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     
-    for (UITouch *touch in touches) {
-        CGPoint location = [touch locationInNode:self];
-    }
+    /*for (UITouch *touch in touches) {
+        //CGPoint location = [touch locationInNode:self];
+    }*/
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
     
-    for (UITouch *touch in touches) {
-        CGPoint location = [touch locationInNode:self];
+    /*for (UITouch *touch in touches) {
+        //CGPoint location = [touch locationInNode:self];
         
-    }
+    }*/
 }
 
 -(void)update:(CFTimeInterval)currentTime {
@@ -146,7 +149,7 @@ int contains(NSMutableArray *arr, NSString* id){
         cString += bytes;
     }
     for (int i=0; i<[bubbles count]; i++) { //loops through multiplayerbubbles and identifies each string
-        UserBubble *obj = (UserBubble*)[bubbles objectAtIndex:i];
+        //UserBubble *obj = (UserBubble*)[bubbles objectAtIndex:i];
         //NSLog(@"Selected: %@", obj.idnum);
         //NSLog(@"Radius: %f", obj.radius);
     }

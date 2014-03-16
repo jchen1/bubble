@@ -14,8 +14,8 @@
 ///
 
 #import "AppDelegate.h"
-#import "SecondViewController.h"
-#import "ViewController.h"
+#import "SplashViewController.h"
+#import "SinglePlayerViewController.h"
 
 @implementation AppDelegate
 
@@ -23,8 +23,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     UINavigationController *navController = [[UINavigationController alloc] init];
-    SecondViewController *firstView = [[SecondViewController alloc] init];
+    SplashViewController *firstView = [[SplashViewController alloc] init];
+    self.window.rootViewController = navController;
     [navController pushViewController:firstView animated:NO];
     [self.window addSubview:navController.view];
     [self.window makeKeyAndVisible];

@@ -17,8 +17,8 @@
 		1F60B15C18974B9A00232A84 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F60B15B18974B9A00232A84 /* AppDelegate.m */; };
 		1F60B15F18974B9A00232A84 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F60B15D18974B9A00232A84 /* Main_iPhone.storyboard */; };
 		1F60B16218974B9A00232A84 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F60B16018974B9A00232A84 /* Main_iPad.storyboard */; };
-		1F60B16518974B9A00232A84 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F60B16418974B9A00232A84 /* ViewController.m */; };
-		1F60B16818974B9A00232A84 /* MyScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F60B16718974B9A00232A84 /* MyScene.m */; };
+		1F60B16518974B9A00232A84 /* SinglePlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F60B16418974B9A00232A84 /* SinglePlayerViewController.m */; };
+		1F60B16818974B9A00232A84 /* SinglePlayerScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F60B16718974B9A00232A84 /* SinglePlayerScene.m */; };
 		1F60B16A18974B9A00232A84 /* Spaceship.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F60B16918974B9A00232A84 /* Spaceship.png */; };
 		1F60B16C18974B9A00232A84 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F60B16B18974B9A00232A84 /* Images.xcassets */; };
 		1F60B17318974B9A00232A84 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F60B17218974B9A00232A84 /* XCTest.framework */; };
@@ -31,7 +31,7 @@
 		A822A3D718C16B2A00CAC8FA /* PauseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A822A3D618C16B2A00CAC8FA /* PauseViewController.m */; };
 		A901663218B670A60061927A /* JCJoystick.m in Sources */ = {isa = PBXBuildFile; fileRef = A901663118B670A60061927A /* JCJoystick.m */; };
 		A956913B18984320004FBD99 /* MultipeerConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A956913A18984320004FBD99 /* MultipeerConnectivity.framework */; };
-		A97A9ED418988D3F0017183F /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A97A9ED318988D3F0017183F /* SecondViewController.m */; };
+		A97A9ED418988D3F0017183F /* SplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A97A9ED318988D3F0017183F /* SplashViewController.m */; };
 		A97A9ED718989C750017183F /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A97A9ED618989C750017183F /* SettingsViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -61,10 +61,10 @@
 		1F60B15B18974B9A00232A84 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		1F60B15E18974B9A00232A84 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
 		1F60B16118974B9A00232A84 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
-		1F60B16318974B9A00232A84 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		1F60B16418974B9A00232A84 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		1F60B16618974B9A00232A84 /* MyScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyScene.h; sourceTree = "<group>"; };
-		1F60B16718974B9A00232A84 /* MyScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyScene.m; sourceTree = "<group>"; };
+		1F60B16318974B9A00232A84 /* SinglePlayerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SinglePlayerViewController.h; sourceTree = "<group>"; };
+		1F60B16418974B9A00232A84 /* SinglePlayerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SinglePlayerViewController.m; sourceTree = "<group>"; };
+		1F60B16618974B9A00232A84 /* SinglePlayerScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SinglePlayerScene.h; sourceTree = "<group>"; };
+		1F60B16718974B9A00232A84 /* SinglePlayerScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SinglePlayerScene.m; sourceTree = "<group>"; };
 		1F60B16918974B9A00232A84 /* Spaceship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Spaceship.png; sourceTree = "<group>"; };
 		1F60B16B18974B9A00232A84 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		1F60B17118974B9A00232A84 /* BubbleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BubbleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -81,8 +81,8 @@
 		A901663018B670A60061927A /* JCJoystick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCJoystick.h; sourceTree = "<group>"; };
 		A901663118B670A60061927A /* JCJoystick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCJoystick.m; sourceTree = "<group>"; };
 		A956913A18984320004FBD99 /* MultipeerConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MultipeerConnectivity.framework; path = System/Library/Frameworks/MultipeerConnectivity.framework; sourceTree = SDKROOT; };
-		A97A9ED218988D3F0017183F /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
-		A97A9ED318988D3F0017183F /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+		A97A9ED218988D3F0017183F /* SplashViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashViewController.h; sourceTree = "<group>"; };
+		A97A9ED318988D3F0017183F /* SplashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplashViewController.m; sourceTree = "<group>"; };
 		A97A9ED518989C750017183F /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		A97A9ED618989C750017183F /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -154,14 +154,14 @@
 				A97A9ED518989C750017183F /* SettingsViewController.h */,
 				A97A9ED618989C750017183F /* SettingsViewController.m */,
 				1F60B16018974B9A00232A84 /* Main_iPad.storyboard */,
-				A97A9ED218988D3F0017183F /* SecondViewController.h */,
-				A97A9ED318988D3F0017183F /* SecondViewController.m */,
-				1F60B16318974B9A00232A84 /* ViewController.h */,
-				1F60B16418974B9A00232A84 /* ViewController.m */,
+				A97A9ED218988D3F0017183F /* SplashViewController.h */,
+				A97A9ED318988D3F0017183F /* SplashViewController.m */,
+				1F60B16318974B9A00232A84 /* SinglePlayerViewController.h */,
+				1F60B16418974B9A00232A84 /* SinglePlayerViewController.m */,
 				A822A3D518C16B2A00CAC8FA /* PauseViewController.h */,
 				A822A3D618C16B2A00CAC8FA /* PauseViewController.m */,
-				1F60B16618974B9A00232A84 /* MyScene.h */,
-				1F60B16718974B9A00232A84 /* MyScene.m */,
+				1F60B16618974B9A00232A84 /* SinglePlayerScene.h */,
+				1F60B16718974B9A00232A84 /* SinglePlayerScene.m */,
 				A901663018B670A60061927A /* JCJoystick.h */,
 				A901663118B670A60061927A /* JCJoystick.m */,
 				1F60B16918974B9A00232A84 /* Spaceship.png */,
@@ -308,10 +308,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A97A9ED418988D3F0017183F /* SecondViewController.m in Sources */,
-				1F60B16818974B9A00232A84 /* MyScene.m in Sources */,
+				A97A9ED418988D3F0017183F /* SplashViewController.m in Sources */,
+				1F60B16818974B9A00232A84 /* SinglePlayerScene.m in Sources */,
 				1F60B18A1897500300232A84 /* Bubble.m in Sources */,
-				1F60B16518974B9A00232A84 /* ViewController.m in Sources */,
+				1F60B16518974B9A00232A84 /* SinglePlayerViewController.m in Sources */,
 				1F1281F4189761C8005F8A7C /* UserBubble.m in Sources */,
 				1F7C329618975A34006995F8 /* AIBubble.m in Sources */,
 				A901663218B670A60061927A /* JCJoystick.m in Sources */,

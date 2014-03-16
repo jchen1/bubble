@@ -9,7 +9,7 @@
 #import <SpriteKit/SpriteKit.h>
 #import "AIBubble.h"
 #import "UserBubble.h"
-#import "SecondViewController.h"
+#import "SplashViewController.h"
 #import "JCJoystick.h"
 
 @protocol ViewControllerDelegate <NSObject>
@@ -18,7 +18,7 @@
 
 @end
 
-@interface MyScene : SKScene <ViewControllerDelegate>
+@interface SinglePlayerScene : SKScene <ViewControllerDelegate>
 {
 //    id delegate;
 

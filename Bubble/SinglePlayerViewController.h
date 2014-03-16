@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <SpriteKit/SpriteKit.h>
-#import "MyScene.h"
-#import "SecondViewController.h"
+#import "SinglePlayerScene.h"
+#import "SplashViewController.h"
 #import "PauseViewController.h"
 
 
@@ -18,6 +18,6 @@
 NSString *globalData1;
 
 
-@interface ViewController : UIViewController
+@interface SinglePlayerViewController : UIViewController
 
 @end

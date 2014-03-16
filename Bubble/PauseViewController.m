@@ -10,6 +10,8 @@
 
 @interface PauseViewController ()
 
+@property (nonatomic, strong) UIButton *pauseButton;
+
 @end
 
 @implementation PauseViewController
@@ -28,12 +30,28 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor clearColor];
+    
+    self.pauseButton =  [UIButton buttonWithType:UIButtonTypeInfoDark ] ;
+    CGRect buttonRect = self.pauseButton.frame;
+    
+    // CALCulate the bottom right corner
+    buttonRect.origin.x = self.view.frame.size.width - buttonRect.size.width - 8;
+    buttonRect.origin.y = buttonRect.size.height - 8;
+    [self.pauseButton setFrame:buttonRect];
+    
+    [self.pauseButton addTarget:self action:@selector(unpause) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.pauseButton];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)unpause {
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"single_unpause" object:nil];
+    [self.navigationController popViewControllerAnimated:NO];
 }
 
 @end

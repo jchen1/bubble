@@ -1,114 +1,113 @@
 //
 //  ViewController.m
-//  SimpleChat
+//  Bubble
 //
-//  Created by Jeff Chen on 9/27/13.
-//  Copyright (c) 2013 Jeff Chen. All rights reserved.
+//  Created by Jeff Chen on 1/27/14.
+//  Copyright (c) 2014 Jeff Chen. All rights reserved.
 //
 
+///
+///SSEE SECONDVIEWCONTROLLER.M TO GET STARTED
+///
 
-/*
-    THIS IS THE FIRST THING THAT GETS LOADED. IT CAN LOAD SETTINGSVIEWCONTROLLER.C AND ViewController.C FROM THE SCREEN. IT MAKES 2 BUTTONS THAT PUSH THESE VIEWS IN THE SETUPUI METHOD. RIGHT NOW ONLY THE VIEWCONTROLLER HAS A POP BUTTON TO TAKE IT HOME, SO SETTINGS RE-ALLOCATES AND INSTANCIATES A NEW VIEW CONTROLLER OF THIS FIRST IMLEAVING IT FOR TESTING PURPOSES PLS DONT CHANGE EVEN THO IT SEEMS LIKE A BUG. VIEWDIEDLOAD IS THE FIRST THING THAT GETS CALLED. LOOK AROUND MOST FUNCTIONS ARE NAMED APPROPRIATELY (;
-*/
-
-#import "SecondViewController.h"
+#import "SinglePlayerViewController.h"
 #import <MultipeerConnectivity/MultipeerConnectivity.h>
-#import "ViewController.h"
 
 
-@interface SecondViewController ()<MCBrowserViewControllerDelegate, MCSessionDelegate, UITextFieldDelegate>
-{
-    UIButton *button;
-}
+@interface SinglePlayerViewController ()<MCBrowserViewControllerDelegate, MCSessionDelegate, UITextFieldDelegate, ViewControllerDelegate>
+
 @property (nonatomic, strong) MCBrowserViewController *browserVC;
 @property (nonatomic, strong) MCAdvertiserAssistant *advertiser;
 @property (nonatomic, strong) MCSession *mySession;
 @property (nonatomic, strong) MCPeerID *myPeerID;
+@property (nonatomic, strong) SinglePlayerScene *scene;
 
-@property (nonatomic, strong) UIButton *browserButton;
-@property (nonatomic, strong) UITextField *chatBox;
-@property (nonatomic, strong) UITextView *textBox;
+@property (nonatomic, strong) UIButton *browseButton; //no ui things except this one are being displayed
+@property (nonatomic, strong) UIButton *pauseButton;
+@property (nonatomic, strong) UITextField *textFieldglobalData1; //create a global variable1
 
 @end
 
+@implementation SinglePlayerViewController
+NSString *globalString = @"";
 
-//extern NSString *globalData1;
-//extern NSString *globalString;
-//idk man seems prety shady
+@synthesize textFieldglobalData1;
 
-
-@implementation SecondViewController
-
+-(void)done:(NSString*)dataText{
+    [self sendText:dataText];
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
     [self setUpUI];
-    //[self setUpMultipeer];
+    [self setUpMultipeer];
+    // Configure the view.
+    SKView * skView = (SKView *)self.view;
+    skView.showsFPS = YES;
+    skView.showsNodeCount = YES;
+    
+    // Create and configure the scene.
+    SinglePlayerScene * scene = [SinglePlayerScene sceneWithSize:skView.bounds.size];
+    scene.scaleMode = SKSceneScaleModeAspectFill;
+    scene.delegate = self;
+    self.scene = scene;
+
+    // Present the scene.
+    [skView presentScene:scene];
+    
+    [[UIApplication sharedApplication] setStatusBarHidden:YES
+                                            withAnimation:UIStatusBarAnimationFade];
+    
 }
 
-- (void)viewWillAppear:(BOOL)animated
+
+- (BOOL)prefersStatusBarHidden {
+    return YES;
+}
+
+- (BOOL)shouldAutorotate
 {
-    [self.navigationController setNavigationBarHidden:YES animated:animated];
-    [super viewWillAppear:animated];
+    return NO;
+}
+- (IBAction)popCurrentView {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (NSUInteger)supportedInterfaceOrientations
+{
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        return UIInterfaceOrientationMaskAllButUpsideDown;
+    } else {
+        return UIInterfaceOrientationMaskAll;
+    }
+}
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-- (IBAction)gameView:(id)sender {
-//    self.chatBox.text = globalData1;
-    //NSLog((@"asdf"));
-//    ViewController *gameView = [ViewController alloc];
-    
+    // Release any cached data, images, etc that aren't in use.
 }
 
 - (void) setUpUI{
-    //  Setup the browse button
+    //  Setup the bluetooth button
+    self.browseButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    [self.browseButton setTitle:@"Bluetooth" forState:UIControlStateNormal];
+    self.browseButton.frame = CGRectMake(10, 10, 80, 10);
+    [self.view addSubview:self.browseButton];
+    [self.browseButton addTarget:self action:@selector(showBrowserVC) forControlEvents:UIControlEventTouchUpInside];
+    self.pauseButton =  [UIButton buttonWithType:UIButtonTypeInfoDark ] ;
+    CGRect buttonRect = self.pauseButton.frame;
     
-    self.browserButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    [self.browserButton setTitle:@"Browse" forState:UIControlStateNormal];
-    self.browserButton.frame = CGRectMake(130, 20, 60, 30);
-    [self.view addSubview:self.browserButton];
+    // CALCulate the bottom right corner
+    buttonRect.origin.x = self.view.frame.size.width - buttonRect.size.width - 8;
+    buttonRect.origin.y = buttonRect.size.height - 8;
+    [self.pauseButton setFrame:buttonRect];
     
-    self.view.backgroundColor = [UIColor colorWithRed:200/256.0 green:0/256.0 blue:67/256.0 alpha:1.0];
-    [self.browserButton addTarget:self action:@selector(showBrowserVC) forControlEvents:UIControlEventTouchUpInside];
-    //  Setup TextBox
-    self.textBox = [[UITextView alloc] initWithFrame: CGRectMake(40, 150, 240, 270)];
-    self.textBox.editable = NO;
-    self.textBox.backgroundColor = [UIColor lightGrayColor];
-    [self.view addSubview: self.textBox];
-    
+    [self.pauseButton addTarget:self action:@selector(drawPause:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.pauseButton];
     //  Setup ChatBox
-    self.chatBox = [[UITextField alloc] initWithFrame: CGRectMake(40, 60, 240, 70)];
-    self.chatBox.backgroundColor = [UIColor lightGrayColor];
-    self.chatBox.returnKeyType = UIReturnKeySend;
-    self.chatBox.delegate = self;
-    [self.view addSubview:self.chatBox];
-    
-    //rounded buttons!
-    CALayer *settingsbtnLayer = [_settingsbutton layer];
-    [settingsbtnLayer setMasksToBounds:YES];
-    [settingsbtnLayer setCornerRadius:5.0f];
-    [settingsbtnLayer setBorderWidth:1.0];
-    [settingsbtnLayer setBorderColor:[[UIColor grayColor] CGColor]];
-    //YO WE GOTTA FIND SOMEONE WHO CAN MAKE SOME GRAPHIX FOR THE BUTTONS
-    //EVERYTHING DRAWABLE IS UGLY
-    //IMAGE FILE/VECTOR GRAPHICS R THE WAY TO GO
-    //CAN BE DONE FROM STORYBOARD EDITOR TOO 
-    
-    CALayer *gamebtnLayer = [_gamebutton layer];
-    [gamebtnLayer setMasksToBounds:YES];
-    [gamebtnLayer setCornerRadius:5.0f];
-    [gamebtnLayer setBorderWidth:1.0];
-    [gamebtnLayer setBorderColor:[[UIColor grayColor] CGColor]];
-
 }
-
 - (void) setUpMultipeer{
     //  Setup peer ID
     self.myPeerID = [[MCPeerID alloc] initWithDisplayName:[UIDevice currentDevice].name];
@@ -134,11 +133,19 @@
     [self.browserVC dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void) sendText{
-    //  Retrieve text from chat box and clear chat box
-    NSString *message = self.chatBox.text;
-    //self.chatBox.text = @"";
+- (IBAction)drawPause:(id)sender{
+    PauseViewController *pauseMenu = [[PauseViewController alloc] initWithNibName:nil bundle:nil];
+    [self.navigationController pushViewController:pauseMenu animated:NO];
+    [self.scene pause];
+}
+
+- (IBAction)unPause:(id)sender{
     
+}
+
+- (void) sendText:(NSString*)dataToSend{
+    //  Retrieve text from chat box and clear chat box
+    NSString *message =dataToSend;
     //  Convert text to NSData
     NSData *data = [message dataUsingEncoding:NSUTF8StringEncoding];
     
@@ -147,7 +154,7 @@
     [self.mySession sendData:data toPeers:[self.mySession connectedPeers] withMode:MCSessionSendDataUnreliable error:&error];
     
     //  Append your own message to text box
-    //[self receiveMessage: message fromPeer: self.myPeerID];
+    [self receiveMessage: message fromPeer: self.myPeerID];
 }
 
 - (void) receiveMessage: (NSString *) message fromPeer: (MCPeerID *) peer{
@@ -156,13 +163,16 @@
     finalText = message;
     if (peer == self.myPeerID) {
         finalText = [NSString stringWithFormat:@"\nme: %@ \n", message];
+        return;
     }
     else{
         finalText = [NSString stringWithFormat:@"\n%@: %@ \n", peer.displayName, message];
     }
     
     //  Append text to text box
-    self.textBox.text = [self.textBox.text stringByAppendingString:message];
+    //self.textBox.text = [self.textBox.text stringByAppendingString:message];
+    NSLog(@"received: %@", message);
+    globalData1 = message;
 }
 
 #pragma marks MCBrowserViewControllerDelegate
@@ -181,7 +191,7 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     [textField resignFirstResponder];
-    [self sendText];
+    [self sendText:@""];
     return YES;
 }
 
@@ -217,3 +227,4 @@
     
 }
 @end
+
