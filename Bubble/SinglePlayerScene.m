@@ -8,17 +8,8 @@
 
 #import "SinglePlayerScene.h"
 
-int contains(NSMutableArray *arr, NSString* id){
-    for (UserBubble *b in arr){
-        if ([[b idnum] isEqualToString:id]){
-            return (int)[arr indexOfObject:b];
-        }
-    }
-    return -1;
-}
 
 @implementation SinglePlayerScene
-
 
 -(id)initWithSize:(CGSize)size {    
     if (self = [super initWithSize:size]) {
@@ -48,25 +39,6 @@ int contains(NSMutableArray *arr, NSString* id){
 
     }
     return self;
-}
-
--(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-}
-
--(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-    
-    /*for (UITouch *touch in touches) {
-        //CGPoint location = [touch locationInNode:self];
-    }*/
-}
-
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    /* Called when a touch begins */
-    
-    /*for (UITouch *touch in touches) {
-        //CGPoint location = [touch locationInNode:self];
-        
-    }*/
 }
 
 -(void)update:(CFTimeInterval)currentTime {
