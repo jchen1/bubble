@@ -28,6 +28,8 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    [[UIApplication sharedApplication] setStatusBarHidden:YES
+                                            withAnimation:UIStatusBarAnimationFade];
     [self setUpUI];
 }
 
@@ -60,5 +62,15 @@
     [self.view addSubview:self.gamebutton];
 
 }
+
+- (BOOL)prefersStatusBarHidden {
+    return YES;
+}
+
+- (BOOL)shouldAutorotate
+{
+    return NO;
+}
+
 
 @end

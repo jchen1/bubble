@@ -31,6 +31,9 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor clearColor];
+    [[UIApplication sharedApplication] setStatusBarHidden:YES
+                                            withAnimation:UIStatusBarAnimationFade];
+    
     
     UIImage *resumeButtonBackground = [[UIImage imageNamed:@"resume_button.png"]
                                              resizableImageWithCapInsets:UIEdgeInsetsMake(200,600,200,600)];
@@ -49,6 +52,15 @@
     [self.quitButton addTarget:self action:@selector(quitGame) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.quitButton];
     
+}
+
+- (BOOL)prefersStatusBarHidden {
+    return YES;
+}
+
+- (BOOL)shouldAutorotate
+{
+    return NO;
 }
 
 - (void)didReceiveMemoryWarning
