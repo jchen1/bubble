@@ -12,6 +12,7 @@
 
 #import "SinglePlayerViewController.h"
 #import <MultipeerConnectivity/MultipeerConnectivity.h>
+#import <SpriteKit/SpriteKit.h>
 
 
 @interface SinglePlayerViewController ()<MCBrowserViewControllerDelegate, MCSessionDelegate, UITextFieldDelegate, ViewControllerDelegate>
@@ -24,14 +25,11 @@
 
 @property (nonatomic, strong) UIButton *browseButton; //no ui things except this one are being displayed
 @property (nonatomic, strong) UIButton *pauseButton;
-@property (nonatomic, strong) UITextField *textFieldglobalData1; //create a global variable1
 
 @end
 
 @implementation SinglePlayerViewController
 NSString *globalString = @"";
-
-@synthesize textFieldglobalData1;
 
 -(void)done:(NSString*)dataText{
     [self sendText:dataText];
@@ -40,12 +38,13 @@ NSString *globalString = @"";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self setUpUI];
-    [self setUpMultipeer];
-    // Configure the view.
-    SKView * skView = (SKView *)self.view;
+    SKView * skView = [[SKView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.view = skView;
     skView.showsFPS = YES;
     skView.showsNodeCount = YES;
+    
+    [self setUpUI];
+    [self setUpMultipeer];
     
     // Create and configure the scene.
     SinglePlayerScene * scene = [SinglePlayerScene sceneWithSize:skView.bounds.size];
@@ -60,7 +59,6 @@ NSString *globalString = @"";
                                             withAnimation:UIStatusBarAnimationFade];
     
 }
-
 
 - (BOOL)prefersStatusBarHidden {
     return YES;
@@ -104,9 +102,8 @@ NSString *globalString = @"";
     buttonRect.origin.y = buttonRect.size.height - 8;
     [self.pauseButton setFrame:buttonRect];
     
-    [self.pauseButton addTarget:self action:@selector(drawPause:) forControlEvents:UIControlEventTouchUpInside];
+    [self.pauseButton addTarget:self action:@selector(drawPause) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.pauseButton];
-    //  Setup ChatBox
 }
 - (void) setUpMultipeer{
     //  Setup peer ID
@@ -133,14 +130,10 @@ NSString *globalString = @"";
     [self.browserVC dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (IBAction)drawPause:(id)sender{
+- (IBAction)drawPause{
     PauseViewController *pauseMenu = [[PauseViewController alloc] initWithNibName:nil bundle:nil];
     [self.navigationController pushViewController:pauseMenu animated:NO];
     [self.scene pause];
-}
-
-- (IBAction)unPause:(id)sender{
-    
 }
 
 - (void) sendText:(NSString*)dataToSend{

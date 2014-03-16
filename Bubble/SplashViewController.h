@@ -18,10 +18,8 @@ extern NSString *globalData1;
 
 
 @interface SplashViewController : UIViewController
-@property (weak, nonatomic) IBOutlet UIButton *settingsbutton;
-@property (weak, nonatomic) IBOutlet UIButton *gamebutton;
-
-- (IBAction)gameView:(UIButton *)sender;
+@property (weak, nonatomic) UIButton *settingsbutton;
+@property (weak, nonatomic) UIButton *gamebutton;
 
 @end
 

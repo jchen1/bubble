@@ -10,10 +10,10 @@
 
 #import "SinglePlayerScene.h"
 
-NSUInteger contains(NSMutableArray *arr, NSString* id){
+int contains(NSMutableArray *arr, NSString* id){
     for (UserBubble *b in arr){
         if ([[b idnum] isEqualToString:id]){
-            return [arr indexOfObject:b];
+            return (int)[arr indexOfObject:b];
         }
     }
     return -1;
@@ -115,10 +115,7 @@ NSUInteger contains(NSMutableArray *arr, NSString* id){
     NSString *bubbleString;
     bubbleString = myBubble.toString;
     
-    
 
-    
-    
     //NSLog(@"%@", multiplayerbubbles);
     //NSLog(@"multiplayerbubble array: %@",[multiplayerbubbles componentsJoinedByString:@","]);
     

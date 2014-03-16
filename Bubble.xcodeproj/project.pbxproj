@@ -15,8 +15,6 @@
 		1F60B15618974B9A00232A84 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1F60B15418974B9A00232A84 /* InfoPlist.strings */; };
 		1F60B15818974B9A00232A84 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F60B15718974B9A00232A84 /* main.m */; };
 		1F60B15C18974B9A00232A84 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F60B15B18974B9A00232A84 /* AppDelegate.m */; };
-		1F60B15F18974B9A00232A84 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F60B15D18974B9A00232A84 /* Main_iPhone.storyboard */; };
-		1F60B16218974B9A00232A84 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F60B16018974B9A00232A84 /* Main_iPad.storyboard */; };
 		1F60B16518974B9A00232A84 /* SinglePlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F60B16418974B9A00232A84 /* SinglePlayerViewController.m */; };
 		1F60B16818974B9A00232A84 /* SinglePlayerScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F60B16718974B9A00232A84 /* SinglePlayerScene.m */; };
 		1F60B16A18974B9A00232A84 /* Spaceship.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F60B16918974B9A00232A84 /* Spaceship.png */; };
@@ -59,8 +57,6 @@
 		1F60B15918974B9A00232A84 /* Bubble-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bubble-Prefix.pch"; sourceTree = "<group>"; };
 		1F60B15A18974B9A00232A84 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1F60B15B18974B9A00232A84 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		1F60B15E18974B9A00232A84 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
-		1F60B16118974B9A00232A84 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
 		1F60B16318974B9A00232A84 /* SinglePlayerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SinglePlayerViewController.h; sourceTree = "<group>"; };
 		1F60B16418974B9A00232A84 /* SinglePlayerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SinglePlayerViewController.m; sourceTree = "<group>"; };
 		1F60B16618974B9A00232A84 /* SinglePlayerScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SinglePlayerScene.h; sourceTree = "<group>"; };
@@ -150,10 +146,8 @@
 			children = (
 				1F60B15A18974B9A00232A84 /* AppDelegate.h */,
 				1F60B15B18974B9A00232A84 /* AppDelegate.m */,
-				1F60B15D18974B9A00232A84 /* Main_iPhone.storyboard */,
 				A97A9ED518989C750017183F /* SettingsViewController.h */,
 				A97A9ED618989C750017183F /* SettingsViewController.m */,
-				1F60B16018974B9A00232A84 /* Main_iPad.storyboard */,
 				A97A9ED218988D3F0017183F /* SplashViewController.h */,
 				A97A9ED318988D3F0017183F /* SplashViewController.m */,
 				1F60B16318974B9A00232A84 /* SinglePlayerViewController.h */,
@@ -287,8 +281,6 @@
 			files = (
 				1F60B16A18974B9A00232A84 /* Spaceship.png in Resources */,
 				1F60B16C18974B9A00232A84 /* Images.xcassets in Resources */,
-				1F60B16218974B9A00232A84 /* Main_iPad.storyboard in Resources */,
-				1F60B15F18974B9A00232A84 /* Main_iPhone.storyboard in Resources */,
 				1F60B15618974B9A00232A84 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -347,22 +339,6 @@
 				1F60B15518974B9A00232A84 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		1F60B15D18974B9A00232A84 /* Main_iPhone.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1F60B15E18974B9A00232A84 /* Base */,
-			);
-			name = Main_iPhone.storyboard;
-			sourceTree = "<group>";
-		};
-		1F60B16018974B9A00232A84 /* Main_iPad.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1F60B16118974B9A00232A84 /* Base */,
-			);
-			name = Main_iPad.storyboard;
 			sourceTree = "<group>";
 		};
 		1F60B17B18974B9A00232A84 /* InfoPlist.strings */ = {
