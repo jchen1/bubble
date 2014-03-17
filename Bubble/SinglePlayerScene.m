@@ -79,10 +79,12 @@ int initial_count;
     
     [myBubble updateArc];
     
+    CGRect bounds = [[UIScreen mainScreen] bounds];
+    
     for (int i = 1; i < [bubbles count]; i++)
     {
         Bubble *b = [bubbles objectAtIndex:i];
-        if (b.radius < 0.1)
+        if (b.radius < 0.1 || !CGRectContainsPoint(bounds,b.position))
         {
             [removeIndices addIndex:i];
             [b removeFromParent];
@@ -93,8 +95,6 @@ int initial_count;
             [b updateArc];
         }
     }
-    
-    CGRect bounds = [[UIScreen mainScreen] bounds];
     CGPoint pos = CGPointMake(myBubble.position.x+(10)*self.joystick.x, myBubble.position.y);
     if (CGRectContainsPoint(bounds,pos)){
         myBubble.position = pos;

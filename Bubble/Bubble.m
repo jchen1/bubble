@@ -88,8 +88,8 @@
         return;
     }
     double area1 = _radius * _radius * M_PI, area2 = other.radius * other.radius * M_PI;
-    area1 += MIN(area2, 10.0);
-    area2 -= MIN(area2, 10.0);
+    area1 += MIN(area2, 20.0) / 2.0;
+    area2 -= MIN(area2, 20.0);
     
     _radius = sqrt(area1 / M_PI);
     other.radius = sqrt(area2 / M_PI);
@@ -114,7 +114,7 @@
 
 -(double) getSpeed
 {
-    return MIN(5 * (1 / sqrt(_radius)), 20);
+    return MIN((10 / sqrt(_radius)), 15);
 }
 
 /*

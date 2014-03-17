@@ -10,5 +10,6 @@
 #include <stdlib.h>
 
 @interface AIBubble : Bubble
+@property (strong, nonatomic) NSMutableArray *directions;
 -initWithSizeAsSeed:(double)size;
 @end
