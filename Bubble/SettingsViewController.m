@@ -18,7 +18,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    [[UIApplication sharedApplication] setStatusBarHidden:YES
+                                            withAnimation:UIStatusBarAnimationFade];
+    
+    
     self.view.backgroundColor = [UIColor blackColor];
 	
     UIImage *backButtonBackground = [UIImage imageNamed:@"back_button.png"];
@@ -35,6 +38,15 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (BOOL)prefersStatusBarHidden {
+    return YES;
+}
+
+- (BOOL)shouldAutorotate
+{
+    return NO;
 }
 
 @end

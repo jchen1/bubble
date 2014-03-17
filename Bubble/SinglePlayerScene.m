@@ -11,6 +11,8 @@
 
 @implementation SinglePlayerScene
 
+int initial_count;
+
 -(id)initWithSize:(CGSize)size {    
     if (self = [super initWithSize:size]) {
         self.joystick = [[JCJoystick alloc] initWithControlRadius:40
@@ -29,10 +31,11 @@
         myBubble.position = CGPointMake(CGRectGetMidX(self.frame),
                                  CGRectGetMidY(self.frame));
         
+        initial_count = 10 + arc4random_uniform(20);
         
         [bubbles addObject:myBubble];
         [self addChild:myBubble];
-        [self generateBubbles:rand()];
+        [self generateBubbles:initial_count];
         
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(pause) name:@"single_pause" object:nil];
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(unpause) name:@"single_unpause" object:nil];
@@ -103,8 +106,11 @@
 
     [bubbles removeObjectsAtIndexes:removeIndices];
     
-    if (MAX(0, (int)(30 - (int)[bubbles count])) > arc4random() % 100)
+    double wut = arc4random_uniform([myBubble radius]);
+    //if (MAX(0, (int)(30 - (int)[bubbles count])) > wut)
+    if ([bubbles count] < MIN(wut, initial_count))
     {
+        NSLog(@"%lf", wut);
         AIBubble *bubble = [[AIBubble alloc] initWithSizeAsSeed: [myBubble radius]];
         bubble.position = CGPointMake(arc4random() % (int)CGRectGetMaxX(self.frame),
                                       arc4random() % (int)CGRectGetMaxY(self.frame));
@@ -114,12 +120,10 @@
     
 }
 
--(void) generateBubbles:(unsigned int)seed
+-(void) generateBubbles:(unsigned int)ic
 {
-    srand(seed);
-    int numBubbles = 10 + arc4random() % 20; //10 - 30 bubbles generated
     
-    for (int i = 0; i < numBubbles; i++)
+    for (int i = 0; i < ic; i++)
     {
         AIBubble *bubble = [[AIBubble alloc] init];
         bubble.position = CGPointMake(arc4random() % (int)CGRectGetMaxX(self.frame),
