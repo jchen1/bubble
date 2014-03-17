@@ -18,8 +18,21 @@
         _type = 'A';
         super.zPosition = 9;
         //super.radius = 3 + ((double)arc4random_uniform(69133742) / 9876248);
-        super.radius = (double)(arc4random_uniform(1000) / 1000.0) * 15;
+        super.radius = (double)(arc4random_uniform(1000) / 1000.0) * 20;
     }    
+    
+    return self;
+}
+
+-(id) initWithSizeAsSeed: (double) size{
+    self = [super initWithColor:[SKColor blueColor]];
+    if (self)
+    {
+        _type = 'A';
+        super.zPosition = 9;
+        //super.radius = 3 + ((double)arc4random_uniform(69133742) / 9876248);
+        super.radius = (double)(arc4random_uniform(1000) / 1000.0) * 2 * size;
+    }
     
     return self;
 }

@@ -39,6 +39,7 @@ SinglePlayerScene *scene;
                                             withAnimation:UIStatusBarAnimationFade];
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(popCurrentView) name:@"single_quit" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(popCurrentView) name:@"single_gameover" object:nil];
     
 }
 

@@ -31,7 +31,7 @@
     if (self)
     {
         idnum = [NSString stringWithFormat:@"%d",arc4random()];
-        super.radius = 10;
+        super.radius = 16;
         super.zPosition = 10;
         _type = 'U';
     }
@@ -41,11 +41,6 @@
 -(double) getSpeed
 {
     return MIN(30 * (1 / sqrt(_radius)), 100);
-}
-
--(void) updatePosition
-{
-
 }
 
 -(void)updateRadius:(float)newradius
@@ -58,8 +53,12 @@
     _lives++;
     _radius = 16;
     super.position = pos;
+    NSLog(@"%d Death(s)", _lives);
 }
 
+-(NSUInteger) lives{
+    return _lives;
+}
 
 -(void)updatePosition:(int)direction
 {

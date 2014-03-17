@@ -43,6 +43,15 @@
 
 -(void)update:(CFTimeInterval)currentTime {
 
+    if ([myBubble lives] >= 3){
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Game Over!"
+                                                        message:@"You ran out of lives."
+                                                       delegate:self
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+        [self.scene.view setPaused:YES];
+    }
     
     for (Bubble *b1 in bubbles) {
         for (Bubble *b2 in bubbles) {
@@ -96,7 +105,7 @@
     
     if (MAX(0, (int)(30 - (int)[bubbles count])) > arc4random() % 100)
     {
-        AIBubble *bubble = [[AIBubble alloc] init];
+        AIBubble *bubble = [[AIBubble alloc] initWithSizeAsSeed: [myBubble radius]];
         bubble.position = CGPointMake(arc4random() % (int)CGRectGetMaxX(self.frame),
                                       arc4random() % (int)CGRectGetMaxY(self.frame));
         [bubbles addObject:bubble];
@@ -128,6 +137,13 @@
 -(void) unpause
 {
     [self.scene.view setPaused:NO];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if ([[alertView title] isEqualToString:@"Game Over!"]){
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"single_gameover" object:nil];
+    }
 }
 
 @end

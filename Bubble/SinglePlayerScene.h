@@ -13,7 +13,7 @@
 #import "JCJoystick.h"
 
 
-@interface SinglePlayerScene : SKScene
+@interface SinglePlayerScene : SKScene <UIAlertViewDelegate>
 {
     //    id delegate;
     

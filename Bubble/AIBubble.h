@@ -10,5 +10,5 @@
 #include <stdlib.h>
 
 @interface AIBubble : Bubble
-
+-initWithSizeAsSeed:(double)size;
 @end
