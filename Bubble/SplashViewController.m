@@ -15,6 +15,7 @@
 #import <MultipeerConnectivity/MultipeerConnectivity.h>
 #import "SinglePlayerViewController.h"
 #import "TwoPlayerViewController.h"
+#import "SettingsViewController.h"
 
 
 @interface SplashViewController ()
@@ -48,12 +49,17 @@
 }
 - (IBAction)gameView {
     SinglePlayerViewController *gameView = [[SinglePlayerViewController alloc] init];
-    [self.navigationController pushViewController:gameView animated:YES];
+    [self.navigationController pushViewController:gameView animated:NO];
 }
 
 - (IBAction)multiGameView {
     TwoPlayerViewController *gameView = [[TwoPlayerViewController alloc] init];
-    [self.navigationController pushViewController:gameView animated:YES];
+    [self.navigationController pushViewController:gameView animated:NO];
+}
+
+- (IBAction)optionsView {
+    SettingsViewController *settingsView = [[SettingsViewController alloc] init];
+    [self.navigationController pushViewController:settingsView animated:NO];
 }
 
 - (void) setUpUI{
@@ -61,6 +67,12 @@
     
     UIImage *singlePlayerButtonBackground = [UIImage imageNamed:@"1p_button.png"];
     UIImage *twoPlayerButtonBackground = [UIImage imageNamed:@"2p_button.png"];
+    UIImage *optionsButtonBackground = [UIImage imageNamed:@"options_button.png"];
+    UIImage *bubbleIconImage = [UIImage imageNamed:@"bubble_icon.png"];
+    
+    self.bubbleicon = [[UIImageView alloc] initWithFrame:CGRectMake(60.0, 100.0, 200.0, 200.0)];
+    self.bubbleicon.image = bubbleIconImage;
+    [self.view addSubview:self.bubbleicon];
     
     self.gamebutton =  [UIButton buttonWithType:UIButtonTypeSystem] ;
     [self.gamebutton setFrame:CGRectMake(60.0, 350.0, 200.0, 50.0)];
@@ -69,11 +81,17 @@
     [self.view addSubview:self.gamebutton];
     
     self.multibutton =  [UIButton buttonWithType:UIButtonTypeSystem] ;
-    [self.multibutton setFrame:CGRectMake(60.0, 450.0, 200.0, 50.0)];
+    [self.multibutton setFrame:CGRectMake(60.0, 410.0, 200.0, 50.0)];
     [self.multibutton setBackgroundImage:twoPlayerButtonBackground forState:UIControlStateNormal];
     [self.multibutton addTarget:self action:@selector(multiGameView) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.multibutton];
 
+    self.optionsbutton =  [UIButton buttonWithType:UIButtonTypeSystem] ;
+    [self.optionsbutton setFrame:CGRectMake(60.0, 470.0, 200.0, 50.0)];
+    [self.optionsbutton setBackgroundImage:optionsButtonBackground forState:UIControlStateNormal];
+    [self.optionsbutton addTarget:self action:@selector(optionsView) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.optionsbutton];
+    
 }
 
 - (BOOL)prefersStatusBarHidden {

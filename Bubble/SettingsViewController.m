@@ -8,36 +8,27 @@
 
 #import "SettingsViewController.h"
 
-
-//NSString *globalString = @"someSring";
-//whta r global variables and how do i instsanciate them?
-
-@interface SettingsViewController ()
-@property (nonatomic, strong) UIButton *browseButton;
-
-@end
-
 @implementation SettingsViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+
+- (IBAction) goBack{
+    [self.navigationController popViewControllerAnimated:NO];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    self.view.backgroundColor = [UIColor blackColor];
+	
+    UIImage *backButtonBackground = [UIImage imageNamed:@"back_button.png"];
     
-    self.browseButton = [UIButton buttonWithType:UIButtonTypeSystem];
-//    [self.browseButton setTitle:globalString forState:UIControlStateNormal];
-    self.browseButton.frame = CGRectMake(130, 20, 60, 30);
-    [self.view addSubview:self.browseButton];
-    self.view.backgroundColor = [UIColor colorWithRed:200/256.0 green:0/256.0 blue:67/256.0 alpha:1.0];
-	// Do any additional setup after loading the view.
+    self.backButton =  [UIButton buttonWithType:UIButtonTypeSystem] ;
+    [self.backButton setFrame:CGRectMake(60.0, 470.0, 200.0, 50.0)];
+    [self.backButton setBackgroundImage:backButtonBackground forState:UIControlStateNormal];
+    [self.backButton addTarget:self action:@selector(goBack) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.backButton];
+    
 }
 
 - (void)didReceiveMemoryWarning

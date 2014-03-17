@@ -10,5 +10,5 @@
 
 
 @interface SettingsViewController : UIViewController
-
+@property(nonatomic,strong) UIButton *backButton;
 @end

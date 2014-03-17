@@ -35,10 +35,8 @@
                                             withAnimation:UIStatusBarAnimationFade];
     
     
-    UIImage *resumeButtonBackground = [[UIImage imageNamed:@"resume_button.png"]
-                                             resizableImageWithCapInsets:UIEdgeInsetsMake(200,600,200,600)];
-    UIImage *quitButtonBackground = [[UIImage imageNamed:@"quit_button.png"]
-                                       resizableImageWithCapInsets:UIEdgeInsetsMake(200,600,200,600)];
+    UIImage *resumeButtonBackground = [UIImage imageNamed:@"resume_button.png"];
+    UIImage *quitButtonBackground = [UIImage imageNamed:@"quit_button.png"];
     
     self.unpauseButton =  [UIButton buttonWithType:UIButtonTypeSystem] ;
     [self.unpauseButton setFrame:CGRectMake(50.0, 200.0, 200.0, 50.0)];
