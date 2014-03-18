@@ -31,7 +31,7 @@ int initial_count;
         myBubble.position = CGPointMake(CGRectGetMidX(self.frame),
                                  CGRectGetMidY(self.frame));
         
-        initial_count = 10 + arc4random_uniform(20);
+        initial_count = 10 + arc4random_uniform(10);
         
         [bubbles addObject:myBubble];
         [self addChild:myBubble];
@@ -109,11 +109,7 @@ int initial_count;
     double wut = arc4random_uniform([myBubble radius]);
     if ([bubbles count] < MAX(0.0,MIN(wut, initial_count - sqrt([myBubble radius]))))
     {
-        AIBubble *bubble = [[AIBubble alloc] initWithSizeAsSeed: [myBubble radius]];
-        bubble.position = CGPointMake(arc4random() % (int)CGRectGetMaxX(self.frame),
-                                      arc4random() % (int)CGRectGetMaxY(self.frame));
-        [bubbles addObject:bubble];
-        [self addChild:bubble];
+        [self spawnBubble];
     }
     
 }
@@ -123,11 +119,7 @@ int initial_count;
     
     for (int i = 0; i < ic; i++)
     {
-        AIBubble *bubble = [[AIBubble alloc] init];
-        bubble.position = CGPointMake(arc4random() % (int)CGRectGetMaxX(self.frame),
-                                      arc4random() % (int)CGRectGetMaxY(self.frame));
-        [bubbles addObject:bubble];
-        [self addChild:bubble];
+        [self spawnBubble];
     }
 }
 
@@ -146,6 +138,27 @@ int initial_count;
     if ([[alertView title] isEqualToString:@"Game Over!"]){
         [[NSNotificationCenter defaultCenter]postNotificationName:@"single_gameover" object:nil];
     }
+}
+
+- (void)spawnBubble{
+    AIBubble *bubble =[[AIBubble alloc] init];
+    switch ([bubble preferredDirection]){
+        case 0:
+            bubble.position = CGPointMake(arc4random() % (int)CGRectGetMaxX(self.frame), self.frame.origin.y);
+            break;
+        case 1:
+            bubble.position = CGPointMake(self.frame.origin.x, arc4random() % (int)CGRectGetMaxY(self.frame));
+            break;
+        case 2:
+            bubble.position = CGPointMake(arc4random() % (int)CGRectGetMaxX(self.frame), CGRectGetMaxY(self.frame) - 1);
+            break;
+        case 3:
+            bubble.position = CGPointMake(CGRectGetMaxX(self.frame) - 1, arc4random() % (int)CGRectGetMaxY(self.frame));
+            break;
+        default: break;
+    }
+    [bubbles addObject:bubble];
+    [self addChild:bubble];
 }
 
 @end

@@ -18,24 +18,9 @@
         _type = 'A';
         super.zPosition = 9;
         //super.radius = 3 + ((double)arc4random_uniform(69133742) / 9876248);
-        super.radius = MAX(5.0,(double)(arc4random_uniform(1000) / 1000.0) * 20);
+        super.radius = MAX(10.0,(double)(arc4random_uniform(100000) / 100000.0) * 40.0);
         preferredDirection = arc4random_uniform(4);
     }    
-    
-    return self;
-}
-
--(id) initWithSizeAsSeed: (double) size{
-    self = [super initWithColor:[SKColor blueColor]];
-    if (self)
-    {
-        _type = 'A';
-        super.zPosition = 9;
-        //super.radius = 3 + ((double)arc4random_uniform(69133742) / 9876248);
-        super.radius = MIN(50.0,MAX(5.0,(double)(arc4random_uniform(500) / 1000.0) * size));
-        preferredDirection = arc4random_uniform(4);
-        //NSLog(@"%d", (int)preferredDirection);
-    }
     
     return self;
 }
@@ -53,20 +38,24 @@
         case 0: //up
             pos.y+= [super getSpeed];
             break;
-        case 1: //down
+        case 1: //right
+            pos.x+= [super getSpeed];
+            break;
+        case 2: //down
             pos.y-= [super getSpeed];
             break;
-        case 2: //left
+        case 3: //left
             pos.x-= [super getSpeed];
-            break;
-        case 3: //right
-            pos.x+= [super getSpeed];
             break;
         default:
             break;  //wut
     }
     
     [super setPosition:pos];
+}
+
+-(short) preferredDirection{
+    return preferredDirection;
 }
 
 @end

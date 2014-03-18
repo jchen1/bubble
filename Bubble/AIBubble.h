@@ -12,5 +12,5 @@
 @interface AIBubble : Bubble {
     short preferredDirection;
 }
--initWithSizeAsSeed:(double)size;
+-(short) preferredDirection;
 @end

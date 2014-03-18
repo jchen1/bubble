@@ -23,7 +23,7 @@ SinglePlayerScene *scene;
     //SinglePlayerScene *scene;
     SKView * skView = [[SKView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.view = skView;
-    skView.showsFPS = NO;
+    skView.showsFPS = YES;
     skView.showsNodeCount = NO;
     
     [self setUpUI];
