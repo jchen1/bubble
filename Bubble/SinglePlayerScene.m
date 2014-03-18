@@ -116,7 +116,6 @@ int initial_count;
 
 -(void) generateBubbles:(unsigned int)ic
 {
-    
     for (int i = 0; i < ic; i++)
     {
         [self spawnBubble];

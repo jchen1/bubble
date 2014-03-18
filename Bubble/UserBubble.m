@@ -40,7 +40,7 @@
 
 -(double) getSpeed
 {
-    return MIN(30 * (1 / sqrt(_radius)), 100);
+    return MIN(20 * (1 / sqrt(_radius)), 50);
 }
 
 -(void)updateRadius:(float)newradius
