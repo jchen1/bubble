@@ -114,7 +114,7 @@
 
 -(double) getSpeed
 {
-    return MIN((10 / sqrt(_radius)), 15);
+    return MIN((5 / sqrt(_radius)), 10);
 }
 
 /*

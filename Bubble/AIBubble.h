@@ -9,7 +9,8 @@
 #import "Bubble.h"
 #include <stdlib.h>
 
-@interface AIBubble : Bubble
-@property (strong, nonatomic) NSMutableArray *directions;
+@interface AIBubble : Bubble {
+    short preferredDirection;
+}
 -initWithSizeAsSeed:(double)size;
 @end

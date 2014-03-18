@@ -84,7 +84,7 @@ int initial_count;
     for (int i = 1; i < [bubbles count]; i++)
     {
         Bubble *b = [bubbles objectAtIndex:i];
-        if (b.radius < 0.1 || !CGRectContainsPoint(bounds,b.position))
+        if (b.radius < 0.1 || !CGRectContainsPoint(bounds,b.position) || [b radius] > 100.0)
         {
             [removeIndices addIndex:i];
             [b removeFromParent];
@@ -95,11 +95,11 @@ int initial_count;
             [b updateArc];
         }
     }
-    CGPoint pos = CGPointMake(myBubble.position.x+(10)*self.joystick.x, myBubble.position.y);
+    CGPoint pos = CGPointMake(myBubble.position.x+([myBubble getSpeed])*self.joystick.x, myBubble.position.y);
     if (CGRectContainsPoint(bounds,pos)){
         myBubble.position = pos;
     }
-    pos = CGPointMake(myBubble.position.x, myBubble.position.y+(10)*self.joystick.y);
+    pos = CGPointMake(myBubble.position.x, myBubble.position.y+([myBubble getSpeed])*self.joystick.y);
     if (CGRectContainsPoint(bounds,pos)){
         myBubble.position = pos;
     }
@@ -107,10 +107,8 @@ int initial_count;
     [bubbles removeObjectsAtIndexes:removeIndices];
     
     double wut = arc4random_uniform([myBubble radius]);
-    //if (MAX(0, (int)(30 - (int)[bubbles count])) > wut)
-    if ([bubbles count] < MIN(wut, initial_count))
+    if ([bubbles count] < MAX(0.0,MIN(wut, initial_count - sqrt([myBubble radius]))))
     {
-        NSLog(@"%lf", wut);
         AIBubble *bubble = [[AIBubble alloc] initWithSizeAsSeed: [myBubble radius]];
         bubble.position = CGPointMake(arc4random() % (int)CGRectGetMaxX(self.frame),
                                       arc4random() % (int)CGRectGetMaxY(self.frame));
