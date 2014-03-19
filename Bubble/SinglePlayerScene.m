@@ -13,8 +13,6 @@
 
 @implementation SinglePlayerScene
 
-int initial_count;
-
 -(id)initWithSize:(CGSize)size {    
     if (self = [super initWithSize:size]) {
         
@@ -23,13 +21,13 @@ int initial_count;
             [self addLife:i];
         }
     
-        self.joystick = [[JCJoystick alloc] initWithControlRadius:40
+        joystick = [[JCJoystick alloc] initWithControlRadius:40
                                                 baseRadius:45 baseColor:[SKColor grayColor]
                                                 joystickRadius:25 joystickColor:[SKColor whiteColor]];
-        [self.joystick setPosition:CGPointMake(CGRectGetMidX(self.frame),70)];
-        [self addChild:self.joystick];
-        _joystick.alpha = .5;
-        _joystick.zPosition= 120;
+        [joystick setPosition:CGPointMake(CGRectGetMidX(self.frame),70)];
+        [self addChild:joystick];
+        joystick.alpha = .5;
+        joystick.zPosition= 120;
 
         self.backgroundColor = [SKColor blackColor];
 
@@ -43,7 +41,10 @@ int initial_count;
         
         [bubbles addObject:myBubble];
         [self addChild:myBubble];
-        [self generateBubbles:initial_count];
+        
+        for (short i = 0; i < initial_count; i++){
+            [self spawnBubble];
+        }
         
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(pause) name:@"single_pause" object:nil];
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(unpause) name:@"single_unpause" object:nil];
@@ -108,7 +109,7 @@ int initial_count;
     for (int i = 1; i < [bubbles count]; i++)
     {
         Bubble *b = [bubbles objectAtIndex:i];
-        if (b.radius < 0.1 || !CGRectContainsPoint(bounds,b.position) || [b radius] > 100.0)
+        if (b.radius < 0.1 || !CGRectContainsPoint(bounds,b.position) || b.radius > 100.0)
         {
             [removeIndices addIndex:i];
             [b removeFromParent];
@@ -119,11 +120,11 @@ int initial_count;
             [b updateArc];
         }
     }
-    CGPoint pos = CGPointMake(myBubble.position.x+([myBubble getSpeed])*self.joystick.x, myBubble.position.y);
+    CGPoint pos = CGPointMake(myBubble.position.x+([myBubble getSpeed])*joystick.x, myBubble.position.y);
     if (CGRectContainsPoint(bounds,pos)){
         myBubble.position = pos;
     }
-    pos = CGPointMake(myBubble.position.x, myBubble.position.y+([myBubble getSpeed])*self.joystick.y);
+    pos = CGPointMake(myBubble.position.x, myBubble.position.y+([myBubble getSpeed])*joystick.y);
     if (CGRectContainsPoint(bounds,pos)){
         myBubble.position = pos;
     }
@@ -136,14 +137,6 @@ int initial_count;
         [self spawnBubble];
     }
     
-}
-
--(void) generateBubbles:(unsigned int)ic
-{
-    for (int i = 0; i < ic; i++)
-    {
-        [self spawnBubble];
-    }
 }
 
 -(void) pause

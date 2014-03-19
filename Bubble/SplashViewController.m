@@ -70,27 +70,27 @@
     UIImage *optionsButtonBackground = [UIImage imageNamed:@"options_button.png"];
     UIImage *bubbleIconImage = [UIImage imageNamed:@"bubble_icon_title.png"];
     
-    self.bubbleicon = [[UIImageView alloc] initWithFrame:CGRectMake(60.0, 100.0, 200.0, 200.0)];
-    self.bubbleicon.image = bubbleIconImage;
-    [self.view addSubview:self.bubbleicon];
+    bubbleIcon = [[UIImageView alloc] initWithFrame:CGRectMake(60.0, 100.0, 200.0, 200.0)];
+    bubbleIcon.image = bubbleIconImage;
+    [self.view addSubview:bubbleIcon];
     
-    self.gamebutton =  [UIButton buttonWithType:UIButtonTypeSystem] ;
-    [self.gamebutton setFrame:CGRectMake(60.0, 350.0, 200.0, 50.0)];
-    [self.gamebutton setBackgroundImage:singlePlayerButtonBackground forState:UIControlStateNormal];
-    [self.gamebutton addTarget:self action:@selector(gameView) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:self.gamebutton];
+    singlePlayerButton =  [UIButton buttonWithType:UIButtonTypeSystem] ;
+    [singlePlayerButton setFrame:CGRectMake(60.0, 350.0, 200.0, 50.0)];
+    [singlePlayerButton setBackgroundImage:singlePlayerButtonBackground forState:UIControlStateNormal];
+    [singlePlayerButton addTarget:self action:@selector(gameView) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:singlePlayerButton];
     
-    self.multibutton =  [UIButton buttonWithType:UIButtonTypeSystem] ;
-    [self.multibutton setFrame:CGRectMake(60.0, 410.0, 200.0, 50.0)];
-    [self.multibutton setBackgroundImage:twoPlayerButtonBackground forState:UIControlStateNormal];
-    [self.multibutton addTarget:self action:@selector(multiGameView) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:self.multibutton];
+    twoPlayerButton =  [UIButton buttonWithType:UIButtonTypeSystem] ;
+    [twoPlayerButton setFrame:CGRectMake(60.0, 410.0, 200.0, 50.0)];
+    [twoPlayerButton setBackgroundImage:twoPlayerButtonBackground forState:UIControlStateNormal];
+    [twoPlayerButton addTarget:self action:@selector(multiGameView) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:twoPlayerButton];
 
-    self.optionsbutton =  [UIButton buttonWithType:UIButtonTypeSystem] ;
-    [self.optionsbutton setFrame:CGRectMake(60.0, 470.0, 200.0, 50.0)];
-    [self.optionsbutton setBackgroundImage:optionsButtonBackground forState:UIControlStateNormal];
-    [self.optionsbutton addTarget:self action:@selector(optionsView) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:self.optionsbutton];
+    optionsButton =  [UIButton buttonWithType:UIButtonTypeSystem] ;
+    [optionsButton setFrame:CGRectMake(60.0, 470.0, 200.0, 50.0)];
+    [optionsButton setBackgroundImage:optionsButtonBackground forState:UIControlStateNormal];
+    [optionsButton addTarget:self action:@selector(optionsView) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:optionsButton];
     
 }
 

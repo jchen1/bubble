@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 
 
-@interface SettingsViewController : UIViewController
-@property(nonatomic,strong) UIButton *backButton;
+@interface SettingsViewController : UIViewController{
+    UIButton *backButton;
+    UILabel *copyright;
+}
 @end

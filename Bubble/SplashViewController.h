@@ -9,11 +9,12 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 
-@interface SplashViewController : UIViewController
-@property (strong, nonatomic) UIButton *optionsbutton;
-@property (strong, nonatomic) UIButton *gamebutton;
-@property (strong, nonatomic) UIButton *multibutton;
-@property (strong, nonatomic) UIImageView *bubbleicon;
+@interface SplashViewController : UIViewController {
+    UIButton *optionsButton;
+    UIButton *singlePlayerButton;
+    UIButton *twoPlayerButton;
+    UIImageView *bubbleIcon;
+}
 
 @end
 

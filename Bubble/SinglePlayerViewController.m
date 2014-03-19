@@ -76,12 +76,12 @@ SinglePlayerScene *scene;
     
     UIImage *pauseButtonBackground = [UIImage imageNamed:@"pause_button.png"];
     
-    self.pauseButton =  [UIButton buttonWithType:UIButtonTypeSystem] ;
-    [self.pauseButton setFrame:CGRectMake(self.view.bounds.size.width - 30,
+    pauseButton =  [UIButton buttonWithType:UIButtonTypeSystem] ;
+    [pauseButton setFrame:CGRectMake(self.view.bounds.size.width - 30,
                                           10, 20.0, 25.0)];
-    [self.pauseButton setBackgroundImage:pauseButtonBackground forState:UIControlStateNormal];
-    [self.pauseButton addTarget:self action:@selector(drawPause) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:self.pauseButton];
+    [pauseButton setBackgroundImage:pauseButtonBackground forState:UIControlStateNormal];
+    [pauseButton addTarget:self action:@selector(drawPause) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:pauseButton];
 }
 
 - (IBAction)drawPause{

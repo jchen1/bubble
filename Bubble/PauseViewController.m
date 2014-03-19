@@ -31,17 +31,17 @@
     UIImage *resumeButtonBackground = [UIImage imageNamed:@"resume_button.png"];
     UIImage *quitButtonBackground = [UIImage imageNamed:@"quit_button.png"];
     
-    self.unpauseButton =  [UIButton buttonWithType:UIButtonTypeSystem] ;
-    [self.unpauseButton setFrame:CGRectMake(50.0, 200.0, 200.0, 50.0)];
-    [self.unpauseButton setBackgroundImage:resumeButtonBackground forState:UIControlStateNormal];
-    [self.unpauseButton addTarget:self action:@selector(unpause) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:self.unpauseButton];
+    resumeButton =  [UIButton buttonWithType:UIButtonTypeSystem] ;
+    [resumeButton setFrame:CGRectMake(50.0, 200.0, 200.0, 50.0)];
+    [resumeButton setBackgroundImage:resumeButtonBackground forState:UIControlStateNormal];
+    [resumeButton addTarget:self action:@selector(resumeGame) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:resumeButton];
     
-    self.quitButton =  [UIButton buttonWithType:UIButtonTypeSystem] ;
-    [self.quitButton setFrame:CGRectMake(50.0, 300.0, 200.0, 50.0)];
-    [self.quitButton setBackgroundImage:quitButtonBackground forState:UIControlStateNormal];
-    [self.quitButton addTarget:self action:@selector(quitGame) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:self.quitButton];
+    quitButton =  [UIButton buttonWithType:UIButtonTypeSystem] ;
+    [quitButton setFrame:CGRectMake(50.0, 300.0, 200.0, 50.0)];
+    [quitButton setBackgroundImage:quitButtonBackground forState:UIControlStateNormal];
+    [quitButton addTarget:self action:@selector(quitGame) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:quitButton];
     
 }
 
@@ -60,7 +60,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)unpause {
+- (IBAction)resumeGame {
     [[NSNotificationCenter defaultCenter]postNotificationName:@"single_unpause" object:nil];
     [self.navigationController popViewControllerAnimated:NO];
 }

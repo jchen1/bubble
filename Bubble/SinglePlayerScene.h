@@ -15,19 +15,13 @@
 
 @interface SinglePlayerScene : SKScene <UIAlertViewDelegate>
 {
-    //    id delegate;
-    
+    int initial_count;
     NSMutableArray *bubbles;
     NSMutableArray *directions;
     NSMutableArray *lives;
-    
+    JCJoystick *joystick;
     UserBubble *myBubble;
 }
-
-@property (strong, nonatomic) JCJoystick *joystick;
-
-
--(void) generateBubbles: (unsigned int)seed;
 
 -(void) pause;
 

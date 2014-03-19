@@ -19,7 +19,7 @@
         //super.radius = 3 + ((double)arc4random_uniform(69133742) / 9876248);
         super.radius = MAX(5.0,(double)(arc4random_uniform(100000) / 100000.0) * 40.0);
         super.zPosition = -1 * super.radius;
-        preferredDirection = arc4random_uniform(4);
+        self.preferredDirection = arc4random_uniform(4);
     }    
     
     return self;
@@ -34,7 +34,7 @@
 -(void) updatePosition
 {
     CGPoint pos = super.position;
-    switch (preferredDirection) {
+    switch (self.preferredDirection) {
         case 0: //up
             pos.y+= [super getSpeed];
             break;
@@ -52,10 +52,6 @@
     }
     
     [super setPosition:pos];
-}
-
--(short) preferredDirection{
-    return preferredDirection;
 }
 
 @end

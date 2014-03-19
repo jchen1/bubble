@@ -12,8 +12,9 @@
 #import "PauseViewController.h"
 
 
-@interface SinglePlayerViewController : UIViewController
+@interface SinglePlayerViewController : UIViewController {
+    UIButton *pauseButton;
+}
 
-    @property(nonatomic,strong)     UIButton *pauseButton;
 
 @end

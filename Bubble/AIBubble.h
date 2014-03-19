@@ -9,8 +9,7 @@
 #import "Bubble.h"
 #include <stdlib.h>
 
-@interface AIBubble : Bubble {
-    short preferredDirection;
-}
--(short) preferredDirection;
+@interface AIBubble : Bubble
+
+@property int preferredDirection;
 @end

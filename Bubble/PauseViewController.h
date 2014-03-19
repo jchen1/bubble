@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PauseViewController : UIViewController
-@property (nonatomic, strong) UIButton *unpauseButton;
-@property (nonatomic, strong) UIButton *quitButton;
+@interface PauseViewController : UIViewController {
+    UIButton *resumeButton;
+    UIButton *quitButton;
+}
 @end

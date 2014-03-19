@@ -26,13 +26,13 @@
 	
     UIImage *backButtonBackground = [UIImage imageNamed:@"back_button.png"];
     
-    self.backButton =  [UIButton buttonWithType:UIButtonTypeSystem] ;
-    [self.backButton setFrame:CGRectMake(60.0, 470.0, 200.0, 50.0)];
-    [self.backButton setBackgroundImage:backButtonBackground forState:UIControlStateNormal];
-    [self.backButton addTarget:self action:@selector(goBack) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:self.backButton];
+    backButton =  [UIButton buttonWithType:UIButtonTypeSystem] ;
+    [backButton setFrame:CGRectMake(60.0, 470.0, 200.0, 50.0)];
+    [backButton setBackgroundImage:backButtonBackground forState:UIControlStateNormal];
+    [backButton addTarget:self action:@selector(goBack) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:backButton];
     
-    UILabel *copyright = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMidX(self.view.bounds) - 100, 50, 200, 200)];
+    copyright = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMidX(self.view.bounds) - 100, 50, 200, 200)];
     copyright.lineBreakMode = NSLineBreakByWordWrapping;
     copyright.textAlignment = NSTextAlignmentCenter;
     copyright.numberOfLines = 0;
