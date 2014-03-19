@@ -31,12 +31,14 @@
     skView.showsFPS = YES;
     skView.showsNodeCount = YES;
 #endif
-    
     browseButton = [UIButton buttonWithType:UIButtonTypeSystem];
     browseButton.frame = CGRectMake(CGRectGetMidX(self.view.bounds) - 40, 10, 80, 10);
     [browseButton addTarget:self action:@selector(showBrowserVC) forControlEvents:UIControlEventTouchUpInside];
     [browseButton setTitle:@"Bluetooth" forState:UIControlStateNormal];
     [self.view addSubview:browseButton];
+    
+    [self setUpMultipeer];
+    [self showBrowserVC];
     
     UIImage *pauseButtonBackground = [UIImage imageNamed:@"pause_button.png"];
     
@@ -77,7 +79,6 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
-    
 - (void) setUpMultipeer{
     //  Setup peer ID
     myPeerID = [[MCPeerID alloc] initWithDisplayName:[UIDevice currentDevice].name];
@@ -93,14 +94,15 @@
     //  Setup Advertiser
     advertiser = [[MCAdvertiserAssistant alloc] initWithServiceType:@"chat" discoveryInfo:nil session:mySession];
     [advertiser start];
-}
-
-- (void) showBrowserVC{
-    [self presentViewController:browserVC animated:YES completion:nil];
-}
-
-- (void) dismissBrowserVC{
-    [browserVC dismissViewControllerAnimated:YES completion:nil];
+    
+    [inputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+    [inputStream open];
+    
+    [outputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+    [outputStream open];
+    
+    [inputStream setDelegate:self];
+    [outputStream setDelegate:self];
 }
 
 - (void) sendText:(NSString*)dataToSend{
@@ -145,6 +147,26 @@
 // Notifies delegate that the user taps the cancel button.
 - (void)browserViewControllerWasCancelled:(MCBrowserViewController *)browserViewController{
     [self dismissBrowserVC];
+    [self.navigationController popViewControllerAnimated:NO];
+}
+
+- (void) showBrowserVC{
+    [self presentViewController:browserVC animated:YES completion:nil];
+}
+
+- (void) dismissBrowserVC{
+    [browserVC dismissViewControllerAnimated:YES completion:nil];
+    outputStream= [mySession startStreamWithName:@"stream"
+                            toPeer:[[mySession connectedPeers] lastObject] error:nil];
+    
+    outputStream.delegate = self;
+    [outputStream scheduleInRunLoop:[NSRunLoop mainRunLoop]
+                      forMode:NSDefaultRunLoopMode];
+    [outputStream open];
+    
+    
+    
+    [advertiser stop];
 }
 
 #pragma marks UITextFieldDelegate
@@ -163,6 +185,7 @@
 
 // Received data from remote peer
 - (void)session:(MCSession *)session didReceiveData:(NSData *)data fromPeer:(MCPeerID *)peerID{
+/*
     //  Decode data back to NSString
     NSString *message = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     
@@ -170,6 +193,7 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [self receiveMessage:message fromPeer:peerID];
     });
+*/
 }
 
 // Received a byte stream from remote peer

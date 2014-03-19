@@ -40,6 +40,7 @@
 		A8E8561618D677440038C1AE /* options_button.png in Resources */ = {isa = PBXBuildFile; fileRef = A8E8561518D677440038C1AE /* options_button.png */; };
 		A8E8561918D67A730038C1AE /* back_button.png in Resources */ = {isa = PBXBuildFile; fileRef = A8E8561718D67A730038C1AE /* back_button.png */; };
 		A901663218B670A60061927A /* JCJoystick.m in Sources */ = {isa = PBXBuildFile; fileRef = A901663118B670A60061927A /* JCJoystick.m */; };
+		A933437218D9FABD002A4FE8 /* DiscoveryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A933437118D9FABD002A4FE8 /* DiscoveryViewController.m */; };
 		A956913B18984320004FBD99 /* MultipeerConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A956913A18984320004FBD99 /* MultipeerConnectivity.framework */; };
 		A97A9ED418988D3F0017183F /* SplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A97A9ED318988D3F0017183F /* SplashViewController.m */; };
 		A97A9ED718989C750017183F /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A97A9ED618989C750017183F /* SettingsViewController.m */; };
@@ -102,6 +103,8 @@
 		A8E8561718D67A730038C1AE /* back_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back_button.png; sourceTree = "<group>"; };
 		A901663018B670A60061927A /* JCJoystick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCJoystick.h; sourceTree = "<group>"; };
 		A901663118B670A60061927A /* JCJoystick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCJoystick.m; sourceTree = "<group>"; };
+		A933437018D9FABD002A4FE8 /* DiscoveryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoveryViewController.h; sourceTree = "<group>"; };
+		A933437118D9FABD002A4FE8 /* DiscoveryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoveryViewController.m; sourceTree = "<group>"; };
 		A956913A18984320004FBD99 /* MultipeerConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MultipeerConnectivity.framework; path = System/Library/Frameworks/MultipeerConnectivity.framework; sourceTree = SDKROOT; };
 		A97A9ED218988D3F0017183F /* SplashViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashViewController.h; sourceTree = "<group>"; };
 		A97A9ED318988D3F0017183F /* SplashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplashViewController.m; sourceTree = "<group>"; };
@@ -192,11 +195,13 @@
 				1F60B16418974B9A00232A84 /* SinglePlayerViewController.m */,
 				A97A9ED218988D3F0017183F /* SplashViewController.h */,
 				A97A9ED318988D3F0017183F /* SplashViewController.m */,
-				1F60B15218974B9A00232A84 /* Supporting Files */,
 				A8E8561218D667C80038C1AE /* TwoPlayerScene.h */,
 				A8E8561318D667C80038C1AE /* TwoPlayerScene.m */,
 				A8E8560F18D666FA0038C1AE /* TwoPlayerViewController.h */,
 				A8E8561018D666FA0038C1AE /* TwoPlayerViewController.m */,
+				A933437018D9FABD002A4FE8 /* DiscoveryViewController.h */,
+				A933437118D9FABD002A4FE8 /* DiscoveryViewController.m */,
+				1F60B15218974B9A00232A84 /* Supporting Files */,
 				1F1281F2189761C8005F8A7C /* UserBubble.h */,
 				1F1281F3189761C8005F8A7C /* UserBubble.m */,
 			);
@@ -372,6 +377,7 @@
 				A901663218B670A60061927A /* JCJoystick.m in Sources */,
 				A8E8561418D667C80038C1AE /* TwoPlayerScene.m in Sources */,
 				A97A9ED718989C750017183F /* SettingsViewController.m in Sources */,
+				A933437218D9FABD002A4FE8 /* DiscoveryViewController.m in Sources */,
 				1F60B15C18974B9A00232A84 /* AppDelegate.m in Sources */,
 				A822A3D718C16B2A00CAC8FA /* PauseViewController.m in Sources */,
 				A8E8561118D666FA0038C1AE /* TwoPlayerViewController.m in Sources */,
@@ -501,7 +507,7 @@
 				INFOPLIST_FILE = "Bubble/Bubble-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "42D80F27-3BCA-45F5-84B2-59CC328D80EC";
+				PROVISIONING_PROFILE = "5C4F2528-BD68-4A99-8C8F-D01DC7F70C5B";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
@@ -520,7 +526,7 @@
 				INFOPLIST_FILE = "Bubble/Bubble-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "42D80F27-3BCA-45F5-84B2-59CC328D80EC";
+				PROVISIONING_PROFILE = "5C4F2528-BD68-4A99-8C8F-D01DC7F70C5B";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;

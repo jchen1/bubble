@@ -14,14 +14,15 @@
 //#define TWOPLAYER
 
 @interface TwoPlayerViewController : SinglePlayerViewController
-    <MCBrowserViewControllerDelegate, MCSessionDelegate, UITextFieldDelegate>{
+    <MCBrowserViewControllerDelegate, MCSessionDelegate, UITextFieldDelegate, NSStreamDelegate>{
     
         MCBrowserViewController *browserVC;
         MCAdvertiserAssistant *advertiser;
         MCSession *mySession;
         MCPeerID *myPeerID;
         UIButton *browseButton;
-        
+        NSInputStream *inputStream;
+        NSOutputStream *outputStream;
 }
 
 @end
