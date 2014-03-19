@@ -18,8 +18,6 @@
         _type = 'M';
         idnum = initid;
         _radius=radius;
-    super.radius = radius;
-        //[self setRadius:radius];
         CGPoint pos = CGPointMake(xcoord, ycoord);
         [super setPosition:pos];
     return self;
@@ -32,7 +30,7 @@
     {
         idnum = [NSString stringWithFormat:@"%d",arc4random()];
         super.radius = 16;
-        super.zPosition = 10;
+        super.zPosition = -16;
         _type = 'U';
     }
     return self;
@@ -46,6 +44,7 @@
 -(void)updateRadius:(float)newradius
 {
     _radius = newradius;
+    self.zPosition = -1 * newradius;
 }
 
 -(void) respawn:(CGPoint)pos
@@ -53,6 +52,7 @@
     _lives++;
     _radius = 16;
     super.position = pos;
+    self.zPosition = -16;
     NSLog(@"%d Death(s)", _lives);
 }
 

@@ -20,7 +20,7 @@ int initial_count;
         
         lives = [NSMutableArray arrayWithCapacity:(NUM_LIVES - 1)];
         for (short i = 0; i < NUM_LIVES - 1; i++){
-            [self addLifeIcon:i];
+            [self addLife:i];
         }
     
         self.joystick = [[JCJoystick alloc] initWithControlRadius:40
@@ -52,7 +52,7 @@ int initial_count;
     return self;
 }
 
--(void)addLifeIcon:(short)i{
+-(void)addLife:(short)i{
     SKSpriteNode *life = [SKSpriteNode spriteNodeWithImageNamed:@"bubble_icon.png"];
     [life setScale:.020];
     life.position = CGPointMake(15*(i+1), CGRectGetMaxY(self.frame)-15);

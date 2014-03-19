@@ -92,7 +92,9 @@
     area2 -= MIN(area2, 20.0);
     
     _radius = sqrt(area1 / M_PI);
+    self.zPosition = -1 * _radius;
     other.radius = sqrt(area2 / M_PI);
+    other.zPosition = -1 * other.radius;
 }
 
 -(bool) inside:(CGPoint)touch
