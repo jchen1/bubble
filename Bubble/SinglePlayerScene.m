@@ -69,7 +69,7 @@ int initial_count;
 
 -(void)update:(CFTimeInterval)currentTime {
     
-    if ([myBubble lives] >= 3){
+    if ([myBubble lives] >= NUM_LIVES){
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Game Over!"
                                                         message:@"You ran out of lives."
                                                        delegate:self
