@@ -59,7 +59,7 @@
 
 -(double) getSpeed
 {
-    return MIN(20 * (1 / sqrt(_radius)), 50);
+    return MIN(15 * (1 / sqrt(_radius)), 30);
 }
 
 -(void) updateArc
@@ -73,6 +73,9 @@
         CGMutablePathRef myPath = CGPathCreateMutable();
         CGPathAddArc(myPath, NULL, 0,0, _radius, 0, M_PI*2, YES);
         super.path = myPath;
+        
+        //attempting to fix memory leak?
+        CGPathRelease(myPath);
     }
 }
 
@@ -106,7 +109,7 @@
 
 -(NSString*) toString
 {
-    return [NSString stringWithFormat:@"%@ %c %f %f %f  ", idnum, _type, _radius, super.position.x, super.position.y];
+    return [NSString stringWithFormat:@"%d %c %f %f %f  ", idnum, _type, _radius, super.position.x, super.position.y];
 }
 
 

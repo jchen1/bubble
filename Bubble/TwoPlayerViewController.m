@@ -119,14 +119,14 @@
 
 - (void) receiveMessage: (NSString *) message fromPeer: (MCPeerID *) peer{
     //  Create the final text to append
-    NSString *finalText;
-    finalText = message;
+    //NSString *finalText;
+    //finalText = message;
     if (peer == myPeerID) {
-        finalText = [NSString stringWithFormat:@"\nme: %@ \n", message];
+        //finalText = [NSString stringWithFormat:@"\nme: %@ \n", message];
         return;
     }
     else{
-        finalText = [NSString stringWithFormat:@"\n%@: %@ \n", peer.displayName, message];
+        //finalText = [NSString stringWithFormat:@"\n%@: %@ \n", peer.displayName, message];
     }
     
     //  Append text to text box

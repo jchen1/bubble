@@ -13,7 +13,7 @@
 
 @implementation SinglePlayerScene
 
--(id)initWithSize:(CGSize)size {    
+-(id)initWithSize:(CGSize)size {
     if (self = [super initWithSize:size]) {
         
         self.backgroundColor = [SKColor blackColor];
@@ -22,33 +22,29 @@
         for (short i = 0; i < NUM_LIVES - 1; i++){
             [self addLife:i];
         }
-    
+        
         joystick = [[JCJoystick alloc] initWithControlRadius:40
-                                                baseRadius:45 baseColor:[SKColor grayColor]
-                                                joystickRadius:25 joystickColor:[SKColor whiteColor]];
+                                                  baseRadius:45 baseColor:[SKColor grayColor]
+                                              joystickRadius:25 joystickColor:[SKColor whiteColor]];
         [joystick setPosition:CGPointMake(CGRectGetMidX(self.frame),70)];
         [self addChild:joystick];
         joystick.alpha = .5;
         joystick.zPosition= 120;
-
+        
         bubbles = [NSMutableArray array];
-
+        
         myBubble = [[UserBubble alloc] init];
         myBubble.position = CGPointMake(CGRectGetMidX(self.frame),
-                                 CGRectGetMidY(self.frame));
+                                        CGRectGetMidY(self.frame));
         
         initial_count = 10 + arc4random_uniform(10);
         
         [bubbles addObject:myBubble];
         [self addChild:myBubble];
         
-        for (short i = 0; i < initial_count; i++){
-            [self spawnBubble];
-        }
-        
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(pause) name:@"single_pause" object:nil];
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(unpause) name:@"single_unpause" object:nil];
-
+        
     }
     return self;
 }
@@ -92,11 +88,16 @@
     [self processEats];
     [myBubble updateArc];
     
-    
     //spawn more bubbles if necessary
     if (MAX(0, (int)(initial_count - (int)[bubbles count])) > arc4random() % 100)
     {
-        [self spawnBubble];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            AIBubble *bubble = [self spawnBubble];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [bubbles addObject:bubble];
+                [self addChild:bubble];
+            });
+        });
     }
     
 }
@@ -117,6 +118,7 @@
 }
 
 -(void) clearDeadBubbles:(CGRect)bounds{
+    
     NSMutableIndexSet *removeIndices = [[NSMutableIndexSet alloc] init];
     
     for (int i = 1; i < [bubbles count]; i++)
@@ -136,7 +138,7 @@
             [b updateArc];
         }
     }
-
+    
     [bubbles removeObjectsAtIndexes:removeIndices];
 }
 
@@ -187,7 +189,7 @@
     }
 }
 
-- (void)spawnBubble{
+- (AIBubble *)spawnBubble{
     AIBubble *bubble =[[AIBubble alloc] init];
     switch ([bubble preferredDirection]){
         case 0:
@@ -204,8 +206,7 @@
             break;
         default: break;
     }
-    [bubbles addObject:bubble];
-    [self addChild:bubble];
+    return bubble;
 }
 
 @end

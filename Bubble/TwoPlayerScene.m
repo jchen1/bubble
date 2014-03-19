@@ -20,7 +20,7 @@ int contains(NSMutableArray *arr, int idnum){
 @implementation TwoPlayerScene
 
 -(void)done:(NSString*)dataText{
-    dataText = @"";
+    //dataText = @"";
 }
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
