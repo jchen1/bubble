@@ -16,6 +16,8 @@
 -(id)initWithSize:(CGSize)size {    
     if (self = [super initWithSize:size]) {
         
+        self.backgroundColor = [SKColor blackColor];
+        
         lives = [NSMutableArray arrayWithCapacity:(NUM_LIVES - 1)];
         for (short i = 0; i < NUM_LIVES - 1; i++){
             [self addLife:i];
@@ -28,8 +30,6 @@
         [self addChild:joystick];
         joystick.alpha = .5;
         joystick.zPosition= 120;
-
-        self.backgroundColor = [SKColor blackColor];
 
         bubbles = [NSMutableArray array];
 
@@ -53,6 +53,118 @@
     return self;
 }
 
+-(void)update:(CFTimeInterval)currentTime {
+    
+    //check for game over
+    if ([myBubble deaths] >= NUM_LIVES){
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Game Over!"
+                                                        message:@"You ran out of lives."
+                                                       delegate:self
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+        [self.scene.view setPaused:YES];
+    }
+    
+    //check for deaths
+    if (myBubble.radius < 0.1)
+    {
+        [myBubble respawn:CGPointMake(CGRectGetMidX(self.frame),
+                                      CGRectGetMidY(self.frame))];
+        [self removeLife];
+        [self killAllBubbles];
+    }
+    
+    //update position of userBubble
+    CGRect bounds = [[UIScreen mainScreen] bounds];
+    CGPoint pos = CGPointMake(myBubble.position.x+([myBubble getSpeed])*joystick.x, myBubble.position.y);
+    if (CGRectContainsPoint(bounds,pos)){
+        myBubble.position = pos;
+    }
+    pos = CGPointMake(myBubble.position.x, myBubble.position.y+([myBubble getSpeed])*joystick.y);
+    if (CGRectContainsPoint(bounds,pos)){
+        myBubble.position = pos;
+    }
+    
+    
+    //update aibubbles
+    [self clearDeadBubbles:bounds];
+    [self processEats];
+    [myBubble updateArc];
+    
+    
+    //spawn more bubbles if necessary
+    if (MAX(0, (int)(initial_count - (int)[bubbles count])) > arc4random() % 100)
+    {
+        [self spawnBubble];
+    }
+    
+}
+
+-(void) processEats{
+    for (AIBubble *b1 in bubbles) {
+        for (AIBubble *b2 in bubbles) {
+            if (![b1 isEqual:b2] && [b1 collidesWith:b2]) {
+                if (b1.radius < b2.radius) {
+                    [b2 eat:b1];
+                }
+                else if (b1.radius > b2.radius) {
+                    [b1 eat:b2];
+                }
+            }
+        }
+    }
+}
+
+-(void) clearDeadBubbles:(CGRect)bounds{
+    NSMutableIndexSet *removeIndices = [[NSMutableIndexSet alloc] init];
+    
+    for (int i = 1; i < [bubbles count]; i++)
+    {
+        Bubble *b = [bubbles objectAtIndex:i];
+        if ([b isEqual:myBubble]){
+            continue;
+        }
+        if (b.radius < 0.1 || !CGRectContainsPoint(bounds,b.position) || b.radius > 100.0)
+        {
+            [removeIndices addIndex:i];
+            [b removeFromParent];
+        }
+        else
+        {
+            [(AIBubble*)b updatePosition];
+            [b updateArc];
+        }
+    }
+
+    [bubbles removeObjectsAtIndexes:removeIndices];
+}
+
+-(void) killAllBubbles{
+    NSMutableIndexSet *removeIndices = [[NSMutableIndexSet alloc] init];
+    for (short i = 0; i < [bubbles count]; i++){
+        Bubble *b = [bubbles objectAtIndex:i];
+        if ([b isEqual:myBubble]){
+            continue;
+        }
+        else{
+            [b removeFromParent];
+            [removeIndices addIndex:i];
+        }
+    }
+    [bubbles removeObjectsAtIndexes:removeIndices];
+}
+
+-(void) pause
+{
+    [self.scene.view setPaused:YES];
+}
+
+-(void) unpause
+{
+    [self.scene.view setPaused:NO];
+}
+
 -(void)addLife:(short)i{
     SKSpriteNode *life = [SKSpriteNode spriteNodeWithImageNamed:@"bubble_icon.png"];
     [life setScale:.020];
@@ -66,86 +178,6 @@
     SKSpriteNode *s = [lives lastObject];
     [s removeFromParent];
     [lives removeLastObject];
-}
-
--(void)update:(CFTimeInterval)currentTime {
-    
-    if ([myBubble deaths] >= NUM_LIVES){
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Game Over!"
-                                                        message:@"You ran out of lives."
-                                                       delegate:self
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [alert show];
-        [self.scene.view setPaused:YES];
-    }
-    
-    for (AIBubble *b1 in bubbles) {
-        for (AIBubble *b2 in bubbles) {
-            if (![b1 isEqual:b2] && [b1 collidesWith:b2]) {
-                if (b1.radius < b2.radius) {
-                    [b2 eat:b1];
-                }
-                else if (b1.radius > b2.radius) {
-                    [b1 eat:b2];
-                }
-            }
-        }
-    }
-    
-    NSMutableIndexSet *removeIndices = [[NSMutableIndexSet alloc] init];
-    
-    if (myBubble.radius < 0.1)
-    {
-        [myBubble respawn:CGPointMake(CGRectGetMidX(self.frame),
-                                      CGRectGetMidY(self.frame))];
-        [self removeLife];
-    }
-    
-    [myBubble updateArc];
-    
-    CGRect bounds = [[UIScreen mainScreen] bounds];
-    
-    for (int i = 1; i < [bubbles count]; i++)
-    {
-        AIBubble *b = [bubbles objectAtIndex:i];
-        if (b.radius < 0.1 || !CGRectContainsPoint(bounds,b.position) || b.radius > 100.0)
-        {
-            [removeIndices addIndex:i];
-            [b removeFromParent];
-        }
-        else
-        {
-            [b updatePosition];
-            [b updateArc];
-        }
-    }
-    CGPoint pos = CGPointMake(myBubble.position.x+([myBubble getSpeed])*joystick.x, myBubble.position.y);
-    if (CGRectContainsPoint(bounds,pos)){
-        myBubble.position = pos;
-    }
-    pos = CGPointMake(myBubble.position.x, myBubble.position.y+([myBubble getSpeed])*joystick.y);
-    if (CGRectContainsPoint(bounds,pos)){
-        myBubble.position = pos;
-    }
-
-    [bubbles removeObjectsAtIndexes:removeIndices];
-    
-    if (MAX(0, (int)(initial_count - (int)[bubbles count])) > arc4random() % 100)
-    {
-        [self spawnBubble];
-    }
-    
-}
-
--(void) pause
-{
-    [self.scene.view setPaused:YES];
-}
-
--(void) unpause
-{
-    [self.scene.view setPaused:NO];
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
