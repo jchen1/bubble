@@ -20,8 +20,8 @@
     {
         _type = 'A';
         super.radius = MAX(5.0,(double)(arc4random_uniform(100000) / 100000.0) * 40.0);
-        pd = arc4random_uniform(4);
         super.zPosition = -1 * super.radius;
+        pd = arc4random_uniform(4);
     }    
     
     return self;

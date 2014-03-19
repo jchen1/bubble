@@ -20,11 +20,10 @@
     self = [super initWithColor:[SKColor redColor]];
     if (self)
     {
-        idnum = [NSString stringWithFormat:@"%d",arc4random()];
+        _type = 'U';
         self.deaths = 0;
         super.radius = 16;
         super.zPosition = -16;
-        _type = 'U';
     }
     return self;
 }

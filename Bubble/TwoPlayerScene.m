@@ -8,9 +8,9 @@
 
 #import "TwoPlayerScene.h"
 
-int contains(NSMutableArray *arr, NSString* id){
+int contains(NSMutableArray *arr, int idnum){
     for (UserBubble *b in arr){
-        if ([[b idnum] isEqualToString:id]){
+        if ([b idnum] == idnum){
             return (int)[arr indexOfObject:b];
         }
     }

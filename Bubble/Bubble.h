@@ -12,10 +12,10 @@
 
 @property double radius;
 @property char type;
-@property (strong) NSString* idnum;
+@property int idnum;
 
 -(id) initWithColor : (SKColor*) color;
--(id) initWithId:(NSString*)initid andRadius:(float)radius andXcoord:(float)xcoord andYcoord:(float)ycoord;
+-(id) initWithId:(int)initid andRadius:(float)radius andXcoord:(float)xcoord andYcoord:(float)ycoord;
 -(void)updateRadius:(float)newradius;
 -(void) updateArc;
 -(bool) inside: (CGPoint) touch;

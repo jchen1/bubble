@@ -25,6 +25,7 @@
     if (self) {
         _type = 'B';
         _radius = 5;
+        idnum = arc4random();
         super.lineWidth = 1.0;
         super.fillColor = color;
         super.strokeColor = [SKColor whiteColor];
@@ -36,7 +37,7 @@
     return self;
 }
 
--(id) initWithId:(NSString*)initid andRadius:(float)radius andXcoord:(float)xcoord andYcoord:(float)ycoord
+-(id) initWithId:(int)initid andRadius:(float)radius andXcoord:(float)xcoord andYcoord:(float)ycoord
 {
     self = [self initWithColor:[SKColor greenColor]];
     if (self)
