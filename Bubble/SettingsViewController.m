@@ -32,6 +32,14 @@
     [self.backButton addTarget:self action:@selector(goBack) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.backButton];
     
+    UILabel *copyright = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMidX(self.view.bounds) - 100, 50, 200, 200)];
+    copyright.lineBreakMode = NSLineBreakByWordWrapping;
+    copyright.textAlignment = NSTextAlignmentCenter;
+    copyright.numberOfLines = 0;
+    copyright.textColor = [UIColor whiteColor];
+    copyright.text = @"created by:\n\nJeff Chen\nStephen Greco\nRolando Schneiderman";
+    [self.view addSubview:copyright];
+    
 }
 
 - (void)didReceiveMemoryWarning

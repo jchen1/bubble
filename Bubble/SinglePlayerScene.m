@@ -26,7 +26,7 @@ int initial_count;
         self.joystick = [[JCJoystick alloc] initWithControlRadius:40
                                                 baseRadius:45 baseColor:[SKColor grayColor]
                                                 joystickRadius:25 joystickColor:[SKColor whiteColor]];
-        [self.joystick setPosition:CGPointMake(160,70)];
+        [self.joystick setPosition:CGPointMake(CGRectGetMidX(self.frame),70)];
         [self addChild:self.joystick];
         _joystick.alpha = .5;
         _joystick.zPosition= 120;

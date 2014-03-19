@@ -8,13 +8,6 @@
 
 #import "PauseViewController.h"
 
-@interface PauseViewController ()
-
-@property (nonatomic, strong) UIButton *unpauseButton;
-@property (nonatomic, strong) UIButton *quitButton;
-
-@end
-
 @implementation PauseViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
