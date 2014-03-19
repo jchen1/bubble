@@ -19,14 +19,13 @@
     
     NSMutableArray *bubbles;
     NSMutableArray *directions;
-    SKSpriteNode *life1;
-    SKSpriteNode *life2;
-    SKSpriteNode *life3;
+    NSMutableArray *lives;
     
     UserBubble *myBubble;
 }
 
 @property (strong, nonatomic) JCJoystick *joystick;
+
 
 -(void) generateBubbles: (unsigned int)seed;
 

@@ -8,6 +8,8 @@
 
 #import "SinglePlayerScene.h"
 
+#define NUM_LIVES 3
+
 
 @implementation SinglePlayerScene
 
@@ -15,25 +17,12 @@ int initial_count;
 
 -(id)initWithSize:(CGSize)size {    
     if (self = [super initWithSize:size]) {
-        life3 = [SKSpriteNode spriteNodeWithImageNamed:@"bubble_icon.png"];
-        [life3 setScale:.050];
-        life3.position = CGPointMake(25, CGRectGetMaxY(self.frame)-15);
-        [self addChild: life3];
         
-        life2 = [SKSpriteNode spriteNodeWithImageNamed:@"bubble_icon.png"];
-        [life2 setScale:.050];
-        life2.position = CGPointMake(50, CGRectGetMaxY(self.frame)-15);
-        [self addChild: life2];
-        
-        life1 = [SKSpriteNode spriteNodeWithImageNamed:@"bubble_icon.png"];
-        [life1 setScale:.050];
-        life1.position = CGPointMake(75, CGRectGetMaxY(self.frame)-15);
-        [self addChild: life1];
-        
-        life1.zPosition=100;
-        life2.zPosition=100;
-        life3.zPosition=100;
-
+        lives = [NSMutableArray arrayWithCapacity:(NUM_LIVES - 1)];
+        for (short i = 0; i < NUM_LIVES - 1; i++){
+            [self addLifeIcon:i];
+        }
+    
         self.joystick = [[JCJoystick alloc] initWithControlRadius:40
                                                 baseRadius:45 baseColor:[SKColor grayColor]
                                                 joystickRadius:25 joystickColor:[SKColor whiteColor]];
@@ -63,23 +52,23 @@ int initial_count;
     return self;
 }
 
--(void)drawLives:(int)numLives{
-    for(int i=0; i<numLives;i++)
-    {
-//LOL LIKE IM GONNA USE THIS EVER
-        CGRectGetMaxY(self.frame);
-    }
+-(void)addLifeIcon:(short)i{
+    SKSpriteNode *life = [SKSpriteNode spriteNodeWithImageNamed:@"bubble_icon.png"];
+    [life setScale:.020];
+    life.position = CGPointMake(15*(i+1), CGRectGetMaxY(self.frame)-15);
+    life.zPosition = MAXFLOAT;
+    [self addChild: life];
+    [lives addObject:life];
+}
+
+-(void)removeLife{
+    SKSpriteNode *s = [lives lastObject];
+    [s removeFromParent];
+    [lives removeLastObject];
 }
 
 -(void)update:(CFTimeInterval)currentTime {
     
-    if([myBubble lives]==1)
-        life1.hidden=true;
-    if([myBubble lives]==2)
-        life2.hidden=true;
-    if([myBubble lives]==3)
-        life3.hidden=true;
-        
     if ([myBubble lives] >= 3){
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Game Over!"
                                                         message:@"You ran out of lives."
@@ -109,6 +98,7 @@ int initial_count;
     {
         [myBubble respawn:CGPointMake(CGRectGetMidX(self.frame),
                                       CGRectGetMidY(self.frame))];
+        [self removeLife];
     }
     
     [myBubble updateArc];

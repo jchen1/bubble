@@ -68,7 +68,7 @@
     UIImage *singlePlayerButtonBackground = [UIImage imageNamed:@"1p_button.png"];
     UIImage *twoPlayerButtonBackground = [UIImage imageNamed:@"2p_button.png"];
     UIImage *optionsButtonBackground = [UIImage imageNamed:@"options_button.png"];
-    UIImage *bubbleIconImage = [UIImage imageNamed:@"bubble_icon.png"];
+    UIImage *bubbleIconImage = [UIImage imageNamed:@"bubble_icon_title.png"];
     
     self.bubbleicon = [[UIImageView alloc] initWithFrame:CGRectMake(60.0, 100.0, 200.0, 200.0)];
     self.bubbleicon.image = bubbleIconImage;
