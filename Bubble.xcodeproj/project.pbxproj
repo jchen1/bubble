@@ -28,6 +28,7 @@
 		A822A3D718C16B2A00CAC8FA /* PauseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A822A3D618C16B2A00CAC8FA /* PauseViewController.m */; };
 		A8E2524518D93D0600510145 /* bubble_icon_title.png in Resources */ = {isa = PBXBuildFile; fileRef = A8E2524418D93D0600510145 /* bubble_icon_title.png */; };
 		A8E2524718D93D4100510145 /* bubble_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A8E2524618D93D4100510145 /* bubble_icon.png */; };
+		A8E2524918D9556900510145 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8E2524818D9556900510145 /* GameKit.framework */; };
 		A8E8560818D6650A0038C1AE /* 1p_button.png in Resources */ = {isa = PBXBuildFile; fileRef = A8E8560318D6650A0038C1AE /* 1p_button.png */; };
 		A8E8560918D6650A0038C1AE /* bubble_button.png in Resources */ = {isa = PBXBuildFile; fileRef = A8E8560418D6650A0038C1AE /* bubble_button.png */; };
 		A8E8560A18D6650A0038C1AE /* pause_button.png in Resources */ = {isa = PBXBuildFile; fileRef = A8E8560518D6650A0038C1AE /* pause_button.png */; };
@@ -86,6 +87,7 @@
 		A822A3D618C16B2A00CAC8FA /* PauseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PauseViewController.m; sourceTree = "<group>"; };
 		A8E2524418D93D0600510145 /* bubble_icon_title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubble_icon_title.png; sourceTree = "<group>"; };
 		A8E2524618D93D4100510145 /* bubble_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubble_icon.png; sourceTree = "<group>"; };
+		A8E2524818D9556900510145 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		A8E8560318D6650A0038C1AE /* 1p_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1p_button.png; sourceTree = "<group>"; };
 		A8E8560418D6650A0038C1AE /* bubble_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubble_button.png; sourceTree = "<group>"; };
 		A8E8560518D6650A0038C1AE /* pause_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pause_button.png; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 				A956913B18984320004FBD99 /* MultipeerConnectivity.framework in Frameworks */,
 				1F60B14C18974B9A00232A84 /* CoreGraphics.framework in Frameworks */,
 				1F60B14E18974B9A00232A84 /* UIKit.framework in Frameworks */,
+				A8E2524918D9556900510145 /* GameKit.framework in Frameworks */,
 				1F60B15018974B9A00232A84 /* SpriteKit.framework in Frameworks */,
 				1F60B14A18974B9A00232A84 /* Foundation.framework in Frameworks */,
 			);
@@ -155,6 +158,7 @@
 		1F60B14818974B9A00232A84 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A8E2524818D9556900510145 /* GameKit.framework */,
 				A956913A18984320004FBD99 /* MultipeerConnectivity.framework */,
 				1F60B14918974B9A00232A84 /* Foundation.framework */,
 				1F60B14B18974B9A00232A84 /* CoreGraphics.framework */,
@@ -294,6 +298,11 @@
 				TargetAttributes = {
 					1F60B14518974B9A00232A84 = {
 						DevelopmentTeam = 5V53Z3K684;
+						SystemCapabilities = {
+							com.apple.GameCenter = {
+								enabled = 1;
+							};
+						};
 					};
 					1F60B17018974B9A00232A84 = {
 						TestTargetID = 1F60B14518974B9A00232A84;
@@ -490,9 +499,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Bubble/Bubble-Prefix.pch";
 				INFOPLIST_FILE = "Bubble/Bubble-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "42D80F27-3BCA-45F5-84B2-59CC328D80EC";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -507,9 +518,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Bubble/Bubble-Prefix.pch";
 				INFOPLIST_FILE = "Bubble/Bubble-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "42D80F27-3BCA-45F5-84B2-59CC328D80EC";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
