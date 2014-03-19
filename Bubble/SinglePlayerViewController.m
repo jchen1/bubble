@@ -1,30 +1,34 @@
 //
-//  ViewController.m
+//  SinglePlayerViewController.m
 //  Bubble
 //
 //  Created by Jeff Chen on 1/27/14.
 //  Copyright (c) 2014 Jeff Chen. All rights reserved.
 //
 
-///
-///SSEE SECONDVIEWCONTROLLER.M TO GET STARTED
-///
-
 #import "SinglePlayerViewController.h"
 #import "SinglePlayerScene.h"
-#import <SpriteKit/SpriteKit.h>
 
-@implementation SinglePlayerViewController
-SinglePlayerScene *scene;
+//uncomment the following line to display fps
+#define FPS
+
+@implementation SinglePlayerViewController {
+    SinglePlayerScene *scene;
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    //SinglePlayerScene *scene;
     SKView * skView = [[SKView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.view = skView;
+    
+#ifndef FPS
     skView.showsFPS = NO;
     skView.showsNodeCount = NO;
+#else
+    skView.showsFPS = YES;
+    skView.showsNodeCount = YES;
+#endif
     
     [self setUpUI];
     

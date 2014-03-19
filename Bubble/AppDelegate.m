@@ -7,12 +7,6 @@
 //
 
 
-
-///SEE THE COMMENTS IN SECONDVIEWCONTROLLER.M TO GET STARTED
-///
-
-///
-
 #import "AppDelegate.h"
 #import "SplashViewController.h"
 #import "SinglePlayerViewController.h"

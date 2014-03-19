@@ -1,5 +1,5 @@
 //
-//  bubble.h
+//  Bubble.h
 //  Bubble
 //
 //  Created by Jeff Chen on 1/27/14.
@@ -9,23 +9,19 @@
 #import <SpriteKit/SpriteKit.h>
 
 @interface Bubble : SKShapeNode
-{
-    double _radius;
-    char _type;
-    NSString* idnum;
-}
+
+@property double radius;
+@property char type;
+@property (strong) NSString* idnum;
+
 -(id) initWithColor : (SKColor*) color;
+-(id) initWithId:(NSString*)initid andRadius:(float)radius andXcoord:(float)xcoord andYcoord:(float)ycoord;
+-(void)updateRadius:(float)newradius;
 -(void) updateArc;
--(void) setRadius: (double) radius;
--(double) radius;
--(void) updatePosition;
--(NSString*) idnum;
 -(bool) inside: (CGPoint) touch;
 -(bool) collidesWith: (Bubble*) other;
 -(void) eat: (Bubble*) other;
--(NSString*) toString;
 -(double) getSpeed;
--(id) initWithId:(NSString*)initid andRadius:(float)radius andXcoord:(float)xcoord andYcoord:(float)ycoord;
--(void)updateRadius:(float)newradius;
+-(NSString*) toString;
 
 @end

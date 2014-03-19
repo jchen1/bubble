@@ -12,4 +12,7 @@
 @interface AIBubble : Bubble
 
 @property int preferredDirection;
+
+-(void)updatePosition;
+
 @end

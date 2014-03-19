@@ -6,12 +6,22 @@
 //  Copyright (c) 2014 Jeff Chen. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import <SpriteKit/SpriteKit.h>
 #import "TwoPlayerScene.h"
-#import "SplashViewController.h"
-#import "PauseViewController.h"
+#import "SinglePlayerViewController.h"
+#import <MultipeerConnectivity/MultipeerConnectivity.h>
 
-@interface TwoPlayerViewController : UIViewController
+//uncomment the next line to test out twoplayer mode
+//#define TWOPLAYER
+
+@interface TwoPlayerViewController : SinglePlayerViewController
+    <MCBrowserViewControllerDelegate, MCSessionDelegate, UITextFieldDelegate>{
+    
+        MCBrowserViewController *browserVC;
+        MCAdvertiserAssistant *advertiser;
+        MCSession *mySession;
+        MCPeerID *myPeerID;
+        UIButton *browseButton;
+        
+}
 
 @end

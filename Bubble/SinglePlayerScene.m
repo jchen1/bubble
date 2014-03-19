@@ -1,5 +1,5 @@
 //
-//  MyScene.m
+//  SinglePlayerScene.m
 //  Bubble
 //
 //  Created by Jeff Chen on 1/27/14.
@@ -70,7 +70,7 @@
 
 -(void)update:(CFTimeInterval)currentTime {
     
-    if ([myBubble lives] >= NUM_LIVES){
+    if ([myBubble deaths] >= NUM_LIVES){
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Game Over!"
                                                         message:@"You ran out of lives."
                                                        delegate:self
@@ -80,8 +80,8 @@
         [self.scene.view setPaused:YES];
     }
     
-    for (Bubble *b1 in bubbles) {
-        for (Bubble *b2 in bubbles) {
+    for (AIBubble *b1 in bubbles) {
+        for (AIBubble *b2 in bubbles) {
             if (![b1 isEqual:b2] && [b1 collidesWith:b2]) {
                 if (b1.radius < b2.radius) {
                     [b2 eat:b1];
@@ -108,7 +108,7 @@
     
     for (int i = 1; i < [bubbles count]; i++)
     {
-        Bubble *b = [bubbles objectAtIndex:i];
+        AIBubble *b = [bubbles objectAtIndex:i];
         if (b.radius < 0.1 || !CGRectContainsPoint(bounds,b.position) || b.radius > 100.0)
         {
             [removeIndices addIndex:i];
@@ -131,8 +131,7 @@
 
     [bubbles removeObjectsAtIndexes:removeIndices];
     
-    double wut = arc4random_uniform([myBubble radius]);
-    if ([bubbles count] < MAX(0.0,MIN(wut, initial_count - sqrt([myBubble radius]))))
+    if (MAX(0, (int)(initial_count - (int)[bubbles count])) > arc4random() % 100)
     {
         [self spawnBubble];
     }

@@ -1,5 +1,5 @@
 //
-//  bubble.m
+//  Bubble.m
 //  Bubble
 //
 //  Created by Jeff Chen on 1/27/14.
@@ -10,6 +10,10 @@
 
 @implementation Bubble
 
+@synthesize radius = _radius;
+@synthesize type = _type;
+@synthesize idnum = idnum;
+
 -(id)init
 {
     return [self initWithColor:[SKColor grayColor]];
@@ -19,8 +23,8 @@
 {
     self = [super init];
     if (self) {
-        _radius = 5;
         _type = 'B';
+        _radius = 5;
         super.lineWidth = 1.0;
         super.fillColor = color;
         super.strokeColor = [SKColor whiteColor];
@@ -40,7 +44,6 @@
         _type = 'M';
         idnum = initid;
         _radius=radius;
-        //[self setRadius:radius];
         CGPoint pos = CGPointMake(xcoord, ycoord);
         [super setPosition:pos];
     }
@@ -50,6 +53,12 @@
 -(void)updateRadius:(float)newradius
 {
     _radius = newradius;
+    self.zPosition = -1 * newradius;
+}
+
+-(double) getSpeed
+{
+    return MIN(20 * (1 / sqrt(_radius)), 50);
 }
 
 -(void) updateArc
@@ -64,21 +73,6 @@
         CGPathAddArc(myPath, NULL, 0,0, _radius, 0, M_PI*2, YES);
         super.path = myPath;
     }
-}
-
--(void) setRadius: (double) radius
-{
-    _radius = radius;
-}
-
--(double)radius
-{
-    return _radius;
-}
-
--(NSString*)idnum
-{
-    return idnum;
 }
 
 -(void) eat:(Bubble *)other
@@ -114,17 +108,6 @@
     return [NSString stringWithFormat:@"%@ %c %f %f %f  ", idnum, _type, _radius, super.position.x, super.position.y];
 }
 
--(double) getSpeed
-{
-    return MIN((5 / sqrt(_radius)), 10);
-}
 
-/*
- * Don't do anything, because fuck that shit.
- */
--(void)updatePosition
-{
-    
-}
 
 @end

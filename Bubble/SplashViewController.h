@@ -1,5 +1,5 @@
 //
-//  SecondViewController.h
+//  SplashViewController.h
 //  Bubble
 //
 //  Created by Rolando Schneiderman on 1/28/14.

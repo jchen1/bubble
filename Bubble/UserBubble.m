@@ -10,18 +10,10 @@
 
 @implementation UserBubble
 
--(id) initWithId:(NSString*)initid andRadius:(float)radius andXcoord:(float)xcoord andYcoord:(float)ycoord
-{
-    self = [super initWithColor:[SKColor greenColor]];
+@synthesize type = _type;
+@synthesize deaths;
+@synthesize idnum;
 
-        NSLog(@"aasddddffff");
-        _type = 'M';
-        idnum = initid;
-        _radius=radius;
-        CGPoint pos = CGPointMake(xcoord, ycoord);
-        [super setPosition:pos];
-    return self;
-}
 
 -(id) init
 {
@@ -29,6 +21,7 @@
     if (self)
     {
         idnum = [NSString stringWithFormat:@"%d",arc4random()];
+        self.deaths = 0;
         super.radius = 16;
         super.zPosition = -16;
         _type = 'U';
@@ -36,29 +29,15 @@
     return self;
 }
 
--(double) getSpeed
-{
-    return MIN(20 * (1 / sqrt(_radius)), 50);
-}
-
--(void)updateRadius:(float)newradius
-{
-    _radius = newradius;
-    self.zPosition = -1 * newradius;
-}
-
 -(void) respawn:(CGPoint)pos
 {
-    _lives++;
-    _radius = 16;
+    deaths++;
+    super.radius = 16;
     super.position = pos;
     self.zPosition = -16;
-    NSLog(@"%d Death(s)", _lives);
+    NSLog(@"%d Death(s)", deaths);
 }
 
--(NSUInteger) lives{
-    return _lives;
-}
 
 -(void)updatePosition:(int)direction
 {

@@ -10,31 +10,27 @@
 
 @implementation AIBubble
 
+@synthesize type = _type;
+@synthesize preferredDirection = pd;
+
 -(id) init
 {
     self = [super initWithColor:[SKColor blueColor]];
     if (self)
     {
         _type = 'A';
-        //super.radius = 3 + ((double)arc4random_uniform(69133742) / 9876248);
         super.radius = MAX(5.0,(double)(arc4random_uniform(100000) / 100000.0) * 40.0);
+        pd = arc4random_uniform(4);
         super.zPosition = -1 * super.radius;
-        self.preferredDirection = arc4random_uniform(4);
     }    
     
     return self;
 }
 
-//AIs are on diets
--(void) eat:(Bubble *)other
-{
-    return [super eat:other];
-}
-
 -(void) updatePosition
 {
     CGPoint pos = super.position;
-    switch (self.preferredDirection) {
+    switch (pd) {
         case 0: //up
             pos.y+= [super getSpeed];
             break;

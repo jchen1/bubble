@@ -1,26 +1,20 @@
 //
-//  ViewController.m
-//  SimpleChat
+//  SplashViewController.m
+//  Bubble
 //
 //  Created by Jeff Chen on 9/27/13.
 //  Copyright (c) 2013 Jeff Chen. All rights reserved.
 //
 
 
-/*
-    THIS IS THE FIRST THING THAT GETS LOADED. IT CAN LOAD SETTINGSVIEWCONTROLLER.C AND ViewController.C FROM THE SCREEN. IT MAKES 2 BUTTONS THAT PUSH THESE VIEWS IN THE SETUPUI METHOD. RIGHT NOW ONLY THE VIEWCONTROLLER HAS A POP BUTTON TO TAKE IT HOME, SO SETTINGS RE-ALLOCATES AND INSTANCIATES A NEW VIEW CONTROLLER OF THIS FIRST IMLEAVING IT FOR TESTING PURPOSES PLS DONT CHANGE EVEN THO IT SEEMS LIKE A BUG. VIEWDIEDLOAD IS THE FIRST THING THAT GETS CALLED. LOOK AROUND MOST FUNCTIONS ARE NAMED APPROPRIATELY (;
-*/
-
 #import "SplashViewController.h"
 #import <MultipeerConnectivity/MultipeerConnectivity.h>
 #import "SinglePlayerViewController.h"
-#import "TwoPlayerViewController.h"
 #import "SettingsViewController.h"
 
-
-@interface SplashViewController ()
-
-@end
+#ifdef TWOPLAYER
+#import "TwoPlayerViewController.h"
+#endif
 
 
 @implementation SplashViewController
@@ -53,8 +47,20 @@
 }
 
 - (IBAction)multiGameView {
+    
+#ifndef TWOPLAYER    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Coming Soon!"
+                                                    message:@"This feature is still in development."
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
+#else
     TwoPlayerViewController *gameView = [[TwoPlayerViewController alloc] init];
     [self.navigationController pushViewController:gameView animated:NO];
+#endif
+    
+    
 }
 
 - (IBAction)optionsView {
