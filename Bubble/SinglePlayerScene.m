@@ -15,6 +15,25 @@ int initial_count;
 
 -(id)initWithSize:(CGSize)size {    
     if (self = [super initWithSize:size]) {
+        life3 = [SKSpriteNode spriteNodeWithImageNamed:@"bubble_icon.png"];
+        [life3 setScale:.050];
+        life3.position = CGPointMake(25, CGRectGetMaxY(self.frame)-15);
+        [self addChild: life3];
+        
+        life2 = [SKSpriteNode spriteNodeWithImageNamed:@"bubble_icon.png"];
+        [life2 setScale:.050];
+        life2.position = CGPointMake(50, CGRectGetMaxY(self.frame)-15);
+        [self addChild: life2];
+        
+        life1 = [SKSpriteNode spriteNodeWithImageNamed:@"bubble_icon.png"];
+        [life1 setScale:.050];
+        life1.position = CGPointMake(75, CGRectGetMaxY(self.frame)-15);
+        [self addChild: life1];
+        
+        life1.zPosition=100;
+        life2.zPosition=100;
+        life3.zPosition=100;
+
         self.joystick = [[JCJoystick alloc] initWithControlRadius:40
                                                 baseRadius:45 baseColor:[SKColor grayColor]
                                                 joystickRadius:25 joystickColor:[SKColor whiteColor]];
@@ -44,8 +63,23 @@ int initial_count;
     return self;
 }
 
--(void)update:(CFTimeInterval)currentTime {
+-(void)drawLives:(int)numLives{
+    for(int i=0; i<numLives;i++)
+    {
+//LOL LIKE IM GONNA USE THIS EVER
+        CGRectGetMaxY(self.frame);
+    }
+}
 
+-(void)update:(CFTimeInterval)currentTime {
+    
+    if([myBubble lives]==1)
+        life1.hidden=true;
+    if([myBubble lives]==2)
+        life2.hidden=true;
+    if([myBubble lives]==3)
+        life3.hidden=true;
+        
     if ([myBubble lives] >= 3){
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Game Over!"
                                                         message:@"You ran out of lives."

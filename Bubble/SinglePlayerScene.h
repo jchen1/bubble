@@ -19,6 +19,9 @@
     
     NSMutableArray *bubbles;
     NSMutableArray *directions;
+    SKSpriteNode *life1;
+    SKSpriteNode *life2;
+    SKSpriteNode *life3;
     
     UserBubble *myBubble;
 }
