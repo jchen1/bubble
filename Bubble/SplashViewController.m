@@ -11,6 +11,7 @@
 #import <MultipeerConnectivity/MultipeerConnectivity.h>
 #import "SinglePlayerViewController.h"
 #import "SettingsViewController.h"
+#define TWOPLAYER
 
 #ifdef TWOPLAYER
 #import "TwoPlayerViewController.h"

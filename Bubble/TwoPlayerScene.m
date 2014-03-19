@@ -43,6 +43,7 @@ int contains(NSMutableArray *arr, int idnum){
 }
 
 -(void)update:(CFTimeInterval)currentTime {
+    return;
     /*int tmpid; //these variables yo
     char tmpchar; //see comments for hypothesized use
     float tmpRad; //dont think i will actually need them
