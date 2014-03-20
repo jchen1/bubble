@@ -12,5 +12,6 @@
 @interface SettingsViewController : UIViewController{
     UIButton *backButton;
     UILabel *copyright;
+    UILabel *highScore;
 }
 @end

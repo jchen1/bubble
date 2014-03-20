@@ -60,6 +60,13 @@
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
         [alert show];
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        int high = [[defaults valueForKey:@"singleHighScore"] intValue];
+        if ((int)([myBubble totalEaten] * 10) > high){
+            [defaults setObject:[[NSNumber alloc]
+                                 initWithInt:(int)([myBubble totalEaten] * 10)]
+                         forKey:@"singleHighScore"];
+        }
         [self.scene.view setPaused:YES];
     }
     

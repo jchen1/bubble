@@ -27,7 +27,7 @@
     UIImage *backButtonBackground = [UIImage imageNamed:@"back_button.png"];
     
     backButton =  [UIButton buttonWithType:UIButtonTypeSystem] ;
-    [backButton setFrame:CGRectMake(60.0, 470.0, 200.0, 50.0)];
+    [backButton setFrame:CGRectMake(60.0, self.view.bounds.size.height - 100.0, 200.0, 50.0)];
     [backButton setBackgroundImage:backButtonBackground forState:UIControlStateNormal];
     [backButton addTarget:self action:@selector(goBack) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:backButton];
@@ -39,6 +39,16 @@
     copyright.textColor = [UIColor whiteColor];
     copyright.text = @"created by:\n\nJeff Chen\nStephen Greco\nRolando Schneiderman";
     [self.view addSubview:copyright];
+    
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    int high = [[defaults valueForKey:@"singleHighScore"] intValue];
+    highScore = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMidX(self.view.bounds) - 100, 220, 200, 50)];
+    highScore.textAlignment = NSTextAlignmentCenter;
+    highScore.numberOfLines = 1;
+    highScore.textColor = [UIColor whiteColor];
+    highScore.text = [NSString stringWithFormat:@"High Score: %d", high];
+    [self.view addSubview:highScore];
     
 }
 
