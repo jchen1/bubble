@@ -7,6 +7,9 @@
 //
 
 #import "TwoPlayerViewController.h"
+#import <GameKit/GameKit.h>
+
+
 
 @implementation TwoPlayerViewController{
     TwoPlayerScene *scene;
@@ -20,6 +23,8 @@
 
 - (void)viewDidLoad
 {
+
+    
     globalin=@"";
     [super viewDidLoad];
     SKView * skView = [[SKView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -56,6 +61,84 @@
 
     
     [skView presentScene:scene];
+    
+}
+
+-(void)gameKitSetup{
+    GKMatchRequest *matchrequest = [[GKMatchRequest alloc] init];
+    matchrequest.maxPlayers = 2;
+    
+    GKMatchmakerViewController *controller = [[GKMatchmakerViewController alloc] initWithMatchRequest:matchrequest];
+
+    controller.matchmakerDelegate = self;
+    // show it
+    // what is it even trying to do??
+    /*
+    [self.viewController presentViewController:viewController
+                                      animated:YES
+                                    completion:nil];
+     */
+    
+    GKMatchmaker *matchmaker = [GKMatchmaker sharedMatchmaker];
+    [matchmaker
+     findMatchForRequest:myMatchRequest
+     withCompletionHandler:^(GKMatch *match, NSError *error) {
+         if (error) {
+             // Handle error
+         }
+         else {
+             // get ready to play
+         }
+     }];
+    
+}
+
+///FINDING NEARBY PLAYERS
+
+- (void)startLookingForPlayers
+{
+    GKMatchmaker *matchmaker = [GKMatchmaker sharedMatchmaker];
+    [matchmaker startBrowsingForNearbyPlayersWithReachableHandler:^(NSString *playerID, BOOL reachable) {
+        [playersToInvite addObject:playerID];
+        }
+     ];
+}
+
+- (void)stopLookingForPlayers
+{
+    // stop looking nearby players
+    [[GKMatchmaker sharedMatchmaker] stopBrowsingForNearbyPlayers];
+}
+
+
+///SENDING INVITES
+
+-(void)invite{
+    GKMatchmaker *matchmaker = [GKMatchmaker sharedMatchmaker];
+    
+    myMatchRequest.playersToInvite = playersToInvite;
+    myMatchRequest.inviteMessage = @"Try and pop my bubble(;";
+  //  myMatchRequest.responsehandler = self.responsehandler;
+    
+}
+
+
+- (void)matchmakerViewController:(GKMatchmakerViewController *)viewController
+                    didFindMatch:(GKMatch *)match
+{
+    // set delegate
+    match.delegate = self;
+    // Setup match (your code here)
+}
+
+-(void)matchmakerViewControllerWasCancelled:(GKMatchmakerViewController *)viewController
+{
+    
+    
+}
+
+-(void)matchmakerViewController:(GKMatchmakerViewController *)viewController didFailWithError:(NSError *)error
+{
     
 }
 
