@@ -35,8 +35,12 @@ int contains(NSMutableArray *arr, int idnum){
 
 
 -(void)done:(NSString*)dataText{
+<<<<<<< HEAD
     //NSLog(@"delegate working");
     //[self sendText:dataText];
+=======
+    //dataText = @"";
+>>>>>>> 8611c557f139e932a7f3f6227fe3d657b73ea81a
 }
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
