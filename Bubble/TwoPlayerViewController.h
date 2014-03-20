@@ -16,16 +16,13 @@
 
 
 @interface TwoPlayerViewController : SinglePlayerViewController
-    <MCBrowserViewControllerDelegate, MCSessionDelegate, UITextFieldDelegate, NSStreamDelegate, viewControllerDelegate, GKMatchmakerViewControllerDelegate, UINavigationControllerDelegate>{
-    
-        MCBrowserViewController *browserVC;
-        MCAdvertiserAssistant *advertiser;
-        MCSession *mySession;
-        MCPeerID *myPeerID;
+    <viewControllerDelegate, GKMatchmakerViewControllerDelegate, GKMatchDelegate>{
+
         UIButton *browseButton;
         NSInputStream *inputStream;
         NSOutputStream *outputStream;
-        
+        NSMutableArray *playersToInvite;
+        GKMatchRequest *myMatchRequest;
 }
 
 -(void)done:(NSString *)dataText;

@@ -16,47 +16,8 @@
 }
 
 
--(void)done:(NSString*)dataText{
-    //NSLog(@"delegate working");
-    //[self sendText:dataText];
-}
-
-- (void)matchmakerViewController:(GKMatchmakerViewController *)viewController
-                    didFindMatch:(GKMatch *)match
-{
-    match.delegate = scene;
-}
-
-- (void)matchmakerViewControllerWasCancelled:(GKMatchmakerViewController *)viewController
-{
-    [self popCurrentView];
-}
-
-- (void)matchmakerViewController:(GKMatchmakerViewController *)viewController didFailWithError:(NSError*)error{
-    [self popCurrentView];
-}
-
 - (void)viewDidLoad
 {
-    /*GKMatchRequest *matchRequest = [[GKMatchRequest alloc] init];
-    matchRequest.minPlayers = 2;
-    matchRequest.maxPlayers = 2;
-    GKMatchmakerViewController *controller = [[GKMatchmakerViewController alloc] initWithMatchRequest:matchRequest];
-    [controller setDelegate:self];
-    [self presentViewController:controller
-                       animated:YES
-                     completion:nil];
-
-    NSMutableArray *playersToInvite;
-    GKMatchmaker *matchmaker = [GKMatchmaker sharedMatchmaker];
-    [matchmaker startBrowsingForNearbyPlayersWithReachableHandler: ^(NSString *playerID, BOOL reachable) {
-         [playersToInvite addObject:playerID];
-    }];
-    
-    [[GKMatchmaker sharedMatchmaker] stopBrowsingForNearbyPlayers];
-    */
-    
-    globalin=@"";
     [super viewDidLoad];
     SKView * skView = [[SKView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.view = skView;
@@ -69,15 +30,6 @@
     skView.showsNodeCount = YES;
 #endif
     
-    
-    browseButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    browseButton.frame = CGRectMake(CGRectGetMidX(self.view.bounds) - 40, 10, 80, 10);
-    [browseButton addTarget:self action:@selector(showBrowserVC) forControlEvents:UIControlEventTouchUpInside];
-    [browseButton setTitle:@"Bluetooth" forState:UIControlStateNormal];
-    [self.view addSubview:browseButton];
-    
-    [self setUpMultipeer];
-    [self showBrowserVC];
     
     UIImage *pauseButtonBackground = [UIImage imageNamed:@"pause_button.png"];
     
