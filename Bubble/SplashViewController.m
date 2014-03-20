@@ -44,7 +44,7 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(pauseMusic) name:@"splash_pause" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(resumeMusic) name:@"splash_resume" object:nil];
     [self authenticateLocalPlayer];
-    [self showLeaderboardAndAchievements:true];
+    //[self showLeaderboardAndAchievements:true];
 
 }
 
