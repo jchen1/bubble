@@ -11,6 +11,9 @@
 #import <MultipeerConnectivity/MultipeerConnectivity.h>
 #import "SinglePlayerViewController.h"
 #import "SettingsViewController.h"
+#import <AVFoundation/AVFoundation.h>
+#import <AudioToolbox/AudioToolbox.h>
+
 #define TWOPLAYER
 
 #ifdef TWOPLAYER
@@ -25,6 +28,14 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    //background audio
+    NSString *soundFilePath = [[NSBundle mainBundle] pathForResource:@"sample" ofType:@"mp3"];
+    NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
+    AVAudioPlayer *player = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:nil];
+    player.numberOfLoops = 1; //infinite loop
+    [player play];
+    
     [[UIApplication sharedApplication] setStatusBarHidden:YES
                                             withAnimation:UIStatusBarAnimationFade];
     [self setUpUI];

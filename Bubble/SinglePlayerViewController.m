@@ -8,6 +8,7 @@
 
 #import "SinglePlayerViewController.h"
 #import "SinglePlayerScene.h"
+#include <AVFoundation/AVFoundation.h>
 
 //uncomment the following line to display fps
 #define FPS
@@ -18,6 +19,11 @@
 
 - (void)viewDidLoad
 {
+    NSString *soundFilePath = [[NSBundle mainBundle] pathForResource:@"sample" ofType:@"mp3"];
+    NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
+    AVAudioPlayer *player = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:nil];
+    player.numberOfLoops = 1; //infinite loop
+    [player play];
     [super viewDidLoad];
     SKView * skView = [[SKView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.view = skView;
