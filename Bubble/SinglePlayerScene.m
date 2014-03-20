@@ -72,7 +72,7 @@
     }
     
     //check for deaths
-    if (myBubble.radius < 0.1)
+    if (myBubble.radius < 0.5)
     {
         shrink_count = 0;
         [self removeLife];
@@ -153,7 +153,7 @@
         if ([b isEqual:myBubble]){
             continue;
         }
-        if (b.radius < 0.1 || !CGRectContainsPoint(bounds,b.position) || b.radius > 100.0)
+        if (b.radius < 0.5 || !CGRectContainsPoint(bounds,b.position) || b.radius > 100.0)
         {
             [removeIndices addIndex:i];
             [b removeFromParent];

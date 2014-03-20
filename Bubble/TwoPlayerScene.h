@@ -19,6 +19,3 @@
 
 @end
 
-extern NSString *globalin;
-extern NSString *globalout;
-

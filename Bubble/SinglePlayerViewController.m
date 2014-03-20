@@ -8,17 +8,37 @@
 
 #import "SinglePlayerViewController.h"
 #import "SinglePlayerScene.h"
+#include <AVFoundation/AVFoundation.h>
 
 //uncomment the following line to display fps
-#define FPS
+//#define FPS
 
 @implementation SinglePlayerViewController {
     SinglePlayerScene *scene;
+    AVAudioPlayer*player;
+}
+
+- (void)resumeMusic
+{
+    [player play];
+}
+
+- (void)pauseMusic
+{
+    [player pause];
 }
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
+    NSString *soundFilePath = [[NSBundle mainBundle] pathForResource:@"sample" ofType:@"mp3"];
+    NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
+    player = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:nil];
+    player.numberOfLoops = -1; //infinite loop
+    if([player prepareToPlay])
+    {
+    [player stop];
+    }
+        [super viewDidLoad];
     SKView * skView = [[SKView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.view = skView;
     
@@ -61,6 +81,7 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [[NSNotificationCenter defaultCenter] removeObserver:scene];
     [self.navigationController popViewControllerAnimated:NO];
+    [player stop];
 }
 
 - (NSUInteger)supportedInterfaceOrientations

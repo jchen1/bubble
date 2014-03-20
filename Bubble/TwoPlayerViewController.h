@@ -7,7 +7,6 @@
 //
 
 #import "SinglePlayerViewController.h"
-#import <MultipeerConnectivity/MultipeerConnectivity.h>
 #import "TwoPlayerScene.h"
 #import "viewControllerDelegate.h"
 #import <GameKit/GameKit.h>
@@ -32,6 +31,3 @@
 -(void)done:(NSString *)dataText;
 
 @end
-
-NSString *globalin;
-NSString *globalout;

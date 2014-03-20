@@ -11,6 +11,9 @@
 #import <MultipeerConnectivity/MultipeerConnectivity.h>
 #import "SinglePlayerViewController.h"
 #import "SettingsViewController.h"
+#import <AVFoundation/AVFoundation.h>
+#import <AudioToolbox/AudioToolbox.h>
+
 #define TWOPLAYER
 
 #ifdef TWOPLAYER
@@ -19,15 +22,34 @@
 
 
 @implementation SplashViewController
+{
+    AVAudioPlayer*player;
+    
+}
 
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    
     [[UIApplication sharedApplication] setStatusBarHidden:YES
                                             withAnimation:UIStatusBarAnimationFade];
     [self setUpUI];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(pauseMusic) name:@"splash_pause" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(resumeMusic) name:@"splash_resume" object:nil];
+}
+
+- (IBAction)pauseMusic
+{
+    [player stop];
+}
+
+-(IBAction)resumeMusic
+{
+    player.currentTime = 0;
+    [player play];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -44,11 +66,12 @@
 }
 - (IBAction)gameView {
     SinglePlayerViewController *gameView = [[SinglePlayerViewController alloc] init];
+    [player stop];
     [self.navigationController pushViewController:gameView animated:NO];
 }
 
 - (IBAction)multiGameView {
-    
+    [player stop];
 #ifndef TWOPLAYER    
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Coming Soon!"
                                                     message:@"This feature is still in development."
@@ -60,8 +83,6 @@
     TwoPlayerViewController *gameView = [[TwoPlayerViewController alloc] init];
     [self.navigationController pushViewController:gameView animated:NO];
 #endif
-    
-    
 }
 
 - (IBAction)optionsView {
@@ -99,6 +120,15 @@
     [optionsButton addTarget:self action:@selector(optionsView) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:optionsButton];
     
+    //background audio
+    NSString *soundFilePath = [[NSBundle mainBundle] pathForResource:@"sample" ofType:@"mp3"];
+    NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
+    player = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:nil];
+    player.numberOfLoops = -1; //infinite loop
+    if([player prepareToPlay])
+    {
+        [player play];
+    }
 }
 
 - (BOOL)prefersStatusBarHidden {
