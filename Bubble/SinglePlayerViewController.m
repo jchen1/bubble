@@ -89,7 +89,7 @@
     [pauseButton addTarget:self action:@selector(drawPause) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:pauseButton];
     
-    score = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 115, 10, 80, 25)];
+    score = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 135, 10, 100, 25)];
     score.textAlignment = NSTextAlignmentRight;
     score.numberOfLines = 1;
     score.textColor = [UIColor whiteColor];

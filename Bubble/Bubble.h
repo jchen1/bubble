@@ -22,6 +22,7 @@
 -(bool) inside: (CGPoint) touch;
 -(bool) collidesWith: (Bubble*) other;
 -(void) eat: (Bubble*) other;
+-(void) eat: (Bubble*) other withMultiplier:(int)m;
 -(double) getSpeed;
 -(NSString*) toString;
 

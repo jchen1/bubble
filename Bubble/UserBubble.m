@@ -63,4 +63,8 @@
     }
 }
 
+-(double)getSpeed {
+    return [super getSpeed] + 1.0;
+}
+
 @end

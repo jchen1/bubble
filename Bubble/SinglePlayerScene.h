@@ -17,6 +17,7 @@
 {
     int initial_count;
     int dilate_count;
+    int shrink_count;
     NSMutableArray *bubbles;
     NSMutableArray *directions;
     NSMutableArray *lives;

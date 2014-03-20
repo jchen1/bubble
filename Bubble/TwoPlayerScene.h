@@ -9,12 +9,13 @@
 #import "SinglePlayerScene.h"
 #import "TwoPlayerViewController.h"
 #import "viewControllerDelegate.h"
+#import <GameKit/GameKit.h>
 
-@interface TwoPlayerScene : SinglePlayerScene <viewControllerDelegate>{
+@interface TwoPlayerScene : SinglePlayerScene <viewControllerDelegate, GKMatchDelegate>{
     NSString *globalData;
 }
 
-@property (nonatomic,assign) id <viewControllerDelegate> delegate;
+@property id <viewControllerDelegate> delegate;
 
 @end
 

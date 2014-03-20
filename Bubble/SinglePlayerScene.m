@@ -37,8 +37,9 @@
         myBubble.position = CGPointMake(CGRectGetMidX(self.frame),
                                         CGRectGetMidY(self.frame));
         
-        initial_count = 10 + arc4random_uniform(10);
+        initial_count = 5 + arc4random_uniform(5);
         dilate_count = 0;
+        shrink_count = 0;
         
         [bubbles addObject:myBubble];
         [self addChild:myBubble];
@@ -61,10 +62,10 @@
                                               otherButtonTitles:nil];
         [alert show];
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        int high = [[defaults valueForKey:@"singleHighScore"] intValue];
-        if ((int)([myBubble totalEaten] * 10) > high){
+        long long high = [[defaults valueForKey:@"singleHighScore"] longValue];
+        if (((long long)([myBubble totalEaten] * 10)) > high){
             [defaults setObject:[[NSNumber alloc]
-                                 initWithInt:(int)([myBubble totalEaten] * 10)]
+                                 initWithLongLong:(long long)([myBubble totalEaten] * 10)]
                          forKey:@"singleHighScore"];
         }
         [self.scene.view setPaused:YES];
@@ -73,15 +74,18 @@
     //check for deaths
     if (myBubble.radius < 0.1)
     {
-        [myBubble respawn:CGPointMake(CGRectGetMidX(self.frame),
-                                      CGRectGetMidY(self.frame))];
+        shrink_count = 0;
         [self removeLife];
         [self killAllBubbles];
+        [myBubble respawn:CGPointMake(CGRectGetMidX(self.frame),
+                                      CGRectGetMidY(self.frame))];
     }
     
-    if (myBubble.radius > 32.0)
+    if (myBubble.radius > 32.0 && dilate_count == 0)
     {
         dilate_count = 140;
+        shrink_count++;
+        NSLog(@"Shrinks: %d", shrink_count);
     }
 
     if (dilate_count > 0)
@@ -89,9 +93,9 @@
         [self dilate:myBubble.position];
         dilate_count--;
         return;
-    }
+    }   
     
-    [self.delegate done:[NSString stringWithFormat:@"%d", (int)([myBubble totalEaten] * 10)]];
+    [self.delegate done:[NSString stringWithFormat:@"%lld", (long long)([myBubble totalEaten] * 10)]];
     
     //update position of userBubble
     CGRect bounds = [[UIScreen mainScreen] bounds];
@@ -129,10 +133,10 @@
         for (AIBubble *b2 in bubbles) {
             if (![b1 isEqual:b2] && [b1 collidesWith:b2]) {
                 if (b1.radius < b2.radius) {
-                    [b2 eat:b1];
+                    [b2 eat:b1 withMultiplier:shrink_count];
                 }
                 else if (b1.radius > b2.radius) {
-                    [b1 eat:b2];
+                    [b1 eat:b2 withMultiplier:shrink_count];
                 }
             }
         }

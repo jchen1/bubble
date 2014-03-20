@@ -17,5 +17,6 @@
 }
 
 - (IBAction)drawPause;
+- (IBAction)popCurrentView;
 
 @end

@@ -37,6 +37,10 @@ int contains(NSMutableArray *arr, int idnum){
 -(void)done:(NSString*)dataText{
 }
 
+-(void)match:(GKMatch*)match didReceiveData:(NSData*)data fromPlayer:(NSString *)playerID{
+    
+}
+
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
 }
 

@@ -82,20 +82,28 @@
     }
 }
 
--(void) eat:(Bubble *)other
+-(void) eat:(Bubble *)other withMultiplier:(int)m
 {
     if (other.radius > _radius)
     {
         return;
     }
-    double area1 = _radius * _radius * M_PI, area2 = other.radius * other.radius * M_PI;
-    _totalEaten += MIN(area2, 20.0) / 2.0;
-    area1 += MIN(area2, 20.0) / 2.0;
-    area2 -= MIN(area2, 20.0);
+    double bigRadius = _radius;
+    double littleRadius = other.radius;
+    double area1 = bigRadius * bigRadius * M_PI, area2 = littleRadius * littleRadius * M_PI;
+    double eatenAmount = MIN(area2, 20.0) / 2.0;
+    _totalEaten += (eatenAmount * (1+m));
+    area1 += eatenAmount;
+    area2 -= eatenAmount;
     _radius = sqrt(area1 / M_PI);
     self.zPosition = -1 * _radius;
     other.radius = sqrt(area2 / M_PI);
     other.zPosition = -1 * other.radius;
+}
+
+-(void) eat:(Bubble *)other
+{
+    [self eat:other withMultiplier:0];
 }
 
 -(bool) inside:(CGPoint)touch

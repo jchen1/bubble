@@ -10,12 +10,14 @@
 #import <MultipeerConnectivity/MultipeerConnectivity.h>
 #import "TwoPlayerScene.h"
 #import "viewControllerDelegate.h"
+#import <GameKit/GameKit.h>
+
 //uncomment the next line to test out twoplayer mode
 //#define TWOPLAYER
 
 
 @interface TwoPlayerViewController : SinglePlayerViewController
-    <MCBrowserViewControllerDelegate, MCSessionDelegate, UITextFieldDelegate, NSStreamDelegate, viewControllerDelegate>{
+    <MCBrowserViewControllerDelegate, MCSessionDelegate, UITextFieldDelegate, NSStreamDelegate, viewControllerDelegate, GKMatchmakerViewControllerDelegate, UINavigationControllerDelegate>{
     
         MCBrowserViewController *browserVC;
         MCAdvertiserAssistant *advertiser;
@@ -24,6 +26,7 @@
         UIButton *browseButton;
         NSInputStream *inputStream;
         NSOutputStream *outputStream;
+        
 }
 
 -(void)done:(NSString *)dataText;
