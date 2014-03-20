@@ -118,9 +118,9 @@
 		A97A9ED618989C750017183F /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		A9D68DE318DB57FF00299441 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		A9D68DE518DB580E00299441 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		A9D68DE718DB59C900299441 /* sample.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = sample.mp3; path = Bubble/sample.mp3; sourceTree = "<group>"; };
-		A9D68DE918DB5AE000299441 /* sample.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = sample.mp3; path = Bubble/Images/sample.mp3; sourceTree = "<group>"; };
-		A9D68DEB18DB762E00299441 /* Hit_Hurt4.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Hit_Hurt4.wav; path = Bubble/Hit_Hurt4.wav; sourceTree = "<group>"; };
+		A9D68DE718DB59C900299441 /* sample.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = sample.mp3; sourceTree = "<group>"; };
+		A9D68DE918DB5AE000299441 /* sample.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = sample.mp3; path = Images/sample.mp3; sourceTree = "<group>"; };
+		A9D68DEB18DB762E00299441 /* Hit_Hurt4.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Hit_Hurt4.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,9 +155,6 @@
 		1F60B13D18974B9A00232A84 = {
 			isa = PBXGroup;
 			children = (
-				A9D68DEB18DB762E00299441 /* Hit_Hurt4.wav */,
-				A9D68DE918DB5AE000299441 /* sample.mp3 */,
-				A9D68DE718DB59C900299441 /* sample.mp3 */,
 				1F60B15118974B9A00232A84 /* Bubble */,
 				1F60B17818974B9A00232A84 /* BubbleTests */,
 				1F60B14818974B9A00232A84 /* Frameworks */,
@@ -193,6 +190,7 @@
 		1F60B15118974B9A00232A84 /* Bubble */ = {
 			isa = PBXGroup;
 			children = (
+				A85CD00A18DB861700FECC1C /* Audio */,
 				1F7C329418975A34006995F8 /* AIBubble.h */,
 				1F7C329518975A34006995F8 /* AIBubble.m */,
 				1F60B15A18974B9A00232A84 /* AppDelegate.h */,
@@ -254,6 +252,16 @@
 				1F60B17B18974B9A00232A84 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A85CD00A18DB861700FECC1C /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				A9D68DEB18DB762E00299441 /* Hit_Hurt4.wav */,
+				A9D68DE918DB5AE000299441 /* sample.mp3 */,
+				A9D68DE718DB59C900299441 /* sample.mp3 */,
+			);
+			name = Audio;
 			sourceTree = "<group>";
 		};
 		A8E8560218D6650A0038C1AE /* Images */ = {
