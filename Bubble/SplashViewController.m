@@ -13,6 +13,7 @@
 #import "SettingsViewController.h"
 #import <AVFoundation/AVFoundation.h>
 #import <AudioToolbox/AudioToolbox.h>
+#import <GameKit/GameKit.h>
 
 #define TWOPLAYER
 
@@ -20,26 +21,34 @@
 #import "TwoPlayerViewController.h"
 #endif
 
-
 @implementation SplashViewController
 {
     AVAudioPlayer*player;
     
 }
 
+#pragma mark -
+#pragma mark Game Center Support
+
+@synthesize currentPlayerID,
+            gameCenterAuthenticationComplete;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    
     [[UIApplication sharedApplication] setStatusBarHidden:YES
                                             withAnimation:UIStatusBarAnimationFade];
     [self setUpUI];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(pauseMusic) name:@"splash_pause" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(resumeMusic) name:@"splash_resume" object:nil];
+    [self authenticateLocalPlayer];
+    [self showLeaderboardAndAchievements:true];
+
 }
+
+
 
 - (IBAction)pauseMusic
 {
@@ -67,6 +76,7 @@
 - (IBAction)gameView {
     SinglePlayerViewController *gameView = [[SinglePlayerViewController alloc] init];
     [player stop];
+    gameView.splash = self;
     [self.navigationController pushViewController:gameView animated:NO];
 }
 
@@ -140,5 +150,63 @@
     return NO;
 }
 
+-(void)authenticateLocalPlayer{
+    GKLocalPlayer *localPlayer = [GKLocalPlayer localPlayer];
+    
+    localPlayer.authenticateHandler = ^(UIViewController *viewController, NSError *error){
+        if (viewController != nil) {
+            [self presentViewController:viewController animated:YES completion:nil];
+        }
+        else{
+            if ([GKLocalPlayer localPlayer].authenticated) {
+                _gameCenterEnabled = YES;
+                
+                // Get the default leaderboard identifier.
+                [[GKLocalPlayer localPlayer] loadDefaultLeaderboardIdentifierWithCompletionHandler:^(NSString *leaderboardIdentifier, NSError *error) {
+                    
+                    if (error != nil) {
+                        NSLog(@"%@", [error localizedDescription]);
+                    }
+                    else{
+                        _leaderboardIdentifier = leaderboardIdentifier;
+                    }
+                }];
+            }
+            
+            else{
+                _gameCenterEnabled = NO;
+            }
+        }
+    };
+}
+
+-(void)reportScore{
+    GKScore *score = [[GKScore alloc] initWithLeaderboardIdentifier:_leaderboardIdentifier];
+    //score.value = _score;
+    
+    [GKScore reportScores:@[score] withCompletionHandler:^(NSError *error) {
+        if (error != nil) {
+            NSLog(@"%@", [error localizedDescription]);
+        }
+    }];
+}
+
+-(void)showLeaderboardAndAchievements:(BOOL)shouldShowLeaderboard{
+    NSLog(@"leaderboard");
+    GKGameCenterViewController *gcViewController = [[GKGameCenterViewController alloc] init];
+    
+    gcViewController.gameCenterDelegate = self;
+    
+    if (shouldShowLeaderboard) {
+        gcViewController.viewState = GKGameCenterViewControllerStateLeaderboards;
+        gcViewController.leaderboardIdentifier = _leaderboardIdentifier;
+    }
+    else{
+        gcViewController.viewState = GKGameCenterViewControllerStateAchievements;
+    }
+    
+    [self presentViewController:gcViewController animated:YES completion:nil];
+    NSLog(@"asdf");
+}
 
 @end

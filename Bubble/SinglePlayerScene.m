@@ -67,6 +67,7 @@
             [defaults setObject:[[NSNumber alloc]
                                  initWithLongLong:(long long)([myBubble totalEaten] * 10)]
                          forKey:@"singleHighScore"];
+            //send (high) score to game center
         }
         [self.scene.view setPaused:YES];
     }
