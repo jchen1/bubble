@@ -17,4 +17,6 @@
 
 -(void)resumeMusic;
 
+-(void)sendScore:(long long)score;
+
 @end

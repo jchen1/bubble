@@ -19,4 +19,6 @@
 - (IBAction)drawPause;
 - (IBAction)popCurrentView;
 
+@property id<viewControllerDelegate> splash;
+
 @end
