@@ -125,10 +125,6 @@
     //NSString *finalText;
     //finalText = message;
     if (peer == myPeerID) {
-<<<<<<< HEAD
-=======
-        //finalText = [NSString stringWithFormat:@"\nme: %@ \n", message];
->>>>>>> 8611c557f139e932a7f3f6227fe3d657b73ea81a
         return;
     }
     else{
