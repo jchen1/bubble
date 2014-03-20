@@ -6,15 +6,16 @@
 //  Copyright (c) 2014 Jeff Chen. All rights reserved.
 //
 
-#import "TwoPlayerScene.h"
 #import "SinglePlayerViewController.h"
 #import <MultipeerConnectivity/MultipeerConnectivity.h>
-
+#import "TwoPlayerScene.h"
+#import "viewControllerDelegate.h"
 //uncomment the next line to test out twoplayer mode
 //#define TWOPLAYER
 
+
 @interface TwoPlayerViewController : SinglePlayerViewController
-    <MCBrowserViewControllerDelegate, MCSessionDelegate, UITextFieldDelegate, NSStreamDelegate>{
+    <MCBrowserViewControllerDelegate, MCSessionDelegate, UITextFieldDelegate, NSStreamDelegate, viewControllerDelegate>{
     
         MCBrowserViewController *browserVC;
         MCAdvertiserAssistant *advertiser;
@@ -25,4 +26,9 @@
         NSOutputStream *outputStream;
 }
 
+-(void)done:(NSString *)dataText;
+
 @end
+
+NSString *globalin;
+NSString *globalout;

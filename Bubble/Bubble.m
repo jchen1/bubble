@@ -106,7 +106,7 @@
 
 -(NSString*) toString
 {
-    return [NSString stringWithFormat:@"%@ %c %f %f %f  ", idnum, _type, _radius, super.position.x, super.position.y];
+    return [NSString stringWithFormat:@"%d %c %f %f %f  ", idnum, _type, _radius, super.position.x, super.position.y];
 }
 
 

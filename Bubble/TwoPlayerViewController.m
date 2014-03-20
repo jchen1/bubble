@@ -8,18 +8,19 @@
 
 #import "TwoPlayerViewController.h"
 
-
 @implementation TwoPlayerViewController{
     TwoPlayerScene *scene;
 }
 
 
 -(void)done:(NSString*)dataText{
+    //NSLog(@"delegate working");
     [self sendText:dataText];
 }
 
 - (void)viewDidLoad
 {
+    globalin=@"";
     [super viewDidLoad];
     SKView * skView = [[SKView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.view = skView;
@@ -48,12 +49,12 @@
     [pauseButton setBackgroundImage:pauseButtonBackground forState:UIControlStateNormal];
     [pauseButton addTarget:self action:@selector(drawPause) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:pauseButton];
-    
     // Create and configure the scene.
     scene = [TwoPlayerScene sceneWithSize:skView.bounds.size];
     scene.scaleMode = SKSceneScaleModeAspectFill;
+    scene.delegate=self;
+
     
-    // Present the scene.
     [skView presentScene:scene];
     
 }
@@ -116,7 +117,7 @@
     [mySession sendData:data toPeers:[mySession connectedPeers] withMode:MCSessionSendDataUnreliable error:&error];
     
     //  Append your own message to text box
-    [self receiveMessage: message fromPeer: myPeerID];
+    //[self receiveMessage: message fromPeer: myPeerID];
 }
 
 - (void) receiveMessage: (NSString *) message fromPeer: (MCPeerID *) peer{
@@ -124,7 +125,6 @@
     NSString *finalText;
     finalText = message;
     if (peer == myPeerID) {
-        finalText = [NSString stringWithFormat:@"\nme: %@ \n", message];
         return;
     }
     else{
@@ -134,7 +134,7 @@
     //  Append text to text box
     //self.textBox.text = [self.textBox.text stringByAppendingString:message];
     NSLog(@"received: %@", message);
-    //globalData1 = message;
+    globalin = (NSMutableString*)message;
 }
 
 #pragma marks MCBrowserViewControllerDelegate
@@ -142,6 +142,14 @@
 // Notifies the delegate, when the user taps the done button
 - (void)browserViewControllerDidFinish:(MCBrowserViewController *)browserViewController{
     [self dismissBrowserVC];
+    outputStream= [mySession startStreamWithName:@"stream"
+                                          toPeer:[[mySession connectedPeers] lastObject] error:nil];
+    [advertiser stop];
+    outputStream.delegate = self;
+    [outputStream scheduleInRunLoop:[NSRunLoop mainRunLoop]
+                            forMode:NSDefaultRunLoopMode];
+    [outputStream open];
+    
 }
 
 // Notifies delegate that the user taps the cancel button.
@@ -156,15 +164,6 @@
 
 - (void) dismissBrowserVC{
     [browserVC dismissViewControllerAnimated:YES completion:nil];
-    outputStream= [mySession startStreamWithName:@"stream"
-                            toPeer:[[mySession connectedPeers] lastObject] error:nil];
-    
-    outputStream.delegate = self;
-    [outputStream scheduleInRunLoop:[NSRunLoop mainRunLoop]
-                      forMode:NSDefaultRunLoopMode];
-    [outputStream open];
-    
-    
     
     [advertiser stop];
 }

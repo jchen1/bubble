@@ -103,6 +103,7 @@
 		A8E8561718D67A730038C1AE /* back_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back_button.png; sourceTree = "<group>"; };
 		A901663018B670A60061927A /* JCJoystick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCJoystick.h; sourceTree = "<group>"; };
 		A901663118B670A60061927A /* JCJoystick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCJoystick.m; sourceTree = "<group>"; };
+		A919A87218DA6FDD00D508F1 /* viewControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = viewControllerDelegate.h; sourceTree = "<group>"; };
 		A933437018D9FABD002A4FE8 /* DiscoveryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoveryViewController.h; sourceTree = "<group>"; };
 		A933437118D9FABD002A4FE8 /* DiscoveryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoveryViewController.m; sourceTree = "<group>"; };
 		A956913A18984320004FBD99 /* MultipeerConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MultipeerConnectivity.framework; path = System/Library/Frameworks/MultipeerConnectivity.framework; sourceTree = SDKROOT; };
@@ -195,6 +196,7 @@
 				1F60B16418974B9A00232A84 /* SinglePlayerViewController.m */,
 				A97A9ED218988D3F0017183F /* SplashViewController.h */,
 				A97A9ED318988D3F0017183F /* SplashViewController.m */,
+				A919A87218DA6FDD00D508F1 /* viewControllerDelegate.h */,
 				A8E8561218D667C80038C1AE /* TwoPlayerScene.h */,
 				A8E8561318D667C80038C1AE /* TwoPlayerScene.m */,
 				A8E8560F18D666FA0038C1AE /* TwoPlayerViewController.h */,

@@ -7,16 +7,17 @@
 //
 
 #import "SinglePlayerScene.h"
+#import "TwoPlayerViewController.h"
+#import "viewControllerDelegate.h"
 
-@protocol ViewControllerDelegate <NSObject>
-
--(void)done:(NSString*)dataText;
-
-@end
-
-@interface TwoPlayerScene : SinglePlayerScene <ViewControllerDelegate> {
+@interface TwoPlayerScene : SinglePlayerScene <viewControllerDelegate>{
     NSString *globalData;
 }
 
+@property (nonatomic,assign) id <viewControllerDelegate> delegate;
 
 @end
+
+extern NSString *globalin;
+extern NSString *globalout;
+
