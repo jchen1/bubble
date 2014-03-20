@@ -104,6 +104,7 @@
     
     [inputStream setDelegate:self];
     [outputStream setDelegate:self];
+    self->mySession.delegate = self;
 }
 
 - (void) sendText:(NSString*)dataToSend{
@@ -116,6 +117,7 @@
     NSError *error;
     [mySession sendData:data toPeers:[mySession connectedPeers] withMode:MCSessionSendDataUnreliable error:&error];
     
+    NSLog(@"sent: %@", dataToSend);
     //  Append your own message to text box
     //[self receiveMessage: message fromPeer: myPeerID];
 }
@@ -125,7 +127,7 @@
     //NSString *finalText;
     //finalText = message;
     if (peer == myPeerID) {
-        return;
+//        return;
     }
     else{
         //finalText = [NSString stringWithFormat:@"\n%@: %@ \n", peer.displayName, message];
@@ -184,15 +186,13 @@
 
 // Received data from remote peer
 - (void)session:(MCSession *)session didReceiveData:(NSData *)data fromPeer:(MCPeerID *)peerID{
-/*
     //  Decode data back to NSString
     NSString *message = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     
-    //  append message to text box:
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self receiveMessage:message fromPeer:peerID];
+    //  append message to text box on main thread
+    dispatch_async(dispatch_get_main_queue(),^{
+        [self receiveMessage: message fromPeer: peerID];
     });
-*/
 }
 
 // Received a byte stream from remote peer
