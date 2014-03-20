@@ -13,6 +13,7 @@
 @property double radius;
 @property char type;
 @property int idnum;
+@property double totalEaten;
 
 -(id) initWithColor : (SKColor*) color;
 -(id) initWithId:(int)initid andRadius:(float)radius andXcoord:(float)xcoord andYcoord:(float)ycoord;

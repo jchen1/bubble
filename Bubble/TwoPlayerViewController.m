@@ -166,7 +166,6 @@
 
 - (void) dismissBrowserVC{
     [browserVC dismissViewControllerAnimated:YES completion:nil];
-    
     [advertiser stop];
 }
 

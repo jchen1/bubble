@@ -8,10 +8,12 @@
 
 #import "SplashViewController.h"
 #import "PauseViewController.h"
+#import "viewControllerDelegate.h"
 
 
-@interface SinglePlayerViewController : UIViewController {
+@interface SinglePlayerViewController : UIViewController <viewControllerDelegate> {
     UIButton *pauseButton;
+    UILabel *score;
 }
 
 - (IBAction)drawPause;

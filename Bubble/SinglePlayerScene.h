@@ -11,11 +11,12 @@
 #import "UserBubble.h"
 #import "SplashViewController.h"
 #import "JCJoystick.h"
-
+#import "viewControllerDelegate.h"
 
 @interface SinglePlayerScene : SKScene <UIAlertViewDelegate>
 {
     int initial_count;
+    int dilate_count;
     NSMutableArray *bubbles;
     NSMutableArray *directions;
     NSMutableArray *lives;
@@ -24,6 +25,9 @@
 }
 
 -(void) pause;
+-(void) unpause;
+
+@property id <viewControllerDelegate> delegate;
 
 @end
 

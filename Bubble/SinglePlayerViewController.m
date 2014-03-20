@@ -35,6 +35,8 @@
     // Create and configure the scene.
     scene = [SinglePlayerScene sceneWithSize:skView.bounds.size];
     scene.scaleMode = SKSceneScaleModeAspectFill;
+    
+    scene.delegate = self;
 
     // Present the scene.
     [skView presentScene:scene];
@@ -86,6 +88,18 @@
     [pauseButton setBackgroundImage:pauseButtonBackground forState:UIControlStateNormal];
     [pauseButton addTarget:self action:@selector(drawPause) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:pauseButton];
+    
+    score = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 115, 10, 80, 25)];
+    score.textAlignment = NSTextAlignmentRight;
+    score.numberOfLines = 1;
+    score.textColor = [UIColor whiteColor];
+    score.text = @"";
+    [self.view addSubview:score];
+    
+}
+
+-(void)done:(NSString *)str{
+    score.text = str;
 }
 
 - (IBAction)drawPause{

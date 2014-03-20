@@ -69,8 +69,6 @@ int contains(NSMutableArray *arr, int idnum){
     globalout=myBubble.toString;
     [self.delegate done:globalout];
     
-    while ([globalin isEqual:@""])
-        return;
     const char *cString = [globalin cStringUsingEncoding:NSASCIIStringEncoding];
     sscanf(cString, "%d %c %f %f %f", &tmpid, &tmpchar, &tmpRad, &tmpX, &tmpY);
     globalin=@"";

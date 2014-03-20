@@ -38,6 +38,7 @@
                                         CGRectGetMidY(self.frame));
         
         initial_count = 10 + arc4random_uniform(10);
+        dilate_count = 0;
         
         [bubbles addObject:myBubble];
         [self addChild:myBubble];
@@ -70,6 +71,20 @@
         [self removeLife];
         [self killAllBubbles];
     }
+    
+    if (myBubble.radius > 32.0)
+    {
+        dilate_count = 140;
+    }
+
+    if (dilate_count > 0)
+    {
+        [self dilate:myBubble.position];
+        dilate_count--;
+        return;
+    }
+    
+    [self.delegate done:[NSString stringWithFormat:@"%d", (int)([myBubble totalEaten] * 10)]];
     
     //update position of userBubble
     CGRect bounds = [[UIScreen mainScreen] bounds];
@@ -174,6 +189,17 @@
     life.zPosition = MAXFLOAT;
     [self addChild: life];
     [lives addObject:life];
+}
+
+-(void)dilate:(CGPoint)pos{
+    for (Bubble *b in bubbles){
+        [b setRadius:0.995 * b.radius];
+        [b updateArc];
+        double dx = b.position.x - pos.x;
+        double dy = b.position.y - pos.y;
+        b.position = CGPointMake(pos.x + 0.995*dx, pos.y + 0.995*dy);
+    }
+    
 }
 
 -(void)removeLife{

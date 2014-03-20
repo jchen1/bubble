@@ -12,7 +12,8 @@
 
 @synthesize radius = _radius;
 @synthesize type = _type;
-@synthesize idnum = idnum;
+@synthesize idnum = _idnum;
+@synthesize totalEaten = _totalEaten;
 
 -(id)init
 {
@@ -25,7 +26,8 @@
     if (self) {
         _type = 'B';
         _radius = 5;
-        idnum = arc4random();
+        _idnum = arc4random();
+        _totalEaten = 0.0;
         super.lineWidth = 1.0;
         super.fillColor = color;
         super.strokeColor = [SKColor whiteColor];
@@ -43,8 +45,9 @@
     if (self)
     {
         _type = 'M';
-        idnum = initid;
+        _idnum = initid;
         _radius=radius;
+        _totalEaten = 0.0;
         CGPoint pos = CGPointMake(xcoord, ycoord);
         [super setPosition:pos];
     }
@@ -59,7 +62,7 @@
 
 -(double) getSpeed
 {
-    return MIN(15 * (1 / sqrt(_radius)), 30);
+    return 12*MIN(1 / sqrt(_radius), 2);
 }
 
 -(void) updateArc
@@ -86,9 +89,9 @@
         return;
     }
     double area1 = _radius * _radius * M_PI, area2 = other.radius * other.radius * M_PI;
+    _totalEaten += MIN(area2, 20.0) / 2.0;
     area1 += MIN(area2, 20.0) / 2.0;
     area2 -= MIN(area2, 20.0);
-    
     _radius = sqrt(area1 / M_PI);
     self.zPosition = -1 * _radius;
     other.radius = sqrt(area2 / M_PI);
@@ -109,7 +112,7 @@
 
 -(NSString*) toString
 {
-    return [NSString stringWithFormat:@"%d %c %f %f %f  ", idnum, _type, _radius, super.position.x, super.position.y];
+    return [NSString stringWithFormat:@"%d %c %f %f %f  ", _idnum, _type, _radius, super.position.x, super.position.y];
 }
 
 
