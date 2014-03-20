@@ -7,7 +7,6 @@
 //
 
 #import "SinglePlayerViewController.h"
-#import <MultipeerConnectivity/MultipeerConnectivity.h>
 #import "TwoPlayerScene.h"
 #import "viewControllerDelegate.h"
 #import <GameKit/GameKit.h>
@@ -16,12 +15,8 @@
 
 
 @interface TwoPlayerViewController : SinglePlayerViewController
-    <MCBrowserViewControllerDelegate, MCSessionDelegate, UITextFieldDelegate, NSStreamDelegate, viewControllerDelegate, GKMatchmakerViewControllerDelegate, GKMatchDelegate>{
-    
-        MCBrowserViewController *browserVC;
-        MCAdvertiserAssistant *advertiser;
-        MCSession *mySession;
-        MCPeerID *myPeerID;
+    <viewControllerDelegate, GKMatchmakerViewControllerDelegate, GKMatchDelegate>{
+
         UIButton *browseButton;
         NSInputStream *inputStream;
         NSOutputStream *outputStream;
@@ -32,6 +27,3 @@
 -(void)done:(NSString *)dataText;
 
 @end
-
-NSString *globalin;
-NSString *globalout;

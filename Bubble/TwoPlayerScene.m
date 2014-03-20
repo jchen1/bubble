@@ -18,12 +18,25 @@ int contains(NSMutableArray *arr, int idnum){
 }
 
 
+
 @implementation TwoPlayerScene
 {
     Bubble* playertwobubble;
 }
 
 @synthesize delegate;
+
+
+-(IBAction)pauseMusic
+{
+    
+    
+}
+
+-(IBAction)resumeMusic
+{
+    
+}
 
 -(id)initWithSize:(CGSize)size {
     if (self = [super initWithSize:size]) {
@@ -61,26 +74,7 @@ int contains(NSMutableArray *arr, int idnum){
 }
 
 -(void)update:(CFTimeInterval)currentTime {
-    int tmpid;
-    char tmpchar;
-    float tmpRad;
-    float tmpX;
-    float tmpY;
-    globalout=myBubble.toString;
-    [self.delegate done:globalout];
-    
-    const char *cString = [globalin cStringUsingEncoding:NSASCIIStringEncoding];
-    sscanf(cString, "%d %c %f %f %f", &tmpid, &tmpchar, &tmpRad, &tmpX, &tmpY);
-    globalin=@"";
-    playertwobubble.radius = tmpRad;
-    playertwobubble.position = CGPointMake(tmpX, tmpY);
-    playertwobubble.type = tmpchar;
-    playertwobubble.idnum = tmpid;
-//    playertwobubble = [[Bubble alloc] initWithId:tmpid andRadius:tmpRad andXcoord:tmpX andYcoord:tmpY];
-    
-
     [super update:currentTime];
-    
 }
 
 @end

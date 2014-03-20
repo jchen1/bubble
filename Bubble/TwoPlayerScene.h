@@ -14,10 +14,7 @@
     NSString *globalData;
 }
 
-@property (nonatomic,assign) id <viewControllerDelegate> delegate;
+@property id <viewControllerDelegate> delegate;
 
 @end
-
-extern NSString *globalin;
-extern NSString *globalout;
 

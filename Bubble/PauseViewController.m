@@ -68,6 +68,8 @@
 - (IBAction)quitGame {
     [self.navigationController popViewControllerAnimated:NO];
     [[NSNotificationCenter defaultCenter]postNotificationName:@"single_quit" object:nil];
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"splash_resume" object:nil];
+
 }
 
 @end

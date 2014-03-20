@@ -13,4 +13,8 @@
 
 -(void)done:(NSString*)dataText;
 
+-(void)pauseMusic;
+
+-(void)resumeMusic;
+
 @end
