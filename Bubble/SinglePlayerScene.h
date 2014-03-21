@@ -33,3 +33,4 @@
 @end
 
 
+extern long long highscore;

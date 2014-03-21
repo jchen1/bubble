@@ -44,6 +44,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [GKAchievement loadAchievementsWithCompletionHandler:^(NSArray *achievements, NSError *error) {
+        if (error != nil)
+            NSLog(@"ACHIEVEMENTS WERE NOT LOADED");
+    }];
+    
 	// Do any additional setup after loading the view, typically from a nib.
     
     [[UIApplication sharedApplication] setStatusBarHidden:YES
@@ -52,7 +58,10 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(resumeMusic) name:@"splash_resume" object:nil];
     [self authenticateLocalPlayer];
     [self setUpUI];
-
+    
+    //set the value of global variable highscore
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    highscore = [[defaults valueForKey:@"singleHighScore"] longValue];
 }
 
 - (void) gameCenterViewControllerDidFinish:(GKGameCenterViewController *)gameCenterViewController
@@ -112,7 +121,8 @@
 }
 
 - (IBAction)twitterView {
-    
+    [self reportAchievementIdentifier:@"1" percentComplete:100];
+    [self reportScore:0 forLeaderboardID:@"1"];
 }
 
 - (IBAction)gameCenterView{
@@ -216,10 +226,29 @@
     };
 }
 
+- (void) reportScore: (int64_t) score forLeaderboardID: (NSString*) category
+
+{
+    GKScore *scoreReporter = [[GKScore alloc] initWithCategory:category];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    scoreReporter.value = [[defaults valueForKey:@"singleHighScore"] longValue];
+    scoreReporter.context = 0;
+    
+    
+    
+    [scoreReporter reportScoreWithCompletionHandler:^(NSError *error) {
+        
+        // Do something interesting here. or not
+        
+    }];
+}
+
 -(void)reportScore{
     GKScore *score = [[GKScore alloc] initWithLeaderboardIdentifier:_leaderboardIdentifier];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    score.value = [[defaults valueForKey:@"singleHighScore"] longValue];
     //score.value = _score;
-    
     [GKScore reportScores:@[score] withCompletionHandler:^(NSError *error) {
         if (error != nil) {
             NSLog(@"%@", [error localizedDescription]);
@@ -227,6 +256,21 @@
     }];
 }
 
+- (IBAction)reportAchievementIdentifier:(NSString*)identifier percentComplete:(float) percent {
+    GKAchievement *achievement = [[GKAchievement alloc] initWithIdentifier: identifier];
+    achievement.showsCompletionBanner = YES;
+    if (achievement)
+    {
+        achievement.percentComplete = percent;
+        [achievement reportAchievementWithCompletionHandler:^(NSError *error)
+         {
+             if (error != nil)
+             {
+                 // Retain the achievement object and try again later (not shown).
+             }
+         }];
+    }
+}
 -(void)reportAchievement{
     GKAchievement *achieve = [[GKAchievement alloc] initWithIdentifier:@"1"];
     [GKAchievement reportAchievements:@[achieve] withCompletionHandler:^(NSError *error) {

@@ -61,8 +61,6 @@
 
 -(void)update:(CFTimeInterval)currentTime {
     
-    NSLog(@"%lf", [myBubble radius]);
-    
     //check for game over
     if ([myBubble deaths] >= NUM_LIVES){
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Game Over!"

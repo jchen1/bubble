@@ -22,3 +22,5 @@
 @property id<viewControllerDelegate> splash;
 
 @end
+
+extern long long highscore;
