@@ -12,7 +12,16 @@
 #import "viewControllerDelegate.h"
 
 // Preferred method for testing for Game Center
+
+@protocol splashViewControllerDelegate <NSObject>
+
+-(void)getScore:(long long)score;
+-(void)getAchievement:(NSString*)achievementIdentifier;
+
+@end
+
 BOOL isGameCenterAvailable();
+
 
 
 @interface SplashViewController : UIViewController<viewControllerDelegate, GKGameCenterControllerDelegate, GKSessionDelegate> {

@@ -38,6 +38,10 @@
 }
 
 -(void)sendScore:(long long)score{
+    [self reportScore:score forLeaderboardID:@"1"];
+}
+
+-(void)sendAchievement:(NSString *)achievementIdentifier{
     
 }
 
@@ -249,8 +253,7 @@
 {
     GKScore *scoreReporter = [[GKScore alloc] initWithCategory:category];
     
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    scoreReporter.value = [[defaults valueForKey:@"singleHighScore"] longValue];
+    scoreReporter.value = score;
     scoreReporter.context = 0;
     
     

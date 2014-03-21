@@ -19,4 +19,6 @@
 
 -(void)sendScore:(long long)score;
 
+-(void)sendAchievement:(NSString*)achievementIdentifier;
+
 @end

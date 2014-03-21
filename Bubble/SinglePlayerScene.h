@@ -30,6 +30,8 @@
 
 @property id <viewControllerDelegate> delegate;
 
+@property id<splashViewControllerDelegate> splashdelegate;
+
 @end
 
 

@@ -21,12 +21,18 @@
 
 -(void) sendScore:(long long)s
 {
-    NSLog(@"%lld", s);
+    [self.splash sendScore:s];
+    //NSLog(@"%lld", s);
 }
 
 - (void)pauseMusic
 {
     [player pause];
+}
+
+-(void) resumeMusic
+{
+    [player play];
 }
 
 - (void)viewDidLoad
