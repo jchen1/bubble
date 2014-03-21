@@ -40,10 +40,10 @@
     
     [[UIApplication sharedApplication] setStatusBarHidden:YES
                                             withAnimation:UIStatusBarAnimationFade];
-    [self setUpUI];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(pauseMusic) name:@"splash_pause" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(resumeMusic) name:@"splash_resume" object:nil];
     [self authenticateLocalPlayer];
+    [self setUpUI];
 
 }
 
@@ -99,9 +99,16 @@
 }
 
 - (IBAction)optionsView {
+    SettingsViewController *settingsView = [[SettingsViewController alloc] init];
+    [self.navigationController pushViewController:settingsView animated:NO];
+}
+
+- (IBAction)twitterView {
+    
+}
+
+- (IBAction)gameCenterView{
     [self showLeaderboardAndAchievements:true];
-//    SettingsViewController *settingsView = [[SettingsViewController alloc] init];
-//    [self.navigationController pushViewController:settingsView animated:NO];
 }
 
 - (void) setUpUI{
@@ -110,6 +117,8 @@
     UIImage *singlePlayerButtonBackground = [UIImage imageNamed:@"1p_button.png"];
     UIImage *twoPlayerButtonBackground = [UIImage imageNamed:@"2p_button.png"];
     UIImage *optionsButtonBackground = [UIImage imageNamed:@"options_button.png"];
+    UIImage *gameCenterButtonBackground = [UIImage imageNamed:@"game_center_logo.png"];
+    UIImage *twitterButtonBackground = [UIImage imageNamed:@"twitter_logo.png"];
     UIImage *bubbleIconImage = [UIImage imageNamed:@"bubble_icon_title.png"];
     
     bubbleIcon = [[UIImageView alloc] initWithFrame:CGRectMake(60.0, 50.0, 200.0, 200.0)];
@@ -133,6 +142,21 @@
     [optionsButton setBackgroundImage:optionsButtonBackground forState:UIControlStateNormal];
     [optionsButton addTarget:self action:@selector(optionsView) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:optionsButton];
+    
+    
+    gameCenterButton =  [UIButton buttonWithType:UIButtonTypeSystem];
+    [gameCenterButton setFrame:CGRectMake(5.0, self.view.bounds.size.height - 25.0, 20.0, 20.0)];
+    [gameCenterButton setBackgroundImage:gameCenterButtonBackground forState:UIControlStateNormal];
+    [gameCenterButton addTarget:self action:@selector(gameCenterView) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:gameCenterButton];
+    
+    twitterButton =  [UIButton buttonWithType:UIButtonTypeSystem];
+    [twitterButton setFrame:CGRectMake(30.0, self.view.bounds.size.height - 25.0, 20.0, 20.0)];
+    [twitterButton setBackgroundImage:twitterButtonBackground forState:UIControlStateNormal];
+    [twitterButton addTarget:self action:@selector(twitterView) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:twitterButton];
+    
+    
     
     //background audio
     NSString *soundFilePath = [[NSBundle mainBundle] pathForResource:@"sample" ofType:@"mp3"];
@@ -196,7 +220,6 @@
 }
 
 -(void)showLeaderboardAndAchievements:(BOOL)shouldShowLeaderboard{
-    NSLog(@"leaderboard");
     GKGameCenterViewController *gcViewController = [[GKGameCenterViewController alloc] init];
     
     gcViewController.gameCenterDelegate = self;
@@ -210,7 +233,6 @@
     }
     
     [self presentViewController:gcViewController animated:YES completion:nil];
-    NSLog(@"asdf");
 }
 
 @end
