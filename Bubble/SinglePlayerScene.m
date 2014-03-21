@@ -7,6 +7,7 @@
 //
 
 #import "SinglePlayerScene.h"
+#import <AVFoundation/AVFoundation.h>
 
 #define NUM_LIVES 1
 #define DILATE_PERCENT 0.99055
@@ -14,6 +15,9 @@
 
 
 @implementation SinglePlayerScene
+{
+    AVAudioPlayer*player;
+}
 
 -(id)initWithSize:(CGSize)size {
     if (self = [super initWithSize:size]) {
@@ -91,6 +95,15 @@
     {
         dilate_count = DILATE_TICKS;
         shrink_count++;
+        NSString *soundFilePath = [[NSBundle mainBundle] pathForResource:@"dilate1" ofType:@"wav"];
+        NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
+        player = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:nil];
+        player.numberOfLoops = 0;
+        if([player prepareToPlay])
+        {
+            [player play];
+        }
+
         NSLog(@"Shrinks: %d", shrink_count);
         return;
     }

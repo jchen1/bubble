@@ -50,6 +50,8 @@
 		A9D68DEA18DB5AE000299441 /* sample.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A9D68DE918DB5AE000299441 /* sample.mp3 */; };
 		A9D68DEC18DB762E00299441 /* Hit_Hurt4.wav in Resources */ = {isa = PBXBuildFile; fileRef = A9D68DEB18DB762E00299441 /* Hit_Hurt4.wav */; };
 		A9D68DEE18DBBDC800299441 /* singleplayer.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A9D68DED18DBBDC800299441 /* singleplayer.mp3 */; };
+		A9D68DF118DBE42900299441 /* powerup.wav in Resources */ = {isa = PBXBuildFile; fileRef = A9D68DEF18DBE42900299441 /* powerup.wav */; };
+		A9D68DF218DBE42900299441 /* dilate1.wav in Resources */ = {isa = PBXBuildFile; fileRef = A9D68DF018DBE42900299441 /* dilate1.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,6 +125,8 @@
 		A9D68DE918DB5AE000299441 /* sample.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = sample.mp3; path = Images/sample.mp3; sourceTree = "<group>"; };
 		A9D68DEB18DB762E00299441 /* Hit_Hurt4.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Hit_Hurt4.wav; sourceTree = "<group>"; };
 		A9D68DED18DBBDC800299441 /* singleplayer.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = singleplayer.mp3; sourceTree = "<group>"; };
+		A9D68DEF18DBE42900299441 /* powerup.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = powerup.wav; path = Bubble/powerup.wav; sourceTree = "<group>"; };
+		A9D68DF018DBE42900299441 /* dilate1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = dilate1.wav; path = Bubble/dilate1.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +161,8 @@
 		1F60B13D18974B9A00232A84 = {
 			isa = PBXGroup;
 			children = (
+				A9D68DEF18DBE42900299441 /* powerup.wav */,
+				A9D68DF018DBE42900299441 /* dilate1.wav */,
 				1F60B15118974B9A00232A84 /* Bubble */,
 				1F60B17818974B9A00232A84 /* BubbleTests */,
 				1F60B14818974B9A00232A84 /* Frameworks */,
@@ -368,6 +374,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A9D68DF118DBE42900299441 /* powerup.wav in Resources */,
+				A9D68DF218DBE42900299441 /* dilate1.wav in Resources */,
 				A9D68DEE18DBBDC800299441 /* singleplayer.mp3 in Resources */,
 				A9D68DEC18DB762E00299441 /* Hit_Hurt4.wav in Resources */,
 				A9D68DEA18DB5AE000299441 /* sample.mp3 in Resources */,
