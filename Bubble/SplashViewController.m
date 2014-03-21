@@ -242,6 +242,15 @@
     }];
 }
 
+-(void)reportAchievement{
+    GKAchievement *achieve = [[GKAchievement alloc] initWithIdentifier:@"1"];
+    [GKAchievement reportAchievements:@[achieve] withCompletionHandler:^(NSError *error) {
+        if(error!=nil)
+        {NSLog(@"%@", [error localizedDescription]);
+        }
+    }];
+}
+
 -(void)showLeaderboardAndAchievements:(BOOL)shouldShowLeaderboard{
     GKGameCenterViewController *gcViewController = [[GKGameCenterViewController alloc] init];
     
@@ -256,6 +265,14 @@
     }
     
     [self presentViewController:gcViewController animated:YES completion:nil];
+}
+
+-(void)resetAchievements{
+    [GKAchievement resetAchievementsWithCompletionHandler:^(NSError *error) {
+        if (error != nil) {
+            NSLog(@"%@", [error localizedDescription]);
+        }
+    }];
 }
 
 @end
