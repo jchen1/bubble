@@ -30,10 +30,14 @@ int contains(NSMutableArray *arr, int idnum){
 -(IBAction)pauseMusic
 {
     
-    
 }
 
 -(IBAction)resumeMusic
+{
+    
+}
+
+-(void) sendScore:(long long)score
 {
     
 }

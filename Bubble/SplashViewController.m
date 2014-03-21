@@ -33,6 +33,14 @@
 @synthesize currentPlayerID,
             gameCenterAuthenticationComplete;
 
+-(void)done:(NSString *)dataText{
+    
+}
+
+-(void)sendScore:(long long)score{
+    
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

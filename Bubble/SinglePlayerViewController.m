@@ -18,6 +18,12 @@
     AVAudioPlayer*player;
 }
 
+
+-(void) sendScore:(long long)score
+{
+    
+}
+
 - (void)resumeMusic
 {
     [player play];
