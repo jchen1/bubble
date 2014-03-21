@@ -82,9 +82,9 @@
                                       CGRectGetMidY(self.frame))];
     }
     
-    if (myBubble.radius > 32.0 && dilate_count == 0)
+    if (myBubble.radius > 50.0 && dilate_count == 0)
     {
-        dilate_count = 140;
+        dilate_count = 227;
         shrink_count++;
         NSLog(@"Shrinks: %d", shrink_count);
     }
@@ -116,7 +116,7 @@
     [myBubble updateArc];
     
     //spawn more bubbles if necessary
-    if (MAX(0, (int)(initial_count - (int)[bubbles count])) > arc4random() % 100)
+    if (MAX(0, (int)(initial_count - (int)[bubbles count] + shrink_count)) > arc4random() % 100)
     {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             AIBubble *bubble = [self spawnBubble];
