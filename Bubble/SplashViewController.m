@@ -27,15 +27,8 @@
     
 }
 
-#pragma mark -
-#pragma mark Game Center Support
-
 @synthesize currentPlayerID,
             gameCenterAuthenticationComplete;
-
--(void)done:(NSString *)dataText{
-    
-}
 
 -(void)sendScore:(long long)score{
     [self reportScore:score forLeaderboardID:@"1"];
@@ -95,8 +88,9 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
+
+
 - (IBAction)gameView {
     SinglePlayerViewController *gameView = [[SinglePlayerViewController alloc] init];
     [player stop];
@@ -196,9 +190,7 @@
     [twitterButton addTarget:self action:@selector(twitterView) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:twitterButton];
     
-    
-    
-    //background audio
+
     NSString *soundFilePath = [[NSBundle mainBundle] pathForResource:@"sample" ofType:@"mp3"];
     NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
     player = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:nil];

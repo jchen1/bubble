@@ -11,6 +11,7 @@
 
 @protocol viewControllerDelegate <NSObject>
 
+@optional
 -(void)done:(NSString*)dataText;
 
 -(void)pauseMusic;
