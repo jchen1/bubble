@@ -8,7 +8,9 @@
 
 #import "SinglePlayerScene.h"
 
-#define NUM_LIVES 3
+#define NUM_LIVES 1
+#define DILATE_PERCENT 0.99055
+#define DILATE_TICKS 120
 
 
 @implementation SinglePlayerScene
@@ -70,6 +72,7 @@
             //send (high) score to game center
         }
         [self.scene.view setPaused:YES];
+        return;
     }
     
     //check for deaths
@@ -80,13 +83,16 @@
         [self killAllBubbles];
         [myBubble respawn:CGPointMake(CGRectGetMidX(self.frame),
                                       CGRectGetMidY(self.frame))];
+        return;
     }
     
+    //check to dilate
     if (myBubble.radius > 50.0 && dilate_count == 0)
     {
-        dilate_count = 227;
+        dilate_count = DILATE_TICKS;
         shrink_count++;
         NSLog(@"Shrinks: %d", shrink_count);
+        return;
     }
 
     if (dilate_count > 0)
@@ -205,11 +211,11 @@
 
 -(void)dilate:(CGPoint)pos{
     for (Bubble *b in bubbles){
-        [b setRadius:0.995 * b.radius];
+        [b setRadius:DILATE_PERCENT * b.radius];
         [b updateArc];
         double dx = b.position.x - pos.x;
         double dy = b.position.y - pos.y;
-        b.position = CGPointMake(pos.x + 0.995*dx, pos.y + 0.995*dy);
+        b.position = CGPointMake(pos.x + DILATE_PERCENT*dx, pos.y + DILATE_PERCENT*dy);
     }
     
 }
