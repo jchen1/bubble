@@ -223,7 +223,7 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if ([[alertView title] isEqualToString:@"Game Over!"]){
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"single_gameover" object:nil];
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"single_quit" object:nil];
     }
 }
 

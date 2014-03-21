@@ -30,13 +30,13 @@
 
 - (void)viewDidLoad
 {
-    NSString *soundFilePath = [[NSBundle mainBundle] pathForResource:@"sample" ofType:@"mp3"];
+    NSString *soundFilePath = [[NSBundle mainBundle] pathForResource:@"singleplayer" ofType:@"mp3"];
     NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
     player = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:nil];
     player.numberOfLoops = -1; //infinite loop
     if([player prepareToPlay])
     {
-    [player stop];
+    [player play];
     }
         [super viewDidLoad];
     SKView * skView = [[SKView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -65,8 +65,8 @@
                                             withAnimation:UIStatusBarAnimationFade];
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(popCurrentView) name:@"single_quit" object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(popCurrentView) name:@"single_gameover" object:nil];
-    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(resumeMusic) name:@"single_unpause" object:nil];
+
 }
 
 - (BOOL)prefersStatusBarHidden {
@@ -124,6 +124,7 @@
 }
 
 - (IBAction)drawPause{
+    [player pause];
     PauseViewController *pauseMenu = [[PauseViewController alloc] initWithNibName:nil bundle:nil];
     [self.navigationController pushViewController:pauseMenu animated:NO];
     [[NSNotificationCenter defaultCenter]postNotificationName:@"single_pause" object:nil];
