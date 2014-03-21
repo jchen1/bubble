@@ -6,11 +6,10 @@
 //  Copyright (c) 2013 Jeff Chen. All rights reserved.
 //
 
-
-#import "SplashViewController.h"
-#import <MultipeerConnectivity/MultipeerConnectivity.h>
 #import "SinglePlayerViewController.h"
 #import "SettingsViewController.h"
+#import "SplashViewController.h"
+#import <MultipeerConnectivity/MultipeerConnectivity.h>
 #import <AVFoundation/AVFoundation.h>
 #import <AudioToolbox/AudioToolbox.h>
 #import <GameKit/GameKit.h>
@@ -243,17 +242,15 @@
 - (void) reportScore: (int64_t) score forLeaderboardID: (NSString*) category
 
 {
-    GKScore *scoreReporter = [[GKScore alloc] initWithCategory:category];
+    GKScore* scoreReporter = [[GKScore alloc] initWithLeaderboardIdentifier:category];
     
     scoreReporter.value = score;
     scoreReporter.context = 0;
     
-    
-    
-    [scoreReporter reportScoreWithCompletionHandler:^(NSError *error) {
-        
-        // Do something interesting here. or not
-        
+    [GKScore reportScores:@[scoreReporter] withCompletionHandler:^(NSError *error) {
+        if (error) {
+            NSLog(@"error: %@", error);
+        }
     }];
 }
 
@@ -261,7 +258,6 @@
     GKScore *score = [[GKScore alloc] initWithLeaderboardIdentifier:_leaderboardIdentifier];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     score.value = [[defaults valueForKey:@"singleHighScore"] longValue];
-    //score.value = _score;
     [GKScore reportScores:@[score] withCompletionHandler:^(NSError *error) {
         if (error != nil) {
             NSLog(@"%@", [error localizedDescription]);
@@ -275,13 +271,11 @@
     if (achievement)
     {
         achievement.percentComplete = percent;
-        [achievement reportAchievementWithCompletionHandler:^(NSError *error)
-         {
-             if (error != nil)
-             {
-                 // Retain the achievement object and try again later (not shown).
-             }
-         }];
+        [GKAchievement reportAchievements:@[achievement] withCompletionHandler:^(NSError *error) {
+            if (error != nil) {
+                NSLog(@"Error in reporting achievements: %@", error);
+            }
+        }];
     }
 }
 -(void)reportAchievement{
