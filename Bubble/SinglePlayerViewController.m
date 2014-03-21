@@ -24,11 +24,6 @@
     
 }
 
-- (void)resumeMusic
-{
-    [player play];
-}
-
 - (void)pauseMusic
 {
     [player pause];
@@ -71,7 +66,7 @@
                                             withAnimation:UIStatusBarAnimationFade];
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(popCurrentView) name:@"single_quit" object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(resumeMusic) name:@"single_unpause" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(resume) name:@"single_unpause" object:nil];
 
 }
 
@@ -110,13 +105,13 @@
     UIImage *pauseButtonBackground = [UIImage imageNamed:@"pause_button.png"];
     
     pauseButton =  [UIButton buttonWithType:UIButtonTypeSystem] ;
-    [pauseButton setFrame:CGRectMake(self.view.bounds.size.width - 30,
-                                          10, 20.0, 25.0)];
+    [pauseButton setFrame:CGRectMake(self.view.bounds.size.width - 35,
+                                          15, 20.0, 25.0)];
     [pauseButton setBackgroundImage:pauseButtonBackground forState:UIControlStateNormal];
-    [pauseButton addTarget:self action:@selector(drawPause) forControlEvents:UIControlEventTouchUpInside];
+    [pauseButton addTarget:self action:@selector(pause) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:pauseButton];
     
-    score = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 135, 10, 100, 25)];
+    score = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 140, 15, 100, 25)];
     score.textAlignment = NSTextAlignmentRight;
     score.numberOfLines = 1;
     score.textColor = [UIColor whiteColor];
@@ -129,11 +124,19 @@
     score.text = str;
 }
 
-- (IBAction)drawPause{
+- (IBAction)pause{
     [player pause];
     PauseViewController *pauseMenu = [[PauseViewController alloc] initWithNibName:nil bundle:nil];
-    [self.navigationController pushViewController:pauseMenu animated:NO];
+    //[self.navigationController pushViewController:pauseMenu animated:NO];
+    [self addChildViewController:pauseMenu];
+    [[self view] addSubview: [pauseMenu view]];
     [[NSNotificationCenter defaultCenter]postNotificationName:@"single_pause" object:nil];
 }
+
+- (IBAction)resume
+{
+    [player play];
+}
+
 @end
 

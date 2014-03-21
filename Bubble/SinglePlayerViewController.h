@@ -16,7 +16,7 @@
     UILabel *score;
 }
 
-- (IBAction)drawPause;
+- (IBAction)pause;
 - (IBAction)popCurrentView;
 
 @property id<viewControllerDelegate> splash;

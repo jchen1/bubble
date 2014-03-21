@@ -144,24 +144,28 @@
     UIImage *twitterButtonBackground = [UIImage imageNamed:@"twitter_logo.png"];
     UIImage *bubbleIconImage = [UIImage imageNamed:@"bubble_icon_title.png"];
     
-    bubbleIcon = [[UIImageView alloc] initWithFrame:CGRectMake(60.0, 50.0, 200.0, 200.0)];
+    bubbleIcon = [[UIImageView alloc] initWithFrame:CGRectMake(CGRectGetMidX(self.view.bounds) - 100,
+                                                               50.0, 200.0, 200.0)];
     bubbleIcon.image = bubbleIconImage;
     [self.view addSubview:bubbleIcon];
     
     singlePlayerButton =  [UIButton buttonWithType:UIButtonTypeSystem] ;
-    [singlePlayerButton setFrame:CGRectMake(60.0, self.view.bounds.size.height - 220.0, 200.0, 50.0)];
+    [singlePlayerButton setFrame:CGRectMake(CGRectGetMidX(self.view.bounds) - 100,
+                                            self.view.bounds.size.height - 220.0, 200.0, 50.0)];
     [singlePlayerButton setBackgroundImage:singlePlayerButtonBackground forState:UIControlStateNormal];
     [singlePlayerButton addTarget:self action:@selector(gameView) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:singlePlayerButton];
     
     twoPlayerButton =  [UIButton buttonWithType:UIButtonTypeSystem] ;
-    [twoPlayerButton setFrame:CGRectMake(60.0, self.view.bounds.size.height - 160.0, 200.0, 50.0)];
+    [twoPlayerButton setFrame:CGRectMake(CGRectGetMidX(self.view.bounds) - 100,
+                                         self.view.bounds.size.height - 160.0, 200.0, 50.0)];
     [twoPlayerButton setBackgroundImage:twoPlayerButtonBackground forState:UIControlStateNormal];
     [twoPlayerButton addTarget:self action:@selector(multiGameView) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:twoPlayerButton];
 
     optionsButton =  [UIButton buttonWithType:UIButtonTypeSystem] ;
-    [optionsButton setFrame:CGRectMake(60.0, self.view.bounds.size.height - 100.0, 200.0, 50.0)];
+    [optionsButton setFrame:CGRectMake(CGRectGetMidX(self.view.bounds) - 100,
+                                       self.view.bounds.size.height - 100.0, 200.0, 50.0)];
     [optionsButton setBackgroundImage:optionsButtonBackground forState:UIControlStateNormal];
     [optionsButton addTarget:self action:@selector(optionsView) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:optionsButton];

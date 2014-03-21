@@ -43,14 +43,11 @@
 		A8E8561618D677440038C1AE /* options_button.png in Resources */ = {isa = PBXBuildFile; fileRef = A8E8561518D677440038C1AE /* options_button.png */; };
 		A8E8561918D67A730038C1AE /* back_button.png in Resources */ = {isa = PBXBuildFile; fileRef = A8E8561718D67A730038C1AE /* back_button.png */; };
 		A901663218B670A60061927A /* JCJoystick.m in Sources */ = {isa = PBXBuildFile; fileRef = A901663118B670A60061927A /* JCJoystick.m */; };
-		A933437218D9FABD002A4FE8 /* DiscoveryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A933437118D9FABD002A4FE8 /* DiscoveryViewController.m */; };
 		A956913B18984320004FBD99 /* MultipeerConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A956913A18984320004FBD99 /* MultipeerConnectivity.framework */; };
 		A97A9ED418988D3F0017183F /* SplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A97A9ED318988D3F0017183F /* SplashViewController.m */; };
 		A97A9ED718989C750017183F /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A97A9ED618989C750017183F /* SettingsViewController.m */; };
 		A9D68DE418DB57FF00299441 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9D68DE318DB57FF00299441 /* AVFoundation.framework */; };
 		A9D68DE618DB580E00299441 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9D68DE518DB580E00299441 /* AudioToolbox.framework */; };
-		A9D68DE818DB59C900299441 /* sample.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A9D68DE718DB59C900299441 /* sample.mp3 */; };
-		A9D68DEA18DB5AE000299441 /* sample.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A9D68DE918DB5AE000299441 /* sample.mp3 */; };
 		A9D68DEC18DB762E00299441 /* Hit_Hurt4.wav in Resources */ = {isa = PBXBuildFile; fileRef = A9D68DEB18DB762E00299441 /* Hit_Hurt4.wav */; };
 		A9D68DEE18DBBDC800299441 /* singleplayer.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A9D68DED18DBBDC800299441 /* singleplayer.mp3 */; };
 		A9D68DF118DBE42900299441 /* powerup.wav in Resources */ = {isa = PBXBuildFile; fileRef = A9D68DEF18DBE42900299441 /* powerup.wav */; };
@@ -118,8 +115,6 @@
 		A901663018B670A60061927A /* JCJoystick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCJoystick.h; sourceTree = "<group>"; };
 		A901663118B670A60061927A /* JCJoystick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCJoystick.m; sourceTree = "<group>"; };
 		A919A87218DA6FDD00D508F1 /* viewControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = viewControllerDelegate.h; sourceTree = "<group>"; };
-		A933437018D9FABD002A4FE8 /* DiscoveryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoveryViewController.h; sourceTree = "<group>"; };
-		A933437118D9FABD002A4FE8 /* DiscoveryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoveryViewController.m; sourceTree = "<group>"; };
 		A956913A18984320004FBD99 /* MultipeerConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MultipeerConnectivity.framework; path = System/Library/Frameworks/MultipeerConnectivity.framework; sourceTree = SDKROOT; };
 		A97A9ED218988D3F0017183F /* SplashViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashViewController.h; sourceTree = "<group>"; };
 		A97A9ED318988D3F0017183F /* SplashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplashViewController.m; sourceTree = "<group>"; };
@@ -127,8 +122,6 @@
 		A97A9ED618989C750017183F /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		A9D68DE318DB57FF00299441 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		A9D68DE518DB580E00299441 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		A9D68DE718DB59C900299441 /* sample.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = sample.mp3; sourceTree = "<group>"; };
-		A9D68DE918DB5AE000299441 /* sample.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = sample.mp3; path = Images/sample.mp3; sourceTree = "<group>"; };
 		A9D68DEB18DB762E00299441 /* Hit_Hurt4.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Hit_Hurt4.wav; sourceTree = "<group>"; };
 		A9D68DED18DBBDC800299441 /* singleplayer.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = singleplayer.mp3; sourceTree = "<group>"; };
 		A9D68DEF18DBE42900299441 /* powerup.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = powerup.wav; sourceTree = "<group>"; };
@@ -230,8 +223,6 @@
 				A8E8561318D667C80038C1AE /* TwoPlayerScene.m */,
 				A8E8560F18D666FA0038C1AE /* TwoPlayerViewController.h */,
 				A8E8561018D666FA0038C1AE /* TwoPlayerViewController.m */,
-				A933437018D9FABD002A4FE8 /* DiscoveryViewController.h */,
-				A933437118D9FABD002A4FE8 /* DiscoveryViewController.m */,
 				1F60B15218974B9A00232A84 /* Supporting Files */,
 				1F1281F2189761C8005F8A7C /* UserBubble.h */,
 				1F1281F3189761C8005F8A7C /* UserBubble.m */,
@@ -275,8 +266,6 @@
 				A9D68DF018DBE42900299441 /* dilate1.wav */,
 				A9D68DED18DBBDC800299441 /* singleplayer.mp3 */,
 				A9D68DEB18DB762E00299441 /* Hit_Hurt4.wav */,
-				A9D68DE918DB5AE000299441 /* sample.mp3 */,
-				A9D68DE718DB59C900299441 /* sample.mp3 */,
 			);
 			name = Audio;
 			sourceTree = "<group>";
@@ -389,8 +378,6 @@
 				A85CD00E18DCD54300FECC1C /* twitter_logo.png in Resources */,
 				A9D68DEE18DBBDC800299441 /* singleplayer.mp3 in Resources */,
 				A9D68DEC18DB762E00299441 /* Hit_Hurt4.wav in Resources */,
-				A9D68DEA18DB5AE000299441 /* sample.mp3 in Resources */,
-				A9D68DE818DB59C900299441 /* sample.mp3 in Resources */,
 				1F60B16C18974B9A00232A84 /* Images.xcassets in Resources */,
 				1F60B15618974B9A00232A84 /* InfoPlist.strings in Resources */,
 				A8E8561918D67A730038C1AE /* back_button.png in Resources */,
@@ -431,7 +418,6 @@
 				A901663218B670A60061927A /* JCJoystick.m in Sources */,
 				A8E8561418D667C80038C1AE /* TwoPlayerScene.m in Sources */,
 				A97A9ED718989C750017183F /* SettingsViewController.m in Sources */,
-				A933437218D9FABD002A4FE8 /* DiscoveryViewController.m in Sources */,
 				1F60B15C18974B9A00232A84 /* AppDelegate.m in Sources */,
 				A822A3D718C16B2A00CAC8FA /* PauseViewController.m in Sources */,
 				A8E8561118D666FA0038C1AE /* TwoPlayerViewController.m in Sources */,

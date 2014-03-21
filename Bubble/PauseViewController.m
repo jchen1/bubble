@@ -23,7 +23,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor clearColor];
+    self.view.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.8];
     [[UIApplication sharedApplication] setStatusBarHidden:YES
                                             withAnimation:UIStatusBarAnimationFade];
     
@@ -32,13 +32,13 @@
     UIImage *quitButtonBackground = [UIImage imageNamed:@"quit_button.png"];
     
     resumeButton =  [UIButton buttonWithType:UIButtonTypeSystem] ;
-    [resumeButton setFrame:CGRectMake(50.0, 200.0, 200.0, 50.0)];
+    [resumeButton setFrame:CGRectMake(CGRectGetMidX(self.view.bounds) - 100, 200.0, 200.0, 50.0)];
     [resumeButton setBackgroundImage:resumeButtonBackground forState:UIControlStateNormal];
     [resumeButton addTarget:self action:@selector(resumeGame) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:resumeButton];
     
     quitButton =  [UIButton buttonWithType:UIButtonTypeSystem] ;
-    [quitButton setFrame:CGRectMake(50.0, 300.0, 200.0, 50.0)];
+    [quitButton setFrame:CGRectMake(CGRectGetMidX(self.view.bounds) - 100, 300.0, 200.0, 50.0)];
     [quitButton setBackgroundImage:quitButtonBackground forState:UIControlStateNormal];
     [quitButton addTarget:self action:@selector(quitGame) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:quitButton];
@@ -62,7 +62,8 @@
 
 - (IBAction)resumeGame {
     [[NSNotificationCenter defaultCenter]postNotificationName:@"single_unpause" object:nil];
-    [self.navigationController popViewControllerAnimated:NO];
+    //[self.navigationController popViewControllerAnimated:NO];
+    [[self view] removeFromSuperview];
 }
 
 - (IBAction)quitGame {
