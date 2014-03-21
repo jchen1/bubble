@@ -19,9 +19,9 @@
 }
 
 
--(void) sendScore:(long long)score
+-(void) sendScore:(long long)s
 {
-    
+    NSLog(@"%lld", s);
 }
 
 - (void)pauseMusic
