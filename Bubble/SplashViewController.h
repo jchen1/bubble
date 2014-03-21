@@ -18,6 +18,8 @@ BOOL isGameCenterAvailable();
     UIButton *optionsButton;
     UIButton *singlePlayerButton;
     UIButton *twoPlayerButton;
+    UIButton *twitterButton;
+    UIButton *gameCenterButton;
     UIImageView *bubbleIcon;
 }
 
