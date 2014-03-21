@@ -14,5 +14,6 @@
 @property int preferredDirection;
 
 -(void)updatePosition;
+-(id)initFromRadius:(double)radius;
 
 @end

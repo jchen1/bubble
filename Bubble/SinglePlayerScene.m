@@ -228,7 +228,13 @@
 }
 
 - (AIBubble *)spawnBubble{
-    AIBubble *bubble =[[AIBubble alloc] init];
+    AIBubble *bubble;
+    if (myBubble){
+        bubble = [[AIBubble alloc] initFromRadius:[myBubble radius]];
+    }
+    else{
+        bubble =[[AIBubble alloc] init];
+    }
     switch ([bubble preferredDirection]){
         case 0:
             bubble.position = CGPointMake(arc4random() % (int)CGRectGetMaxX(self.frame), self.frame.origin.y);

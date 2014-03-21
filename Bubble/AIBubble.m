@@ -8,6 +8,14 @@
 
 #import "AIBubble.h"
 
+double normalDistribution(double avg, double sigma){
+    double u =(double)(arc4random() %100000 + 1)/100000;
+    double v =(double)(arc4random() %100000 + 1)/100000;
+    double x = sqrt(-2*log(u))*cos(2*M_PI*v);
+    return x * sigma + avg;
+}
+
+
 @implementation AIBubble
 
 @synthesize type = _type;
@@ -15,8 +23,7 @@
 
 -(id) init
 {
-    self = [super initWithColor:[SKColor blueColor]];
-    if (self)
+    if (self = [super initWithColor:[SKColor blueColor]])
     {
         _type = 'A';
         super.radius = MAX(5.0,(double)(arc4random_uniform(100000) / 100000.0) * 60.0);
@@ -24,6 +31,16 @@
         pd = arc4random_uniform(4);
     }    
     
+    return self;
+}
+
+-(id)initFromRadius:(double)radius{
+    if (self = [super initWithColor:[SKColor blueColor]]){
+        _type = 'A';
+        super.radius = MIN(80.0, MAX(3.0, normalDistribution(radius, 10)));
+        super.zPosition = -1 * super.radius;
+        pd = arc4random_uniform(4);
+    }
     return self;
 }
 
