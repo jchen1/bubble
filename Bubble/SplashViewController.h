@@ -42,3 +42,4 @@ BOOL isGameCenterAvailable();
 
 @end
 
+long long highscore;
