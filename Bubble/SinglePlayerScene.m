@@ -12,6 +12,8 @@
 #define NUM_LIVES 1
 #define DILATE_PERCENT 0.99055
 #define DILATE_TICKS 120
+#define DILATE_RADIUS 50.0
+#define DEATH_RADIUS 1.0
 
 
 @implementation SinglePlayerScene
@@ -59,6 +61,8 @@
 
 -(void)update:(CFTimeInterval)currentTime {
     
+    NSLog(@"%lf", [myBubble radius]);
+    
     //check for game over
     if ([myBubble deaths] >= NUM_LIVES){
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Game Over!"
@@ -80,7 +84,7 @@
     }
     
     //check for deaths
-    if (myBubble.radius < 0.5)
+    if (myBubble.radius < DEATH_RADIUS)
     {
         shrink_count = 0;
         [self removeLife];
@@ -91,7 +95,7 @@
     }
     
     //check to dilate
-    if (myBubble.radius > 50.0 && dilate_count == 0)
+    if (myBubble.radius > DILATE_RADIUS && dilate_count == 0)
     {
         dilate_count = DILATE_TICKS;
         shrink_count++;
@@ -173,7 +177,7 @@
         if ([b isEqual:myBubble]){
             continue;
         }
-        if (b.radius < 0.5 || !CGRectContainsPoint(bounds,b.position) || b.radius > 100.0)
+        if (b.radius < DEATH_RADIUS || !CGRectContainsPoint(bounds,b.position) || b.radius > 100.0)
         {
             [removeIndices addIndex:i];
             [b removeFromParent];
