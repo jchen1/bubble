@@ -8,6 +8,7 @@
 #import <GameKit/GameKit.h>
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
+#import <Social/Social.h>
 #import "viewControllerDelegate.h"
 
 // Preferred method for testing for Game Center
