@@ -15,6 +15,9 @@
     TwoPlayerScene *scene;
 }
 
+-(void)done:(NSString *)dataText{
+    
+}
 
 - (void)viewDidLoad
 {
@@ -98,7 +101,7 @@
 ///SENDING INVITES
 
 -(void)invite{
-    GKMatchmaker *matchmaker = [GKMatchmaker sharedMatchmaker];
+    //GKMatchmaker *matchmaker = [GKMatchmaker sharedMatchmaker];
     
     myMatchRequest.playersToInvite = playersToInvite;
     myMatchRequest.inviteMessage = @"Try and pop my bubble(;";
