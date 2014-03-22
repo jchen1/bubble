@@ -33,6 +33,7 @@
 		A85CD01718DCEFD900FECC1C /* Hit_Hurt4.wav in Resources */ = {isa = PBXBuildFile; fileRef = A85CD01318DCEFD900FECC1C /* Hit_Hurt4.wav */; };
 		A85CD01818DCEFD900FECC1C /* powerup.wav in Resources */ = {isa = PBXBuildFile; fileRef = A85CD01418DCEFD900FECC1C /* powerup.wav */; };
 		A85CD01918DCEFD900FECC1C /* singleplayer.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A85CD01518DCEFD900FECC1C /* singleplayer.mp3 */; };
+		A85CD01B18DD143100FECC1C /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A85CD01A18DD143100FECC1C /* MediaPlayer.framework */; };
 		A8E2524518D93D0600510145 /* bubble_icon_title.png in Resources */ = {isa = PBXBuildFile; fileRef = A8E2524418D93D0600510145 /* bubble_icon_title.png */; };
 		A8E2524718D93D4100510145 /* bubble_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A8E2524618D93D4100510145 /* bubble_icon.png */; };
 		A8E2524918D9556900510145 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8E2524818D9556900510145 /* GameKit.framework */; };
@@ -101,6 +102,7 @@
 		A85CD01318DCEFD900FECC1C /* Hit_Hurt4.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Hit_Hurt4.wav; sourceTree = "<group>"; };
 		A85CD01418DCEFD900FECC1C /* powerup.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = powerup.wav; sourceTree = "<group>"; };
 		A85CD01518DCEFD900FECC1C /* singleplayer.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = singleplayer.mp3; sourceTree = "<group>"; };
+		A85CD01A18DD143100FECC1C /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		A8E2524418D93D0600510145 /* bubble_icon_title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubble_icon_title.png; sourceTree = "<group>"; };
 		A8E2524618D93D4100510145 /* bubble_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubble_icon.png; sourceTree = "<group>"; };
 		A8E2524818D9556900510145 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
@@ -133,6 +135,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A85CD01B18DD143100FECC1C /* MediaPlayer.framework in Frameworks */,
 				A85CD01018DCD74200FECC1C /* Social.framework in Frameworks */,
 				A9D68DE618DB580E00299441 /* AudioToolbox.framework in Frameworks */,
 				A9D68DE418DB57FF00299441 /* AVFoundation.framework in Frameworks */,
@@ -180,6 +183,7 @@
 		1F60B14818974B9A00232A84 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A85CD01A18DD143100FECC1C /* MediaPlayer.framework */,
 				A85CD00F18DCD74200FECC1C /* Social.framework */,
 				A9D68DE518DB580E00299441 /* AudioToolbox.framework */,
 				A9D68DE318DB57FF00299441 /* AVFoundation.framework */,
@@ -547,7 +551,7 @@
 				INFOPLIST_FILE = "Bubble/Bubble-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5C4F2528-BD68-4A99-8C8F-D01DC7F70C5B";
+				PROVISIONING_PROFILE = "";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
@@ -566,7 +570,7 @@
 				INFOPLIST_FILE = "Bubble/Bubble-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5C4F2528-BD68-4A99-8C8F-D01DC7F70C5B";
+				PROVISIONING_PROFILE = "";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;

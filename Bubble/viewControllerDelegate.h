@@ -22,4 +22,6 @@
 
 -(void)sendAchievement:(NSString*)achievementIdentifier;
 
+-(BOOL)shouldPlayMusic;
+
 @end

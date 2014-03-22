@@ -14,8 +14,6 @@
 #import <AudioToolbox/AudioToolbox.h>
 #import <GameKit/GameKit.h>
 
-#define TWOPLAYER
-
 #ifdef TWOPLAYER
 #import "TwoPlayerViewController.h"
 #endif
@@ -74,13 +72,17 @@
 
 - (IBAction)pauseMusic
 {
-    [player stop];
+    if (_playMusic){
+        [player stop];
+    }
 }
 
 -(IBAction)resumeMusic
 {
-    player.currentTime = 0;
-    [player play];
+    if (_playMusic){
+        player.currentTime = 0;
+        [player play];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -195,14 +197,25 @@
     [twitterButton addTarget:self action:@selector(twitterView) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:twitterButton];
     
-
     NSString *soundFilePath = [[NSBundle mainBundle] pathForResource:@"sample" ofType:@"mp3"];
     NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
     player = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:nil];
     player.numberOfLoops = -1; //infinite loop
-    if([player prepareToPlay])
-    {
-        [player play];
+    
+    if ([[MPMusicPlayerController iPodMusicPlayer] playbackState] == MPMusicPlaybackStatePlaying){
+        UIAlertView *alertView = [[UIAlertView alloc]
+                                  initWithTitle:@"Listen to our music?"
+                                  message:@"We have detected that you currently have music playing. Would you like to listen to our cleverly hand-picked background music instead?"
+                                  delegate:self
+                                  cancelButtonTitle:@"No"
+                                  otherButtonTitles:@"Yes", nil];
+        [alertView show];
+    }
+    else {
+        _playMusic = YES;
+        if([player prepareToPlay]){
+            [player play];
+        }
     }
 }
 
@@ -215,6 +228,24 @@
     return NO;
 }
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if ([[alertView title] isEqualToString:@"Listen to our music?"]){
+        if (buttonIndex == 1){
+            _playMusic = YES;
+            if([player prepareToPlay]){
+                [player play];
+            }
+        }
+        else {
+            _playMusic = NO;
+        }
+    }
+}
+
+- (BOOL)shouldPlayMusic{
+    return _playMusic;
+}
 
 -(void)authenticateLocalPlayer{
     GKLocalPlayer *localPlayer = [GKLocalPlayer localPlayer];
@@ -275,8 +306,7 @@
 - (IBAction)reportAchievementIdentifier:(NSString*)identifier percentComplete:(float) percent {
     GKAchievement *achievement = [[GKAchievement alloc] initWithIdentifier: identifier];
     achievement.showsCompletionBanner = YES;
-    
-    if (achievement && !achievement.completed)
+    if (achievement)
     {
         achievement.percentComplete = percent;
         [GKAchievement reportAchievements:@[achievement] withCompletionHandler:^(NSError *error) {
