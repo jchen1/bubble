@@ -8,14 +8,12 @@
 
 #import "SinglePlayerViewController.h"
 #import "SinglePlayerScene.h"
-#include <AVFoundation/AVFoundation.h>
 
 //uncomment the following line to display fps
 //#define FPS
 
 @implementation SinglePlayerViewController {
     SinglePlayerScene *scene;
-    AVAudioPlayer*player;
 }
 
 -(void) sendAchievement:(NSString *)achievementIdentifier{

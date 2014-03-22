@@ -7,16 +7,23 @@
 //
 
 #import "TwoPlayerViewController.h"
-#import <GameKit/GameKit.h>
-
-
 
 @implementation TwoPlayerViewController{
     TwoPlayerScene *scene;
+    GKMatchmaker *matchmaker;
 }
 
--(void)done:(NSString *)dataText{
+- (void) done:(NSString *)dataText{
     
+}
+
+
+- (void)match:(GKMatch *)match didFailWithError:(NSError *)error{
+    
+}
+
+- (void)match:(GKMatch *)match didReceiveData:(NSData *)data fromPlayer:(NSString *)playerID{
+    [scene match:match didReceiveData:data fromPlayer:playerID];
 }
 
 - (void)viewDidLoad
@@ -33,6 +40,7 @@
     skView.showsNodeCount = YES;
 #endif
     
+    [self gameKitSetup];
     
     UIImage *pauseButtonBackground = [UIImage imageNamed:@"pause_button.png"];
     
@@ -40,7 +48,7 @@
     [pauseButton setFrame:CGRectMake(self.view.bounds.size.width - 30,
                                      10, 20.0, 25.0)];
     [pauseButton setBackgroundImage:pauseButtonBackground forState:UIControlStateNormal];
-    [pauseButton addTarget:self action:@selector(drawPause) forControlEvents:UIControlEventTouchUpInside];
+    [pauseButton addTarget:self action:@selector(pause) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:pauseButton];
     // Create and configure the scene.
     scene = [TwoPlayerScene sceneWithSize:skView.bounds.size];
@@ -58,15 +66,10 @@
     GKMatchmakerViewController *controller = [[GKMatchmakerViewController alloc] initWithMatchRequest:matchrequest];
 
     controller.matchmakerDelegate = self;
-    // show it
-    // what is it even trying to do??
-    /*
-    [self.viewController presentViewController:viewController
-                                      animated:YES
-                                    completion:nil];
-     */
+
+    [self presentViewController:controller animated:YES completion:nil];
     
-    GKMatchmaker *matchmaker = [GKMatchmaker sharedMatchmaker];
+    matchmaker = [GKMatchmaker sharedMatchmaker];
     [matchmaker
      findMatchForRequest:myMatchRequest
      withCompletionHandler:^(GKMatch *match, NSError *error) {
@@ -80,8 +83,6 @@
     
 }
 
-///FINDING NEARBY PLAYERS
-
 - (void)startLookingForPlayers
 {
     GKMatchmaker *matchmaker = [GKMatchmaker sharedMatchmaker];
@@ -93,19 +94,14 @@
 
 - (void)stopLookingForPlayers
 {
-    // stop looking nearby players
     [[GKMatchmaker sharedMatchmaker] stopBrowsingForNearbyPlayers];
 }
 
 
-///SENDING INVITES
-
 -(void)invite{
-    //GKMatchmaker *matchmaker = [GKMatchmaker sharedMatchmaker];
-    
     myMatchRequest.playersToInvite = playersToInvite;
     myMatchRequest.inviteMessage = @"Try and pop my bubble(;";
-  //  myMatchRequest.responsehandler = self.responsehandler;
+    //myMatchRequest.responsehandler = self.responsehandler;
     
 }
 
@@ -113,9 +109,9 @@
 - (void)matchmakerViewController:(GKMatchmakerViewController *)viewController
                     didFindMatch:(GKMatch *)match
 {
-    // set delegate
     match.delegate = self;
-    // Setup match (your code here)
+    myMatch = match;
+
 }
 
 -(void)matchmakerViewControllerWasCancelled:(GKMatchmakerViewController *)viewController
@@ -138,14 +134,33 @@
     }
 }
 
-- (IBAction) drawPause{
-    PauseViewController *pauseMenu = [[PauseViewController alloc] initWithNibName:nil bundle:nil];
-    [self.navigationController pushViewController:pauseMenu animated:NO];
-}
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Release any cached data, images, etc that aren't in use.
 }
+
+
+- (IBAction)pause{
+    [player pause];
+    [scene pause];
+    PauseViewController *pauseMenu = [[PauseViewController alloc] initWithNibName:nil bundle:nil];
+    [self addChildViewController:pauseMenu];
+    [[self view] addSubview: [pauseMenu view]];
+}
+
+- (IBAction)resume
+{
+    if ([self.splash shouldPlayMusic]){
+        [player play];
+    }
+    [scene unpause];
+}
+
+- (void)sendBubbleData:(NSData *)data{
+    NSError *error;
+    [myMatch sendDataToAllPlayers:data withDataMode:GKSendDataUnreliable error:&error];
+}
+
 @end

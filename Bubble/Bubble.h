@@ -16,7 +16,7 @@
 @property double totalEaten;
 
 -(id) initWithColor : (SKColor*) color;
--(id) initWithId:(int)initid andRadius:(float)radius andXcoord:(float)xcoord andYcoord:(float)ycoord;
+-(id) initWithId:(int)initid andRadius:(float)radius andPosition:(CGPoint)pos;
 -(void)updateRadius:(float)newradius;
 -(void) updateArc;
 -(bool) inside: (CGPoint) touch;

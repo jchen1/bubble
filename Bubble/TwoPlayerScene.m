@@ -8,16 +8,6 @@
 
 #import "TwoPlayerScene.h"
 
-int contains(NSMutableArray *arr, int idnum){
-    for (UserBubble *b in arr){
-        if ([b idnum] == idnum){
-            return (int)[arr indexOfObject:b];
-        }
-    }
-    return -1;
-}
-
-
 
 @implementation TwoPlayerScene
 {
@@ -27,27 +17,9 @@ int contains(NSMutableArray *arr, int idnum){
 @synthesize delegate;
 
 
--(IBAction)pauseMusic
-{
-    
-}
-
--(IBAction)resumeMusic
-{
-    
-}
-
 -(void) sendScore:(long long)score
 {
     
-}
-
--(id)initWithSize:(CGSize)size {
-    if (self = [super initWithSize:size]) {
-        playertwobubble = [[Bubble alloc] initWithId:0 andRadius:0 andXcoord:0 andYcoord:0];
-        [self addChild:playertwobubble];
-    }
-    return self;
 }
 
 
@@ -55,7 +27,18 @@ int contains(NSMutableArray *arr, int idnum){
 }
 
 -(void)match:(GKMatch*)match didReceiveData:(NSData*)data fromPlayer:(NSString *)playerID{
-    
+    NSDictionary *dict = (NSDictionary*) [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    double radius = [[dict valueForKey:@"myBubbleRadius"] doubleValue];
+    CGPoint pos = [[dict valueForKey:@"myBubblePosition"] CGPointValue];
+    int idnum = [[dict valueForKey:@"myBubbleID"] intValue];
+    if (playertwobubble == nil){
+        playertwobubble = [[Bubble alloc] initWithId:idnum andRadius:radius andPosition:pos];
+        [self addChild:playertwobubble];
+    }
+    else{
+        playertwobubble.radius = radius;
+        playertwobubble.position = pos;
+    }
 }
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -77,12 +60,16 @@ int contains(NSMutableArray *arr, int idnum){
      }*/
 }
 
--(void)stringToBubble:(NSMutableString *) data{
-    
-}
-
 -(void)update:(CFTimeInterval)currentTime {
     [super update:currentTime];
+    NSValue *myBubblePosition = [NSValue valueWithCGPoint:[myBubble position]];
+    NSNumber *myBubbleRadius = [[NSNumber alloc] initWithDouble:[myBubble radius]];
+    NSNumber *myBubbleID = [[NSNumber alloc] initWithInt:[myBubble idnum]];
+    NSArray *values = @[myBubblePosition, myBubbleRadius, myBubbleID];
+    NSArray *keys = @[@"myBubblePosition", @"myBubbleRadius", @"myBubbleID"];
+    NSDictionary *bubbleToSend = [[NSDictionary alloc] initWithObjects:values forKeys:keys];
+    NSData *dataToSend = [NSKeyedArchiver archivedDataWithRootObject:bubbleToSend];;
+    [[self delegate] sendBubbleData:dataToSend];
 }
 
 @end
