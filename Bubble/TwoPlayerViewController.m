@@ -10,6 +10,7 @@
 
 @implementation TwoPlayerViewController{
     TwoPlayerScene *scene;
+    SKView * skView;
     GKMatchmaker *matchmaker;
 }
 
@@ -29,7 +30,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    SKView * skView = [[SKView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    skView = [[SKView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    skView.backgroundColor = [UIColor blackColor];
+    self.view.backgroundColor = [UIColor blackColor];
     self.view = skView;
     
 #ifndef FPS
@@ -50,12 +53,6 @@
     [pauseButton setBackgroundImage:pauseButtonBackground forState:UIControlStateNormal];
     [pauseButton addTarget:self action:@selector(pause) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:pauseButton];
-    // Create and configure the scene.
-    scene = [TwoPlayerScene sceneWithSize:skView.bounds.size];
-    scene.scaleMode = SKSceneScaleModeAspectFill;
-    scene.delegate=self;
-    [scene pause];
-    [skView presentScene:scene];
 }
 
 -(void)gameKitSetup{
@@ -76,7 +73,10 @@
              // Handle error
          }
          else {
-             [scene unpause];
+             scene = [TwoPlayerScene sceneWithSize:skView.bounds.size];
+             scene.scaleMode = SKSceneScaleModeAspectFill;
+             scene.delegate=self;
+             [skView presentScene:scene];
          }
      }];
     
@@ -84,7 +84,6 @@
 
 - (void)startLookingForPlayers
 {
-    GKMatchmaker *matchmaker = [GKMatchmaker sharedMatchmaker];
     [matchmaker startBrowsingForNearbyPlayersWithReachableHandler:^(NSString *playerID, BOOL reachable) {
         [playersToInvite addObject:playerID];
         }
@@ -110,18 +109,18 @@
 {
     match.delegate = self;
     myMatch = match;
-
+    
 }
 
 -(void)matchmakerViewControllerWasCancelled:(GKMatchmakerViewController *)viewController
 {
-    
-    
+    [viewController dismissViewControllerAnimated:YES completion:nil];
+    [[self navigationController] popViewControllerAnimated:NO];
 }
 
 -(void)matchmakerViewController:(GKMatchmakerViewController *)viewController didFailWithError:(NSError *)error
 {
-    
+    [[self navigationController] popViewControllerAnimated:NO];
 }
 
 - (NSUInteger)supportedInterfaceOrientations
