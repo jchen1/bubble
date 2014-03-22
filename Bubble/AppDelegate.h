@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SplashViewController.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate>{
+    SplashViewController *splash;
+}
 
 @property (strong, nonatomic) UIWindow *window;
 

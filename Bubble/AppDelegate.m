@@ -8,8 +8,6 @@
 
 
 #import "AppDelegate.h"
-#import "SplashViewController.h"
-#import "SinglePlayerViewController.h"
 
 @implementation AppDelegate
 
@@ -19,9 +17,9 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     UINavigationController *navController = [[UINavigationController alloc] init];
-    SplashViewController *firstView = [[SplashViewController alloc] init];
+    splash = [[SplashViewController alloc] init];
     self.window.rootViewController = navController;
-    [navController pushViewController:firstView animated:NO];
+    [navController pushViewController:splash animated:NO];
     [self.window addSubview:navController.view];
     [self.window makeKeyAndVisible];
     // Override point for customization after application launch.
