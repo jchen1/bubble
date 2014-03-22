@@ -7,11 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "viewControllerDelegate.h"
 
 
 @interface SettingsViewController : UIViewController{
     UIButton *backButton;
     UILabel *copyright;
     UILabel *highScore;
+    UILabel *musicVolumeLabel;
+    UILabel *sfxVolumeLabel;
+    UISlider *musicVolumeSlider;
+    UISlider *sfxVolumeSlider;
+    NSUserDefaults *defaults;
 }
+
+@property id<viewControllerDelegate> splash;
+
 @end

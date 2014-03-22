@@ -37,10 +37,13 @@
 
 - (void)viewDidLoad
 {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    float musicVolume = [defaults floatForKey:@"musicVolume"];
     NSString *soundFilePath = [[NSBundle mainBundle] pathForResource:@"singleplayer" ofType:@"mp3"];
     NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
     player = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:nil];
     player.numberOfLoops = -1; //infinite loop
+    player.volume = (musicVolume == 0) ? 1.0 : musicVolume;
     
     if ([self.splash shouldPlayMusic]){
         if([player prepareToPlay]){
@@ -135,7 +138,6 @@
 - (IBAction)pause{
     [player pause];
     PauseViewController *pauseMenu = [[PauseViewController alloc] initWithNibName:nil bundle:nil];
-    //[self.navigationController pushViewController:pauseMenu animated:NO];
     [self addChildViewController:pauseMenu];
     [[self view] addSubview: [pauseMenu view]];
     [[NSNotificationCenter defaultCenter]postNotificationName:@"single_pause" object:nil];

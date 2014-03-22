@@ -116,6 +116,7 @@
 
 - (IBAction)optionsView {
     SettingsViewController *settingsView = [[SettingsViewController alloc] init];
+    settingsView.splash = self;
     [self.navigationController pushViewController:settingsView animated:NO];
 }
 
@@ -143,6 +144,9 @@
 }
 
 - (void) setUpUI{
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
     self.view.backgroundColor = [UIColor blackColor];
     
     UIImage *singlePlayerButtonBackground = [UIImage imageNamed:@"1p_button.png"];
@@ -191,10 +195,13 @@
     [twitterButton addTarget:self action:@selector(twitterView) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:twitterButton];
     
+    
+    float musicVolume = [defaults floatForKey:@"musicVolume"];
     NSString *soundFilePath = [[NSBundle mainBundle] pathForResource:@"sample" ofType:@"mp3"];
     NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
     player = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:nil];
     player.numberOfLoops = -1; //infinite loop
+    player.volume = (musicVolume == 0) ? 1.0 : musicVolume;
     
     if ([[MPMusicPlayerController iPodMusicPlayer] playbackState] == MPMusicPlaybackStatePlaying){
         UIAlertView *alertView = [[UIAlertView alloc]
@@ -341,6 +348,10 @@
             NSLog(@"%@", [error localizedDescription]);
         }
     }];
+}
+
+-(void)setVolume:(float)volume{
+    player.volume = volume;
 }
 
 @end

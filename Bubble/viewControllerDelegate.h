@@ -24,4 +24,6 @@
 
 -(BOOL)shouldPlayMusic;
 
+-(void)setVolume:(float)volume;
+
 @end

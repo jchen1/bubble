@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Bubble/SplashViewController.m"
-            timestampString = "417142767.725263"
+            timestampString = "417200423.828561"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "282"
-            endingLineNumber = "282"
+            startingLineNumber = "289"
+            endingLineNumber = "289"
             landmarkName = "-reportScore:forLeaderboardID:"
             landmarkType = "5">
          </BreakpointContent>
