@@ -109,6 +109,11 @@
 {
     match.delegate = self;
     myMatch = match;
+    [viewController dismissViewControllerAnimated:YES completion:nil];
+    scene = [TwoPlayerScene sceneWithSize:skView.bounds.size];
+    scene.scaleMode = SKSceneScaleModeAspectFill;
+    scene.delegate=self;
+    [skView presentScene:scene];
     
 }
 
@@ -120,6 +125,7 @@
 
 -(void)matchmakerViewController:(GKMatchmakerViewController *)viewController didFailWithError:(NSError *)error
 {
+    [viewController dismissViewControllerAnimated:YES completion:nil];
     [[self navigationController] popViewControllerAnimated:NO];
 }
 
