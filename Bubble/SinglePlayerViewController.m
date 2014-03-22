@@ -41,9 +41,11 @@
     NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
     player = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:nil];
     player.numberOfLoops = -1; //infinite loop
-    if([player prepareToPlay])
-    {
-    [player play];
+    
+    if ([self.splash shouldPlayMusic]){
+        if([player prepareToPlay]){
+            [player play];
+        }
     }
         [super viewDidLoad];
     SKView * skView = [[SKView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -141,7 +143,9 @@
 
 - (IBAction)resume
 {
-    [player play];
+    if ([self.splash shouldPlayMusic]){
+        [player play];
+    }
 }
 
 @end
