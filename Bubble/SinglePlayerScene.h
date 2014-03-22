@@ -12,15 +12,19 @@
 #import "SplashViewController.h"
 #import "JCJoystick.h"
 #import "viewControllerDelegate.h"
+#import "PowerUp.h"
 
 @interface SinglePlayerScene : SKScene <UIAlertViewDelegate>
 {
     int initial_count;
     int dilate_count;
     int shrink_count;
+    float aiBubbleScale;
+    float userBubbleScale;
     NSMutableArray *bubbles;
     NSMutableArray *directions;
     NSMutableArray *lives;
+    NSMutableArray *powerups;
     JCJoystick *joystick;
     UserBubble *myBubble;
 }
