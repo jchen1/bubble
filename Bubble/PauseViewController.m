@@ -61,9 +61,8 @@
 }
 
 - (IBAction)resumeGame {
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"single_unpause" object:nil];
-    //[self.navigationController popViewControllerAnimated:NO];
     [[self view] removeFromSuperview];
+    //[[NSNotificationCenter defaultCenter]postNotificationName:@"single_unpause" object:nil];
 }
 
 - (IBAction)quitGame {

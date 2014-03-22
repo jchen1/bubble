@@ -141,7 +141,6 @@
 - (IBAction) drawPause{
     PauseViewController *pauseMenu = [[PauseViewController alloc] initWithNibName:nil bundle:nil];
     [self.navigationController pushViewController:pauseMenu animated:NO];
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"single_pause" object:nil];
 }
 
 - (void)didReceiveMemoryWarning
