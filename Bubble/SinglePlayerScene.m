@@ -19,6 +19,7 @@
 @implementation SinglePlayerScene
 {
     AVAudioPlayer*player;
+    int invulnerability;
 }
 
 -(id)initWithSize:(CGSize)size {
@@ -40,6 +41,16 @@
         joystick.zPosition= 120;
         
         bubbles = [NSMutableArray array];
+        powerups = [NSMutableArray array];
+        
+        PowerUp* testPowerUp = [[PowerUp alloc] initWithColor:[SKColor whiteColor]];
+        testPowerUp.position = CGPointMake(10, 10);
+        testPowerUp.type='i';
+        [self addChild:testPowerUp];
+        [testPowerUp setPosition:testPowerUp.position];
+        [powerups addObject:testPowerUp];
+        PowerUp* asdf = [powerups lastObject];
+        NSLog(@"%@", asdf.toString);
         
         myBubble = [[UserBubble alloc] init];
         myBubble.position = CGPointMake(CGRectGetMidX(self.frame),
@@ -57,6 +68,7 @@
 }
 
 -(void)update:(CFTimeInterval)currentTime {
+//    NSLog(@"%f", currentTime);
     //check for achievements
     if (shrink_count==1)
     {
@@ -139,6 +151,7 @@
     
     //update aibubbles
     [self clearDeadBubbles:bounds];
+    [self processPowerUps];
     [self processEats];
     [myBubble updateArc];
     
@@ -154,6 +167,32 @@
         });
     }
     
+}
+
+-(void) processPowerUps{
+    for (PowerUp *p1 in powerups) {
+        if([p1 collidesWith:myBubble])
+        {
+            switch (p1.type) {
+                case 'i':
+                    NSLog(@"invulnerability");
+                    invulnerability=1000;
+                    break;
+                case 's':
+                    NSLog(@"speed++");
+                    //myBubble.speed +=10 or myBubble.speed+=myBubble.speed*.1
+                case 'j':
+                    NSLog(@"Jello");
+                    //all AI bubbles move at 50% speed
+                case 'k':
+                    NSLog(@"Killer");
+                    //Your bubble destroys other bubbles on contact?!
+                default:
+                    break;
+            }
+            [p1 removeFromParent];
+        }
+    }
 }
 
 -(void) processEats{
