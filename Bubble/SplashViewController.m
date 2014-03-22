@@ -23,7 +23,6 @@
 @implementation SplashViewController
 {
     AVAudioPlayer*player;
-    
 }
 
 @synthesize currentPlayerID,
@@ -34,17 +33,24 @@
 }
 
 -(void)sendAchievement:(NSString *)achievementIdentifier{
-    
+    [self reportAchievementIdentifier:achievementIdentifier percentComplete:100];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    NSMutableArray *loadedAchievements = [[NSMutableArray alloc] init];
     
-    [GKAchievement loadAchievementsWithCompletionHandler:^(NSArray *achievements, NSError *error) {
-        if (error != nil)
-            NSLog(@"ACHIEVEMENTS WERE NOT LOADED");
-    }];
+    [GKAchievement loadAchievementsWithCompletionHandler: ^(NSArray *scores, NSError *error)
+     {
+         if(error != NULL) { /* error handling */ }
+         [loadedAchievements addObjectsFromArray:scores];
+         // work with achievement here, store it in your cache or smith
+     }];
+    
+    for (NSString*scores in loadedAchievements) {
+        NSLog (@"Your Array elements are = %@", scores);
+    }
     
 	// Do any additional setup after loading the view, typically from a nib.
     
@@ -209,6 +215,7 @@
     return NO;
 }
 
+
 -(void)authenticateLocalPlayer{
     GKLocalPlayer *localPlayer = [GKLocalPlayer localPlayer];
     
@@ -268,7 +275,8 @@
 - (IBAction)reportAchievementIdentifier:(NSString*)identifier percentComplete:(float) percent {
     GKAchievement *achievement = [[GKAchievement alloc] initWithIdentifier: identifier];
     achievement.showsCompletionBanner = YES;
-    if (achievement)
+    
+    if (achievement && !achievement.completed)
     {
         achievement.percentComplete = percent;
         [GKAchievement reportAchievements:@[achievement] withCompletionHandler:^(NSError *error) {

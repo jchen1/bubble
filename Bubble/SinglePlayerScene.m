@@ -60,7 +60,15 @@
 }
 
 -(void)update:(CFTimeInterval)currentTime {
-    
+    //check for achievements
+    if (shrink_count==1)
+    {
+        [self.delegate sendAchievement:@"1"];
+    }
+    if(shrink_count==2)
+    {
+        [self.delegate sendAchievement:@"2"];
+    }
     //check for game over
     if ([myBubble deaths] >= NUM_LIVES){
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Game Over!"
