@@ -52,8 +52,6 @@
         [bubbles addObject:myBubble];
         [self addChild:myBubble];
         
-        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(unpause) name:@"single_unpause" object:nil];
-        
     }
     return self;
 }

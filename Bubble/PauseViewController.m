@@ -62,7 +62,7 @@
 
 - (IBAction)resumeGame {
     [[self view] removeFromSuperview];
-    //[[NSNotificationCenter defaultCenter]postNotificationName:@"single_unpause" object:nil];
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"single_unpause" object:nil];
 }
 
 - (IBAction)quitGame {

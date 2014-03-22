@@ -152,6 +152,7 @@
     if ([self.splash shouldPlayMusic]){
         [player play];
     }
+    [scene unpause];
 }
 
 @end
