@@ -62,6 +62,16 @@
 
 -(void)update:(CFTimeInterval)currentTime {
     [super update:currentTime];
+    
+    if([myBubble collidesWith:playertwobubble]) {
+        if (myBubble.radius < playertwobubble.radius) {
+            [myBubble eat:playertwobubble withMultiplier:shrink_count];
+        }
+        else if (myBubble.radius > playertwobubble.radius) {
+            [myBubble eat:playertwobubble withMultiplier:shrink_count];
+        }
+    }
+    [playertwobubble updateArc];
     NSValue *myBubblePosition = [NSValue valueWithCGPoint:[myBubble position]];
     NSNumber *myBubbleRadius = [[NSNumber alloc] initWithDouble:[myBubble radius]];
     NSNumber *myBubbleID = [[NSNumber alloc] initWithInt:[myBubble idnum]];
