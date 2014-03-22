@@ -54,8 +54,7 @@
     scene = [TwoPlayerScene sceneWithSize:skView.bounds.size];
     scene.scaleMode = SKSceneScaleModeAspectFill;
     scene.delegate=self;
-
-    
+    [scene pause];
     [skView presentScene:scene];
 }
 
@@ -77,7 +76,7 @@
              // Handle error
          }
          else {
-             // get ready to play
+             [scene unpause];
          }
      }];
     
