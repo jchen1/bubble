@@ -26,4 +26,6 @@
 
 -(void)setVolume:(float)volume;
 
+-(void)sendBubbleData: (NSData*)data;
+
 @end

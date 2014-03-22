@@ -12,6 +12,8 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import "viewControllerDelegate.h"
 
+#define TWOPLAYER
+
 // Preferred method for testing for Game Center
 
 @protocol splashViewControllerDelegate <NSObject>

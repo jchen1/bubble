@@ -11,18 +11,15 @@
 #import "viewControllerDelegate.h"
 #import <GameKit/GameKit.h>
 
-//uncomment the next line to test out twoplayer mode
-//#define TWOPLAYER
-
 
 @interface TwoPlayerViewController : SinglePlayerViewController
     <viewControllerDelegate, GKMatchmakerViewControllerDelegate, GKMatchDelegate>{
 
-        UIButton *browseButton;
         NSInputStream *inputStream;
         NSOutputStream *outputStream;
         NSMutableArray *playersToInvite;
         GKMatchRequest *myMatchRequest;
+        GKMatch *myMatch;
 }
 
 -(void)done:(NSString *)dataText;

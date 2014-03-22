@@ -39,7 +39,7 @@
     return self;
 }
 
--(id) initWithId:(int)initid andRadius:(float)radius andXcoord:(float)xcoord andYcoord:(float)ycoord
+-(id) initWithId:(int)initid andRadius:(float)radius andPosition:(CGPoint)pos
 {
     self = [self initWithColor:[SKColor greenColor]];
     if (self)
@@ -48,8 +48,7 @@
         _idnum = initid;
         _radius=radius;
         _totalEaten = 0.0;
-        CGPoint pos = CGPointMake(xcoord, ycoord);
-        [super setPosition:pos];
+        self.position = pos;
     }
     return self;
 }
