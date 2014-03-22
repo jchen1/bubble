@@ -18,6 +18,9 @@
     AVAudioPlayer*player;
 }
 
+-(void) sendAchievement:(NSString *)achievementIdentifier{
+    [self.splash sendAchievement:achievementIdentifier];
+}
 
 -(void) sendScore:(long long)s
 {
