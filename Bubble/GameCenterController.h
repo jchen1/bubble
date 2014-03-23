@@ -28,6 +28,7 @@ GKMatchmakerViewControllerDelegate, GKMatchDelegate, GKLocalPlayerListener>{
 -(void)showLeaderboardAndAchievements:(BOOL)shouldShowLeaderboard;
 -(void)sendBubbleData:(NSData*)data;
 -(void)sendScore:(long long)score;
+-(void)sendAchievement:(NSString*)ident;
 -(void)findGame;
 -(void)disconnect;
 

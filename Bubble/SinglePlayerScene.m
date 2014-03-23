@@ -103,11 +103,11 @@
     //check for achievements
     if (shrink_count==1)
     {
-        [self.delegate sendAchievement:@"1"];
+        [self.gc sendAchievement:@"1"];
     }
     if(shrink_count==2)
     {
-        [self.delegate sendAchievement:@"2"];
+        [self.gc sendAchievement:@"2"];
     }
     
     //check for game over
