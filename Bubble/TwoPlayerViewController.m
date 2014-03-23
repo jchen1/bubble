@@ -54,7 +54,7 @@
     [pauseButton addTarget:self action:@selector(pause) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:pauseButton];
     
-    [[NotificationCenter defaultCenter] addObserver:self selector:@selector(disconnect) name:@"gameQuit" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(disconnect) name:@"gameQuit" object:nil];
 }
 
 -(void)gameKitSetup{
