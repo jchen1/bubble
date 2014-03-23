@@ -20,15 +20,38 @@
 
 
 - (void)match:(GKMatch *)match didFailWithError:(NSError *)error{
-    
+    NSLog(@"%@", [error description]);
+    [match disconnect];
+}
+
+- (void)match:(GKMatch *)match player:(NSString *)playerID didChangeState:(GKPlayerConnectionState)state{
+    switch (state){
+        case GKPlayerStateConnected: break;
+        case GKPlayerStateUnknown: break;
+        case GKPlayerStateDisconnected:
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"gameQuit" object:nil];
+            NSString *beatMessage = [NSString stringWithFormat:@"You beat %@.", playerID];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Congratulations!"
+                                                            message:beatMessage
+                                                           delegate:self
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [alert show];
+            break;
+    }
 }
 
 - (void)match:(GKMatch *)match didReceiveData:(NSData *)data fromPlayer:(NSString *)playerID{
     [scene match:match didReceiveData:data fromPlayer:playerID];
 }
 
+- (BOOL)match:(GKMatch *)match shouldReinvitePlayer:(NSString *)playerID{
+    return NO;
+}
+
 - (void)viewDidLoad
 {
+    [self gameKitSetup];
     [super viewDidLoad];
     skView = [[SKView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     skView.backgroundColor = [UIColor blackColor];
@@ -43,8 +66,6 @@
     skView.showsNodeCount = YES;
 #endif
     
-    [self gameKitSetup];
-    
     UIImage *pauseButtonBackground = [UIImage imageNamed:@"pause_button.png"];
     
     pauseButton =  [UIButton buttonWithType:UIButtonTypeSystem] ;
@@ -54,7 +75,7 @@
     [pauseButton addTarget:self action:@selector(pause) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:pauseButton];
     
-    [[NotificationCenter defaultCenter] addObserver:self selector:@selector(disconnect) name:@"gameQuit" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(disconnect) name:@"gameQuit" object:nil];
 }
 
 -(void)gameKitSetup{

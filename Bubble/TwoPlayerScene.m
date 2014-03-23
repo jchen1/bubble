@@ -8,19 +8,10 @@
 
 #import "TwoPlayerScene.h"
 
-AIBubble* findBubbleInArray(NSArray* arr, AIBubble *b){
-    for (AIBubble *bub in arr){
-        if ([bub idnum] == [b idnum]){
-            return b;
-        }
-    }
-    return nil;
-}
-
 @implementation TwoPlayerScene
 {
     Bubble* playertwobubble;
-    AIBubble* newBubble;
+    NSMutableArray* newBubbles;
 }
 
 @synthesize delegate;
@@ -30,11 +21,12 @@ AIBubble* findBubbleInArray(NSArray* arr, AIBubble *b){
 
 -(void)match:(GKMatch*)match didReceiveData:(NSData*)data fromPlayer:(NSString *)playerID{
     NSDictionary *dict = (NSDictionary*) [NSKeyedUnarchiver unarchiveObjectWithData:data];
-    AIBubble *receivedBubble = (AIBubble*) [NSKeyedUnarchiver
-                                           unarchiveObjectWithData:[dict valueForKey:@"myNewBubble"]];
-    if (newBubble != nil){
-        [bubbles addObject:receivedBubble];
-        [self addChild:receivedBubble];
+    NSMutableArray *receivedBubbleData = (NSMutableArray*)[NSKeyedUnarchiver
+                                                           unarchiveObjectWithData:
+                                                           [dict valueForKey:@"myNewBubbles"]];
+    for (AIBubble *b in receivedBubbleData){
+        [bubbles addObject:b];
+        [self addChild:b];
     }
     double radius = [[dict valueForKey:@"myBubbleRadius"] doubleValue];
     CGPoint pos = [[dict valueForKey:@"myBubblePosition"] CGPointValue];
@@ -48,9 +40,6 @@ AIBubble* findBubbleInArray(NSArray* arr, AIBubble *b){
         playertwobubble.position = pos;
     }
 }
-
-
-
 
 
 -(void)update:(CFTimeInterval)currentTime {
@@ -134,7 +123,7 @@ AIBubble* findBubbleInArray(NSArray* arr, AIBubble *b){
     
     if([myBubble collidesWith:playertwobubble]) {
         if (myBubble.radius < playertwobubble.radius) {
-            [myBubble eat:playertwobubble withMultiplier:shrink_count];
+            [playertwobubble eat:myBubble withMultiplier:shrink_count];
         }
         else if (myBubble.radius > playertwobubble.radius) {
             [myBubble eat:playertwobubble withMultiplier:shrink_count];
@@ -150,28 +139,23 @@ AIBubble* findBubbleInArray(NSArray* arr, AIBubble *b){
             AIBubble *bubble = [self spawnBubble];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [bubbles addObject:bubble];
-                [self sendNewBubble:bubble];
+                [newBubbles addObject:bubble];
                 [self addChild:bubble];
             });
         });
     }
-    else{
-        [self sendNewBubble:nil];
-    }
     
-    NSData *myNewBubble = [NSKeyedArchiver archivedDataWithRootObject:newBubble];
     NSValue *myBubblePosition = [NSValue valueWithCGPoint:[myBubble position]];
     NSNumber *myBubbleRadius = [[NSNumber alloc] initWithDouble:[myBubble radius]];
     NSNumber *myBubbleID = [[NSNumber alloc] initWithInt:[myBubble idnum]];
-    NSArray *values = @[myBubblePosition, myBubbleRadius, myBubbleID, myNewBubble];
-    NSArray *keys = @[@"myBubblePosition", @"myBubbleRadius", @"myBubbleID", @"myNewBubble"];
+    NSData *myNewBubbles = [NSKeyedArchiver archivedDataWithRootObject:newBubbles];
+    [newBubbles removeAllObjects];
+    NSArray *values = [NSMutableArray arrayWithArray:@[myBubblePosition, myBubbleRadius, myBubbleID, myNewBubbles]];
+    NSArray *keys = [NSMutableArray arrayWithArray:@[@"myBubblePosition", @"myBubbleRadius",
+                                                     @"myBubbleID", @"myNewBubbles"]];
     NSDictionary *bubbleToSend = [[NSDictionary alloc] initWithObjects:values forKeys:keys];
     NSData *dataToSend = [NSKeyedArchiver archivedDataWithRootObject:bubbleToSend];
     [delegate sendBubbleData:dataToSend];
-}
-
--(void)sendNewBubble:(AIBubble*)b{
-    newBubble = b;
 }
 
 @end
