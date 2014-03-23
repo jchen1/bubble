@@ -224,7 +224,8 @@
         case GKPlayerStateConnected: break;
         case GKPlayerStateUnknown:
         case GKPlayerStateDisconnected:
-            if (![[GKLocalPlayer localPlayer].playerID isEqualToString:playerID]){
+            if (![[GKLocalPlayer localPlayer].playerID isEqualToString:playerID]
+                && [[self currentGameView] isWinning]){
             [GKPlayer loadPlayersForIdentifiers:(NSArray *)@[playerID]
                           withCompletionHandler:^(NSArray *players, NSError *error){
                               [[NSNotificationCenter defaultCenter] postNotificationName:@"gameQuit" object:nil];

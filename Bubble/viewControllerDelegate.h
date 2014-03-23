@@ -33,4 +33,6 @@
 
 -(void)handleReceivedData:(NSData*)data;
 
+-(BOOL)isWinning;
+
 @end

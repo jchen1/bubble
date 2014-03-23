@@ -12,12 +12,15 @@
 {
     Bubble* playertwobubble;
     NSMutableArray* newBubbles;
+    BOOL isWinning;
 }
 
 @synthesize delegate;
 @synthesize gc;
 
--(void)done:(NSString*)dataText{
+
+-(BOOL)isWinning{
+    return isWinning;
 }
 
 -(void)handleReceivedData:(NSData *)data{
@@ -63,9 +66,12 @@
         }
         [self.scene.view setPaused:YES];
         [self.gc sendScore:[myBubble totalEaten] *10];
+        isWinning = NO;
         [gc disconnect];
         return;
     }
+    
+    isWinning = YES;
     
     //check for deaths
     if (myBubble.radius < DEATH_RADIUS)
