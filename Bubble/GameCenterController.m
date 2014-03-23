@@ -16,23 +16,11 @@
     NSMutableArray *playersToInvite;
 }
 
-@synthesize controller = controller;
+@synthesize controller = controller, splash = splash, currentGameView = game;
 
 - (id) init{
     if (self = [super init]){
         [self authenticateLocalPlayer];
-        NSMutableArray *loadedAchievements = [[NSMutableArray alloc] init];
-        
-        [GKAchievement loadAchievementsWithCompletionHandler: ^(NSArray *scores, NSError *error)
-         {
-             if(error != NULL) { /* error handling */ }
-             [loadedAchievements addObjectsFromArray:scores];
-             // work with achievement here, store it in your cache or smith
-         }];
-        
-        for (NSString*scores in loadedAchievements) {
-            NSLog (@"Your Array elements are = %@", scores);
-        }
     }
     return self;
 }
@@ -60,12 +48,8 @@
         else{
             if ([GKLocalPlayer localPlayer].authenticated) {
                 _gameCenterEnabled = YES;
-                
                 [[GKLocalPlayer localPlayer] registerListener:self];
-                
-                // Get the default leaderboard identifier.
                 [[GKLocalPlayer localPlayer] loadDefaultLeaderboardIdentifierWithCompletionHandler:^(NSString *leaderboardIdentifier, NSError *error) {
-                    
                     if (error != nil) {
                         NSLog(@"%@", [error localizedDescription]);
                     }
@@ -73,6 +57,17 @@
                         _leaderboardIdentifier = leaderboardIdentifier;
                     }
                 }];
+                NSMutableArray *loadedAchievements = [[NSMutableArray alloc] init];
+                [GKAchievement loadAchievementsWithCompletionHandler: ^(NSArray *scores, NSError *error)
+                 {
+                     if(error != NULL) { NSLog(@"%@", [error description]); }
+                     [loadedAchievements addObjectsFromArray:scores];
+                 }];
+                
+                for (NSString*scores in loadedAchievements) {
+                    NSLog (@"Your Array elements are = %@", scores);
+                }
+                
             }
             
             else{
@@ -86,10 +81,8 @@
 
 {
     GKScore* scoreReporter = [[GKScore alloc] initWithLeaderboardIdentifier:category];
-    
     scoreReporter.value = score;
     scoreReporter.context = 0;
-    
     [GKScore reportScores:@[scoreReporter] withCompletionHandler:^(NSError *error) {
         if (error) {
             NSLog(@"error: %@", error);
@@ -140,9 +133,9 @@
 
 - (void)player:(GKPlayer *)player didAcceptInvite:(GKInvite *)invite{
     [[GKMatchmaker sharedMatchmaker] matchForInvite:invite completionHandler:^(GKMatch *match, NSError *error) {
-        TwoPlayerViewController *gameView = [[TwoPlayerViewController alloc] init];
-        [controller pushViewController:gameView animated:NO];
-        [self newMatch:match];
+        myMatch = match;
+        match.delegate = self;
+        [splash startNewMultiplayerGame];
     }];
 }
 
@@ -203,8 +196,8 @@
 - (void)matchmakerViewController:(GKMatchmakerViewController *)viewController
                     didFindMatch:(GKMatch *)match
 {
-    
-    
+    [viewController dismissViewControllerAnimated:YES completion:nil];
+    [self newMatch:match];
 }
 
 -(void)matchmakerViewControllerWasCancelled:(GKMatchmakerViewController *)viewController
@@ -230,19 +223,19 @@
         case GKPlayerStateUnknown: break;
         case GKPlayerStateDisconnected:
             /*[[NSNotificationCenter defaultCenter] postNotificationName:@"gameQuit" object:nil];
-            NSString *beatMessage = [NSString stringWithFormat:@"You beat %@.", playerID];
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Congratulations!"
-                                                            message:beatMessage
-                                                           delegate:self
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-            [alert show];*/
+             NSString *beatMessage = [NSString stringWithFormat:@"You beat %@.", playerID];
+             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Congratulations!"
+             message:beatMessage
+             delegate:self
+             cancelButtonTitle:@"OK"
+             otherButtonTitles:nil];
+             [alert show];*/
             break;
     }
 }
 
 - (void)match:(GKMatch *)match didReceiveData:(NSData *)data fromPlayer:(NSString *)playerID{
-    
+    [game handleReceivedData:data];
 }
 
 - (BOOL)match:(GKMatch *)match shouldReinvitePlayer:(NSString *)playerID{
@@ -252,6 +245,7 @@
 - (void)newMatch:(GKMatch*)match{
     myMatch = match;
     match.delegate = self;
+    [splash startNewMultiplayerGame];
 }
 
 - (void)sendBubbleData:(NSData *)data{

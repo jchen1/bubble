@@ -208,38 +208,38 @@
 			isa = PBXGroup;
 			children = (
 				1F7C329418975A34006995F8 /* AIBubble.h */,
-				1F60B15A18974B9A00232A84 /* AppDelegate.h */,
-				1F60B1881897500300232A84 /* Bubble.h */,
-				A85CD01C18DE88B000FECC1C /* GameCenterController.h */,
-				A901663018B670A60061927A /* JCJoystick.h */,
-				A822A3D518C16B2A00CAC8FA /* PauseViewController.h */,
-				A9C46D0F18DE299600BC8065 /* PowerUp.h */,
-				A97A9ED518989C750017183F /* SettingsViewController.h */,
-				1F60B16618974B9A00232A84 /* SinglePlayerScene.h */,
-				1F60B16318974B9A00232A84 /* SinglePlayerViewController.h */,
-				A97A9ED218988D3F0017183F /* SplashViewController.h */,
-				A8E8561218D667C80038C1AE /* TwoPlayerScene.h */,
-				A8E8560F18D666FA0038C1AE /* TwoPlayerViewController.h */,
-				1F1281F2189761C8005F8A7C /* UserBubble.h */,
-				A919A87218DA6FDD00D508F1 /* viewControllerDelegate.h */,
 				1F7C329518975A34006995F8 /* AIBubble.m */,
+				1F60B15A18974B9A00232A84 /* AppDelegate.h */,
 				1F60B15B18974B9A00232A84 /* AppDelegate.m */,
-				1F60B1891897500300232A84 /* Bubble.m */,
-				A85CD01D18DE88B000FECC1C /* GameCenterController.m */,
-				A901663118B670A60061927A /* JCJoystick.m */,
-				A822A3D618C16B2A00CAC8FA /* PauseViewController.m */,
-				A9C46D1018DE299600BC8065 /* PowerUp.m */,
-				A97A9ED618989C750017183F /* SettingsViewController.m */,
-				1F60B16718974B9A00232A84 /* SinglePlayerScene.m */,
-				1F60B16418974B9A00232A84 /* SinglePlayerViewController.m */,
-				A97A9ED318988D3F0017183F /* SplashViewController.m */,
-				A8E8561318D667C80038C1AE /* TwoPlayerScene.m */,
-				A8E8561018D666FA0038C1AE /* TwoPlayerViewController.m */,
-				1F1281F3189761C8005F8A7C /* UserBubble.m */,
-				1F60B16B18974B9A00232A84 /* Images.xcassets */,
 				A85CD01118DCEFD900FECC1C /* Audio */,
+				1F60B1881897500300232A84 /* Bubble.h */,
+				1F60B1891897500300232A84 /* Bubble.m */,
+				A85CD01C18DE88B000FECC1C /* GameCenterController.h */,
+				A85CD01D18DE88B000FECC1C /* GameCenterController.m */,
 				A8E8560218D6650A0038C1AE /* Images */,
+				1F60B16B18974B9A00232A84 /* Images.xcassets */,
+				A901663018B670A60061927A /* JCJoystick.h */,
+				A901663118B670A60061927A /* JCJoystick.m */,
+				A822A3D518C16B2A00CAC8FA /* PauseViewController.h */,
+				A822A3D618C16B2A00CAC8FA /* PauseViewController.m */,
+				A9C46D0F18DE299600BC8065 /* PowerUp.h */,
+				A9C46D1018DE299600BC8065 /* PowerUp.m */,
+				A97A9ED518989C750017183F /* SettingsViewController.h */,
+				A97A9ED618989C750017183F /* SettingsViewController.m */,
+				1F60B16618974B9A00232A84 /* SinglePlayerScene.h */,
+				1F60B16718974B9A00232A84 /* SinglePlayerScene.m */,
+				1F60B16318974B9A00232A84 /* SinglePlayerViewController.h */,
+				1F60B16418974B9A00232A84 /* SinglePlayerViewController.m */,
+				A97A9ED218988D3F0017183F /* SplashViewController.h */,
+				A97A9ED318988D3F0017183F /* SplashViewController.m */,
 				1F60B15218974B9A00232A84 /* Supporting Files */,
+				A8E8561218D667C80038C1AE /* TwoPlayerScene.h */,
+				A8E8561318D667C80038C1AE /* TwoPlayerScene.m */,
+				A8E8560F18D666FA0038C1AE /* TwoPlayerViewController.h */,
+				A8E8561018D666FA0038C1AE /* TwoPlayerViewController.m */,
+				1F1281F2189761C8005F8A7C /* UserBubble.h */,
+				1F1281F3189761C8005F8A7C /* UserBubble.m */,
+				A919A87218DA6FDD00D508F1 /* viewControllerDelegate.h */,
 			);
 			path = Bubble;
 			sourceTree = "<group>";
@@ -563,7 +563,7 @@
 				INFOPLIST_FILE = "Bubble/Bubble-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5C4F2528-BD68-4A99-8C8F-D01DC7F70C5B";
+				PROVISIONING_PROFILE = "";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
@@ -582,7 +582,7 @@
 				INFOPLIST_FILE = "Bubble/Bubble-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5C4F2528-BD68-4A99-8C8F-D01DC7F70C5B";
+				PROVISIONING_PROFILE = "";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;

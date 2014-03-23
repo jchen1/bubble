@@ -16,6 +16,7 @@ GKMatchmakerViewControllerDelegate, GKMatchDelegate, GKLocalPlayerListener>{
 }
 
 @property UINavigationController* controller;
+@property id<viewControllerDelegate> splash;
 @property id<viewControllerDelegate> currentGameView;
 @property (nonatomic) BOOL gameCenterEnabled;
 @property (nonatomic, strong) NSString *leaderboardIdentifier;
@@ -28,6 +29,7 @@ GKMatchmakerViewControllerDelegate, GKMatchDelegate, GKLocalPlayerListener>{
 -(void)sendBubbleData:(NSData*)data;
 -(void)sendScore:(long long)score;
 -(void)findGame;
+-(void)disconnect;
 
 
 @end

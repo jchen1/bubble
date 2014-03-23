@@ -126,13 +126,13 @@
                          forKey:@"singleHighScore"];
         }
         [self.scene.view setPaused:YES];
+        [[self gc] sendScore:[myBubble totalEaten] *10];
         return;
     }
     
     //check for deaths
     if (myBubble.radius < DEATH_RADIUS)
     {
-        [[self gc] sendScore:[myBubble totalEaten] *10];
         shrink_count = 0;
         [self removeLife];
         [self killAllBubbles];

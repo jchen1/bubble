@@ -20,7 +20,7 @@
 -(void)done:(NSString*)dataText{
 }
 
--(void)match:(GKMatch*)match didReceiveData:(NSData*)data fromPlayer:(NSString *)playerID{
+-(void)handleReceivedData:(NSData *)data{
     NSDictionary *dict = (NSDictionary*) [NSKeyedUnarchiver unarchiveObjectWithData:data];
     NSMutableArray *receivedBubbleData = (NSMutableArray*)[NSKeyedUnarchiver
                                                            unarchiveObjectWithData:
@@ -62,14 +62,14 @@
             //send (high) score to game center
         }
         [self.scene.view setPaused:YES];
-        [delegate disconnect];
+        [self.gc sendScore:[myBubble totalEaten] *10];
+        [gc disconnect];
         return;
     }
     
     //check for deaths
     if (myBubble.radius < DEATH_RADIUS)
     {
-        [self.delegate sendScore:[myBubble totalEaten] *10];
         shrink_count = 0;
         [self removeLife];
         [self killAllBubbles];

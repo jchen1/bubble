@@ -47,7 +47,11 @@
     [pauseButton addTarget:self action:@selector(pause) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:pauseButton];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(disconnect) name:@"gameQuit" object:nil];
+    scene = [TwoPlayerScene sceneWithSize:skView.bounds.size];
+    scene.scaleMode = SKSceneScaleModeAspectFill;
+    scene.delegate=self;
+    [skView presentScene:scene];
+
 }
 
 - (NSUInteger)supportedInterfaceOrientations

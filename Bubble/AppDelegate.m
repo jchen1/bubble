@@ -21,6 +21,7 @@
     gc = [[GameCenterController alloc] init];
     splash.gcController = gc;
     gc.controller = navController;
+    gc.splash = splash;
     self.window.rootViewController = navController;
     [navController pushViewController:splash animated:NO];
     [self.window addSubview:navController.view];
