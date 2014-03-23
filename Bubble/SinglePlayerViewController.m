@@ -79,10 +79,11 @@
     return NO;
 }
 - (IBAction)popCurrentView {
+    [player stop];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [[NSNotificationCenter defaultCenter] removeObserver:scene];
     [self.navigationController popViewControllerAnimated:NO];
-    [player stop];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"splashResume" object:nil];
 }
 
 - (NSUInteger)supportedInterfaceOrientations
