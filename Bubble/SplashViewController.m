@@ -54,8 +54,8 @@
     
     [[UIApplication sharedApplication] setStatusBarHidden:YES
                                             withAnimation:UIStatusBarAnimationFade];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(pauseMusic) name:@"splash_pause" object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(resumeMusic) name:@"splash_resume" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(pauseMusic) name:@"splashPause" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(resumeMusic) name:@"splashResume" object:nil];
     [self authenticateLocalPlayer];
     [self setUpUI];
     
