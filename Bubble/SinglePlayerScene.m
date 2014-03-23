@@ -203,10 +203,9 @@
 -(void) Jelly{
     for(AIBubble *b1 in bubbles)
     {
-        if(!([b1 isEqual:myBubble])
+        if(![b1 isEqual:myBubble])
         b1.speedScale=.2;
     }
-    myBubble.speedScale=1;
 }
 -(void) UnJelly{
     for(AIBubble *b1 in bubbles)
@@ -227,7 +226,7 @@
                     break;
                 case 's':
                     NSLog(@"speed++");
-                    myBubble.speedScale=7.5;
+                    myBubble.speedScale=3.5;
                     speedExpire = CACurrentMediaTime() + 5;
                     //myBubble.speed +=10 or myBubble.speed+=myBubble.speed*.1
                     break;
