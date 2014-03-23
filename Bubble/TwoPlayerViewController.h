@@ -13,7 +13,7 @@
 
 
 @interface TwoPlayerViewController : SinglePlayerViewController
-    <viewControllerDelegate, GKMatchmakerViewControllerDelegate, GKMatchDelegate>{
+    <viewControllerDelegate, GKMatchmakerViewControllerDelegate, GKMatchDelegate, GKInviteEventListener>{
 
         NSInputStream *inputStream;
         NSOutputStream *outputStream;

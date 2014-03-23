@@ -103,6 +103,22 @@
          }
      }];
     
+    
+}
+
+- (void)player:(GKPlayer *)player didAcceptInvite:(GKInvite *)invite{
+    [[GKMatchmaker sharedMatchmaker] matchForInvite:invite completionHandler:^(GKMatch *match, NSError *error) {
+        match.delegate = self;
+        myMatch = match;
+        scene = [TwoPlayerScene sceneWithSize:skView.bounds.size];
+        scene.scaleMode = SKSceneScaleModeAspectFill;
+        scene.delegate=self;
+        [skView presentScene:scene];
+    }];
+}
+
+- (void)player:(GKPlayer *)player didRequestMatchWithPlayers:(NSArray *)playerIDsToInvite{
+    
 }
 
 - (void)startLookingForPlayers
@@ -116,14 +132,6 @@
 - (void)stopLookingForPlayers
 {
     [[GKMatchmaker sharedMatchmaker] stopBrowsingForNearbyPlayers];
-}
-
-
--(void)invite{
-    myMatchRequest.playersToInvite = playersToInvite;
-    myMatchRequest.inviteMessage = @"Try and pop my bubble(;";
-    //myMatchRequest.responsehandler = self.responsehandler;
-    
 }
 
 
