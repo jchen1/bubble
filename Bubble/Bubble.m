@@ -14,6 +14,7 @@
 @synthesize type = _type;
 @synthesize idnum = _idnum;
 @synthesize totalEaten = _totalEaten;
+@synthesize speedScale;
 
 -(id)init
 {
@@ -29,6 +30,7 @@
         _idnum = arc4random();
         _totalEaten = 0.0;
         super.lineWidth = 1.0;
+        self.speedScale = 1.0;
         super.fillColor = color;
         super.strokeColor = [SKColor whiteColor];
         super.glowWidth = 0.0;
@@ -61,7 +63,7 @@
 
 -(double) getSpeed
 {
-    return 12*MIN(1 / sqrt(_radius), 2);
+    return speedScale*12*MIN(1 / sqrt(_radius), 2);
 }
 
 -(void) updateArc
