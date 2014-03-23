@@ -175,7 +175,7 @@
              NSLog(@"%@", [error description]);
          }
          else {
-             [self newMatch:match];
+             //[self newMatch:match];
          }
      }];
 }
