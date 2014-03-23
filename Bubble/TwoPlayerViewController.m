@@ -41,6 +41,15 @@
     }
 }
 
+- (void)newMatch:(GKMatch*)match{
+    match.delegate = self;
+    myMatch = match;
+    scene = [TwoPlayerScene sceneWithSize:skView.bounds.size];
+    scene.scaleMode = SKSceneScaleModeAspectFill;
+    scene.delegate=self;
+    [skView presentScene:scene];
+}
+
 - (void)match:(GKMatch *)match didReceiveData:(NSData *)data fromPlayer:(NSString *)playerID{
     [scene match:match didReceiveData:data fromPlayer:playerID];
 }
@@ -83,7 +92,6 @@
     matchrequest.maxPlayers = 2;
     
     GKMatchmakerViewController *controller = [[GKMatchmakerViewController alloc] initWithMatchRequest:matchrequest];
-
     controller.matchmakerDelegate = self;
 
     [self presentViewController:controller animated:YES completion:nil];
@@ -106,27 +114,11 @@
     
 }
 
-- (void)player:(GKPlayer *)player didAcceptInvite:(GKInvite *)invite{
-    [[GKMatchmaker sharedMatchmaker] matchForInvite:invite completionHandler:^(GKMatch *match, NSError *error) {
-        match.delegate = self;
-        myMatch = match;
-        scene = [TwoPlayerScene sceneWithSize:skView.bounds.size];
-        scene.scaleMode = SKSceneScaleModeAspectFill;
-        scene.delegate=self;
-        [skView presentScene:scene];
-    }];
-}
-
-- (void)player:(GKPlayer *)player didRequestMatchWithPlayers:(NSArray *)playerIDsToInvite{
-    
-}
-
 - (void)startLookingForPlayers
 {
     [matchmaker startBrowsingForNearbyPlayersWithReachableHandler:^(NSString *playerID, BOOL reachable) {
         [playersToInvite addObject:playerID];
-        }
-     ];
+    }];
 }
 
 - (void)stopLookingForPlayers

@@ -13,7 +13,7 @@
 
 
 @interface TwoPlayerViewController : SinglePlayerViewController
-    <viewControllerDelegate, GKMatchmakerViewControllerDelegate, GKMatchDelegate, GKInviteEventListener>{
+    <viewControllerDelegate, GKMatchmakerViewControllerDelegate, GKMatchDelegate, GKLocalPlayerListener>{
 
         NSInputStream *inputStream;
         NSOutputStream *outputStream;
@@ -23,5 +23,6 @@
 }
 
 -(void)done:(NSString *)dataText;
+-(void)newMatch:(GKMatch*)match;
 
 @end
