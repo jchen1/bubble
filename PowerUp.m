@@ -23,7 +23,7 @@
 {
     self = [super init];
     if (self) {
-        _type = 'B';
+        _type = 'P';
         _radius = 5;
         _idnum = arc4random();
         super.lineWidth = 1.0;

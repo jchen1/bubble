@@ -10,8 +10,9 @@
 
 @implementation SinglePlayerScene
 {
-    int invulnerability;
     CFTimeInterval invulExpire;
+    CFTimeInterval speedExpire;
+    CFTimeInterval jellyExpire;
 }
 
 -(id)initWithSize:(CGSize)size {
@@ -35,15 +36,26 @@
         bubbles = [NSMutableArray array];
         powerups = [NSMutableArray array];
         
-        PowerUp* testPowerUp = [[PowerUp alloc] initWithColor:[SKColor whiteColor]];
-        testPowerUp.position = CGPointMake(10, 10);
-        testPowerUp.type='i';
-        [self addChild:testPowerUp];
-        [testPowerUp setPosition:testPowerUp.position];
-        [powerups addObject:testPowerUp];
-        PowerUp* asdf = [powerups lastObject];
-        NSLog(@"%@", asdf.toString);
-        invulExpire = 0;
+        PowerUp* testPowerUp1 = [[PowerUp alloc] initWithColor:[SKColor whiteColor]];
+        testPowerUp1.position = CGPointMake(100, 200);
+        testPowerUp1.type='j';
+        [self addChild:testPowerUp1];
+        [testPowerUp1 setPosition:testPowerUp1.position];
+        [powerups addObject:testPowerUp1];
+        
+        PowerUp* testPowerUp2 = [[PowerUp alloc] initWithColor:[SKColor whiteColor]];
+        testPowerUp2.position = CGPointMake(100, 150);
+        testPowerUp2.type='s';
+        [self addChild:testPowerUp2];
+        [testPowerUp2 setPosition:testPowerUp2.position];
+        [powerups addObject:testPowerUp2];
+        
+        PowerUp* testPowerUp3 = [[PowerUp alloc] initWithColor:[SKColor whiteColor]];
+        testPowerUp3.position = CGPointMake(100, 100);
+        testPowerUp3.type='j';
+        [self addChild:testPowerUp3];
+        [testPowerUp3 setPosition:testPowerUp3.position];
+        [powerups addObject:testPowerUp3];
         
         myBubble = [[UserBubble alloc] init];
         myBubble.position = CGPointMake(CGRectGetMidX(self.frame),
@@ -61,14 +73,31 @@
 }
 
 -(void)update:(CFTimeInterval)currentTime {
-//    NSLog(@"%f", currentTime);
-    
+    //NSLog(@"%f", currentTime);
     //check for powerup expiration
     
     if (currentTime>invulExpire && invulExpire!=0) {
         //myBubble.invulnerability = false;
         NSLog(@"Invulnerability expire");
+        myBubble.invulnerability=false;
         invulExpire=0;
+    }
+    
+    if (currentTime>speedExpire && speedExpire!=0)
+    {
+        NSLog(@"Speed Expire");
+        myBubble.speedScale=1;
+        speedExpire=0;
+    }
+    if(currentTime>jellyExpire && jellyExpire!=0)
+    {
+        NSLog(@"Jello Expire");
+        [self UnJelly];
+        jellyExpire=0;
+    }
+    if(currentTime<jellyExpire)
+    {
+        [self Jelly];
     }
     
     //check for achievements
@@ -170,29 +199,50 @@
     }
     
 }
-
+-(void) Jelly{
+    for(AIBubble *b1 in bubbles)
+    {
+        if(![b1 isEqual:myBubble])
+        b1.speedScale=.2;
+    }
+}
+-(void) UnJelly{
+    for(AIBubble *b1 in bubbles)
+        b1.speedScale=1;
+}
 -(void) processPowerUps{
-    for (PowerUp *p1 in powerups) {
+    PowerUp*p1;
+    for (int i=0; i < [powerups count];i++)
+    {
+        p1=[powerups objectAtIndex:i];
         if([p1 collidesWith:myBubble])
         {
             switch (p1.type) {
                 case 'i':
                     NSLog(@"invulnerability");
+                    myBubble.invulnerability = true;
                     invulExpire = CACurrentMediaTime() +5;
-                    invulnerability=1000;
                     break;
                 case 's':
                     NSLog(@"speed++");
+                    myBubble.speedScale=3.5;
+                    speedExpire = CACurrentMediaTime() + 5;
                     //myBubble.speed +=10 or myBubble.speed+=myBubble.speed*.1
+                    break;
                 case 'j':
                     NSLog(@"Jello");
+                    jellyExpire=CACurrentMediaTime()+5;
+                    [self Jelly];
+                    break;
                     //all AI bubbles move at 50% speed
                 case 'k':
                     NSLog(@"Killer");
                     //Your bubble destroys other bubbles on contact?!
+                    break;
                 default:
                     break;
             }
+            [powerups removeObjectAtIndex:i];
             [p1 removeFromParent];
         }
     }

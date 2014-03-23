@@ -14,6 +14,8 @@
 @property char type;
 @property int idnum;
 @property double totalEaten;
+@property float speedScale;
+@property BOOL invulnerability;
 
 -(id) initWithColor : (SKColor*) color;
 -(id) initWithId:(int)initid andRadius:(float)radius andPosition:(CGPoint)pos;
