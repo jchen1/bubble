@@ -132,12 +132,16 @@
 }
 
 - (void)player:(GKPlayer *)player didAcceptInvite:(GKInvite *)invite{
-    [[GKMatchmaker sharedMatchmaker] matchForInvite:invite completionHandler:^(GKMatch *match, NSError *error) {
+    GKMatchmakerViewController *gcController =
+    [[GKMatchmakerViewController alloc] initWithInvite:invite];
+    gcController.matchmakerDelegate = self;
+    [controller presentViewController:gcController animated:YES completion:nil];
+    /*[[GKMatchmaker sharedMatchmaker] matchForInvite:invite completionHandler:^(GKMatch *match, NSError *error) {
         NSLog(@"did accept invite");
         myMatch = match;
         match.delegate = self;
         [splash startNewMultiplayerGame];
-    }];
+    }];*/
 }
 
 - (void)player:(GKPlayer *)player didRequestMatchWithPlayers:(NSArray *)playerIDsToInvite{
