@@ -48,6 +48,10 @@
         if (viewController != nil) {
             [controller presentViewController:viewController animated:YES completion:nil];
         }
+        else if (error != nil){
+            _gameCenterEnabled = NO;
+            NSLog(@"%@", [error description]);
+        }
         else{
             if ([GKLocalPlayer localPlayer].authenticated) {
                 _gameCenterEnabled = YES;
@@ -63,7 +67,7 @@
                 NSMutableArray *loadedAchievements = [[NSMutableArray alloc] init];
                 [GKAchievement loadAchievementsWithCompletionHandler: ^(NSArray *scores, NSError *error)
                  {
-                     if(error != NULL) { NSLog(@"%@", [error description]); }
+                     if(error != nil) { NSLog(@"%@", [error description]); }
                      [loadedAchievements addObjectsFromArray:scores];
                  }];
                 
