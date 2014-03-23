@@ -112,17 +112,19 @@
     
     //check for game over
     if ([myBubble deaths] >= NUM_LIVES){
+        long long score = (long long)([myBubble totalEaten] * 10);
+        NSString *scoreMessage = [NSString stringWithFormat:@"Score: %lld", score];
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Game Over!"
-                                                        message:@"You ran out of lives."
+                                                        message:scoreMessage
                                                        delegate:self
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
         [alert show];
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         long long high = [[defaults valueForKey:@"singleHighScore"] longValue];
-        if (((long long)([myBubble totalEaten] * 10)) > high){
+        if (score > high){
             [defaults setObject:[[NSNumber alloc]
-                                 initWithLongLong:(long long)([myBubble totalEaten] * 10)]
+                                 initWithLongLong:score]
                          forKey:@"singleHighScore"];
         }
         [self.scene.view setPaused:YES];

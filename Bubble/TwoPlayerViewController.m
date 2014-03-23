@@ -23,8 +23,6 @@
 {
     [super viewDidLoad];
     
-    gc.currentGameView = self;
-    
     skView = [[SKView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     skView.backgroundColor = [UIColor blackColor];
     self.view.backgroundColor = [UIColor blackColor];
@@ -50,6 +48,7 @@
     scene = [TwoPlayerScene sceneWithSize:skView.bounds.size];
     scene.scaleMode = SKSceneScaleModeAspectFill;
     scene.delegate=self;
+    gc.currentGameView = scene;
     [skView presentScene:scene];
 
 }

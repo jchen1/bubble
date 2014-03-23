@@ -251,6 +251,7 @@
 - (void)sendBubbleData:(NSData *)data{
     NSError *error;
     [myMatch sendDataToAllPlayers:data withDataMode:GKSendDataUnreliable error:&error];
+    NSLog(@"sent bubble data");
 }
 
 - (void) disconnect{
