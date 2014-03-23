@@ -265,6 +265,8 @@
             if ([GKLocalPlayer localPlayer].authenticated) {
                 _gameCenterEnabled = YES;
                 
+                [[GKLocalPlayer localPlayer] registerListener:self];
+                
                 // Get the default leaderboard identifier.
                 [[GKLocalPlayer localPlayer] loadDefaultLeaderboardIdentifierWithCompletionHandler:^(NSString *leaderboardIdentifier, NSError *error) {
                     
@@ -358,6 +360,18 @@
 
 -(void)setVolume:(float)volume{
     player.volume = volume;
+}
+
+- (void)player:(GKPlayer *)player didAcceptInvite:(GKInvite *)invite{
+    [[GKMatchmaker sharedMatchmaker] matchForInvite:invite completionHandler:^(GKMatch *match, NSError *error) {
+        TwoPlayerViewController *gameView = [[TwoPlayerViewController alloc] init];
+        [self.navigationController pushViewController:gameView animated:NO];
+        [gameView newMatch:match];
+    }];
+}
+
+- (void)player:(GKPlayer *)player didRequestMatchWithPlayers:(NSArray *)playerIDsToInvite{
+    
 }
 
 @end

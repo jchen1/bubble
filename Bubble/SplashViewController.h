@@ -27,7 +27,8 @@ BOOL isGameCenterAvailable();
 
 
 
-@interface SplashViewController : UIViewController<viewControllerDelegate, GKGameCenterControllerDelegate, GKSessionDelegate> {
+@interface SplashViewController : UIViewController<viewControllerDelegate,
+GKGameCenterControllerDelegate, GKSessionDelegate, GKLocalPlayerListener> {
     UIButton *optionsButton;
     UIButton *singlePlayerButton;
     UIButton *twoPlayerButton;
