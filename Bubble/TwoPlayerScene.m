@@ -19,6 +19,14 @@
 @synthesize gc;
 
 
+-(id)initWithSize:(CGSize)size{
+    if (self = [super initWithSize:size]){
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pause) name:@"gameQuit" object:nil];
+    }
+    return self;
+}
+
+
 -(BOOL)isWinning{
     return isWinning;
 }
