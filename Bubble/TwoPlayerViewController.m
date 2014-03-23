@@ -53,6 +53,8 @@
     [pauseButton setBackgroundImage:pauseButtonBackground forState:UIControlStateNormal];
     [pauseButton addTarget:self action:@selector(pause) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:pauseButton];
+    
+    [[NotificationCenter defaultCenter] addObserver:self selector:@selector(disconnect) name:@"gameQuit" object:nil];
 }
 
 -(void)gameKitSetup{
@@ -165,6 +167,10 @@
 - (void)sendBubbleData:(NSData *)data{
     NSError *error;
     [myMatch sendDataToAllPlayers:data withDataMode:GKSendDataUnreliable error:&error];
+}
+
+- (void) disconnect{
+    [myMatch disconnect];
 }
 
 @end

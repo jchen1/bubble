@@ -28,4 +28,6 @@
 
 -(void)sendBubbleData: (NSData*)data;
 
+-(void)disconnect;
+
 @end

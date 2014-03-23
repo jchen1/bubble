@@ -7,12 +7,19 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+#import <AVFoundation/AVFoundation.h>
 #import "AIBubble.h"
 #import "UserBubble.h"
 #import "SplashViewController.h"
 #import "JCJoystick.h"
 #import "viewControllerDelegate.h"
 #import "PowerUp.h"
+
+#define NUM_LIVES 1
+#define DILATE_PERCENT 0.99055
+#define DILATE_TICKS 120
+#define DILATE_RADIUS 50.0
+#define DEATH_RADIUS 1.0
 
 @interface SinglePlayerScene : SKScene <UIAlertViewDelegate>
 {
@@ -21,6 +28,7 @@
     int shrink_count;
     float aiBubbleScale;
     float userBubbleScale;
+    AVAudioPlayer *player;
     NSMutableArray *bubbles;
     NSMutableArray *directions;
     NSMutableArray *lives;
@@ -31,6 +39,12 @@
 
 -(void) pause;
 -(void) unpause;
+-(void) removeLife;
+-(void) killAllBubbles;
+-(void) dilate:(CGPoint)center;
+-(void)clearDeadBubbles:(CGRect)bounds;
+-(void) processEats;
+-(AIBubble*) spawnBubble;
 
 @property id <viewControllerDelegate> delegate;
 

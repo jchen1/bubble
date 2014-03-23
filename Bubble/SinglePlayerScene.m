@@ -7,18 +7,9 @@
 //
 
 #import "SinglePlayerScene.h"
-#import <AVFoundation/AVFoundation.h>
-
-#define NUM_LIVES 1
-#define DILATE_PERCENT 0.99055
-#define DILATE_TICKS 120
-#define DILATE_RADIUS 50.0
-#define DEATH_RADIUS 1.0
-
 
 @implementation SinglePlayerScene
 {
-    AVAudioPlayer*player;
     int invulnerability;
     CFTimeInterval invulExpire;
 }
@@ -89,6 +80,7 @@
     {
         [self.delegate sendAchievement:@"2"];
     }
+    
     //check for game over
     if ([myBubble deaths] >= NUM_LIVES){
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Game Over!"
