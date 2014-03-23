@@ -52,7 +52,6 @@
 		A97A9ED418988D3F0017183F /* SplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A97A9ED318988D3F0017183F /* SplashViewController.m */; };
 		A97A9ED718989C750017183F /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A97A9ED618989C750017183F /* SettingsViewController.m */; };
 		A9C46D1118DE299600BC8065 /* PowerUp.m in Sources */ = {isa = PBXBuildFile; fileRef = A9C46D1018DE299600BC8065 /* PowerUp.m */; };
-		A9C46D1F18DE7B1100BC8065 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = A9C46D1E18DE7B1100BC8065 /* Default.png */; };
 		A9D68DE418DB57FF00299441 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9D68DE318DB57FF00299441 /* AVFoundation.framework */; };
 		A9D68DE618DB580E00299441 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9D68DE518DB580E00299441 /* AudioToolbox.framework */; };
 /* End PBXBuildFile section */
@@ -130,7 +129,6 @@
 		A97A9ED618989C750017183F /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		A9C46D0F18DE299600BC8065 /* PowerUp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PowerUp.h; path = ../PowerUp.h; sourceTree = "<group>"; };
 		A9C46D1018DE299600BC8065 /* PowerUp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PowerUp.m; path = ../PowerUp.m; sourceTree = "<group>"; };
-		A9C46D1E18DE7B1100BC8065 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Bubble/Images/Default.png; sourceTree = "<group>"; };
 		A9D68DE318DB57FF00299441 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		A9D68DE518DB580E00299441 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -169,7 +167,6 @@
 		1F60B13D18974B9A00232A84 = {
 			isa = PBXGroup;
 			children = (
-				A9C46D1E18DE7B1100BC8065 /* Default.png */,
 				1F60B15118974B9A00232A84 /* Bubble */,
 				1F60B17818974B9A00232A84 /* BubbleTests */,
 				1F60B14818974B9A00232A84 /* Frameworks */,
@@ -396,7 +393,6 @@
 				A8E8561618D677440038C1AE /* options_button.png in Resources */,
 				A8E2524718D93D4100510145 /* bubble_icon.png in Resources */,
 				A8E8560B18D6650A0038C1AE /* quit_button.png in Resources */,
-				A9C46D1F18DE7B1100BC8065 /* Default.png in Resources */,
 				A8E8560E18D666410038C1AE /* 2p_button.png in Resources */,
 				A85CD00C18DCD50100FECC1C /* game_center_logo.png in Resources */,
 				A8E8560C18D6650A0038C1AE /* resume_button.png in Resources */,
@@ -561,7 +557,7 @@
 				INFOPLIST_FILE = "Bubble/Bubble-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5C4F2528-BD68-4A99-8C8F-D01DC7F70C5B";
+				PROVISIONING_PROFILE = "";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
@@ -580,7 +576,7 @@
 				INFOPLIST_FILE = "Bubble/Bubble-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5C4F2528-BD68-4A99-8C8F-D01DC7F70C5B";
+				PROVISIONING_PROFILE = "";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
