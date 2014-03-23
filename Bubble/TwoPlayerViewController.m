@@ -48,6 +48,7 @@
     scene = [TwoPlayerScene sceneWithSize:skView.bounds.size];
     scene.scaleMode = SKSceneScaleModeAspectFill;
     scene.delegate=self;
+    scene.gc = gc;
     gc.currentGameView = scene;
     [skView presentScene:scene];
 
