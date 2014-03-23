@@ -20,6 +20,7 @@
 {
     AVAudioPlayer*player;
     int invulnerability;
+    CFTimeInterval invulExpire;
 }
 
 -(id)initWithSize:(CGSize)size {
@@ -51,6 +52,7 @@
         [powerups addObject:testPowerUp];
         PowerUp* asdf = [powerups lastObject];
         NSLog(@"%@", asdf.toString);
+        invulExpire = 0;
         
         myBubble = [[UserBubble alloc] init];
         myBubble.position = CGPointMake(CGRectGetMidX(self.frame),
@@ -69,6 +71,15 @@
 
 -(void)update:(CFTimeInterval)currentTime {
 //    NSLog(@"%f", currentTime);
+    
+    //check for powerup expiration
+    
+    if (currentTime>invulExpire && invulExpire!=0) {
+        //myBubble.invulnerability = false;
+        NSLog(@"Invulnerability expire");
+        invulExpire=0;
+    }
+    
     //check for achievements
     if (shrink_count==1)
     {
@@ -176,6 +187,7 @@
             switch (p1.type) {
                 case 'i':
                     NSLog(@"invulnerability");
+                    invulExpire = CACurrentMediaTime() +5;
                     invulnerability=1000;
                     break;
                 case 's':
