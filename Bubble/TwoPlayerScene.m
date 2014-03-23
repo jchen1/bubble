@@ -22,6 +22,7 @@
 -(id)initWithSize:(CGSize)size{
     if (self = [super initWithSize:size]){
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pause) name:@"gameQuit" object:nil];
+        myBubble.position = CGPointMake(arc4random_uniform(self.size.width), arc4random_uniform(self.size.height));
     }
     return self;
 }
