@@ -34,6 +34,7 @@
 		A85CD01818DCEFD900FECC1C /* powerup.wav in Resources */ = {isa = PBXBuildFile; fileRef = A85CD01418DCEFD900FECC1C /* powerup.wav */; };
 		A85CD01918DCEFD900FECC1C /* singleplayer.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A85CD01518DCEFD900FECC1C /* singleplayer.mp3 */; };
 		A85CD01B18DD143100FECC1C /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A85CD01A18DD143100FECC1C /* MediaPlayer.framework */; };
+		A85CD01E18DE88B000FECC1C /* GameCenterController.m in Sources */ = {isa = PBXBuildFile; fileRef = A85CD01D18DE88B000FECC1C /* GameCenterController.m */; };
 		A8E2524518D93D0600510145 /* bubble_icon_title.png in Resources */ = {isa = PBXBuildFile; fileRef = A8E2524418D93D0600510145 /* bubble_icon_title.png */; };
 		A8E2524718D93D4100510145 /* bubble_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A8E2524618D93D4100510145 /* bubble_icon.png */; };
 		A8E2524918D9556900510145 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8E2524818D9556900510145 /* GameKit.framework */; };
@@ -104,6 +105,8 @@
 		A85CD01418DCEFD900FECC1C /* powerup.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = powerup.wav; sourceTree = "<group>"; };
 		A85CD01518DCEFD900FECC1C /* singleplayer.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = singleplayer.mp3; sourceTree = "<group>"; };
 		A85CD01A18DD143100FECC1C /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		A85CD01C18DE88B000FECC1C /* GameCenterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCenterController.h; sourceTree = "<group>"; };
+		A85CD01D18DE88B000FECC1C /* GameCenterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameCenterController.m; sourceTree = "<group>"; };
 		A8E2524418D93D0600510145 /* bubble_icon_title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubble_icon_title.png; sourceTree = "<group>"; };
 		A8E2524618D93D4100510145 /* bubble_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubble_icon.png; sourceTree = "<group>"; };
 		A8E2524818D9556900510145 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
@@ -204,13 +207,13 @@
 		1F60B15118974B9A00232A84 /* Bubble */ = {
 			isa = PBXGroup;
 			children = (
-				A9C46D0F18DE299600BC8065 /* PowerUp.h */,
-				A9C46D1018DE299600BC8065 /* PowerUp.m */,
 				1F7C329418975A34006995F8 /* AIBubble.h */,
 				1F60B15A18974B9A00232A84 /* AppDelegate.h */,
 				1F60B1881897500300232A84 /* Bubble.h */,
+				A85CD01C18DE88B000FECC1C /* GameCenterController.h */,
 				A901663018B670A60061927A /* JCJoystick.h */,
 				A822A3D518C16B2A00CAC8FA /* PauseViewController.h */,
+				A9C46D0F18DE299600BC8065 /* PowerUp.h */,
 				A97A9ED518989C750017183F /* SettingsViewController.h */,
 				1F60B16618974B9A00232A84 /* SinglePlayerScene.h */,
 				1F60B16318974B9A00232A84 /* SinglePlayerViewController.h */,
@@ -222,8 +225,10 @@
 				1F7C329518975A34006995F8 /* AIBubble.m */,
 				1F60B15B18974B9A00232A84 /* AppDelegate.m */,
 				1F60B1891897500300232A84 /* Bubble.m */,
+				A85CD01D18DE88B000FECC1C /* GameCenterController.m */,
 				A901663118B670A60061927A /* JCJoystick.m */,
 				A822A3D618C16B2A00CAC8FA /* PauseViewController.m */,
+				A9C46D1018DE299600BC8065 /* PowerUp.m */,
 				A97A9ED618989C750017183F /* SettingsViewController.m */,
 				1F60B16718974B9A00232A84 /* SinglePlayerScene.m */,
 				1F60B16418974B9A00232A84 /* SinglePlayerViewController.m */,
@@ -420,6 +425,7 @@
 			files = (
 				A97A9ED418988D3F0017183F /* SplashViewController.m in Sources */,
 				1F60B16818974B9A00232A84 /* SinglePlayerScene.m in Sources */,
+				A85CD01E18DE88B000FECC1C /* GameCenterController.m in Sources */,
 				1F60B18A1897500300232A84 /* Bubble.m in Sources */,
 				1F60B16518974B9A00232A84 /* SinglePlayerViewController.m in Sources */,
 				1F1281F4189761C8005F8A7C /* UserBubble.m in Sources */,

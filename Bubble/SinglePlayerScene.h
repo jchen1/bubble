@@ -14,6 +14,7 @@
 #import "JCJoystick.h"
 #import "viewControllerDelegate.h"
 #import "PowerUp.h"
+#import "GameCenterController.h"
 
 #define NUM_LIVES 1
 #define DILATE_PERCENT 0.99055
@@ -46,9 +47,8 @@
 -(void) processEats;
 -(AIBubble*) spawnBubble;
 
+@property GameCenterController *gc;
 @property id <viewControllerDelegate> delegate;
-
-@property id<splashViewControllerDelegate> splashdelegate;
 
 @end
 

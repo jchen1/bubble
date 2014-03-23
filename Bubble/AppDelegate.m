@@ -18,6 +18,9 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     UINavigationController *navController = [[UINavigationController alloc] init];
     splash = [[SplashViewController alloc] init];
+    gc = [[GameCenterController alloc] init];
+    splash.gcController = gc;
+    gc.controller = navController;
     self.window.rootViewController = navController;
     [navController pushViewController:splash animated:NO];
     [self.window addSubview:navController.view];

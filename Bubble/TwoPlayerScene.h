@@ -6,16 +6,14 @@
 //  Copyright (c) 2014 Jeff Chen. All rights reserved.
 //
 
-#import "SinglePlayerScene.h"
 #import "TwoPlayerViewController.h"
+#import "SinglePlayerScene.h"
 #import "viewControllerDelegate.h"
-#import <GameKit/GameKit.h>
 
-@interface TwoPlayerScene : SinglePlayerScene <viewControllerDelegate, GKMatchDelegate>{
-    NSString *globalData;
-}
+@interface TwoPlayerScene : SinglePlayerScene <viewControllerDelegate>
 
 @property id <viewControllerDelegate> delegate;
+@property GameCenterController *gc;
 
 @end
 

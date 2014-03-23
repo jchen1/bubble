@@ -11,57 +11,20 @@
 @implementation TwoPlayerViewController{
     TwoPlayerScene *scene;
     SKView * skView;
-    GKMatchmaker *matchmaker;
 }
+
+@synthesize gc;
 
 - (void) done:(NSString *)dataText{
     
 }
 
-
-- (void)match:(GKMatch *)match didFailWithError:(NSError *)error{
-    NSLog(@"%@", [error description]);
-    [match disconnect];
-}
-
-- (void)match:(GKMatch *)match player:(NSString *)playerID didChangeState:(GKPlayerConnectionState)state{
-    switch (state){
-        case GKPlayerStateConnected: break;
-        case GKPlayerStateUnknown: break;
-        case GKPlayerStateDisconnected:
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"gameQuit" object:nil];
-            NSString *beatMessage = [NSString stringWithFormat:@"You beat %@.", playerID];
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Congratulations!"
-                                                            message:beatMessage
-                                                           delegate:self
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-            [alert show];
-            break;
-    }
-}
-
-- (void)newMatch:(GKMatch*)match{
-    match.delegate = self;
-    myMatch = match;
-    scene = [TwoPlayerScene sceneWithSize:skView.bounds.size];
-    scene.scaleMode = SKSceneScaleModeAspectFill;
-    scene.delegate=self;
-    [skView presentScene:scene];
-}
-
-- (void)match:(GKMatch *)match didReceiveData:(NSData *)data fromPlayer:(NSString *)playerID{
-    [scene match:match didReceiveData:data fromPlayer:playerID];
-}
-
-- (BOOL)match:(GKMatch *)match shouldReinvitePlayer:(NSString *)playerID{
-    return NO;
-}
-
 - (void)viewDidLoad
 {
-    [self gameKitSetup];
     [super viewDidLoad];
+    
+    gc.currentGameView = self;
+    
     skView = [[SKView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     skView.backgroundColor = [UIColor blackColor];
     self.view.backgroundColor = [UIColor blackColor];
@@ -85,71 +48,6 @@
     [self.view addSubview:pauseButton];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(disconnect) name:@"gameQuit" object:nil];
-}
-
--(void)gameKitSetup{
-    GKMatchRequest *matchrequest = [[GKMatchRequest alloc] init];
-    matchrequest.maxPlayers = 2;
-    
-    GKMatchmakerViewController *controller = [[GKMatchmakerViewController alloc] initWithMatchRequest:matchrequest];
-    controller.matchmakerDelegate = self;
-
-    [self presentViewController:controller animated:YES completion:nil];
-    
-    matchmaker = [GKMatchmaker sharedMatchmaker];
-    [matchmaker
-     findMatchForRequest:myMatchRequest
-     withCompletionHandler:^(GKMatch *match, NSError *error) {
-         if (error) {
-             // Handle error
-         }
-         else {
-             scene = [TwoPlayerScene sceneWithSize:skView.bounds.size];
-             scene.scaleMode = SKSceneScaleModeAspectFill;
-             scene.delegate=self;
-             [skView presentScene:scene];
-         }
-     }];
-    
-    
-}
-
-- (void)startLookingForPlayers
-{
-    [matchmaker startBrowsingForNearbyPlayersWithReachableHandler:^(NSString *playerID, BOOL reachable) {
-        [playersToInvite addObject:playerID];
-    }];
-}
-
-- (void)stopLookingForPlayers
-{
-    [[GKMatchmaker sharedMatchmaker] stopBrowsingForNearbyPlayers];
-}
-
-
-- (void)matchmakerViewController:(GKMatchmakerViewController *)viewController
-                    didFindMatch:(GKMatch *)match
-{
-    match.delegate = self;
-    myMatch = match;
-    [viewController dismissViewControllerAnimated:YES completion:nil];
-    scene = [TwoPlayerScene sceneWithSize:skView.bounds.size];
-    scene.scaleMode = SKSceneScaleModeAspectFill;
-    scene.delegate=self;
-    [skView presentScene:scene];
-    
-}
-
--(void)matchmakerViewControllerWasCancelled:(GKMatchmakerViewController *)viewController
-{
-    [viewController dismissViewControllerAnimated:YES completion:nil];
-    [[self navigationController] popViewControllerAnimated:NO];
-}
-
--(void)matchmakerViewController:(GKMatchmakerViewController *)viewController didFailWithError:(NSError *)error
-{
-    [viewController dismissViewControllerAnimated:YES completion:nil];
-    [[self navigationController] popViewControllerAnimated:NO];
 }
 
 - (NSUInteger)supportedInterfaceOrientations
@@ -185,13 +83,5 @@
     [scene unpause];
 }
 
-- (void)sendBubbleData:(NSData *)data{
-    NSError *error;
-    [myMatch sendDataToAllPlayers:data withDataMode:GKSendDataUnreliable error:&error];
-}
-
-- (void) disconnect{
-    [myMatch disconnect];
-}
 
 @end

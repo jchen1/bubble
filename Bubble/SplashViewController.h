@@ -11,6 +11,7 @@
 #import <Social/Social.h>
 #import <MediaPlayer/MediaPlayer.h>
 #import "viewControllerDelegate.h"
+#import "GameCenterController.h"
 
 #define TWOPLAYER
 
@@ -23,12 +24,8 @@
 
 @end
 
-BOOL isGameCenterAvailable();
 
-
-
-@interface SplashViewController : UIViewController<viewControllerDelegate,
-GKGameCenterControllerDelegate, GKSessionDelegate, GKLocalPlayerListener> {
+@interface SplashViewController : UIViewController<viewControllerDelegate> {
     UIButton *optionsButton;
     UIButton *singlePlayerButton;
     UIButton *twoPlayerButton;
@@ -37,23 +34,8 @@ GKGameCenterControllerDelegate, GKSessionDelegate, GKLocalPlayerListener> {
     UIImageView *bubbleIcon;
 }
 
-
-@property (nonatomic) BOOL gameCenterEnabled;
-@property (nonatomic, strong) NSString *leaderboardIdentifier;
-
-
-// currentPlayerID is the value of the playerID last time GameKit authenticated.
-@property (retain,readwrite) NSString * currentPlayerID;
-
-// isGameCenterAuthenticationComplete is set after authentication, and authenticateWithCompletionHandler's completionHandler block has been run. It is unset when the applicaiton is backgrounded.
-@property (readwrite, getter=isGameCenterAuthenticationComplete) BOOL gameCenterAuthenticationComplete;
 @property BOOL playMusic;
-
- -(void)authenticateLocalPlayer;
- -(void)reportScore;
--(void)showLeaderboardAndAchievements:(BOOL)shouldShowLeaderboard;
-
-
+@property GameCenterController *gcController;
 @end
 
 long long highscore;

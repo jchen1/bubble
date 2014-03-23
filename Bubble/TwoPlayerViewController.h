@@ -6,23 +6,18 @@
 //  Copyright (c) 2014 Jeff Chen. All rights reserved.
 //
 
-#import "SinglePlayerViewController.h"
-#import "TwoPlayerScene.h"
-#import "viewControllerDelegate.h"
 #import <GameKit/GameKit.h>
+#import "TwoPlayerScene.h"
+#import "SinglePlayerViewController.h"
 
 
-@interface TwoPlayerViewController : SinglePlayerViewController
-    <viewControllerDelegate, GKMatchmakerViewControllerDelegate, GKMatchDelegate, GKLocalPlayerListener>{
+@interface TwoPlayerViewController : SinglePlayerViewController <viewControllerDelegate>{
 
         NSInputStream *inputStream;
         NSOutputStream *outputStream;
-        NSMutableArray *playersToInvite;
-        GKMatchRequest *myMatchRequest;
-        GKMatch *myMatch;
 }
 
 -(void)done:(NSString *)dataText;
--(void)newMatch:(GKMatch*)match;
+@property GameCenterController* gc;
 
 @end

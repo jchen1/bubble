@@ -16,16 +16,6 @@
     SinglePlayerScene *scene;
 }
 
--(void) sendAchievement:(NSString *)achievementIdentifier{
-    [self.splash sendAchievement:achievementIdentifier];
-}
-
--(void) sendScore:(long long)s
-{
-    [self.splash sendScore:s];
-    //NSLog(@"%lld", s);
-}
-
 - (void)pauseMusic
 {
     [player pause];
@@ -65,13 +55,10 @@
     
     [self setUpUI];
     
-    // Create and configure the scene.
     scene = [SinglePlayerScene sceneWithSize:skView.bounds.size];
     scene.scaleMode = SKSceneScaleModeAspectFill;
-    
     scene.delegate = self;
-
-    // Present the scene.
+    scene.gc = [self gc];
     [skView presentScene:scene];
     
     [[UIApplication sharedApplication] setStatusBarHidden:YES

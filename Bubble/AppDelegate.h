@@ -11,6 +11,7 @@
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>{
     SplashViewController *splash;
+    GameCenterController *gc;
 }
 
 @property (strong, nonatomic) UIWindow *window;

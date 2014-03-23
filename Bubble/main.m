@@ -6,11 +6,7 @@
 //  Copyright (c) 2014 Jeff Chen. All rights reserved.
 
 
-///' SEE THE COMMENTS IN SECONDVIEWCONTROLLER.M TO GET STARTED
-//
-
 #import <UIKit/UIKit.h>
-
 #import "AppDelegate.h"
 
 int main(int argc, char * argv[])

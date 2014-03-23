@@ -21,6 +21,7 @@
 - (IBAction)pause;
 - (IBAction)popCurrentView;
 
+@property GameCenterController *gc;
 @property id<viewControllerDelegate> splash;
 
 @end

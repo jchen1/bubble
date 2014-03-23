@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-
 @protocol viewControllerDelegate <NSObject>
 
 @optional
@@ -29,5 +28,9 @@
 -(void)sendBubbleData: (NSData*)data;
 
 -(void)disconnect;
+
+-(void)startNewMultiplayerGame;
+
+-(void)handleReceivedData:(NSData*)data;
 
 @end

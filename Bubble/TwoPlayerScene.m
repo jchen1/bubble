@@ -15,6 +15,7 @@
 }
 
 @synthesize delegate;
+@synthesize gc;
 
 -(void)done:(NSString*)dataText{
 }
@@ -43,7 +44,6 @@
 
 
 -(void)update:(CFTimeInterval)currentTime {
-    
     
     //check for game over
     if ([myBubble deaths] >= NUM_LIVES){
@@ -155,7 +155,7 @@
                                                      @"myBubbleID", @"myNewBubbles"]];
     NSDictionary *bubbleToSend = [[NSDictionary alloc] initWithObjects:values forKeys:keys];
     NSData *dataToSend = [NSKeyedArchiver archivedDataWithRootObject:bubbleToSend];
-    [delegate sendBubbleData:dataToSend];
+    [gc sendBubbleData:dataToSend];
 }
 
 @end

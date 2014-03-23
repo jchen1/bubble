@@ -9,66 +9,31 @@
 #import "SinglePlayerViewController.h"
 #import "SettingsViewController.h"
 #import "SplashViewController.h"
-#import <MultipeerConnectivity/MultipeerConnectivity.h>
-#import <AVFoundation/AVFoundation.h>
-#import <AudioToolbox/AudioToolbox.h>
-#import <GameKit/GameKit.h>
-
-#ifdef TWOPLAYER
 #import "TwoPlayerViewController.h"
-#endif
+
 
 @implementation SplashViewController
 {
     AVAudioPlayer*player;
 }
 
-@synthesize currentPlayerID,
-            gameCenterAuthenticationComplete;
-
--(void)sendScore:(long long)score{
-    [self reportScore:score forLeaderboardID:@"1"];
-}
-
--(void)sendAchievement:(NSString *)achievementIdentifier{
-    [self reportAchievementIdentifier:achievementIdentifier percentComplete:100];
-}
+@synthesize gcController = _controller;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSMutableArray *loadedAchievements = [[NSMutableArray alloc] init];
-    
-    [GKAchievement loadAchievementsWithCompletionHandler: ^(NSArray *scores, NSError *error)
-     {
-         if(error != NULL) { /* error handling */ }
-         [loadedAchievements addObjectsFromArray:scores];
-         // work with achievement here, store it in your cache or smith
-     }];
-    
-    for (NSString*scores in loadedAchievements) {
-        NSLog (@"Your Array elements are = %@", scores);
-    }
-    
-	// Do any additional setup after loading the view, typically from a nib.
     
     [[UIApplication sharedApplication] setStatusBarHidden:YES
                                             withAnimation:UIStatusBarAnimationFade];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(pauseMusic) name:@"splashPause" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(resumeMusic) name:@"splashResume" object:nil];
-    [self authenticateLocalPlayer];
+
     [self setUpUI];
     
     //set the value of global variable highscore
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     highscore = [[defaults valueForKey:@"singleHighScore"] longValue];
 }
-
-- (void) gameCenterViewControllerDidFinish:(GKGameCenterViewController *)gameCenterViewController
-{
-    [gameCenterViewController.presentingViewController dismissViewControllerAnimated:YES completion:^(void){}];
-}
-
 
 - (IBAction)pauseMusic
 {
@@ -102,11 +67,11 @@
     SinglePlayerViewController *gameView = [[SinglePlayerViewController alloc] init];
     [player stop];
     gameView.splash = self;
+    gameView.gc = _controller;
     [self.navigationController pushViewController:gameView animated:NO];
 }
 
 - (IBAction)multiGameView {
-    [player stop];
 #ifndef TWOPLAYER    
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Coming Soon!"
                                                     message:@"This feature is still in development."
@@ -115,8 +80,7 @@
                                           otherButtonTitles:nil];
     [alert show];
 #else
-    TwoPlayerViewController *gameView = [[TwoPlayerViewController alloc] init];
-    [self.navigationController pushViewController:gameView animated:NO];
+    [_controller findGame];
 #endif
 }
 
@@ -146,8 +110,9 @@
 }
 
 - (IBAction)gameCenterView{
-    [self showLeaderboardAndAchievements:true];
+    [_controller showLeaderboardAndAchievements:true];
 }
+
 
 - (void) setUpUI{
     
@@ -254,124 +219,18 @@
     return _playMusic;
 }
 
--(void)authenticateLocalPlayer{
-    GKLocalPlayer *localPlayer = [GKLocalPlayer localPlayer];
-    
-    localPlayer.authenticateHandler = ^(UIViewController *viewController, NSError *error){
-        if (viewController != nil) {
-            [self presentViewController:viewController animated:YES completion:nil];
-        }
-        else{
-            if ([GKLocalPlayer localPlayer].authenticated) {
-                _gameCenterEnabled = YES;
-                
-                [[GKLocalPlayer localPlayer] registerListener:self];
-                
-                // Get the default leaderboard identifier.
-                [[GKLocalPlayer localPlayer] loadDefaultLeaderboardIdentifierWithCompletionHandler:^(NSString *leaderboardIdentifier, NSError *error) {
-                    
-                    if (error != nil) {
-                        NSLog(@"%@", [error localizedDescription]);
-                    }
-                    else{
-                        _leaderboardIdentifier = leaderboardIdentifier;
-                    }
-                }];
-            }
-            
-            else{
-                _gameCenterEnabled = NO;
-            }
-        }
-    };
-}
-
-- (void) reportScore: (int64_t) score forLeaderboardID: (NSString*) category
-
-{
-    GKScore* scoreReporter = [[GKScore alloc] initWithLeaderboardIdentifier:category];
-    
-    scoreReporter.value = score;
-    scoreReporter.context = 0;
-    
-    [GKScore reportScores:@[scoreReporter] withCompletionHandler:^(NSError *error) {
-        if (error) {
-            NSLog(@"error: %@", error);
-        }
-    }];
-}
-
--(void)reportScore{
-    GKScore *score = [[GKScore alloc] initWithLeaderboardIdentifier:_leaderboardIdentifier];
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    score.value = [[defaults valueForKey:@"singleHighScore"] longValue];
-    [GKScore reportScores:@[score] withCompletionHandler:^(NSError *error) {
-        if (error != nil) {
-            NSLog(@"%@", [error localizedDescription]);
-        }
-    }];
-}
-
-- (IBAction)reportAchievementIdentifier:(NSString*)identifier percentComplete:(float) percent {
-    GKAchievement *achievement = [[GKAchievement alloc] initWithIdentifier: identifier];
-    achievement.showsCompletionBanner = YES;
-    if (achievement)
-    {
-        achievement.percentComplete = percent;
-        [GKAchievement reportAchievements:@[achievement] withCompletionHandler:^(NSError *error) {
-            if (error != nil) {
-                NSLog(@"Error in reporting achievements: %@", error);
-            }
-        }];
-    }
-}
--(void)reportAchievement{
-    GKAchievement *achieve = [[GKAchievement alloc] initWithIdentifier:@"1"];
-    [GKAchievement reportAchievements:@[achieve] withCompletionHandler:^(NSError *error) {
-        if(error!=nil)
-        {NSLog(@"%@", [error localizedDescription]);
-        }
-    }];
-}
-
--(void)showLeaderboardAndAchievements:(BOOL)shouldShowLeaderboard{
-    GKGameCenterViewController *gcViewController = [[GKGameCenterViewController alloc] init];
-    
-    gcViewController.gameCenterDelegate = self;
-    
-    if (shouldShowLeaderboard) {
-        gcViewController.viewState = GKGameCenterViewControllerStateLeaderboards;
-        gcViewController.leaderboardIdentifier = _leaderboardIdentifier;
-    }
-    else{
-        gcViewController.viewState = GKGameCenterViewControllerStateAchievements;
-    }
-    
-    [self presentViewController:gcViewController animated:YES completion:nil];
-}
-
--(void)resetAchievements{
-    [GKAchievement resetAchievementsWithCompletionHandler:^(NSError *error) {
-        if (error != nil) {
-            NSLog(@"%@", [error localizedDescription]);
-        }
-    }];
-}
 
 -(void)setVolume:(float)volume{
     player.volume = volume;
 }
 
-- (void)player:(GKPlayer *)player didAcceptInvite:(GKInvite *)invite{
-    [[GKMatchmaker sharedMatchmaker] matchForInvite:invite completionHandler:^(GKMatch *match, NSError *error) {
-        TwoPlayerViewController *gameView = [[TwoPlayerViewController alloc] init];
-        [self.navigationController pushViewController:gameView animated:NO];
-        [gameView newMatch:match];
-    }];
+-(void)startNewMultiplayerGame{
+    [player stop];
+    TwoPlayerViewController *vc = [[TwoPlayerViewController alloc] init];
+    vc.gc = _controller;
+    vc.splash = self;
+    [self.navigationController pushViewController:vc animated:NO];
 }
 
-- (void)player:(GKPlayer *)player didRequestMatchWithPlayers:(NSArray *)playerIDsToInvite{
-    
-}
 
 @end
