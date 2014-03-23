@@ -16,7 +16,7 @@
 #import "PowerUp.h"
 #import "GameCenterController.h"
 
-#define NUM_LIVES 1
+#define NUM_LIVES 3
 #define DILATE_PERCENT 0.99055
 #define DILATE_TICKS 120
 #define DILATE_RADIUS 50.0

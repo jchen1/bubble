@@ -133,6 +133,7 @@
 
 - (void)player:(GKPlayer *)player didAcceptInvite:(GKInvite *)invite{
     [[GKMatchmaker sharedMatchmaker] matchForInvite:invite completionHandler:^(GKMatch *match, NSError *error) {
+        NSLog(@"did accept invite");
         myMatch = match;
         match.delegate = self;
         [splash startNewMultiplayerGame];
@@ -175,7 +176,7 @@
              NSLog(@"%@", [error description]);
          }
          else {
-             //[self newMatch:match];
+
          }
      }];
 }
@@ -196,6 +197,7 @@
 - (void)matchmakerViewController:(GKMatchmakerViewController *)viewController
                     didFindMatch:(GKMatch *)match
 {
+    NSLog(@"did find match");
     [viewController dismissViewControllerAnimated:YES completion:nil];
     [self newMatch:match];
 }
@@ -220,16 +222,22 @@
 - (void)match:(GKMatch *)match player:(NSString *)playerID didChangeState:(GKPlayerConnectionState)state{
     switch (state){
         case GKPlayerStateConnected: break;
-        case GKPlayerStateUnknown: break;
+        case GKPlayerStateUnknown:
         case GKPlayerStateDisconnected:
-            /*[[NSNotificationCenter defaultCenter] postNotificationName:@"gameQuit" object:nil];
-             NSString *beatMessage = [NSString stringWithFormat:@"You beat %@.", playerID];
-             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Congratulations!"
-             message:beatMessage
-             delegate:self
-             cancelButtonTitle:@"OK"
-             otherButtonTitles:nil];
-             [alert show];*/
+            if (![[GKLocalPlayer localPlayer].playerID isEqualToString:playerID]){
+            [GKPlayer loadPlayersForIdentifiers:(NSArray *)@[playerID]
+                          withCompletionHandler:^(NSArray *players, NSError *error){
+                              [[NSNotificationCenter defaultCenter] postNotificationName:@"gameQuit" object:nil];
+                              NSString *beatMessage = [NSString stringWithFormat:@"You beat %@.",
+                                                       ((GKPlayer*)[players objectAtIndex:0]).displayName];
+                              UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Congratulations!"
+                                                                              message:beatMessage
+                                                                             delegate:self
+                                                                    cancelButtonTitle:@"OK"
+                                                                    otherButtonTitles:nil];
+                              [alert show];
+                          }];
+            }
             break;
     }
 }
