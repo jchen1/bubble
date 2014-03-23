@@ -14,6 +14,7 @@
     GKMatchmaker *matchmaker;
     GKMatch *myMatch;
     NSMutableArray *playersToInvite;
+    GKMatchRequest *matchrequest;
 }
 
 @synthesize controller = controller, splash = splash, currentGameView = game;
@@ -21,6 +22,8 @@
 - (id) init{
     if (self = [super init]){
         [self authenticateLocalPlayer];
+        matchrequest = [[GKMatchRequest alloc] init];
+        matchrequest.maxPlayers = 2;
     }
     return self;
 }
@@ -165,9 +168,6 @@
 }
 
 -(void)findGame{
-    GKMatchRequest *matchrequest = [[GKMatchRequest alloc] init];
-    matchrequest.maxPlayers = 2;
-    
     GKMatchmakerViewController *mmcontroller = [[GKMatchmakerViewController alloc] initWithMatchRequest:matchrequest];
     mmcontroller.matchmakerDelegate = self;
     [controller presentViewController:mmcontroller animated:YES completion:nil];
