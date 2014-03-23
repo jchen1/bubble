@@ -77,9 +77,9 @@
     [[UIApplication sharedApplication] setStatusBarHidden:YES
                                             withAnimation:UIStatusBarAnimationFade];
     
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(popCurrentView) name:@"single_quit" object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(pause) name:@"single_pause" object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(resume) name:@"single_unpause" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(popCurrentView) name:@"gameQuit" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(pause) name:@"gamePause" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(resume) name:@"gameUnpause" object:nil];
 
 }
 
@@ -139,10 +139,12 @@
 
 - (IBAction)pause{
     [player pause];
-    [scene pause];
-    PauseViewController *pauseMenu = [[PauseViewController alloc] initWithNibName:nil bundle:nil];
-    [self addChildViewController:pauseMenu];
-    [[self view] addSubview: [pauseMenu view]];
+    if (![scene isPaused]){
+        [scene pause];
+        PauseViewController *pauseMenu = [[PauseViewController alloc] initWithNibName:nil bundle:nil];
+        [self addChildViewController:pauseMenu];
+        [[self view] addSubview: [pauseMenu view]];
+    }
 }
 
 - (IBAction)resume
