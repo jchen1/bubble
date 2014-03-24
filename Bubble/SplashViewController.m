@@ -168,7 +168,7 @@
     
     
     float musicVolume = [defaults floatForKey:@"musicVolume"];
-    NSString *soundFilePath = [[NSBundle mainBundle] pathForResource:@"sample" ofType:@"mp3"];
+    NSString *soundFilePath = [[NSBundle mainBundle] pathForResource:@"splash" ofType:@"mp3"];
     NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
     player = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:nil];
     player.numberOfLoops = -1; //infinite loop

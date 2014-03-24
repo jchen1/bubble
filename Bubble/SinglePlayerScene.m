@@ -16,6 +16,7 @@
     PowerUp* powerUp1;
     PowerUp* powerUp2;
     PowerUp* powerUp3;
+    SKShapeNode *shieldShape;
 }
 
 -(id)initWithSize:(CGSize)size {
@@ -56,12 +57,23 @@
 
 -(void)update:(CFTimeInterval)currentTime {
     //NSLog(@"%f", currentTime);
-    //check for powerup expiration
+    //check for powerup expiration and other shit
+    if (myBubble.invulnerability)
+    {
+        shieldShape.position = myBubble.position;
+        //NSLog(@"%f", currentTime-invulExpire);
+        CGMutablePathRef myPath = CGPathCreateMutable();
+        shieldShape.glowWidth = (invulExpire-currentTime)*4;
+        CGPathAddArc(myPath, NULL, 0,0, myBubble.radius+7, 0, M_PI*2, YES);
+        shieldShape.path = myPath;
+    }
     
     if (currentTime>invulExpire && invulExpire!=0) {
         //myBubble.invulnerability = false;
         NSLog(@"Invulnerability expire");
         myBubble.invulnerability=false;
+        [shieldShape removeFromParent];
+        shieldShape=nil;
         invulExpire=0;
     }
     
@@ -254,6 +266,16 @@
                     NSLog(@"Invulnerability");
                     myBubble.invulnerability = true;
                     invulExpire = CACurrentMediaTime() +5;
+                    if (shieldShape==nil) {
+                        shieldShape = [[SKShapeNode alloc] init];
+                        [self addChild:shieldShape];
+                        CGMutablePathRef myPath = CGPathCreateMutable();
+                        CGPathAddArc(myPath, NULL, 0,0, myBubble.radius+7, 0, M_PI*2, YES);
+                        shieldShape.path = myPath;
+                        shieldShape.glowWidth = 20;
+                        shieldShape.strokeColor = [UIColor whiteColor];
+                    }
+                    shieldShape.glowWidth = 20;
                     break;
                 case 's':
                     NSLog(@"Speed++");

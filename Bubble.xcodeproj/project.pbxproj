@@ -60,6 +60,7 @@
 		A956913B18984320004FBD99 /* MultipeerConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A956913A18984320004FBD99 /* MultipeerConnectivity.framework */; };
 		A97A9ED418988D3F0017183F /* SplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A97A9ED318988D3F0017183F /* SplashViewController.m */; };
 		A97A9ED718989C750017183F /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A97A9ED618989C750017183F /* SettingsViewController.m */; };
+		A9A564F118DFE67F00840421 /* splash.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A9A564F018DFE67F00840421 /* splash.mp3 */; };
 		A9C46D1118DE299600BC8065 /* PowerUp.m in Sources */ = {isa = PBXBuildFile; fileRef = A9C46D1018DE299600BC8065 /* PowerUp.m */; };
 		A9C46D2118DFCC6D00BC8065 /* GG.mp4.flac.wav in Resources */ = {isa = PBXBuildFile; fileRef = A9C46D2018DFCC6D00BC8065 /* GG.mp4.flac.wav */; };
 		A9D68DE418DB57FF00299441 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9D68DE318DB57FF00299441 /* AVFoundation.framework */; };
@@ -147,6 +148,7 @@
 		A97A9ED318988D3F0017183F /* SplashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplashViewController.m; sourceTree = "<group>"; };
 		A97A9ED518989C750017183F /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		A97A9ED618989C750017183F /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		A9A564F018DFE67F00840421 /* splash.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = splash.mp3; sourceTree = "<group>"; };
 		A9C46D0F18DE299600BC8065 /* PowerUp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PowerUp.h; path = ../PowerUp.h; sourceTree = "<group>"; };
 		A9C46D1018DE299600BC8065 /* PowerUp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PowerUp.m; path = ../PowerUp.m; sourceTree = "<group>"; };
 		A9C46D2018DFCC6D00BC8065 /* GG.mp4.flac.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = GG.mp4.flac.wav; sourceTree = "<group>"; };
@@ -321,6 +323,7 @@
 		A85CD01118DCEFD900FECC1C /* Audio */ = {
 			isa = PBXGroup;
 			children = (
+				A9A564F018DFE67F00840421 /* splash.mp3 */,
 				A9C46D2018DFCC6D00BC8065 /* GG.mp4.flac.wav */,
 				A85CD01218DCEFD900FECC1C /* dilate1.wav */,
 				A85CD01318DCEFD900FECC1C /* Hit_Hurt4.wav */,
@@ -414,6 +417,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A9A564F118DFE67F00840421 /* splash.mp3 in Resources */,
 				A9C46D2118DFCC6D00BC8065 /* GG.mp4.flac.wav in Resources */,
 				A81680ED18DFD7F600504025 /* bubble_button.png in Resources */,
 				A81680F518DFD7F600504025 /* clock_icon.png in Resources */,
@@ -599,7 +603,7 @@
 				INFOPLIST_FILE = "Bubble/Bubble-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "5C4F2528-BD68-4A99-8C8F-D01DC7F70C5B";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
@@ -618,7 +622,7 @@
 				INFOPLIST_FILE = "Bubble/Bubble-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "5C4F2528-BD68-4A99-8C8F-D01DC7F70C5B";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;

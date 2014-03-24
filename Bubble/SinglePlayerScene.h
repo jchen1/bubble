@@ -20,7 +20,7 @@
 #define DILATE_PERCENT 0.99055
 #define DILATE_TICKS 120
 #define DILATE_RADIUS 50.0
-#define DEATH_RADIUS 10.0
+#define DEATH_RADIUS 5.0
 #define NUM_POWERUPS 3
 
 @interface SinglePlayerScene : SKScene <UIAlertViewDelegate>
