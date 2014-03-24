@@ -42,7 +42,6 @@
     [quitButton setBackgroundImage:quitButtonBackground forState:UIControlStateNormal];
     [quitButton addTarget:self action:@selector(quitGame) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:quitButton];
-    
 }
 
 - (BOOL)prefersStatusBarHidden {

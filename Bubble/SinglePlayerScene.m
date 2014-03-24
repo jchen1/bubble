@@ -13,6 +13,9 @@
     CFTimeInterval invulExpire;
     CFTimeInterval speedExpire;
     CFTimeInterval jellyExpire;
+    PowerUp* powerUp1;
+    PowerUp* powerUp2;
+    PowerUp* powerUp3;
 }
 
 -(id)initWithSize:(CGSize)size {
@@ -190,6 +193,14 @@
     [self processEats];
     [myBubble updateArc];
     
+    //spawn powerups
+    //NSLog(@"%d", arc4random()%0);
+    
+    if(arc4random()%200==0)
+    {
+        [self spawnPowerup];
+    }
+    
     //spawn more bubbles if necessary
     if (MAX(0, (int)(initial_count - (int)[bubbles count] + shrink_count)) > arc4random() % 100)
     {
@@ -203,6 +214,18 @@
     }
     
 }
+-(void) spawnPowerup{
+    if ([powerups count] < 3)
+    {
+        PowerUp* p=[[PowerUp alloc] initWithColor:[UIColor blackColor]];
+        p.position = CGPointMake(arc4random() % (int)CGRectGetMaxX(self.frame), arc4random() % (int)CGRectGetMaxY(self.frame));
+        p.type='j';
+        [self addChild:p];
+        [p setPosition:p.position];
+        [powerups addObject:p];
+    }
+}
+
 -(void) Jelly{
     for(AIBubble *b1 in bubbles)
     {
