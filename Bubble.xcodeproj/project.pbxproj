@@ -35,6 +35,9 @@
 		A85CD01918DCEFD900FECC1C /* singleplayer.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A85CD01518DCEFD900FECC1C /* singleplayer.mp3 */; };
 		A85CD01B18DD143100FECC1C /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A85CD01A18DD143100FECC1C /* MediaPlayer.framework */; };
 		A85CD01E18DE88B000FECC1C /* GameCenterController.m in Sources */ = {isa = PBXBuildFile; fileRef = A85CD01D18DE88B000FECC1C /* GameCenterController.m */; };
+		A8C2045E18DFCE8500417CE9 /* clock_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A8C2045B18DFCE8500417CE9 /* clock_icon.png */; };
+		A8C2045F18DFCE8500417CE9 /* shield_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A8C2045C18DFCE8500417CE9 /* shield_icon.png */; };
+		A8C2046018DFCE8500417CE9 /* thunderbolt_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A8C2045D18DFCE8500417CE9 /* thunderbolt_icon.png */; };
 		A8E2524518D93D0600510145 /* bubble_icon_title.png in Resources */ = {isa = PBXBuildFile; fileRef = A8E2524418D93D0600510145 /* bubble_icon_title.png */; };
 		A8E2524718D93D4100510145 /* bubble_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A8E2524618D93D4100510145 /* bubble_icon.png */; };
 		A8E2524918D9556900510145 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8E2524818D9556900510145 /* GameKit.framework */; };
@@ -108,6 +111,9 @@
 		A85CD01A18DD143100FECC1C /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		A85CD01C18DE88B000FECC1C /* GameCenterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCenterController.h; sourceTree = "<group>"; };
 		A85CD01D18DE88B000FECC1C /* GameCenterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameCenterController.m; sourceTree = "<group>"; };
+		A8C2045B18DFCE8500417CE9 /* clock_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clock_icon.png; sourceTree = "<group>"; };
+		A8C2045C18DFCE8500417CE9 /* shield_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shield_icon.png; sourceTree = "<group>"; };
+		A8C2045D18DFCE8500417CE9 /* thunderbolt_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thunderbolt_icon.png; sourceTree = "<group>"; };
 		A8E2524418D93D0600510145 /* bubble_icon_title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubble_icon_title.png; sourceTree = "<group>"; };
 		A8E2524618D93D4100510145 /* bubble_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubble_icon.png; sourceTree = "<group>"; };
 		A8E2524818D9556900510145 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
@@ -290,6 +296,9 @@
 		A8E8560218D6650A0038C1AE /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				A8C2045B18DFCE8500417CE9 /* clock_icon.png */,
+				A8C2045C18DFCE8500417CE9 /* shield_icon.png */,
+				A8C2045D18DFCE8500417CE9 /* thunderbolt_icon.png */,
 				A85CD00D18DCD54300FECC1C /* twitter_logo.png */,
 				A85CD00B18DCD50100FECC1C /* game_center_logo.png */,
 				A8E8561718D67A730038C1AE /* back_button.png */,
@@ -392,7 +401,9 @@
 			files = (
 				A9C46D2118DFCC6D00BC8065 /* GG.mp4.flac.wav in Resources */,
 				A85CD00E18DCD54300FECC1C /* twitter_logo.png in Resources */,
+				A8C2046018DFCE8500417CE9 /* thunderbolt_icon.png in Resources */,
 				1F60B16C18974B9A00232A84 /* Images.xcassets in Resources */,
+				A8C2045E18DFCE8500417CE9 /* clock_icon.png in Resources */,
 				1F60B15618974B9A00232A84 /* InfoPlist.strings in Resources */,
 				A8E8561918D67A730038C1AE /* back_button.png in Resources */,
 				A85CD01718DCEFD900FECC1C /* Hit_Hurt4.wav in Resources */,
@@ -401,6 +412,7 @@
 				A8E8560818D6650A0038C1AE /* 1p_button.png in Resources */,
 				A8E8561618D677440038C1AE /* options_button.png in Resources */,
 				A8E2524718D93D4100510145 /* bubble_icon.png in Resources */,
+				A8C2045F18DFCE8500417CE9 /* shield_icon.png in Resources */,
 				A8E8560B18D6650A0038C1AE /* quit_button.png in Resources */,
 				A8E8560E18D666410038C1AE /* 2p_button.png in Resources */,
 				A85CD00C18DCD50100FECC1C /* game_center_logo.png in Resources */,
