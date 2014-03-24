@@ -46,6 +46,9 @@
 		A81680FC18DFD7F600504025 /* thunderbolt_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A81680E818DFD7F600504025 /* thunderbolt_icon.png */; };
 		A81680FD18DFD7F600504025 /* twitter_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = A81680E918DFD7F600504025 /* twitter_logo.png */; };
 		A816810018DFDFEB00504025 /* StalkerBubble.m in Sources */ = {isa = PBXBuildFile; fileRef = A81680FF18DFDFEB00504025 /* StalkerBubble.m */; };
+		A816810318DFE7D500504025 /* GameOverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A816810218DFE7D500504025 /* GameOverViewController.m */; };
+		A816810718DFEF7900504025 /* game_over_background.png in Resources */ = {isa = PBXBuildFile; fileRef = A816810618DFEF7900504025 /* game_over_background.png */; };
+		A816810918DFF4EA00504025 /* share_button.png in Resources */ = {isa = PBXBuildFile; fileRef = A816810818DFF4EA00504025 /* share_button.png */; };
 		A822A3D718C16B2A00CAC8FA /* PauseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A822A3D618C16B2A00CAC8FA /* PauseViewController.m */; };
 		A85CD01018DCD74200FECC1C /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A85CD00F18DCD74200FECC1C /* Social.framework */; };
 		A85CD01618DCEFD900FECC1C /* dilate1.wav in Resources */ = {isa = PBXBuildFile; fileRef = A85CD01218DCEFD900FECC1C /* dilate1.wav */; };
@@ -128,6 +131,10 @@
 		A81680E918DFD7F600504025 /* twitter_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitter_logo.png; sourceTree = "<group>"; };
 		A81680FE18DFDFEB00504025 /* StalkerBubble.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StalkerBubble.h; sourceTree = "<group>"; };
 		A81680FF18DFDFEB00504025 /* StalkerBubble.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StalkerBubble.m; sourceTree = "<group>"; };
+		A816810118DFE7D500504025 /* GameOverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverViewController.h; sourceTree = "<group>"; };
+		A816810218DFE7D500504025 /* GameOverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverViewController.m; sourceTree = "<group>"; };
+		A816810618DFEF7900504025 /* game_over_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = game_over_background.png; sourceTree = "<group>"; };
+		A816810818DFF4EA00504025 /* share_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share_button.png; sourceTree = "<group>"; };
 		A822A3D518C16B2A00CAC8FA /* PauseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PauseViewController.h; sourceTree = "<group>"; };
 		A822A3D618C16B2A00CAC8FA /* PauseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PauseViewController.m; sourceTree = "<group>"; };
 		A85CD00F18DCD74200FECC1C /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
@@ -239,6 +246,8 @@
 				1F60B1891897500300232A84 /* Bubble.m */,
 				A85CD01C18DE88B000FECC1C /* GameCenterController.h */,
 				A85CD01D18DE88B000FECC1C /* GameCenterController.m */,
+				A816810118DFE7D500504025 /* GameOverViewController.h */,
+				A816810218DFE7D500504025 /* GameOverViewController.m */,
 				A81680D518DFD7F600504025 /* Images */,
 				1F60B16B18974B9A00232A84 /* Images.xcassets */,
 				A901663018B670A60061927A /* JCJoystick.h */,
@@ -301,6 +310,8 @@
 		A81680D518DFD7F600504025 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				A816810818DFF4EA00504025 /* share_button.png */,
+				A816810618DFEF7900504025 /* game_over_background.png */,
 				A81680D618DFD7F600504025 /* 1p_button.png */,
 				A81680D718DFD7F600504025 /* 2p_button.png */,
 				A81680D818DFD7F600504025 /* back_button.png */,
@@ -431,6 +442,7 @@
 				A81680F718DFD7F600504025 /* options_button.png in Resources */,
 				A81680F918DFD7F600504025 /* quit_button.png in Resources */,
 				1F60B16C18974B9A00232A84 /* Images.xcassets in Resources */,
+				A816810718DFEF7900504025 /* game_over_background.png in Resources */,
 				A81680EC18DFD7F600504025 /* back_button.png in Resources */,
 				1F60B15618974B9A00232A84 /* InfoPlist.strings in Resources */,
 				A81680EB18DFD7F600504025 /* 2p_button.png in Resources */,
@@ -440,6 +452,7 @@
 				A81680F118DFD7F600504025 /* bubble_icon_title.png in Resources */,
 				A81680F018DFD7F600504025 /* bubble_icon_launch_640_960.png in Resources */,
 				A81680F218DFD7F600504025 /* bubble_ios_icon_120.png in Resources */,
+				A816810918DFF4EA00504025 /* share_button.png in Resources */,
 				A81680FA18DFD7F600504025 /* resume_button.png in Resources */,
 				A81680FD18DFD7F600504025 /* twitter_logo.png in Resources */,
 				A85CD01718DCEFD900FECC1C /* Hit_Hurt4.wav in Resources */,
@@ -475,6 +488,7 @@
 				1F60B16518974B9A00232A84 /* SinglePlayerViewController.m in Sources */,
 				1F1281F4189761C8005F8A7C /* UserBubble.m in Sources */,
 				1F7C329618975A34006995F8 /* AIBubble.m in Sources */,
+				A816810318DFE7D500504025 /* GameOverViewController.m in Sources */,
 				A9C46D1118DE299600BC8065 /* PowerUp.m in Sources */,
 				A901663218B670A60061927A /* JCJoystick.m in Sources */,
 				A8E8561418D667C80038C1AE /* TwoPlayerScene.m in Sources */,
@@ -609,7 +623,7 @@
 				INFOPLIST_FILE = "Bubble/Bubble-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5C4F2528-BD68-4A99-8C8F-D01DC7F70C5B";
+				PROVISIONING_PROFILE = "";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
@@ -628,7 +642,7 @@
 				INFOPLIST_FILE = "Bubble/Bubble-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5C4F2528-BD68-4A99-8C8F-D01DC7F70C5B";
+				PROVISIONING_PROFILE = "";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;

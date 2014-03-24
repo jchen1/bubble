@@ -65,14 +65,6 @@
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
         [alert show];
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        long long high = [[defaults valueForKey:@"singleHighScore"] longValue];
-        if (((long long)([myBubble totalEaten] * 10)) > high){
-            [defaults setObject:[[NSNumber alloc]
-                                 initWithLongLong:(long long)([myBubble totalEaten] * 10)]
-                         forKey:@"singleHighScore"];
-            //send (high) score to game center
-        }
         [self.scene.view setPaused:YES];
         [self.gc sendScore:[myBubble totalEaten] *10];
         isWinning = NO;

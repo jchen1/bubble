@@ -10,6 +10,7 @@
 #import "SplashViewController.h"
 #import "PauseViewController.h"
 #import "viewControllerDelegate.h"
+#import "GameOverViewController.h"
 
 
 @interface SinglePlayerViewController : UIViewController <viewControllerDelegate> {

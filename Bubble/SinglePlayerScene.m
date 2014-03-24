@@ -106,23 +106,10 @@
     
     //check for game over
     if ([myBubble deaths] >= NUM_LIVES){
-        long long score = (long long)([myBubble totalEaten] * 10);
-        NSString *scoreMessage = [NSString stringWithFormat:@"Score: %lld", score];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Game Over!"
-                                                        message:scoreMessage
-                                                       delegate:self
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [alert show];
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        long long high = [[defaults valueForKey:@"singleHighScore"] longValue];
-        if (score > high){
-            [defaults setObject:[[NSNumber alloc]
-                                 initWithLongLong:score]
-                         forKey:@"singleHighScore"];
-        }
         [self.scene.view setPaused:YES];
-        [[self gc] sendScore:[myBubble totalEaten] *10];
+        long long score = (long long)([myBubble totalEaten] * 10);
+        [[self delegate] gameOver:score];
+        [[self gc] sendScore:score];
         return;
     }
     
@@ -391,13 +378,6 @@
     SKSpriteNode *s = [lives lastObject];
     [s removeFromParent];
     [lives removeLastObject];
-}
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if ([[alertView title] isEqualToString:@"Game Over!"]){
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"gameQuit" object:nil];
-    }
 }
 
 - (AIBubble *)spawnBubble{

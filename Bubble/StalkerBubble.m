@@ -15,7 +15,8 @@
 - (id) initToStalk:(Bubble*)other {
     if (self = [super initWithColor:[UIColor orangeColor]]){
         stalking = other;
-        self.radius = other.radius + 5.0;
+        self.radius = other.radius + 3.0;
+        self.zPosition = -1 * self.radius;
     }
     return self;
 }

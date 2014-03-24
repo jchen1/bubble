@@ -35,4 +35,6 @@
 
 -(BOOL)isWinning;
 
+-(void)gameOver:(long long)score;
+
 @end
