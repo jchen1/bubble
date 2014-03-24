@@ -139,7 +139,7 @@
 		A97A9ED618989C750017183F /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		A9C46D0F18DE299600BC8065 /* PowerUp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PowerUp.h; path = ../PowerUp.h; sourceTree = "<group>"; };
 		A9C46D1018DE299600BC8065 /* PowerUp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PowerUp.m; path = ../PowerUp.m; sourceTree = "<group>"; };
-		A9C46D2018DFCC6D00BC8065 /* GG.mp4.flac.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = GG.mp4.flac.wav; path = Bubble/Audio/GG.mp4.flac.wav; sourceTree = "<group>"; };
+		A9C46D2018DFCC6D00BC8065 /* GG.mp4.flac.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = GG.mp4.flac.wav; sourceTree = "<group>"; };
 		A9D68DE318DB57FF00299441 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		A9D68DE518DB580E00299441 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -178,7 +178,6 @@
 		1F60B13D18974B9A00232A84 = {
 			isa = PBXGroup;
 			children = (
-				A9C46D2018DFCC6D00BC8065 /* GG.mp4.flac.wav */,
 				1F60B15118974B9A00232A84 /* Bubble */,
 				1F60B17818974B9A00232A84 /* BubbleTests */,
 				1F60B14818974B9A00232A84 /* Frameworks */,
@@ -285,6 +284,7 @@
 		A85CD01118DCEFD900FECC1C /* Audio */ = {
 			isa = PBXGroup;
 			children = (
+				A9C46D2018DFCC6D00BC8065 /* GG.mp4.flac.wav */,
 				A85CD01218DCEFD900FECC1C /* dilate1.wav */,
 				A85CD01318DCEFD900FECC1C /* Hit_Hurt4.wav */,
 				A85CD01418DCEFD900FECC1C /* powerup.wav */,

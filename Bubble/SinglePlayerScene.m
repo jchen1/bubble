@@ -184,7 +184,7 @@
     //spawn powerups
     //NSLog(@"%d", arc4random()%0);
     
-    if(arc4random()%200==0)
+    if(arc4random()%10==0)
     {
         [self spawnPowerup];
     }
@@ -205,12 +205,29 @@
 -(void) spawnPowerup{
     if ([powerups count] < NUM_POWERUPS)
     {
-        PowerUp* p=[[PowerUp alloc] initWithColor:[UIColor blackColor]];
-        p.position = CGPointMake(arc4random() % (int)CGRectGetMaxX(self.frame), arc4random() % (int)CGRectGetMaxY(self.frame));
-        p.type='i';
-        [self addChild:p];
-        [p setPosition:p.position];
-        [powerups addObject:p];
+        PowerUp* n = [[PowerUp alloc] init];
+        n.radius = 15;
+        n.position = CGPointMake(arc4random() % (int)CGRectGetMaxX(self.frame), arc4random() % (int)CGRectGetMaxY(self.frame));
+        switch (arc4random()%3) {
+            case 0:
+                n.type='s';
+                n.texture = [SKTexture textureWithImageNamed:@"thunderbolt_icon.png"];
+                break;
+            case 1:
+                n.type='i';
+                n.texture = [SKTexture textureWithImageNamed:@"shield_icon.png"];
+                break;
+            case 2:
+                n.type='j';
+                n.texture = [SKTexture textureWithImageNamed:@"clock_icon.png"];
+                break;
+            default:
+                break;
+        }
+        n.size = CGSizeMake(25, 25);
+        [self addChild:n];
+        [n setPosition:n.position];
+        [powerups addObject:n];
     }
 }
 

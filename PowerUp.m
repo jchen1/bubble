@@ -26,10 +26,10 @@
         _type = 'P';
         _radius = 5;
         _idnum = arc4random();
-        super.lineWidth = 1.0;
-        super.fillColor = color;
-        super.strokeColor = [SKColor whiteColor];
-        super.glowWidth = 0.0;
+        //super.lineWidth = 1.0;
+        //super.fillColor = color;
+        //super.strokeColor = [SKColor whiteColor];
+        //super.glowWidth = 0.0;
         super.zPosition = 11;
         [self updateArc];
     }
@@ -66,13 +66,13 @@
 {
     if (_radius < 1)
     {
-        super.path = nil;
+    //    super.path = nil;
     }
     else
     {
         CGMutablePathRef myPath = CGPathCreateMutable();
         CGPathAddArc(myPath, NULL, 0,0, _radius, 0, M_PI*2, YES);
-        super.path = myPath;
+     //   super.path = myPath;
         
         //attempting to fix memory leak?
         CGPathRelease(myPath);

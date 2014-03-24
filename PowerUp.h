@@ -11,7 +11,7 @@
 
 
 
-@interface PowerUp : SKShapeNode
+@interface PowerUp : SKSpriteNode
 
 @property double radius;
 @property char type;
