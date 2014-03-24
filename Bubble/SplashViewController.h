@@ -13,7 +13,7 @@
 #import "viewControllerDelegate.h"
 #import "GameCenterController.h"
 
-#define TWOPLAYER
+//#define TWOPLAYER
 
 // Preferred method for testing for Game Center
 
