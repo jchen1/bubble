@@ -403,7 +403,12 @@
 - (AIBubble *)spawnBubble{
     AIBubble *bubble;
     if (myBubble){
-        bubble = [[AIBubble alloc] initFromRadius:[myBubble radius]];
+        if (arc4random_uniform(25) < 1){
+            bubble = [[StalkerBubble alloc] initToStalk:myBubble];
+        }
+        else{
+            bubble = [[AIBubble alloc] initFromRadius:[myBubble radius]];
+        }
     }
     else{
         bubble =[[AIBubble alloc] init];

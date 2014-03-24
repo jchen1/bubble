@@ -10,6 +10,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import "AIBubble.h"
 #import "UserBubble.h"
+#import "StalkerBubble.h"
 #import "SplashViewController.h"
 #import "JCJoystick.h"
 #import "viewControllerDelegate.h"

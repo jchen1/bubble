@@ -45,6 +45,7 @@
 		A81680FB18DFD7F600504025 /* shield_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A81680E718DFD7F600504025 /* shield_icon.png */; };
 		A81680FC18DFD7F600504025 /* thunderbolt_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A81680E818DFD7F600504025 /* thunderbolt_icon.png */; };
 		A81680FD18DFD7F600504025 /* twitter_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = A81680E918DFD7F600504025 /* twitter_logo.png */; };
+		A816810018DFDFEB00504025 /* StalkerBubble.m in Sources */ = {isa = PBXBuildFile; fileRef = A81680FF18DFDFEB00504025 /* StalkerBubble.m */; };
 		A822A3D718C16B2A00CAC8FA /* PauseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A822A3D618C16B2A00CAC8FA /* PauseViewController.m */; };
 		A85CD01018DCD74200FECC1C /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A85CD00F18DCD74200FECC1C /* Social.framework */; };
 		A85CD01618DCEFD900FECC1C /* dilate1.wav in Resources */ = {isa = PBXBuildFile; fileRef = A85CD01218DCEFD900FECC1C /* dilate1.wav */; };
@@ -125,6 +126,8 @@
 		A81680E718DFD7F600504025 /* shield_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shield_icon.png; sourceTree = "<group>"; };
 		A81680E818DFD7F600504025 /* thunderbolt_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thunderbolt_icon.png; sourceTree = "<group>"; };
 		A81680E918DFD7F600504025 /* twitter_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitter_logo.png; sourceTree = "<group>"; };
+		A81680FE18DFDFEB00504025 /* StalkerBubble.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StalkerBubble.h; sourceTree = "<group>"; };
+		A81680FF18DFDFEB00504025 /* StalkerBubble.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StalkerBubble.m; sourceTree = "<group>"; };
 		A822A3D518C16B2A00CAC8FA /* PauseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PauseViewController.h; sourceTree = "<group>"; };
 		A822A3D618C16B2A00CAC8FA /* PauseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PauseViewController.m; sourceTree = "<group>"; };
 		A85CD00F18DCD74200FECC1C /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
@@ -252,6 +255,8 @@
 				1F60B16418974B9A00232A84 /* SinglePlayerViewController.m */,
 				A97A9ED218988D3F0017183F /* SplashViewController.h */,
 				A97A9ED318988D3F0017183F /* SplashViewController.m */,
+				A81680FE18DFDFEB00504025 /* StalkerBubble.h */,
+				A81680FF18DFDFEB00504025 /* StalkerBubble.m */,
 				1F60B15218974B9A00232A84 /* Supporting Files */,
 				A8E8561218D667C80038C1AE /* TwoPlayerScene.h */,
 				A8E8561318D667C80038C1AE /* TwoPlayerScene.m */,
@@ -475,6 +480,7 @@
 				A8E8561418D667C80038C1AE /* TwoPlayerScene.m in Sources */,
 				A97A9ED718989C750017183F /* SettingsViewController.m in Sources */,
 				1F60B15C18974B9A00232A84 /* AppDelegate.m in Sources */,
+				A816810018DFDFEB00504025 /* StalkerBubble.m in Sources */,
 				A822A3D718C16B2A00CAC8FA /* PauseViewController.m in Sources */,
 				A8E8561118D666FA0038C1AE /* TwoPlayerViewController.m in Sources */,
 				1F60B15818974B9A00232A84 /* main.m in Sources */,
