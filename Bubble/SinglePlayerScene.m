@@ -36,6 +36,7 @@
         bubbles = [NSMutableArray array];
         powerups = [NSMutableArray array];
         
+#ifdef POWERUP
         PowerUp* testPowerUp1 = [[PowerUp alloc] initWithColor:[SKColor whiteColor]];
         testPowerUp1.position = CGPointMake(100, 200);
         testPowerUp1.type='j';
@@ -56,6 +57,7 @@
         [self addChild:testPowerUp3];
         [testPowerUp3 setPosition:testPowerUp3.position];
         [powerups addObject:testPowerUp3];
+#endif
         
         myBubble = [[UserBubble alloc] init];
         myBubble.position = CGPointMake(CGRectGetMidX(self.frame),
