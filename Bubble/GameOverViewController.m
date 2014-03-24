@@ -83,7 +83,7 @@
     if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter])
     {
         SLComposeViewController *tweetSheet = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
-        NSString *tweetText = [NSString stringWithFormat:@"I just scored %lld on #bubbleOutlast! http://t.co/pAHoAtMxZ0", [self score]];
+        NSString *tweetText = [NSString stringWithFormat:@"I just scored %lld points on #bubbleOutlast! http://t.co/pAHoAtMxZ0", [self score]];
         [tweetSheet setInitialText:tweetText];
         [self presentViewController:tweetSheet animated:YES completion:nil];
     }
