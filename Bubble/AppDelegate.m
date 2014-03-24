@@ -26,6 +26,8 @@
     [navController pushViewController:splash animated:NO];
     [self.window addSubview:navController.view];
     [self.window makeKeyAndVisible];
+    [iRate sharedInstance].daysUntilPrompt = 5;
+    [iRate sharedInstance].usesUntilPrompt = 15;
     // Override point for customization after application launch.
     return YES;
 }

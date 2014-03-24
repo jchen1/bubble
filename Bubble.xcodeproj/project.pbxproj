@@ -49,6 +49,7 @@
 		A816810318DFE7D500504025 /* GameOverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A816810218DFE7D500504025 /* GameOverViewController.m */; };
 		A816810718DFEF7900504025 /* game_over_background.png in Resources */ = {isa = PBXBuildFile; fileRef = A816810618DFEF7900504025 /* game_over_background.png */; };
 		A816810918DFF4EA00504025 /* share_button.png in Resources */ = {isa = PBXBuildFile; fileRef = A816810818DFF4EA00504025 /* share_button.png */; };
+		A816810D18DFFFD200504025 /* iRate.m in Sources */ = {isa = PBXBuildFile; fileRef = A816810C18DFFFD200504025 /* iRate.m */; };
 		A822A3D718C16B2A00CAC8FA /* PauseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A822A3D618C16B2A00CAC8FA /* PauseViewController.m */; };
 		A85CD01018DCD74200FECC1C /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A85CD00F18DCD74200FECC1C /* Social.framework */; };
 		A85CD01618DCEFD900FECC1C /* dilate1.wav in Resources */ = {isa = PBXBuildFile; fileRef = A85CD01218DCEFD900FECC1C /* dilate1.wav */; };
@@ -135,6 +136,8 @@
 		A816810218DFE7D500504025 /* GameOverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverViewController.m; sourceTree = "<group>"; };
 		A816810618DFEF7900504025 /* game_over_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = game_over_background.png; sourceTree = "<group>"; };
 		A816810818DFF4EA00504025 /* share_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share_button.png; sourceTree = "<group>"; };
+		A816810B18DFFFD200504025 /* iRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iRate.h; sourceTree = "<group>"; };
+		A816810C18DFFFD200504025 /* iRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iRate.m; sourceTree = "<group>"; };
 		A822A3D518C16B2A00CAC8FA /* PauseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PauseViewController.h; sourceTree = "<group>"; };
 		A822A3D618C16B2A00CAC8FA /* PauseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PauseViewController.m; sourceTree = "<group>"; };
 		A85CD00F18DCD74200FECC1C /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
@@ -254,6 +257,7 @@
 				A901663118B670A60061927A /* JCJoystick.m */,
 				A822A3D518C16B2A00CAC8FA /* PauseViewController.h */,
 				A822A3D618C16B2A00CAC8FA /* PauseViewController.m */,
+				A816810A18DFFFD200504025 /* Plugins */,
 				A9C46D0F18DE299600BC8065 /* PowerUp.h */,
 				A9C46D1018DE299600BC8065 /* PowerUp.m */,
 				A97A9ED518989C750017183F /* SettingsViewController.h */,
@@ -334,6 +338,15 @@
 				A81680E918DFD7F600504025 /* twitter_logo.png */,
 			);
 			path = Images;
+			sourceTree = "<group>";
+		};
+		A816810A18DFFFD200504025 /* Plugins */ = {
+			isa = PBXGroup;
+			children = (
+				A816810B18DFFFD200504025 /* iRate.h */,
+				A816810C18DFFFD200504025 /* iRate.m */,
+			);
+			path = Plugins;
 			sourceTree = "<group>";
 		};
 		A85CD01118DCEFD900FECC1C /* Audio */ = {
@@ -490,6 +503,7 @@
 				1F7C329618975A34006995F8 /* AIBubble.m in Sources */,
 				A816810318DFE7D500504025 /* GameOverViewController.m in Sources */,
 				A9C46D1118DE299600BC8065 /* PowerUp.m in Sources */,
+				A816810D18DFFFD200504025 /* iRate.m in Sources */,
 				A901663218B670A60061927A /* JCJoystick.m in Sources */,
 				A8E8561418D667C80038C1AE /* TwoPlayerScene.m in Sources */,
 				A97A9ED718989C750017183F /* SettingsViewController.m in Sources */,

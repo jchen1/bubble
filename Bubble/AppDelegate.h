@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "SplashViewController.h"
+#import "iRate.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>{
     SplashViewController *splash;
