@@ -38,7 +38,7 @@
         
         bubbles = [NSMutableArray array];
         powerups = [NSMutableArray array];
-        
+        /*
         PowerUp* testPowerUp1 = [[PowerUp alloc] initWithColor:[SKColor whiteColor]];
         testPowerUp1.position = CGPointMake(100, 200);
         testPowerUp1.type='j';
@@ -59,7 +59,7 @@
         [self addChild:testPowerUp3];
         [testPowerUp3 setPosition:testPowerUp3.position];
         [powerups addObject:testPowerUp3];
-        
+        */
         myBubble = [[UserBubble alloc] init];
         myBubble.position = CGPointMake(CGRectGetMidX(self.frame),
                                         CGRectGetMidY(self.frame));
@@ -194,14 +194,9 @@
     //spawn powerups
     //NSLog(@"%d", arc4random()%0);
     
-    if(arc4random()%500==0)
+    if(arc4random()%200==0)
     {
-        powerUp1=[[PowerUp alloc] initWithColor:[UIColor blackColor]];
-        powerUp1.position = CGPointMake(arc4random() % (int)CGRectGetMaxX(self.frame), arc4random() % (int)CGRectGetMaxY(self.frame));
-        powerUp1.type='j';
-        [self addChild:powerUp1];
-        [powerUp1 setPosition:powerUp1.position];
-        [powerups addObject:powerUp1];
+        [self spawnPowerup];
     }
     
     //spawn more bubbles if necessary
@@ -217,6 +212,18 @@
     }
     
 }
+-(void) spawnPowerup{
+    if ([powerups count] < 3)
+    {
+        PowerUp* p=[[PowerUp alloc] initWithColor:[UIColor blackColor]];
+        p.position = CGPointMake(arc4random() % (int)CGRectGetMaxX(self.frame), arc4random() % (int)CGRectGetMaxY(self.frame));
+        p.type='j';
+        [self addChild:p];
+        [p setPosition:p.position];
+        [powerups addObject:p];
+    }
+}
+
 -(void) Jelly{
     for(AIBubble *b1 in bubbles)
     {
