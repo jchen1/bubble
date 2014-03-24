@@ -93,7 +93,8 @@
     double littleRadius = other.radius;
     double area1 = bigRadius * bigRadius * M_PI, area2 = littleRadius * littleRadius * M_PI;
     double eatenAmount = MIN(area2, 20.0) / 2.0;
-    _totalEaten += (eatenAmount * (1+m));
+    int mult = ([other class] == NSClassFromString(@"StalkerBubble")) ? 5.0 : 1.0;
+    _totalEaten += (eatenAmount * (1+m) * mult);
     area1 += eatenAmount;
     area2 -= eatenAmount;
     _radius = sqrt(area1 / M_PI);

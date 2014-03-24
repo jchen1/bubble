@@ -314,7 +314,11 @@
         if ([b isEqual:myBubble]){
             continue;
         }
-        if (b.radius < DEATH_RADIUS || !CGRectContainsPoint(bounds,b.position) || b.radius > 100.0)
+        CGRect validBounds = CGRectMake(CGRectGetMinX(bounds) - b.radius,
+                                        CGRectGetMinY(bounds) - b.radius,
+                                        bounds.size.width + 2*b.radius,
+                                        bounds.size.height + 2*b.radius);
+        if (b.radius < DEATH_RADIUS || !CGRectContainsPoint(validBounds,b.position) || b.radius > 100.0)
         {
             [removeIndices addIndex:i];
             [b removeFromParent];
@@ -383,7 +387,7 @@
 - (AIBubble *)spawnBubble{
     AIBubble *bubble;
     if (myBubble){
-        if (arc4random_uniform(25) < 1){
+        if (arc4random_uniform(50) < 1){
             bubble = [[StalkerBubble alloc] initToStalk:myBubble];
         }
         else{
@@ -395,16 +399,20 @@
     }
     switch ([bubble preferredDirection]){
         case 0:
-            bubble.position = CGPointMake(arc4random() % (int)CGRectGetMaxX(self.frame), self.frame.origin.y);
+            bubble.position = CGPointMake(arc4random() % (int)CGRectGetMaxX(self.frame),
+                                          self.frame.origin.y - bubble.radius);
             break;
         case 1:
-            bubble.position = CGPointMake(self.frame.origin.x, arc4random() % (int)CGRectGetMaxY(self.frame));
+            bubble.position = CGPointMake(self.frame.origin.x - bubble.radius,
+                                          arc4random() % (int)CGRectGetMaxY(self.frame));
             break;
         case 2:
-            bubble.position = CGPointMake(arc4random() % (int)CGRectGetMaxX(self.frame), CGRectGetMaxY(self.frame) - 1);
+            bubble.position = CGPointMake(arc4random() % (int)CGRectGetMaxX(self.frame),
+                                          CGRectGetMaxY(self.frame) + bubble.radius - 1);
             break;
         case 3:
-            bubble.position = CGPointMake(CGRectGetMaxX(self.frame) - 1, arc4random() % (int)CGRectGetMaxY(self.frame));
+            bubble.position = CGPointMake(CGRectGetMaxX(self.frame) + bubble.radius - 1,
+                                          arc4random() % (int)CGRectGetMaxY(self.frame));
             break;
         default: break;
     }

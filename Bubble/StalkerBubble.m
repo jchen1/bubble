@@ -27,9 +27,13 @@
     float dx = target.x - pos.x;
     float dy = target.y - pos.y;
     float distance = sqrtf(dx*dx + dy*dy);
-    pos.x += dx * [super getSpeed] / distance;
-    pos.y += dy * [super getSpeed] / distance;
+    pos.x += dx * [self getSpeed] / distance;
+    pos.y += dy * [self getSpeed] / distance;
     [super setPosition:pos];
+}
+
+- (double) getSpeed{
+    return [super getSpeed] - 1;
 }
 
 @end
