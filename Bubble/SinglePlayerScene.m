@@ -39,29 +39,6 @@
         bubbles = [NSMutableArray array];
         powerups = [NSMutableArray array];
         
-#ifdef POWERUP
-        PowerUp* testPowerUp1 = [[PowerUp alloc] initWithColor:[SKColor whiteColor]];
-        testPowerUp1.position = CGPointMake(100, 200);
-        testPowerUp1.type='j';
-        [self addChild:testPowerUp1];
-        [testPowerUp1 setPosition:testPowerUp1.position];
-        [powerups addObject:testPowerUp1];
-        
-        PowerUp* testPowerUp2 = [[PowerUp alloc] initWithColor:[SKColor whiteColor]];
-        testPowerUp2.position = CGPointMake(100, 150);
-        testPowerUp2.type='s';
-        [self addChild:testPowerUp2];
-        [testPowerUp2 setPosition:testPowerUp2.position];
-        [powerups addObject:testPowerUp2];
-        
-        PowerUp* testPowerUp3 = [[PowerUp alloc] initWithColor:[SKColor whiteColor]];
-        testPowerUp3.position = CGPointMake(100, 100);
-        testPowerUp3.type='j';
-        [self addChild:testPowerUp3];
-        [testPowerUp3 setPosition:testPowerUp3.position];
-        [powerups addObject:testPowerUp3];
-#endif
-        
         myBubble = [[UserBubble alloc] init];
         myBubble.position = CGPointMake(CGRectGetMidX(self.frame),
                                         CGRectGetMidY(self.frame));
@@ -140,11 +117,22 @@
     //check for deaths
     if (myBubble.radius < DEATH_RADIUS)
     {
+        [self.delegate pauseMusic];
+        NSString *soundFilePath = [[NSBundle mainBundle] pathForResource:@"GG.mp4.flac" ofType:@"wav"];
+        NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
+        player = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:nil];
+        player.numberOfLoops = 0;
+        [player pause];
+        if([player prepareToPlay])
+        {
+            [player play];
+        }
         shrink_count = 0;
         [self removeLife];
         [self killAllBubbles];
         [myBubble respawn:CGPointMake(CGRectGetMidX(self.frame),
                                       CGRectGetMidY(self.frame))];
+        [self.delegate resumeMusic];
         return;
     }
     
@@ -215,11 +203,11 @@
     
 }
 -(void) spawnPowerup{
-    if ([powerups count] < 3)
+    if ([powerups count] < NUM_POWERUPS)
     {
         PowerUp* p=[[PowerUp alloc] initWithColor:[UIColor blackColor]];
         p.position = CGPointMake(arc4random() % (int)CGRectGetMaxX(self.frame), arc4random() % (int)CGRectGetMaxY(self.frame));
-        p.type='j';
+        p.type='i';
         [self addChild:p];
         [p setPosition:p.position];
         [powerups addObject:p];
@@ -246,12 +234,12 @@
         {
             switch (p1.type) {
                 case 'i':
-                    NSLog(@"invulnerability");
+                    NSLog(@"Invulnerability");
                     myBubble.invulnerability = true;
                     invulExpire = CACurrentMediaTime() +5;
                     break;
                 case 's':
-                    NSLog(@"speed++");
+                    NSLog(@"Speed++");
                     myBubble.speedScale=3.5;
                     speedExpire = CACurrentMediaTime() + 5;
                     //myBubble.speed +=10 or myBubble.speed+=myBubble.speed*.1
@@ -279,10 +267,10 @@
     for (AIBubble *b1 in bubbles) {
         for (AIBubble *b2 in bubbles) {
             if (![b1 isEqual:b2] && [b1 collidesWith:b2]) {
-                if (b1.radius < b2.radius) {
+                if (b1.radius < b2.radius && !b1.invulnerability) {
                     [b2 eat:b1 withMultiplier:shrink_count];
                 }
-                else if (b1.radius > b2.radius) {
+                else if (b1.radius > b2.radius && !b2.invulnerability) {
                     [b1 eat:b2 withMultiplier:shrink_count];
                 }
             }
