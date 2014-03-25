@@ -41,7 +41,7 @@
             [player play];
         }
     }
-        [super viewDidLoad];
+    [super viewDidLoad];
     SKView * skView = [[SKView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.view = skView;
     
@@ -60,6 +60,12 @@
     scene.delegate = self;
     scene.gc = [self gc];
     [skView presentScene:scene];
+    [scene pause];
+    
+    GameModeViewController *gmController = [[GameModeViewController alloc] initWithNibName:nil bundle:nil];
+    gmController.delegate = scene;
+    [self addChildViewController:gmController];
+    [[self view] addSubview: [gmController view]];
     
     [[UIApplication sharedApplication] setStatusBarHidden:YES
                                             withAnimation:UIStatusBarAnimationFade];
@@ -150,6 +156,7 @@
     [self addChildViewController:gController];
     [[self view] addSubview: [gController view]];
 }
+
 
 @end
 

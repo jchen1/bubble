@@ -7,6 +7,7 @@
 //
 
 #import "TwoPlayerScene.h"
+#define NUM_LIVES 1
 
 @implementation TwoPlayerScene
 {

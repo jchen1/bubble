@@ -12,29 +12,19 @@
 
 @optional
 -(void)done:(NSString*)dataText;
-
 -(void)pauseMusic;
-
 -(void)resumeMusic;
-
 -(void)sendScore:(long long)score;
-
 -(void)sendAchievement:(NSString*)achievementIdentifier;
-
 -(BOOL)shouldPlayMusic;
-
 -(void)setVolume:(float)volume;
-
 -(void)sendBubbleData: (NSData*)data;
-
 -(void)disconnect;
-
 -(void)startNewMultiplayerGame;
-
 -(void)handleReceivedData:(NSData*)data;
-
 -(BOOL)isWinning;
-
 -(void)gameOver:(long long)score;
+-(void)startHardcore;
+-(void)startNormal;
 
 @end

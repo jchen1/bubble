@@ -50,6 +50,10 @@
 		A816810718DFEF7900504025 /* game_over_background.png in Resources */ = {isa = PBXBuildFile; fileRef = A816810618DFEF7900504025 /* game_over_background.png */; };
 		A816810918DFF4EA00504025 /* share_button.png in Resources */ = {isa = PBXBuildFile; fileRef = A816810818DFF4EA00504025 /* share_button.png */; };
 		A816810D18DFFFD200504025 /* iRate.m in Sources */ = {isa = PBXBuildFile; fileRef = A816810C18DFFFD200504025 /* iRate.m */; };
+		A816811118E1161200504025 /* hard_mode_button.png in Resources */ = {isa = PBXBuildFile; fileRef = A816810E18E1161200504025 /* hard_mode_button.png */; };
+		A816811218E1161200504025 /* mode_pick_background.png in Resources */ = {isa = PBXBuildFile; fileRef = A816810F18E1161200504025 /* mode_pick_background.png */; };
+		A816811318E1161200504025 /* normal_mode_button.png in Resources */ = {isa = PBXBuildFile; fileRef = A816811018E1161200504025 /* normal_mode_button.png */; };
+		A816811618E1163600504025 /* GameModeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A816811518E1163500504025 /* GameModeViewController.m */; };
 		A822A3D718C16B2A00CAC8FA /* PauseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A822A3D618C16B2A00CAC8FA /* PauseViewController.m */; };
 		A85CD01018DCD74200FECC1C /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A85CD00F18DCD74200FECC1C /* Social.framework */; };
 		A85CD01618DCEFD900FECC1C /* dilate1.wav in Resources */ = {isa = PBXBuildFile; fileRef = A85CD01218DCEFD900FECC1C /* dilate1.wav */; };
@@ -138,6 +142,11 @@
 		A816810818DFF4EA00504025 /* share_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share_button.png; sourceTree = "<group>"; };
 		A816810B18DFFFD200504025 /* iRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iRate.h; sourceTree = "<group>"; };
 		A816810C18DFFFD200504025 /* iRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iRate.m; sourceTree = "<group>"; };
+		A816810E18E1161200504025 /* hard_mode_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hard_mode_button.png; sourceTree = "<group>"; };
+		A816810F18E1161200504025 /* mode_pick_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mode_pick_background.png; sourceTree = "<group>"; };
+		A816811018E1161200504025 /* normal_mode_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = normal_mode_button.png; sourceTree = "<group>"; };
+		A816811418E1163500504025 /* GameModeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameModeViewController.h; sourceTree = "<group>"; };
+		A816811518E1163500504025 /* GameModeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameModeViewController.m; sourceTree = "<group>"; };
 		A822A3D518C16B2A00CAC8FA /* PauseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PauseViewController.h; sourceTree = "<group>"; };
 		A822A3D618C16B2A00CAC8FA /* PauseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PauseViewController.m; sourceTree = "<group>"; };
 		A85CD00F18DCD74200FECC1C /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
@@ -249,6 +258,8 @@
 				1F60B1891897500300232A84 /* Bubble.m */,
 				A85CD01C18DE88B000FECC1C /* GameCenterController.h */,
 				A85CD01D18DE88B000FECC1C /* GameCenterController.m */,
+				A816811418E1163500504025 /* GameModeViewController.h */,
+				A816811518E1163500504025 /* GameModeViewController.m */,
 				A816810118DFE7D500504025 /* GameOverViewController.h */,
 				A816810218DFE7D500504025 /* GameOverViewController.m */,
 				A81680D518DFD7F600504025 /* Images */,
@@ -314,8 +325,6 @@
 		A81680D518DFD7F600504025 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				A816810818DFF4EA00504025 /* share_button.png */,
-				A816810618DFEF7900504025 /* game_over_background.png */,
 				A81680D618DFD7F600504025 /* 1p_button.png */,
 				A81680D718DFD7F600504025 /* 2p_button.png */,
 				A81680D818DFD7F600504025 /* back_button.png */,
@@ -329,10 +338,15 @@
 				A81680E018DFD7F600504025 /* bubble_ios_icon_80.png */,
 				A81680E118DFD7F600504025 /* clock_icon.png */,
 				A81680E218DFD7F600504025 /* game_center_logo.png */,
+				A816810618DFEF7900504025 /* game_over_background.png */,
+				A816810E18E1161200504025 /* hard_mode_button.png */,
+				A816810F18E1161200504025 /* mode_pick_background.png */,
+				A816811018E1161200504025 /* normal_mode_button.png */,
 				A81680E318DFD7F600504025 /* options_button.png */,
 				A81680E418DFD7F600504025 /* pause_button.png */,
 				A81680E518DFD7F600504025 /* quit_button.png */,
 				A81680E618DFD7F600504025 /* resume_button.png */,
+				A816810818DFF4EA00504025 /* share_button.png */,
 				A81680E718DFD7F600504025 /* shield_icon.png */,
 				A81680E818DFD7F600504025 /* thunderbolt_icon.png */,
 				A81680E918DFD7F600504025 /* twitter_logo.png */,
@@ -467,15 +481,18 @@
 				A81680F218DFD7F600504025 /* bubble_ios_icon_120.png in Resources */,
 				A816810918DFF4EA00504025 /* share_button.png in Resources */,
 				A81680FA18DFD7F600504025 /* resume_button.png in Resources */,
+				A816811218E1161200504025 /* mode_pick_background.png in Resources */,
 				A81680FD18DFD7F600504025 /* twitter_logo.png in Resources */,
 				A85CD01718DCEFD900FECC1C /* Hit_Hurt4.wav in Resources */,
 				A81680F818DFD7F600504025 /* pause_button.png in Resources */,
 				A81680EA18DFD7F600504025 /* 1p_button.png in Resources */,
 				A85CD01618DCEFD900FECC1C /* dilate1.wav in Resources */,
 				A81680FB18DFD7F600504025 /* shield_icon.png in Resources */,
+				A816811318E1161200504025 /* normal_mode_button.png in Resources */,
 				A81680F618DFD7F600504025 /* game_center_logo.png in Resources */,
 				A85CD01918DCEFD900FECC1C /* singleplayer.mp3 in Resources */,
 				A85CD01818DCEFD900FECC1C /* powerup.wav in Resources */,
+				A816811118E1161200504025 /* hard_mode_button.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -498,6 +515,7 @@
 				1F60B16818974B9A00232A84 /* SinglePlayerScene.m in Sources */,
 				A85CD01E18DE88B000FECC1C /* GameCenterController.m in Sources */,
 				1F60B18A1897500300232A84 /* Bubble.m in Sources */,
+				A816811618E1163600504025 /* GameModeViewController.m in Sources */,
 				1F60B16518974B9A00232A84 /* SinglePlayerViewController.m in Sources */,
 				1F1281F4189761C8005F8A7C /* UserBubble.m in Sources */,
 				1F7C329618975A34006995F8 /* AIBubble.m in Sources */,

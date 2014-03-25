@@ -11,6 +11,7 @@
 #import "PauseViewController.h"
 #import "viewControllerDelegate.h"
 #import "GameOverViewController.h"
+#import "GameModeViewController.h"
 
 
 @interface SinglePlayerViewController : UIViewController <viewControllerDelegate> {
