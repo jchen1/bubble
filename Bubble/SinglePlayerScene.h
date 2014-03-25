@@ -17,14 +17,13 @@
 #import "PowerUp.h"
 #import "GameCenterController.h"
 
-#define NUM_LIVES 1
 #define DILATE_PERCENT 0.99055
 #define DILATE_TICKS 120
 #define DILATE_RADIUS 50.0
 #define DEATH_RADIUS 5.0
 #define NUM_POWERUPS 3
 
-@interface SinglePlayerScene : SKScene <UIAlertViewDelegate>
+@interface SinglePlayerScene : SKScene <UIAlertViewDelegate, viewControllerDelegate>
 {
     int initial_count;
     int dilate_count;
@@ -51,6 +50,8 @@
 
 @property GameCenterController *gc;
 @property id <viewControllerDelegate> delegate;
+@property short numLives;
+@property BOOL isHardcore;
 
 @end
 

@@ -19,15 +19,12 @@
     SKShapeNode *shieldShape;
 }
 
+@synthesize numLives = NUM_LIVES, isHardcore;
+
 -(id)initWithSize:(CGSize)size {
     if (self = [super initWithSize:size]) {
         
         self.backgroundColor = [SKColor blackColor];
-        
-        lives = [NSMutableArray arrayWithCapacity:(NUM_LIVES - 1)];
-        for (short i = 0; i < NUM_LIVES - 1; i++){
-            [self addLife:i];
-        }
         
         joystick = [[JCJoystick alloc] initWithControlRadius:40
                                                   baseRadius:45 baseColor:[SKColor grayColor]
@@ -53,6 +50,22 @@
         
     }
     return self;
+}
+
+-(void)startNormal{
+    NUM_LIVES = 2;
+    isHardcore = NO;
+    lives = [NSMutableArray arrayWithCapacity:NUM_LIVES];
+    for (short i = 0; i < NUM_LIVES; i++){
+        [self addLife:i];
+    }
+    [self unpause];
+}
+
+-(void)startHardcore{
+    NUM_LIVES = 0;
+    isHardcore = YES;
+    [self unpause];
 }
 
 -(void)update:(CFTimeInterval)currentTime {
@@ -108,7 +121,7 @@
     }
     
     //check for game over
-    if ([myBubble deaths] >= NUM_LIVES){
+    if ([myBubble deaths] > NUM_LIVES){
         [self.scene.view setPaused:YES];
         long long score = (long long)([myBubble totalEaten] * 10);
         [[self delegate] gameOver:score];
