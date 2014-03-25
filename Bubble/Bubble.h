@@ -16,6 +16,7 @@
 @property double totalEaten;
 @property float speedScale;
 @property BOOL invulnerability;
+@property SKColor *originalColor;
 
 -(id) initWithColor : (SKColor*) color;
 -(id) initWithId:(int)initid andRadius:(float)radius andPosition:(CGPoint)pos;
