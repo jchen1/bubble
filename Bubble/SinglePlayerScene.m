@@ -331,12 +331,13 @@
             }
         }
         if(!isHardcore){
-        if(b1.radius<=myBubble.radius && ![b1 isEqual:myBubble]){
-            b1.fillColor = [UIColor greenColor];
+            if(b1.radius<=myBubble.radius && ![b1 isEqual:myBubble]){
+                b1.fillColor = [UIColor greenColor];
+            }
+            if (b1.radius > myBubble.radius && ![b1 isEqual:myBubble]) {
+                b1.fillColor = b1.originalColor;
+            }
         }
-        if (b1.radius > myBubble.radius && ![b1 isEqual:myBubble]) {
-            b1.fillColor= [UIColor blueColor];
-        }}
     }
 }
 
