@@ -231,7 +231,7 @@
         PowerUp* n = [[PowerUp alloc] init];
         n.radius = 15;
         n.position = CGPointMake(arc4random() % (int)CGRectGetMaxX(self.frame), arc4random() % (int)CGRectGetMaxY(self.frame));
-        switch (arc4random()%3) {
+        switch (arc4random()%4) {
             case 0:
                 n.type='s';
                 n.texture = [SKTexture textureWithImageNamed:@"thunderbolt_icon.png"];
@@ -244,6 +244,9 @@
                 n.type='j';
                 n.texture = [SKTexture textureWithImageNamed:@"clock_icon.png"];
                 break;
+            case 3:
+                n.type='k';
+                n.texture= [SKTexture textureWithImageNamed:@"radiation_icon.png"];
             default:
                 break;
         }
@@ -290,7 +293,7 @@
                     break;
                 case 's':
                     NSLog(@"Speed++");
-                    myBubble.speedScale=3.5;
+                    myBubble.speedScale=2.5;
                     speedExpire = CACurrentMediaTime() + 5;
                     //myBubble.speed +=10 or myBubble.speed+=myBubble.speed*.1
                     break;
@@ -301,8 +304,12 @@
                     break;
                     //all AI bubbles move at 50% speed
                 case 'k':
-                    NSLog(@"Killer");
-                    //Your bubble destroys other bubbles on contact?!
+                    for(Bubble* b in bubbles)
+                        if (b!=myBubble) {
+                            b.radius=b.radius/2;
+                        }
+                    NSLog(@"Nuke");
+                    //reduces radius of all bubbles except your own
                     break;
                 default:
                     break;
@@ -325,6 +332,13 @@
                 }
             }
         }
+        if(!isHardcore){
+        if(b1.radius<=myBubble.radius && ![b1 isEqual:myBubble]){
+            b1.fillColor = [UIColor greenColor];
+        }
+        if (b1.radius > myBubble.radius && ![b1 isEqual:myBubble]) {
+            b1.fillColor= [UIColor blueColor];
+        }}
     }
 }
 

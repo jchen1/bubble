@@ -70,6 +70,7 @@
 		A97A9ED418988D3F0017183F /* SplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A97A9ED318988D3F0017183F /* SplashViewController.m */; };
 		A97A9ED718989C750017183F /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A97A9ED618989C750017183F /* SettingsViewController.m */; };
 		A9A564F118DFE67F00840421 /* splash.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A9A564F018DFE67F00840421 /* splash.mp3 */; };
+		A9BA252518E1ED97005EC455 /* radiation_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A9BA252418E1ED97005EC455 /* radiation_icon.png */; };
 		A9C46D1118DE299600BC8065 /* PowerUp.m in Sources */ = {isa = PBXBuildFile; fileRef = A9C46D1018DE299600BC8065 /* PowerUp.m */; };
 		A9C46D2118DFCC6D00BC8065 /* GG.mp4.flac.wav in Resources */ = {isa = PBXBuildFile; fileRef = A9C46D2018DFCC6D00BC8065 /* GG.mp4.flac.wav */; };
 		A9D68DE418DB57FF00299441 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9D68DE318DB57FF00299441 /* AVFoundation.framework */; };
@@ -171,6 +172,7 @@
 		A97A9ED518989C750017183F /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		A97A9ED618989C750017183F /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		A9A564F018DFE67F00840421 /* splash.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = splash.mp3; sourceTree = "<group>"; };
+		A9BA252418E1ED97005EC455 /* radiation_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = radiation_icon.png; sourceTree = "<group>"; };
 		A9C46D0F18DE299600BC8065 /* PowerUp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PowerUp.h; path = ../PowerUp.h; sourceTree = "<group>"; };
 		A9C46D1018DE299600BC8065 /* PowerUp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PowerUp.m; path = ../PowerUp.m; sourceTree = "<group>"; };
 		A9C46D2018DFCC6D00BC8065 /* GG.mp4.flac.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = GG.mp4.flac.wav; sourceTree = "<group>"; };
@@ -325,6 +327,7 @@
 		A81680D518DFD7F600504025 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				A9BA252418E1ED97005EC455 /* radiation_icon.png */,
 				A81680D618DFD7F600504025 /* 1p_button.png */,
 				A81680D718DFD7F600504025 /* 2p_button.png */,
 				A81680D818DFD7F600504025 /* back_button.png */,
@@ -460,6 +463,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A9BA252518E1ED97005EC455 /* radiation_icon.png in Resources */,
 				A9A564F118DFE67F00840421 /* splash.mp3 in Resources */,
 				A9C46D2118DFCC6D00BC8065 /* GG.mp4.flac.wav in Resources */,
 				A81680ED18DFD7F600504025 /* bubble_button.png in Resources */,

@@ -41,7 +41,7 @@
     copyright = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMidX(self.view.bounds) - 100, 50, 200, 100)];
     copyright.lineBreakMode = NSLineBreakByWordWrapping;
     copyright.textAlignment = NSTextAlignmentCenter;
-    copyright.numberOfLines = 0;
+    copyright.numberOfLines = 0;    
     copyright.textColor = [UIColor whiteColor];
     copyright.text = @"created by:\n\nStephen Greco\nRolando Schneiderman";
     [self.view addSubview:copyright];
