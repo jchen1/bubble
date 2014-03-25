@@ -111,9 +111,9 @@
     //check for achievements
     if (shrink_count==1 && ![roundAchievements containsObject:@"1"])
     {
-        
         //[self.gc sendAchievement:@"1"];
-        [self.gc reportAchievementIdentifier:@"1" percentComplete:100];
+        [self.gc sendAchievement:@"1"];
+//        [self.gc reportAchievementIdentifier:@"1" percentComplete:100];
         [roundAchievements addObject:@"1"];
     }
     if(shrink_count==2 && ![roundAchievements containsObject:@"2"])
