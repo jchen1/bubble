@@ -31,6 +31,26 @@ GKMatchmakerViewControllerDelegate, GKMatchDelegate, GKLocalPlayerListener>{
 -(void)sendAchievement:(NSString*)ident;
 -(void)findGame;
 -(void)disconnect;
+@property (readonly, nonatomic) NSString *storedFilename;
+@property (readonly, nonatomic) NSMutableDictionary *storedAchievements;
+
+// resubmit any local instances of GKAchievement that was stored on a failed submission.
+- (void)resubmitStoredAchievements;
+
+// write all stored achievements for future resubmission
+- (void)writeStoredAchievements;
+
+// load stored achievements that haven't been submitted to the server
+- (void)loadStoredAchievements;
+
+// store an achievement for future resubmit
+- (void)storeAchievement:(GKAchievement *)achievement ;
+
+// submit an achievement
+- (void)submitAchievement:(GKAchievement *)achievement ;
+
+// reset achievements
+- (void)resetAchievements;
 
 
 @end

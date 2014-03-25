@@ -97,7 +97,10 @@
     //check for achievements
     if (shrink_count==1)
     {
-        [self.gc sendAchievement:@"1"];
+        GKAchievement * achievement = [[GKAchievement alloc] initWithIdentifier:@"3"];
+        [self.gc submitAchievement:achievement];
+        //NSLog(@"asdf");
+        //[self.gc sendAchievement:@"3"];
     }
     if(shrink_count==2)
     {

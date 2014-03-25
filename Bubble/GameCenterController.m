@@ -15,8 +15,11 @@
     GKMatch *myMatch;
     NSMutableArray *playersToInvite;
     GKMatchRequest *matchrequest;
+    NSLock *writeLock;
 }
 
+@synthesize storedAchievements;
+@synthesize storedFilename;
 @synthesize controller = controller, splash = splash, currentGameView = game;
 
 - (id) init{
@@ -25,6 +28,8 @@
         matchrequest = [[GKMatchRequest alloc] init];
         matchrequest.maxPlayers = 2;
     }
+    NSString* path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    storedFilename = [[NSString alloc] initWithFormat:@"%@/%@.storedAchievements.plist",[GKLocalPlayer localPlayer].playerID,path];
     return self;
 }
 
@@ -129,7 +134,7 @@
         }
     }];
 }
-
+/*
 -(void)resetAchievements{
     [GKAchievement resetAchievementsWithCompletionHandler:^(NSError *error) {
         if (error != nil) {
@@ -137,7 +142,7 @@
         }
     }];
 }
-
+*/
 - (void)player:(GKPlayer *)player didAcceptInvite:(GKInvite *)invite{
     GKMatchmakerViewController *gcController =
     [[GKMatchmakerViewController alloc] initWithInvite:invite];
@@ -273,6 +278,111 @@
 
 - (void) disconnect{
     [myMatch disconnect];
+}
+
+// Try to submit all stored achievements to update any achievements that were not successful.
+- (void)resubmitStoredAchievements
+{
+    if (storedAchievements) {
+        for (NSString *key in storedAchievements){
+            GKAchievement * achievement = [storedAchievements objectForKey:key];
+            [storedAchievements removeObjectForKey:key];
+            [self submitAchievement:achievement];
+        }
+		[self writeStoredAchievements];
+    }
+}
+
+// Load stored achievements and attempt to submit them
+- (void)loadStoredAchievements
+{
+    if (!storedAchievements) {
+        NSDictionary *  unarchivedObj = [NSKeyedUnarchiver unarchiveObjectWithFile:storedFilename];;
+        
+        if (unarchivedObj) {
+            storedAchievements = [[NSMutableDictionary alloc] initWithDictionary:unarchivedObj];
+            [self resubmitStoredAchievements];
+        } else {
+            storedAchievements = [[NSMutableDictionary alloc] init];
+        }
+    }
+}
+
+// store achievements to disk to submit at a later time.
+- (void)writeStoredAchievements
+{
+    [writeLock lock];
+    NSData * archivedAchievements = [NSKeyedArchiver archivedDataWithRootObject:storedAchievements];
+    NSError * error;
+    [archivedAchievements writeToFile:storedFilename options:NSDataWritingFileProtectionNone error:&error];
+    if (error) {
+        //  Error saving file, handle accordingly
+    }
+    [writeLock unlock];
+}
+
+// Submit an achievement to the server and store if submission fails
+/*
+- (IBAction)reportAchievementIdentifier:(NSString*)identifier percentComplete:(float) percent {
+    GKAchievement *achievement = [[GKAchievement alloc] initWithIdentifier: identifier];
+    achievement.showsCompletionBanner = YES;
+    if (achievement)
+    {
+        achievement.percentComplete = percent;
+        [GKAchievement reportAchievements:@[achievement] withCompletionHandler:^(NSError *error) {
+            if (error != nil) {
+                NSLog(@"Error in reporting achievements: %@", error);
+            }
+        }];
+    }
+}*/
+
+- (void)submitAchievement:(GKAchievement *)achievement
+{
+    if (achievement) {
+        NSLog(@"asdf");
+        achievement.showsCompletionBanner = YES;
+        // Submit the achievement.
+        [GKAchievement reportAchievements:@[achievement] withCompletionHandler:^(NSError *error) {
+            if (error) {
+                NSLog(@"123");
+                // Store achievement to be submitted at a later time.
+                [self storeAchievement:achievement];
+            } else {
+                if ([storedAchievements objectForKey:achievement.identifier]) {
+                    // Achievement is reported, remove from store.
+                    [storedAchievements removeObjectForKey:achievement.identifier];
+                }
+                [self resubmitStoredAchievements];
+            }
+        }];
+    }
+}
+
+// Create an entry for an achievement that hasn't been submitted to the server
+- (void)storeAchievement:(GKAchievement *)achievement
+{
+    GKAchievement * currentStorage = [storedAchievements objectForKey:achievement.identifier];
+    if (!currentStorage || (currentStorage && currentStorage.percentComplete < achievement.percentComplete)) {
+        [storedAchievements setObject:achievement forKey:achievement.identifier];
+        [self writeStoredAchievements];
+    }
+}
+
+// Reset all the achievements for local player
+- (void)resetAchievements
+{
+	[GKAchievement resetAchievementsWithCompletionHandler: ^(NSError *error)
+     {
+         if (!error) {
+             storedAchievements = [[NSMutableDictionary alloc] init];
+             
+             // overwrite any previously stored file
+             [self writeStoredAchievements];
+         } else {
+             // Error clearing achievements.
+         }
+     }];
 }
 
 @end

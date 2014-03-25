@@ -29,7 +29,7 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(resumeMusic) name:@"splashResume" object:nil];
 
     [self setUpUI];
-    
+    //[self.gcController resetAchievements];
     //set the value of global variable highscore
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     highscore = [[defaults valueForKey:@"singleHighScore"] longValue];
