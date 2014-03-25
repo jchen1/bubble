@@ -37,6 +37,7 @@
         
         bubbles = [NSMutableArray array];
         powerups = [NSMutableArray array];
+        roundAchievements = [NSMutableArray array];
         
         myBubble = [[UserBubble alloc] init];
         myBubble.position = CGPointMake(CGRectGetMidX(self.frame),
@@ -111,20 +112,20 @@
     //check for achievements
     if (shrink_count==1 && ![roundAchievements containsObject:@"1"])
     {
-        //[self.gc sendAchievement:@"1"];
+        NSLog(@"asdf");
         [self.gc sendAchievement:@"1"];
-//        [self.gc reportAchievementIdentifier:@"1" percentComplete:100];
         [roundAchievements addObject:@"1"];
     }
     if(shrink_count==2 && ![roundAchievements containsObject:@"2"])
     {
+        NSLog(@"asdf");
         [roundAchievements addObject:@"2"];
         [self.gc sendAchievement:@"2"];
     }
     if(shrink_count==5 && ![roundAchievements containsObject:@"3"])
     {
         [roundAchievements addObject:@"3"];
-        [self.gc sendAchievement:@"2"];
+        [self.gc sendAchievement:@"3"];
     }
     
     //check for game over
