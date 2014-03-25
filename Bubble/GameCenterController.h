@@ -30,6 +30,7 @@ GKMatchmakerViewControllerDelegate, GKMatchDelegate, GKLocalPlayerListener>{
 -(void)sendScore:(long long)score;
 -(void)sendAchievement:(NSString*)ident;
 -(void)findGame;
+-(void)reportAchievementIdentifier:(NSString*)identifier percentComplete:(float) percent;
 -(void)disconnect;
 @property (readonly, nonatomic) NSString *storedFilename;
 @property (readonly, nonatomic) NSMutableDictionary *storedAchievements;

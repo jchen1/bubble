@@ -16,6 +16,7 @@
     NSMutableArray *playersToInvite;
     GKMatchRequest *matchrequest;
     NSLock *writeLock;
+    
 }
 
 @synthesize storedAchievements;
@@ -113,9 +114,9 @@
     }];
 }
 
-- (IBAction)reportAchievementIdentifier:(NSString*)identifier percentComplete:(float) percent {
+- (void)reportAchievementIdentifier:(NSString*)identifier percentComplete:(float) percent {
     GKAchievement *achievement = [[GKAchievement alloc] initWithIdentifier: identifier];
-    achievement.showsCompletionBanner = YES;
+    achievement.showsCompletionBanner = YES;    
     if (achievement)
     {
         achievement.percentComplete = percent;
@@ -340,12 +341,9 @@
 - (void)submitAchievement:(GKAchievement *)achievement
 {
     if (achievement) {
-        NSLog(@"asdf");
-        achievement.showsCompletionBanner = YES;
         // Submit the achievement.
         [GKAchievement reportAchievements:@[achievement] withCompletionHandler:^(NSError *error) {
             if (error) {
-                NSLog(@"123");
                 // Store achievement to be submitted at a later time.
                 [self storeAchievement:achievement];
             } else {

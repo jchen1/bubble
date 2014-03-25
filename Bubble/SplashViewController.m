@@ -87,6 +87,7 @@
 - (IBAction)optionsView {
     SettingsViewController *settingsView = [[SettingsViewController alloc] init];
     settingsView.splash = self;
+    [self.gcController resetAchievements];
     [self.navigationController pushViewController:settingsView animated:NO];
 }
 
