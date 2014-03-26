@@ -208,7 +208,11 @@
     if(myBubble.position.x>=CGRectGetMaxX(self.frame)-10)
     {
         NSLog(@"moved right!");
-        [self killAllBubbles];
+        for (int i = 0; i<[bubbles count]; i++)
+        {
+            if (![myBubble isEqual:[bubbles objectAtIndex:i]])
+            [[bubbles objectAtIndex:i] removeFromParent];
+        }
         bubbles = nextBubbles;
         [bubbles addObject:myBubble];
         myBubble.position = CGPointMake(10, myBubble.position.y);
