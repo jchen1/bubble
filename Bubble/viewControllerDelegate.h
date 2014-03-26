@@ -26,5 +26,6 @@
 -(void)gameOver:(long long)score;
 -(void)startHardcore;
 -(void)startNormal;
+-(void)explosion;
 
 @end

@@ -16,6 +16,8 @@
     SinglePlayerScene *scene;
 }
 
+@synthesize whiteScreen;
+
 - (void)pauseMusic
 {
     [player pause];
@@ -73,7 +75,28 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(popCurrentView) name:@"gameQuit" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(pause) name:@"gamePause" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(resume) name:@"gameUnpause" object:nil];
+    
+    self.whiteScreen = [[UIView alloc] initWithFrame:self.view.frame];
+    self.whiteScreen.layer.opacity = 0.0f;
+    self.whiteScreen.layer.backgroundColor = [[UIColor whiteColor] CGColor];
+    [self.view addSubview:self.whiteScreen];
 
+}
+
+-(void)explosion {
+    CAKeyframeAnimation *opacityAnimation = [CAKeyframeAnimation animationWithKeyPath:@"opacity"];
+    NSArray *animationValues = @[ @0.8f, @0.0f ];
+    NSArray *animationTimes = @[ @0.3f, @1.0f ];
+    id timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
+    NSArray *animationTimingFunctions = @[ timingFunction, timingFunction ];
+    [opacityAnimation setValues:animationValues];
+    [opacityAnimation setKeyTimes:animationTimes];
+    [opacityAnimation setTimingFunctions:animationTimingFunctions];
+    opacityAnimation.fillMode = kCAFillModeForwards;
+    opacityAnimation.removedOnCompletion = YES;
+    opacityAnimation.duration = 0.4;
+    
+    [self.whiteScreen.layer addAnimation:opacityAnimation forKey:@"animation"];
 }
 
 - (BOOL)prefersStatusBarHidden {

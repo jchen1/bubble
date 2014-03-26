@@ -31,12 +31,15 @@
     float aiBubbleScale;
     float userBubbleScale;
     AVAudioPlayer *player;
+    AVAudioPlayer *player2;
     NSMutableArray *bubbles;
     NSMutableArray *directions;
     NSMutableArray *lives;
     NSMutableArray *powerups;
     JCJoystick *joystick;
     UserBubble *myBubble;
+    NSURL *soundFileURL;
+    NSString *soundFilePath;
 }
 
 -(void) pause;

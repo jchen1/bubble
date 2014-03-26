@@ -71,12 +71,11 @@
 }
 
 -(void)update:(CFTimeInterval)currentTime {
-    //NSLog(@"%f", currentTime);
+
     //check for powerup expiration and other shit
     if (myBubble.invulnerability)
     {
         shieldShape.position = myBubble.position;
-        //NSLog(@"%f", currentTime-invulExpire);
         CGMutablePathRef myPath = CGPathCreateMutable();
         shieldShape.glowWidth = (invulExpire-currentTime)*4;
         CGPathAddArc(myPath, NULL, 0,0, myBubble.radius+7, 0, M_PI*2, YES);
@@ -84,7 +83,6 @@
     }
     
     if (currentTime>invulExpire && invulExpire!=0) {
-        //myBubble.invulnerability = false;
         NSLog(@"Invulnerability expire");
         myBubble.invulnerability=false;
         [shieldShape removeFromParent];
@@ -120,7 +118,7 @@
         [roundAchievements addObject:@"2"];
         [self.gc reportAchievementIdentifier:@"2" percentComplete:100];
     }
-    if(shrink_count==0 && ![roundAchievements containsObject:@"3"])
+    if(shrink_count==5 && ![roundAchievements containsObject:@"3"])
     {
         [roundAchievements addObject:@"3"];
         [self.gc reportAchievementIdentifier:@"3" percentComplete:100];
@@ -139,8 +137,8 @@
     if (myBubble.radius < DEATH_RADIUS)
     {
         [self.delegate pauseMusic];
-        NSString *soundFilePath = [[NSBundle mainBundle] pathForResource:@"GG.mp4.flac" ofType:@"wav"];
-        NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
+        soundFilePath = [[NSBundle mainBundle] pathForResource:@"GG.mp4.flac" ofType:@"wav"];
+        soundFileURL = [NSURL fileURLWithPath:soundFilePath];
         player = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:nil];
         player.numberOfLoops = 0;
         [player pause];
@@ -162,8 +160,8 @@
     {
         dilate_count = DILATE_TICKS;
         shrink_count++;
-        NSString *soundFilePath = [[NSBundle mainBundle] pathForResource:@"dilate1" ofType:@"wav"];
-        NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
+        soundFilePath = [[NSBundle mainBundle] pathForResource:@"dilate1" ofType:@"wav"];
+        soundFileURL = [NSURL fileURLWithPath:soundFilePath];
         player = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:nil];
         player.numberOfLoops = 0;
         if([player prepareToPlay])
@@ -203,8 +201,6 @@
     [myBubble updateArc];
     
     //spawn powerups
-    //NSLog(@"%d", arc4random()%0);
-    
     if(arc4random()%10==0)
     {
         [self spawnPowerup];
@@ -296,12 +292,33 @@
                     //myBubble.speed +=10 or myBubble.speed+=myBubble.speed*.1
                     break;
                 case 'j':
+                {
+                    soundFilePath = [[NSBundle mainBundle] pathForResource:@"timeslow" ofType:@"wav"];
+                    soundFileURL = [NSURL fileURLWithPath:soundFilePath];
+                    player2 = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:nil];
+                    player2.numberOfLoops = 0;
+                    player2.volume=.1;
+                    if([player2 prepareToPlay])
+                    {
+                        [player2 play];
+                    }
+
                     NSLog(@"Jello");
                     jellyExpire=CACurrentMediaTime()+5;
                     [self Jelly];
                     break;
-                    //all AI bubbles move at 50% speed
+                }   //all AI bubbles move at 50% speed
                 case 'k':
+                {
+                    soundFilePath = [[NSBundle mainBundle] pathForResource:@"nuke" ofType:@"wav"];
+                    soundFileURL = [NSURL fileURLWithPath:soundFilePath];
+                    player = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:nil];
+                    player.numberOfLoops = 0;
+                    if([player prepareToPlay])
+                    {
+                        [player play];
+                    }
+                    [self.delegate explosion];
                     for(Bubble* b in bubbles)
                         if (b!=myBubble) {
                             b.radius=b.radius/2;
@@ -309,6 +326,7 @@
                     NSLog(@"Nuke");
                     //reduces radius of all bubbles except your own
                     break;
+                }
                 default:
                     break;
             }

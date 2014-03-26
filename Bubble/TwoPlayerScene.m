@@ -91,8 +91,8 @@
     {
         dilate_count = DILATE_TICKS;
         shrink_count++;
-        NSString *soundFilePath = [[NSBundle mainBundle] pathForResource:@"dilate1" ofType:@"wav"];
-        NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
+        soundFilePath = [[NSBundle mainBundle] pathForResource:@"dilate1" ofType:@"wav"];
+        soundFileURL = [NSURL fileURLWithPath:soundFilePath];
         player = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:nil];
         player.numberOfLoops = 0;
         if([player prepareToPlay])

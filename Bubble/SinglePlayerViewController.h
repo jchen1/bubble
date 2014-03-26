@@ -25,6 +25,8 @@
 
 @property GameCenterController *gc;
 @property id<viewControllerDelegate> splash;
+@property (nonatomic, strong) UIView *whiteScreen;
+
 
 @end
 
