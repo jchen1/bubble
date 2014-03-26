@@ -33,6 +33,8 @@
     AVAudioPlayer *player;
     AVAudioPlayer *player2;
     NSMutableArray *bubbles;
+    NSMutableArray *prevBubbles;
+    NSMutableArray *nextBubbles;
     NSMutableArray *directions;
     NSMutableArray *lives;
     NSMutableArray *powerups;

@@ -38,6 +38,8 @@
         bubbles = [NSMutableArray array];
         powerups = [NSMutableArray array];
         roundAchievements = [NSMutableArray array];
+        prevBubbles = [NSMutableArray array];
+        nextBubbles = [NSMutableArray array];
         
         myBubble = [[UserBubble alloc] init];
         myBubble.position = CGPointMake(CGRectGetMidX(self.frame),
@@ -47,11 +49,22 @@
         dilate_count = 0;
         shrink_count = 0;
         
+        [self populateBubbleArray:prevBubbles withSize:initial_count-5];
+        [self populateBubbleArray:nextBubbles withSize:initial_count+5];
+        
         [bubbles addObject:myBubble];
         [self addChild:myBubble];
         
     }
     return self;
+}
+
+-(void) populateBubbleArray:(NSMutableArray*)array withSize:(int)sizeOfBubbleArray{
+    for (int i =0;i<sizeOfBubbleArray;i++)
+    {
+        AIBubble *bubble = [[AIBubble alloc] initFromRadius:[myBubble radius]];
+        [array addObject:bubble];
+    }
 }
 
 -(void)startNormal{
@@ -70,8 +83,26 @@
     [self unpause];
 }
 
--(void)update:(CFTimeInterval)currentTime {
+-(void) processAchievements{
+    //check for achievements
+    if (shrink_count==1 && ![roundAchievements containsObject:@"1"])
+    {
+        [self.gc reportAchievementIdentifier:@"1" percentComplete:100];
+        [roundAchievements addObject:@"1"];
+    }
+    if(shrink_count==2 && ![roundAchievements containsObject:@"2"])
+    {
+        [roundAchievements addObject:@"2"];
+        [self.gc reportAchievementIdentifier:@"2" percentComplete:100];
+    }
+    if(shrink_count==5 && ![roundAchievements containsObject:@"3"])
+    {
+        [roundAchievements addObject:@"3"];
+        [self.gc reportAchievementIdentifier:@"3" percentComplete:100];
+    }
+}
 
+-(void) processPowerups:(CFTimeInterval)currentTime{
     //check for powerup expiration and other shit
     if (myBubble.invulnerability)
     {
@@ -86,6 +117,7 @@
         NSLog(@"Invulnerability expire");
         myBubble.invulnerability=false;
         [shieldShape removeFromParent];
+        //CGPathRelease(shieldShape.path);
         shieldShape=nil;
         invulExpire=0;
     }
@@ -106,23 +138,13 @@
     {
         [self Jelly];
     }
+}
+
+-(void)update:(CFTimeInterval)currentTime {
     
-    //check for achievements
-    if (shrink_count==1 && ![roundAchievements containsObject:@"1"])
-    {
-        [self.gc reportAchievementIdentifier:@"1" percentComplete:100];
-        [roundAchievements addObject:@"1"];
-    }
-    if(shrink_count==2 && ![roundAchievements containsObject:@"2"])
-    {
-        [roundAchievements addObject:@"2"];
-        [self.gc reportAchievementIdentifier:@"2" percentComplete:100];
-    }
-    if(shrink_count==5 && ![roundAchievements containsObject:@"3"])
-    {
-        [roundAchievements addObject:@"3"];
-        [self.gc reportAchievementIdentifier:@"3" percentComplete:100];
-    }
+    [self processPowerups:currentTime];
+    
+    [self processAchievements];
     
     //check for game over
     if ([myBubble deaths] > NUM_LIVES){
@@ -183,6 +205,15 @@
     [self.delegate done:[NSString stringWithFormat:@"%lld", (long long)([myBubble totalEaten] * 10)]];
     
     //update position of userBubble
+    if(myBubble.position.x>=CGRectGetMaxX(self.frame)-10)
+    {
+        NSLog(@"moved right!");
+        [self killAllBubbles];
+        bubbles = nextBubbles;
+        [bubbles addObject:myBubble];
+        myBubble.position = CGPointMake(10, myBubble.position.y);
+    }
+        
     CGRect bounds = [[UIScreen mainScreen] bounds];
     CGPoint pos = CGPointMake(myBubble.position.x+([myBubble getSpeed])*joystick.x, myBubble.position.y);
     if (CGRectContainsPoint(bounds,pos)){

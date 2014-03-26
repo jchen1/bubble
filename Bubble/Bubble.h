@@ -17,6 +17,7 @@
 @property float speedScale;
 @property BOOL invulnerability;
 @property SKColor *originalColor;
+@property short screen;
 
 -(id) initWithColor : (SKColor*) color;
 -(id) initWithId:(int)initid andRadius:(float)radius andPosition:(CGPoint)pos;
