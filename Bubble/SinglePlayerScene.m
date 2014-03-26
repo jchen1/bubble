@@ -206,6 +206,9 @@
     [self.delegate done:[NSString stringWithFormat:@"%lld", (long long)([myBubble totalEaten] * 10)]];
     
     //update position of userBubble
+    
+    
+    //SHIFT RIGHT
     if(myBubble.position.x>=CGRectGetMaxX(self.frame)-5)
     {
         NSLog(@"moved right!");
@@ -216,18 +219,42 @@
             [[bubbles objectAtIndex:i] removeFromParent];
         }
         //adds nextBubbles to parent;
-        bubbles = nextBubbles;
+        //[myBubble removeFromParent];
+        [bubbles removeAllObjects];
+        [bubbles addObjectsFromArray:nextBubbles];
+        [bubbles addObject:myBubble];
+        myBubble.position = CGPointMake(10, myBubble.position.y);
         for (int i = 0; i<[bubbles count]; i++)
         {
             if (![myBubble isEqual:[bubbles objectAtIndex:i]])
                 [self addChild:[bubbles objectAtIndex:i]];
         }
-        //[nextBubbles removeAllObjects];
         [self populateBubbleArray:nextBubbles withSize:initial_count+5];
-//        [bubbles addObject:myBubble];
-        myBubble.position = CGPointMake(10, myBubble.position.y);
     }
-        
+    //SHIFT LEFT
+    if(myBubble.position.x<=CGRectGetMinX(self.frame)+5)
+    {
+        NSLog(@"moved left!");
+        //removes current bubble array (except myBubble) from parent
+        for (int i = 0; i<[bubbles count]; i++)
+        {
+            if (![myBubble isEqual:[bubbles objectAtIndex:i]])
+                [[bubbles objectAtIndex:i] removeFromParent];
+        }
+        //adds nextBubbles to parent;
+        //[myBubble removeFromParent];
+        [bubbles removeAllObjects];
+        [bubbles addObjectsFromArray:prevBubbles];
+        [bubbles addObject:myBubble];
+        myBubble.position = CGPointMake(CGRectGetMaxX(self.frame)-5, myBubble.position.y);
+        for (int i = 0; i<[bubbles count]; i++)
+        {
+            if (![myBubble isEqual:[bubbles objectAtIndex:i]])
+                [self addChild:[bubbles objectAtIndex:i]];
+        }
+        [self populateBubbleArray:nextBubbles withSize:initial_count+5];
+    }
+    
     CGRect bounds = [[UIScreen mainScreen] bounds];
     CGPoint pos = CGPointMake(myBubble.position.x+([myBubble getSpeed])*joystick.x, myBubble.position.y);
     if (CGRectContainsPoint(bounds,pos)){
