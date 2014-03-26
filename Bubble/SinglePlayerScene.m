@@ -214,6 +214,12 @@
             [[bubbles objectAtIndex:i] removeFromParent];
         }
         bubbles = nextBubbles;
+        for (int i = 0; i<[bubbles count]; i++)
+        {
+            if (![myBubble isEqual:[bubbles objectAtIndex:i]])
+                [self addChild:[bubbles objectAtIndex:i]];
+        }
+        [self populateBubbleArray:nextBubbles withSize:initial_count+5];
         [bubbles addObject:myBubble];
         myBubble.position = CGPointMake(10, myBubble.position.y);
     }
