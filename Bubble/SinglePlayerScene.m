@@ -63,6 +63,7 @@
     for (int i =0;i<sizeOfBubbleArray;i++)
     {
         AIBubble *bubble = [[AIBubble alloc] initFromRadius:[myBubble radius]];
+        bubble.position = CGPointMake(arc4random() % (int)CGRectGetMaxX(self.frame), arc4random() % (int)CGRectGetMaxY(self.frame));
         [array addObject:bubble];
     }
 }
@@ -205,22 +206,25 @@
     [self.delegate done:[NSString stringWithFormat:@"%lld", (long long)([myBubble totalEaten] * 10)]];
     
     //update position of userBubble
-    if(myBubble.position.x>=CGRectGetMaxX(self.frame)-10)
+    if(myBubble.position.x>=CGRectGetMaxX(self.frame)-5)
     {
         NSLog(@"moved right!");
+        //removes current bubble array (except myBubble) from parent
         for (int i = 0; i<[bubbles count]; i++)
         {
             if (![myBubble isEqual:[bubbles objectAtIndex:i]])
             [[bubbles objectAtIndex:i] removeFromParent];
         }
+        //adds nextBubbles to parent;
         bubbles = nextBubbles;
         for (int i = 0; i<[bubbles count]; i++)
         {
             if (![myBubble isEqual:[bubbles objectAtIndex:i]])
                 [self addChild:[bubbles objectAtIndex:i]];
         }
+        //[nextBubbles removeAllObjects];
         [self populateBubbleArray:nextBubbles withSize:initial_count+5];
-        [bubbles addObject:myBubble];
+//        [bubbles addObject:myBubble];
         myBubble.position = CGPointMake(10, myBubble.position.y);
     }
         
