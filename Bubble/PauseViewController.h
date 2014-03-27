@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <iAd/iAd.h>
 
-@interface PauseViewController : UIViewController {
+@interface PauseViewController : UIViewController <ADBannerViewDelegate>{
     UIButton *resumeButton;
     UIButton *quitButton;
+    ADBannerView *bannerView;
 }
+
+
 @end

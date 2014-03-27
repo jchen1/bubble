@@ -18,7 +18,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-
+        self.canDisplayBannerAds = YES;
     }
     return self;
 }
@@ -65,6 +65,13 @@
     [shareButton setBackgroundImage:shareButtonBackground forState:UIControlStateNormal];
     [shareButton addTarget:self action:@selector(tweetScore) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:shareButton];
+    
+    
+    //iad stuff
+    bannerView = [[ADBannerView alloc]initWithFrame:
+                  CGRectMake(0, 0, 320, 50)];
+    [bannerView setBackgroundColor:[UIColor clearColor]];
+    [self.view addSubview: bannerView];
 
 }
 
@@ -98,6 +105,21 @@
         [alertView show];
     }
 
+}
+
+-(void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error{
+    NSLog(@"Error loading");
+}
+
+-(void)bannerViewDidLoadAd:(ADBannerView *)banner{
+    NSLog(@"Ad loaded");
+}
+-(void)bannerViewWillLoadAd:(ADBannerView *)banner{
+    NSLog(@"Ad will load");
+}
+-(void)bannerViewActionDidFinish:(ADBannerView *)banner{
+    NSLog(@"Ad did finish");
+    
 }
 
 

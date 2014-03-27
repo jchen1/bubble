@@ -8,12 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import <Social/Social.h>
+#import <iAd/iAd.h>
 
-@interface GameOverViewController : UIViewController{
+@interface GameOverViewController : UIViewController <ADBannerViewDelegate>{
     UIImageView *background;
     UIButton *homeButton;
     UIButton *shareButton;
     UILabel *scoreDisplay;
+    ADBannerView *bannerView;
 }
 
 @property long long score;

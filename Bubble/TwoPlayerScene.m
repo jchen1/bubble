@@ -67,7 +67,7 @@
                                               otherButtonTitles:nil];
         [alert show];
         [self.scene.view setPaused:YES];
-        [self.gc sendScore:[myBubble totalEaten] *10];
+        //[self.gc sendScore:[myBubble totalEaten] *10];
         isWinning = NO;
         [gc disconnect];
         return;
