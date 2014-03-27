@@ -28,14 +28,11 @@
     int initial_count;
     int dilate_count;
     int shrink_count;
-    int move_count;
     float aiBubbleScale;
     float userBubbleScale;
     AVAudioPlayer *player;
     AVAudioPlayer *player2;
     NSMutableArray *bubbles;
-    NSMutableArray *prevBubbles;
-    NSMutableArray *nextBubbles;
     NSMutableArray *directions;
     NSMutableArray *lives;
     NSMutableArray *powerups;
@@ -50,7 +47,7 @@
 -(void) removeLife;
 -(void) killAllBubbles;
 -(void) dilate:(CGPoint)center;
--(void)clearDeadBubbles:(CGRect)bounds;
+-(void)clearDeadBubbles:(CGRect)bounds fromArray:(NSMutableArray*)arr;
 -(void) processEats;
 -(AIBubble*) spawnBubble;
 

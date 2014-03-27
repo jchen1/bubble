@@ -13,12 +13,8 @@
     CFTimeInterval invulExpire;
     CFTimeInterval speedExpire;
     CFTimeInterval jellyExpire;
-    PowerUp* powerUp1;
-    PowerUp* powerUp2;
-    PowerUp* powerUp3;
     SKShapeNode *shieldShape;
     NSMutableArray *roundAchievements;
-    int move_direction;
 }
 
 @synthesize numLives = NUM_LIVES, isHardcore;
@@ -39,8 +35,6 @@
         bubbles = [NSMutableArray array];
         powerups = [NSMutableArray array];
         roundAchievements = [NSMutableArray array];
-        prevBubbles = [NSMutableArray array];
-        nextBubbles = [NSMutableArray array];
         
         myBubble = [[UserBubble alloc] init];
         myBubble.position = CGPointMake(CGRectGetMidX(self.frame),
@@ -49,26 +43,13 @@
         initial_count = 5 + arc4random_uniform(5);
         dilate_count = 0;
         shrink_count = 0;
-        move_count = 0;
-        
-        [self populateBubbleArray:prevBubbles withSize:initial_count-5];
-        [self populateBubbleArray:nextBubbles withSize:initial_count+5];
-        
-        //[bubbles addObject:myBubble];
+
         [self addChild:myBubble];
         
     }
     return self;
 }
 
--(void) populateBubbleArray:(NSMutableArray*)array withSize:(int)sizeOfBubbleArray{
-    for (int i =0;i<sizeOfBubbleArray;i++)
-    {
-        AIBubble *bubble = [[AIBubble alloc] initFromRadius:[myBubble radius]];
-        bubble.position = CGPointMake(arc4random() % (int)CGRectGetMaxX(self.frame), arc4random() % (int)CGRectGetMaxY(self.frame));
-        [array addObject:bubble];
-    }
-}
 
 -(void)startNormal{
     NUM_LIVES = 2;
@@ -151,10 +132,11 @@
     
     //check for game over
     if ([myBubble deaths] > NUM_LIVES){
+        NSString *board = isHardcore ? @"2" : @"1";
         [self.scene.view setPaused:YES];
         long long score = (long long)([myBubble totalEaten] * 10);
         [[self delegate] gameOver:score];
-        [[self gc] sendScore:score];
+        [[self gc] reportScore:score forLeaderboardID:board];
         return;
     }
     
@@ -207,60 +189,6 @@
     
     [self.delegate done:[NSString stringWithFormat:@"%lld", (long long)([myBubble totalEaten] * 10)]];
     
-    //update position of userBubble
-    
-    
-    //SHIFT RIGHT
-    if(myBubble.position.x>=CGRectGetMaxX(self.frame)-5 && move_count == 0)
-    {
-        NSLog(@"moved right!");
-        move_count = 120;
-        move_direction = 1;
-        prevBubbles = bubbles;
-        nextBubbles = [NSMutableArray array];
-        [self populateBubbleArray:nextBubbles withSize:initial_count+5];
-        myBubble.position = CGPointMake(CGRectGetMaxX(self.frame)+10, myBubble.position.y);
-        for (Bubble *b in nextBubbles){
-            b.position = CGPointMake(b.position.x + self.frame.size.width, b.position.y);
-            [self addChild:b];
-            [b updateArc];
-        }
-    }
-    //SHIFT LEFT
-    if(myBubble.position.x<=CGRectGetMinX(self.frame)+5 && move_count == 0)
-    {
-        NSLog(@"moved left!");
-        move_count = 120;
-        move_direction = 0;
-        prevBubbles = bubbles;
-        nextBubbles = [NSMutableArray array];
-        [self populateBubbleArray:nextBubbles withSize:initial_count+5];
-        myBubble.position = CGPointMake(CGRectGetMinX(self.frame)-10, myBubble.position.y);
-        for (Bubble *b in nextBubbles){
-            b.position = CGPointMake(b.position.x - self.frame.size.width, b.position.y);
-            [self addChild:b];
-            [b updateArc];
-        }
-    }
-    
-    if (move_count == 1){
-        bubbles = nextBubbles;
-    }
-    
-    if (move_count > 0){
-        float dx = self.frame.size.width / 120 * pow(-1, move_direction);
-        for (Bubble *b in bubbles){
-            b.position = CGPointMake(b.position.x + dx, b.position.y);
-        }
-        for (Bubble *b in nextBubbles){
-            b.position = CGPointMake(b.position.x + dx, b.position.y);
-        }
-        myBubble.position = CGPointMake(myBubble.position.x + dx, myBubble.position.y);
-        move_count--;
-        return;
-    }
-    
-    
     CGRect bounds = [[UIScreen mainScreen] bounds];
     CGPoint pos = CGPointMake(myBubble.position.x+([myBubble getSpeed])*joystick.x, myBubble.position.y);
     if (CGRectContainsPoint(bounds,pos)){
@@ -273,7 +201,7 @@
     
     
     //update aibubbles
-    [self clearDeadBubbles:bounds];
+    [self clearDeadBubbles:bounds fromArray:bubbles];
     [self processPowerUps];
     [self processEats];
     [myBubble updateArc];
@@ -443,13 +371,13 @@
     }
 }
 
--(void) clearDeadBubbles:(CGRect)bounds{
+-(void) clearDeadBubbles:(CGRect)bounds fromArray:(NSMutableArray*)arr{
     
     NSMutableIndexSet *removeIndices = [[NSMutableIndexSet alloc] init];
     
-    for (int i = 1; i < [bubbles count]; i++)
+    for (int i = 1; i < [arr count]; i++)
     {
-        Bubble *b = [bubbles objectAtIndex:i];
+        Bubble *b = [arr objectAtIndex:i];
         CGRect validBounds = CGRectMake(CGRectGetMinX(bounds) - b.radius,
                                         CGRectGetMinY(bounds) - b.radius,
                                         bounds.size.width + 2*b.radius,
@@ -466,7 +394,7 @@
         }
     }
     
-    [bubbles removeObjectsAtIndexes:removeIndices];
+    [arr removeObjectsAtIndexes:removeIndices];
 }
 
 -(void) killAllBubbles{
@@ -511,7 +439,8 @@
         double dy = b.position.y - pos.y;
         b.position = CGPointMake(pos.x + DILATE_PERCENT*dx, pos.y + DILATE_PERCENT*dy);
     }
-    
+    myBubble.radius *= DILATE_PERCENT;
+    [myBubble updateArc];
 }
 
 -(void)removeLife{

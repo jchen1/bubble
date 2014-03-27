@@ -126,7 +126,7 @@
     
     
     //update aibubbles
-    [self clearDeadBubbles:bounds];
+    [self clearDeadBubbles:bounds fromArray:bubbles];
     [self processEats];
     
     if([myBubble collidesWith:playertwobubble]) {

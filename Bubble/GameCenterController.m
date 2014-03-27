@@ -33,10 +33,6 @@
     return self;
 }
 
--(void)sendScore:(long long)score{
-    [self reportScore:score forLeaderboardID:@"1"];
-}
-
 -(void)sendAchievement:(NSString *)achievementIdentifier{
     
     [self reportAchievementIdentifier:achievementIdentifier percentComplete:100];
@@ -103,16 +99,6 @@
     }];
 }
 
--(void)reportScore{
-    GKScore *score = [[GKScore alloc] initWithLeaderboardIdentifier:_leaderboardIdentifier];
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    score.value = [[defaults valueForKey:@"singleHighScore"] longValue];
-    [GKScore reportScores:@[score] withCompletionHandler:^(NSError *error) {
-        if (error != nil) {
-            NSLog(@"%@", [error localizedDescription]);
-        }
-    }];
-}
 
 - (void)reportAchievementIdentifier:(NSString*)identifier percentComplete:(float) percent {
     GKAchievement *achievement = [[GKAchievement alloc] initWithIdentifier: identifier];
@@ -136,26 +122,13 @@
         }
     }];
 }
-/*
--(void)resetAchievements{
-    [GKAchievement resetAchievementsWithCompletionHandler:^(NSError *error) {
-        if (error != nil) {
-            NSLog(@"%@", [error localizedDescription]);
-        }
-    }];
-}
-*/
+
+
 - (void)player:(GKPlayer *)player didAcceptInvite:(GKInvite *)invite{
     GKMatchmakerViewController *gcController =
     [[GKMatchmakerViewController alloc] initWithInvite:invite];
     gcController.matchmakerDelegate = self;
     [controller presentViewController:gcController animated:YES completion:nil];
-    /*[[GKMatchmaker sharedMatchmaker] matchForInvite:invite completionHandler:^(GKMatch *match, NSError *error) {
-        NSLog(@"did accept invite");
-        myMatch = match;
-        match.delegate = self;
-        [splash startNewMultiplayerGame];
-    }];*/
 }
 
 - (void)player:(GKPlayer *)player didRequestMatchWithPlayers:(NSArray *)playerIDsToInvite{
@@ -323,21 +296,6 @@
     [writeLock unlock];
 }
 
-// Submit an achievement to the server and store if submission fails
-/*
-- (IBAction)reportAchievementIdentifier:(NSString*)identifier percentComplete:(float) percent {
-    GKAchievement *achievement = [[GKAchievement alloc] initWithIdentifier: identifier];
-    achievement.showsCompletionBanner = YES;
-    if (achievement)
-    {
-        achievement.percentComplete = percent;
-        [GKAchievement reportAchievements:@[achievement] withCompletionHandler:^(NSError *error) {
-            if (error != nil) {
-                NSLog(@"Error in reporting achievements: %@", error);
-            }
-        }];
-    }
-}*/
 
 - (void)submitAchievement:(GKAchievement *)achievement
 {

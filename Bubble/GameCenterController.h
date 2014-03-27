@@ -24,7 +24,7 @@ GKMatchmakerViewControllerDelegate, GKMatchDelegate, GKLocalPlayerListener>{
 @property (readwrite, getter=isGameCenterAuthenticationComplete) BOOL gameCenterAuthenticationComplete;
 
 -(void)authenticateLocalPlayer;
--(void)reportScore;
+
 -(void)showLeaderboardAndAchievements:(BOOL)shouldShowLeaderboard;
 -(void)sendBubbleData:(NSData*)data;
 -(void)sendScore:(long long)score;
@@ -32,6 +32,7 @@ GKMatchmakerViewControllerDelegate, GKMatchDelegate, GKLocalPlayerListener>{
 -(void)findGame;
 -(void)reportAchievementIdentifier:(NSString*)identifier percentComplete:(float) percent;
 -(void)disconnect;
+-(void)reportScore:(int64_t)score forLeaderboardID:(NSString*)board;
 @property (readonly, nonatomic) NSString *storedFilename;
 @property (readonly, nonatomic) NSMutableDictionary *storedAchievements;
 
