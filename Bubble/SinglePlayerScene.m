@@ -212,16 +212,18 @@
     if(myBubble.position.x>=CGRectGetMaxX(self.frame)-5)
     {
         NSLog(@"moved right!");
-        //removes current bubble array (except myBubble) from parent
-        for (int i = 0; i<[bubbles count]; i++)
+        for(int i=0;i<[bubbles count];i++)
         {
             if (![myBubble isEqual:[bubbles objectAtIndex:i]])
-            [[bubbles objectAtIndex:i] removeFromParent];
+                [[bubbles objectAtIndex:i] removeFromParent];
         }
-        //adds nextBubbles to parent;
-        //[myBubble removeFromParent];
+        [prevBubbles removeAllObjects];
+//        [bubbles removeObject:myBubble];
+        [prevBubbles addObjectsFromArray:bubbles];
         [bubbles removeAllObjects];
         [bubbles addObjectsFromArray:nextBubbles];
+        [nextBubbles removeAllObjects];
+        [self populateBubbleArray:nextBubbles withSize:initial_count+5];
         [bubbles addObject:myBubble];
         myBubble.position = CGPointMake(10, myBubble.position.y);
         for (int i = 0; i<[bubbles count]; i++)
@@ -229,32 +231,35 @@
             if (![myBubble isEqual:[bubbles objectAtIndex:i]])
                 [self addChild:[bubbles objectAtIndex:i]];
         }
-        [self populateBubbleArray:nextBubbles withSize:initial_count+5];
     }
     //SHIFT LEFT
     if(myBubble.position.x<=CGRectGetMinX(self.frame)+5)
     {
-        NSLog(@"moved left!");
-        //removes current bubble array (except myBubble) from parent
-        for (int i = 0; i<[bubbles count]; i++)
+        NSLog(@"moved right!");
+        //remove bubbles as children of scene
+        for(int i=0;i<[bubbles count];i++)
         {
             if (![myBubble isEqual:[bubbles objectAtIndex:i]])
                 [[bubbles objectAtIndex:i] removeFromParent];
         }
-        //adds nextBubbles to parent;
-        //[myBubble removeFromParent];
+        //populate nextBubbles with bubbles
+        [nextBubbles removeAllObjects];
+        [nextBubbles addObjectsFromArray:bubbles];
+        //clear current bubbles and replace with prevBubbles
         [bubbles removeAllObjects];
         [bubbles addObjectsFromArray:prevBubbles];
+        [prevBubbles removeAllObjects];
+        
+        //generate new prevBubbles
+        [self populateBubbleArray:prevBubbles withSize:initial_count+5];
         [bubbles addObject:myBubble];
-        myBubble.position = CGPointMake(CGRectGetMaxX(self.frame)-5, myBubble.position.y);
+        myBubble.position = CGPointMake(CGRectGetMaxX(self.frame)-10, myBubble.position.y);
         for (int i = 0; i<[bubbles count]; i++)
         {
             if (![myBubble isEqual:[bubbles objectAtIndex:i]])
                 [self addChild:[bubbles objectAtIndex:i]];
         }
-        [self populateBubbleArray:nextBubbles withSize:initial_count+5];
     }
-    
     CGRect bounds = [[UIScreen mainScreen] bounds];
     CGPoint pos = CGPointMake(myBubble.position.x+([myBubble getSpeed])*joystick.x, myBubble.position.y);
     if (CGRectContainsPoint(bounds,pos)){
