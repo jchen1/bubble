@@ -18,6 +18,7 @@
     PowerUp* powerUp3;
     SKShapeNode *shieldShape;
     NSMutableArray *roundAchievements;
+    int move_direction;
 }
 
 @synthesize numLives = NUM_LIVES, isHardcore;
@@ -48,11 +49,12 @@
         initial_count = 5 + arc4random_uniform(5);
         dilate_count = 0;
         shrink_count = 0;
+        move_count = 0;
         
         [self populateBubbleArray:prevBubbles withSize:initial_count-5];
         [self populateBubbleArray:nextBubbles withSize:initial_count+5];
         
-        [bubbles addObject:myBubble];
+        //[bubbles addObject:myBubble];
         [self addChild:myBubble];
         
     }
@@ -209,57 +211,56 @@
     
     
     //SHIFT RIGHT
-    if(myBubble.position.x>=CGRectGetMaxX(self.frame)-5)
+    if(myBubble.position.x>=CGRectGetMaxX(self.frame)-5 && move_count == 0)
     {
         NSLog(@"moved right!");
-        for(int i=0;i<[bubbles count];i++)
-        {
-            if (![myBubble isEqual:[bubbles objectAtIndex:i]])
-                [[bubbles objectAtIndex:i] removeFromParent];
-        }
-        [prevBubbles removeAllObjects];
-//        [bubbles removeObject:myBubble];
-        [prevBubbles addObjectsFromArray:bubbles];
-        [bubbles removeAllObjects];
-        [bubbles addObjectsFromArray:nextBubbles];
-        [nextBubbles removeAllObjects];
+        move_count = 120;
+        move_direction = 1;
+        prevBubbles = bubbles;
+        nextBubbles = [NSMutableArray array];
         [self populateBubbleArray:nextBubbles withSize:initial_count+5];
-        [bubbles addObject:myBubble];
-        myBubble.position = CGPointMake(10, myBubble.position.y);
-        for (int i = 0; i<[bubbles count]; i++)
-        {
-            if (![myBubble isEqual:[bubbles objectAtIndex:i]])
-                [self addChild:[bubbles objectAtIndex:i]];
+        myBubble.position = CGPointMake(CGRectGetMaxX(self.frame)+10, myBubble.position.y);
+        for (Bubble *b in nextBubbles){
+            b.position = CGPointMake(b.position.x + self.frame.size.width, b.position.y);
+            [self addChild:b];
+            [b updateArc];
         }
     }
     //SHIFT LEFT
-    if(myBubble.position.x<=CGRectGetMinX(self.frame)+5)
+    if(myBubble.position.x<=CGRectGetMinX(self.frame)+5 && move_count == 0)
     {
-        NSLog(@"moved right!");
-        //remove bubbles as children of scene
-        for(int i=0;i<[bubbles count];i++)
-        {
-            if (![myBubble isEqual:[bubbles objectAtIndex:i]])
-                [[bubbles objectAtIndex:i] removeFromParent];
-        }
-        //populate nextBubbles with bubbles
-        [nextBubbles removeAllObjects];
-        [nextBubbles addObjectsFromArray:bubbles];
-        //clear current bubbles and replace with prevBubbles
-        [bubbles removeAllObjects];
-        [bubbles addObjectsFromArray:prevBubbles];
-        [prevBubbles removeAllObjects];
-        
-        //generate new prevBubbles
-        [self populateBubbleArray:prevBubbles withSize:initial_count+5];
-        [bubbles addObject:myBubble];
-        myBubble.position = CGPointMake(CGRectGetMaxX(self.frame)-10, myBubble.position.y);
-        for (int i = 0; i<[bubbles count]; i++)
-        {
-            if (![myBubble isEqual:[bubbles objectAtIndex:i]])
-                [self addChild:[bubbles objectAtIndex:i]];
+        NSLog(@"moved left!");
+        move_count = 120;
+        move_direction = 0;
+        prevBubbles = bubbles;
+        nextBubbles = [NSMutableArray array];
+        [self populateBubbleArray:nextBubbles withSize:initial_count+5];
+        myBubble.position = CGPointMake(CGRectGetMinX(self.frame)-10, myBubble.position.y);
+        for (Bubble *b in nextBubbles){
+            b.position = CGPointMake(b.position.x - self.frame.size.width, b.position.y);
+            [self addChild:b];
+            [b updateArc];
         }
     }
+    
+    if (move_count == 1){
+        bubbles = nextBubbles;
+    }
+    
+    if (move_count > 0){
+        float dx = self.frame.size.width / 120 * pow(-1, move_direction);
+        for (Bubble *b in bubbles){
+            b.position = CGPointMake(b.position.x + dx, b.position.y);
+        }
+        for (Bubble *b in nextBubbles){
+            b.position = CGPointMake(b.position.x + dx, b.position.y);
+        }
+        myBubble.position = CGPointMake(myBubble.position.x + dx, myBubble.position.y);
+        move_count--;
+        return;
+    }
+    
+    
     CGRect bounds = [[UIScreen mainScreen] bounds];
     CGPoint pos = CGPointMake(myBubble.position.x+([myBubble getSpeed])*joystick.x, myBubble.position.y);
     if (CGRectContainsPoint(bounds,pos)){
@@ -301,7 +302,8 @@
     {
         PowerUp* n = [[PowerUp alloc] init];
         n.radius = 15;
-        n.position = CGPointMake(arc4random() % (int)CGRectGetMaxX(self.frame), arc4random() % (int)CGRectGetMaxY(self.frame));
+        n.position = CGPointMake(arc4random() % (int)CGRectGetMaxX(self.frame),
+                                 arc4random() % (int)CGRectGetMaxY(self.frame));
         switch (arc4random()%4) {
             case 0:
                 n.type='s';
@@ -330,10 +332,7 @@
 
 -(void) Jelly{
     for(AIBubble *b1 in bubbles)
-    {
-        if(![b1 isEqual:myBubble])
         b1.speedScale=.2;
-    }
 }
 -(void) UnJelly{
     for(AIBubble *b1 in bubbles)
@@ -425,11 +424,19 @@
                 }
             }
         }
+        if ([b1 collidesWith:myBubble]){
+            if (b1.radius < myBubble.radius && !b1.invulnerability) {
+                [myBubble eat:b1 withMultiplier:shrink_count];
+            }
+            else if (b1.radius > myBubble.radius && !myBubble.invulnerability) {
+                [b1 eat:myBubble withMultiplier:shrink_count];
+            }
+        }
         if(!isHardcore){
-            if(b1.radius<=myBubble.radius && ![b1 isEqual:myBubble]){
+            if(b1.radius<=myBubble.radius){
                 b1.fillColor = [UIColor greenColor];
             }
-            if (b1.radius > myBubble.radius && ![b1 isEqual:myBubble]) {
+            if (b1.radius > myBubble.radius) {
                 b1.fillColor = b1.originalColor;
             }
         }
@@ -443,9 +450,6 @@
     for (int i = 1; i < [bubbles count]; i++)
     {
         Bubble *b = [bubbles objectAtIndex:i];
-        if ([b isEqual:myBubble]){
-            continue;
-        }
         CGRect validBounds = CGRectMake(CGRectGetMinX(bounds) - b.radius,
                                         CGRectGetMinY(bounds) - b.radius,
                                         bounds.size.width + 2*b.radius,

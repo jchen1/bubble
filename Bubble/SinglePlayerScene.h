@@ -28,6 +28,7 @@
     int initial_count;
     int dilate_count;
     int shrink_count;
+    int move_count;
     float aiBubbleScale;
     float userBubbleScale;
     AVAudioPlayer *player;
