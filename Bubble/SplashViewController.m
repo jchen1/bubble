@@ -84,14 +84,6 @@
 }
 
 - (IBAction)optionsView {
-    NSString *soundFilePath = [[NSBundle mainBundle] pathForResource:@"timeslow" ofType:@"wav"];
-    NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
-    player = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:nil];
-    player.numberOfLoops = 0;
-    if([player prepareToPlay])
-    {
-        [player play];
-    }
     SettingsViewController *settingsView = [[SettingsViewController alloc] init];
     settingsView.splash = self;
     [self.gcController resetAchievements];
