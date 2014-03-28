@@ -31,14 +31,22 @@
     UIImage *resumeButtonBackground = [UIImage imageNamed:@"resume_button.png"];
     UIImage *quitButtonBackground = [UIImage imageNamed:@"quit_button.png"];
     
+    float width = self.view.bounds.size.width;
+    float height = self.view.bounds.size.height;
+    float buttonWidth = MIN(400, 0.6*width);
+    float buttonHeight = 0.25 * buttonWidth;
+    
+    
     resumeButton =  [UIButton buttonWithType:UIButtonTypeSystem] ;
-    [resumeButton setFrame:CGRectMake(CGRectGetMidX(self.view.bounds) - 100, 200.0, 200.0, 50.0)];
+    [resumeButton setFrame:CGRectMake(0.5 * (width - buttonWidth),
+                                      0.5 * height - 1.1*buttonHeight, buttonWidth, buttonHeight)];
     [resumeButton setBackgroundImage:resumeButtonBackground forState:UIControlStateNormal];
     [resumeButton addTarget:self action:@selector(resumeGame) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:resumeButton];
     
     quitButton =  [UIButton buttonWithType:UIButtonTypeSystem] ;
-    [quitButton setFrame:CGRectMake(CGRectGetMidX(self.view.bounds) - 100, 300.0, 200.0, 50.0)];
+    [quitButton setFrame:CGRectMake(0.5 * (width - buttonWidth),
+                                    0.5 * height + 1.1*buttonHeight, buttonWidth, buttonHeight)];
     [quitButton setBackgroundImage:quitButtonBackground forState:UIControlStateNormal];
     [quitButton addTarget:self action:@selector(quitGame) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:quitButton];
@@ -89,6 +97,14 @@
 -(void)bannerViewActionDidFinish:(ADBannerView *)banner{
     NSLog(@"Ad did finish");
     
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (NSUInteger)supportedInterfaceOrientations{
+    return UIInterfaceOrientationMaskPortrait;
 }
 
 @end

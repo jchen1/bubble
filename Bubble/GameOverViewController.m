@@ -33,8 +33,10 @@
     UIImage *shareButtonBackground = [UIImage imageNamed:@"share_button.png"];
     
     background = [[UIImageView alloc] initWithImage:backgroundImage];
-    int width = 0.8 * self.view.bounds.size.width;
+    int width = MIN(400, 0.8 * self.view.bounds.size.width);
     int height = 1.5 * width;
+    float buttonWidth = 0.8*width;
+    float buttonHeight = 0.25 * buttonWidth;
     background.frame = CGRectMake(CGRectGetMidX(self.view.bounds) - width/2,
                                   CGRectGetMidY(self.view.bounds) - height/2, width, height);
     [self.view addSubview:background];
@@ -49,10 +51,9 @@
     scoreDisplay.font = [UIFont boldSystemFontOfSize:20];
     [self.view addSubview:scoreDisplay];
     
-    int buttonWidth = 0.8 * background.frame.size.width;
     homeButton =  [UIButton buttonWithType:UIButtonTypeSystem] ;
     [homeButton setFrame:CGRectMake(CGRectGetMidX(background.frame) - buttonWidth/2,
-                                    CGRectGetMaxY(background.frame) - 80,
+                                    CGRectGetMaxY(background.frame) - 1.8*buttonHeight,
                                     buttonWidth, buttonWidth/4)];
     [homeButton setBackgroundImage:homeButtonBackground forState:UIControlStateNormal];
     [homeButton addTarget:self action:@selector(quitGame) forControlEvents:UIControlEventTouchUpInside];
@@ -60,7 +61,7 @@
     
     shareButton =  [UIButton buttonWithType:UIButtonTypeSystem] ;
     [shareButton setFrame:CGRectMake(CGRectGetMidX(background.frame) - buttonWidth/2,
-                                    CGRectGetMaxY(background.frame) - 140,
+                                    CGRectGetMaxY(background.frame) - 3*buttonHeight,
                                     buttonWidth, buttonWidth/4)];
     [shareButton setBackgroundImage:shareButtonBackground forState:UIControlStateNormal];
     [shareButton addTarget:self action:@selector(tweetScore) forControlEvents:UIControlEventTouchUpInside];
@@ -120,6 +121,14 @@
 -(void)bannerViewActionDidFinish:(ADBannerView *)banner{
     NSLog(@"Ad did finish");
     
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (NSUInteger)supportedInterfaceOrientations{
+    return UIInterfaceOrientationMaskPortrait;
 }
 
 

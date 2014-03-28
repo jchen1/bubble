@@ -32,17 +32,19 @@
     UIImage *normalButtonBackground = [UIImage imageNamed:@"normal_mode_button.png"];
     UIImage *hardButtonBackground = [UIImage imageNamed:@"hard_mode_button.png"];
     
+    
     background = [[UIImageView alloc] initWithImage:backgroundImage];
-    int width = 0.8 * self.view.bounds.size.width;
+    int width = MIN(400, 0.8 * self.view.bounds.size.width);
     int height = 1.5 * width;
+    float buttonWidth = 0.8*width;
+    float buttonHeight = 0.25 * buttonWidth;
     background.frame = CGRectMake(CGRectGetMidX(self.view.bounds) - width/2,
                                   CGRectGetMidY(self.view.bounds) - height/2, width, height);
     [self.view addSubview:background];
     
-    int buttonWidth = 0.8 * background.frame.size.width;
     normalButton =  [UIButton buttonWithType:UIButtonTypeSystem] ;
     [normalButton setFrame:CGRectMake(CGRectGetMidX(background.frame) - buttonWidth/2,
-                                    CGRectGetMaxY(background.frame) - 80,
+                                    CGRectGetMaxY(background.frame) - buttonHeight*3,
                                     buttonWidth, buttonWidth/4)];
     [normalButton setBackgroundImage:normalButtonBackground forState:UIControlStateNormal];
     [normalButton addTarget:self action:@selector(normalMode) forControlEvents:UIControlEventTouchUpInside];
@@ -50,7 +52,7 @@
     
     hardButton =  [UIButton buttonWithType:UIButtonTypeSystem] ;
     [hardButton setFrame:CGRectMake(CGRectGetMidX(background.frame) - buttonWidth/2,
-                                     CGRectGetMaxY(background.frame) - 140,
+                                     CGRectGetMaxY(background.frame) - buttonHeight*1.8,
                                      buttonWidth, buttonWidth/4)];
     [hardButton setBackgroundImage:hardButtonBackground forState:UIControlStateNormal];
     [hardButton addTarget:self action:@selector(hardMode) forControlEvents:UIControlEventTouchUpInside];
@@ -71,6 +73,14 @@
 -(IBAction)hardMode{
     [[self view] removeFromSuperview];
     [delegate startHardcore];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (NSUInteger)supportedInterfaceOrientations{
+    return UIInterfaceOrientationMaskPortrait;
 }
 
 
