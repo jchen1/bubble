@@ -23,10 +23,19 @@
     return self;
 }
 
+-(id)initWithScore:(long long)score
+{
+    self = [super initWithNibName:nil bundle:nil];
+    if (self) {
+        self.score=score;
+        self.canDisplayBannerAds = YES;
+    }
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     self.view.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.8];
     UIImage *backgroundImage = [UIImage imageNamed:@"game_over_background.png"];
     UIImage *homeButtonBackground = [UIImage imageNamed:@"quit_button.png"];

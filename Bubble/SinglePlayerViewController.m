@@ -173,8 +173,7 @@
 
 - (void)gameOver:(long long)GOScore{
     [player pause];
-    GameOverViewController *gController = [[GameOverViewController alloc] initWithNibName:nil bundle:nil];
-    gController.score = GOScore;
+    GameOverViewController *gController = [[GameOverViewController alloc] initWithScore:GOScore];
     [self addChildViewController:gController];
     [[self view] addSubview: [gController view]];
 }
