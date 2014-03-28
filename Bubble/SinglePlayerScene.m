@@ -125,7 +125,6 @@
 }
 
 -(void)update:(CFTimeInterval)currentTime {
-    
     [self processPowerups:currentTime];
     
     [self processAchievements];
@@ -207,10 +206,16 @@
     [myBubble updateArc];
     
     //spawn powerups
-    if(arc4random()%10==0)
+    if(isHardcore){
+    if(arc4random()%1000==0)
     {
         [self spawnPowerup];
+    }}
+    if(!isHardcore){
+        if(arc4random()%500==0)
+            [self spawnPowerup];
     }
+    
     
     //spawn more bubbles if necessary
     if (MAX(0, (int)(initial_count - (int)[bubbles count] + shrink_count)) > arc4random() % 100)
@@ -300,8 +305,8 @@
                     soundFilePath = [[NSBundle mainBundle] pathForResource:@"timeslow" ofType:@"wav"];
                     soundFileURL = [NSURL fileURLWithPath:soundFilePath];
                     player2 = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:nil];
-                    player2.numberOfLoops = 0;
-                    player2.volume=.1;
+                    player2.numberOfLoops = 1;
+                    player2.volume=.25;
                     if([player2 prepareToPlay])
                     {
                         [player2 play];
