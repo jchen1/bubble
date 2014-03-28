@@ -32,8 +32,14 @@
 	
     UIImage *backButtonBackground = [UIImage imageNamed:@"back_button.png"];
     
+    float width = self.view.bounds.size.width;
+    float height = self.view.bounds.size.height;
+    float buttonWidth = MIN(400, 0.6*width);
+    float buttonHeight = 0.25 * buttonWidth;
+    
     backButton =  [UIButton buttonWithType:UIButtonTypeSystem] ;
-    [backButton setFrame:CGRectMake(60.0, self.view.bounds.size.height - 100.0, 200.0, 50.0)];
+    [backButton setFrame:CGRectMake(0.5 * (width - buttonWidth),
+                                    0.5 * height + 3.4*buttonHeight, buttonWidth, buttonHeight)];
     [backButton setBackgroundImage:backButtonBackground forState:UIControlStateNormal];
     [backButton addTarget:self action:@selector(goBack) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:backButton];
@@ -49,7 +55,9 @@
     float musicVolume = [defaults floatForKey:@"musicVolume"];
     //float sfxVolume = [[defaults valueForKey:@"sfxVolume"] floatValue];
     
-    musicVolumeLabel= [[UILabel alloc] initWithFrame:CGRectMake(60.0, self.view.bounds.size.height - 210.0, 200, 30)];
+    musicVolumeLabel= [[UILabel alloc] initWithFrame:CGRectMake(0.5 * (width - buttonWidth),
+                                                                0.5 * height + 1.5*buttonHeight,
+                                                                buttonWidth, buttonHeight)];
     musicVolumeLabel.lineBreakMode = NSLineBreakByWordWrapping;
     musicVolumeLabel.textAlignment = NSTextAlignmentCenter;
     musicVolumeLabel.numberOfLines = 1;
@@ -59,7 +67,9 @@
     
     
     musicVolumeSlider = [[UISlider alloc]
-                         initWithFrame:CGRectMake(60.0,self.view.bounds.size.height - 180.0, 200.0, 50.0)];
+                         initWithFrame:CGRectMake(0.5 * (width - buttonWidth),
+                                                  0.5 * height + 2.2*buttonHeight,
+                                                  buttonWidth, buttonHeight)];
     musicVolumeSlider.maximumValue = 1.0;
     musicVolumeSlider.minimumValue = 0.001;
     if (musicVolume == 0){

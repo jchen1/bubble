@@ -135,41 +135,49 @@
     UIImage *twitterButtonBackground = [UIImage imageNamed:@"twitter_logo.png"];
     UIImage *bubbleIconImage = [UIImage imageNamed:@"bubble_icon_title.png"];
     
-    bubbleIcon = [[UIImageView alloc] initWithFrame:CGRectMake(CGRectGetMidX(self.view.bounds) - 100,
-                                                               50.0, 200.0, 200.0)];
+    float width = self.view.bounds.size.width;
+    float height = self.view.bounds.size.height;
+    float buttonWidth = MIN(400, 0.6*width);
+    float buttonHeight = 0.25 * buttonWidth;
+    
+    
+    bubbleIcon = [[UIImageView alloc] initWithFrame:CGRectMake(0.5 * width - 0.2 * height,
+                                                               0.1 * height, 0.4 * height, 0.4 * height)];
     bubbleIcon.image = bubbleIconImage;
     [self.view addSubview:bubbleIcon];
     
     singlePlayerButton =  [UIButton buttonWithType:UIButtonTypeSystem] ;
-    [singlePlayerButton setFrame:CGRectMake(CGRectGetMidX(self.view.bounds) - 100,
-                                            self.view.bounds.size.height - 220.0, 200.0, 50.0)];
+    [singlePlayerButton setFrame:CGRectMake(0.5 * (width - buttonWidth),
+                                            0.5 * height + buttonHeight, buttonWidth, buttonHeight)];
     [singlePlayerButton setBackgroundImage:singlePlayerButtonBackground forState:UIControlStateNormal];
     [singlePlayerButton addTarget:self action:@selector(gameView) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:singlePlayerButton];
     
     twoPlayerButton =  [UIButton buttonWithType:UIButtonTypeSystem] ;
-    [twoPlayerButton setFrame:CGRectMake(CGRectGetMidX(self.view.bounds) - 100,
-                                         self.view.bounds.size.height - 160.0, 200.0, 50.0)];
+    [twoPlayerButton setFrame:CGRectMake(0.5 * (width - buttonWidth),
+                                         0.5 * height + 2.2*buttonHeight, buttonWidth, buttonHeight)];
     [twoPlayerButton setBackgroundImage:twoPlayerButtonBackground forState:UIControlStateNormal];
     [twoPlayerButton addTarget:self action:@selector(multiGameView) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:twoPlayerButton];
 
     optionsButton =  [UIButton buttonWithType:UIButtonTypeSystem] ;
-    [optionsButton setFrame:CGRectMake(CGRectGetMidX(self.view.bounds) - 100,
-                                       self.view.bounds.size.height - 100.0, 200.0, 50.0)];
+    [optionsButton setFrame:CGRectMake(0.5 * (width - buttonWidth),
+                                       0.5 * height + 3.4*buttonHeight, buttonWidth, buttonHeight)];
     [optionsButton setBackgroundImage:optionsButtonBackground forState:UIControlStateNormal];
     [optionsButton addTarget:self action:@selector(optionsView) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:optionsButton];
     
     
     gameCenterButton =  [UIButton buttonWithType:UIButtonTypeSystem];
-    [gameCenterButton setFrame:CGRectMake(5.0, self.view.bounds.size.height - 25.0, 20.0, 20.0)];
+    [gameCenterButton setFrame:CGRectMake(0.01 * width, self.view.bounds.size.height - 0.06 * width,
+                                          0.05 * width, 0.05 * width)];
     [gameCenterButton setBackgroundImage:gameCenterButtonBackground forState:UIControlStateNormal];
     [gameCenterButton addTarget:self action:@selector(gameCenterView) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:gameCenterButton];
     
     twitterButton =  [UIButton buttonWithType:UIButtonTypeSystem];
-    [twitterButton setFrame:CGRectMake(30.0, self.view.bounds.size.height - 25.0, 20.0, 20.0)];
+    [twitterButton setFrame:CGRectMake(0.07 * width, self.view.bounds.size.height - 0.06 * width,
+                                       0.05 * width, 0.05 * width)];
     [twitterButton setBackgroundImage:twitterButtonBackground forState:UIControlStateNormal];
     [twitterButton addTarget:self action:@selector(twitterView) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:twitterButton];
