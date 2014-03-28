@@ -131,7 +131,9 @@
     
     //check for game over
     if ([myBubble deaths] > NUM_LIVES){
-        NSString *board = isHardcore ? @"2" : @"1";
+        NSString *model = [UIDevice currentDevice].model;
+        BOOL isIpad = [model isEqualToString:@"iPad"];
+        NSString *board = isHardcore ? (isIpad ? @"4" : @"2") : (isIpad ? @"3" : @"1");
         [self.scene.view setPaused:YES];
         long long score = (long long)([myBubble totalEaten] * 10);
         [[self delegate] gameOver:score];
