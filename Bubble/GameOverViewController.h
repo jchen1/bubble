@@ -17,6 +17,7 @@
     UILabel *scoreDisplay;
     ADBannerView *bannerView;
 }
+-(id)initWithScore:(long long)score;
 
 @property long long score;
 
