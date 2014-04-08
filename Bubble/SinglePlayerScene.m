@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 Jeff Chen. All rights reserved.
 //
 
+//I'm so proud of this app.
+
 #import "SinglePlayerScene.h"
 
 @implementation SinglePlayerScene

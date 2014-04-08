@@ -5,36 +5,36 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>C6AE1762-D1F6-4A10-9A4D-7C15FFECA116</string>
+	<string>19BC23F7-1295-4C1F-9B5F-B57AB217C571</string>
 	<key>IDESourceControlProjectName</key>
 	<string>Bubble</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>8F240F35-B197-4950-9598-A411262420AB</key>
-		<string>https://github.com/iambald/bubble.git</string>
+		<key>640C35E6-5196-46B9-B385-14881B4BA91B</key>
+		<string>ssh://github.com/iambald/bubble.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Bubble.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>8F240F35-B197-4950-9598-A411262420AB</key>
+		<key>640C35E6-5196-46B9-B385-14881B4BA91B</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/iambald/bubble.git</string>
+	<string>ssh://github.com/iambald/bubble.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>8F240F35-B197-4950-9598-A411262420AB</string>
+	<string>640C35E6-5196-46B9-B385-14881B4BA91B</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>8F240F35-B197-4950-9598-A411262420AB</string>
+			<string>640C35E6-5196-46B9-B385-14881B4BA91B</string>
 			<key>IDESourceControlWCCName</key>
-			<string>bubble</string>
+			<string>Bubble</string>
 		</dict>
 	</array>
 </dict>

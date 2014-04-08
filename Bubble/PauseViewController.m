@@ -51,9 +51,7 @@
     [quitButton addTarget:self action:@selector(quitGame) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:quitButton];
     
-    //iad stuff
-    bannerView = [[ADBannerView alloc]initWithFrame:
-                  CGRectMake(0, 0, 320, 50)];
+    bannerView = [[ADBannerView alloc] initWithAdType:ADAdTypeBanner];
     [bannerView setBackgroundColor:[UIColor clearColor]];
     [self.view addSubview: bannerView];
     
